@@ -1,0 +1,142 @@
+<resources>
+    <string name="app_name">LogViewer for openHAB</string>
+
+    <string name="credits">Credits</string>
+    <string name="credits1">App made by _nikothegreek_ (nikothegreek.jimdofree.com)</string>
+    <string name="credits2">with Android Studio</string>
+    <string name="credits3">App Icon made by _nikothegreek_ (nikothegreek.jimdofree.com)</string>
+    <string name="credits4">with Gimp (gimp.org) and appmaker.merq.org/tools</string>
+    <string name="credits5">"Eye Open icon" made by Dave Gandy from www.flaticon.com</string>
+    <string name="credits6">"Files icon" made by Smartline from www.flaticon.com</string>
+    <string name="credits7">"Lock icon" made by Freepik from www.flaticon.com</string>
+    <string name="credits8">"Font icon" made by Those Icons from www.flaticon.com</string>
+    <string name="credits9">"Left Arrow icon" made by Lyolya from www.flaticon.com</string>
+    <string name="credits10">Libraries Used</string>
+    <string name="credits11">DiscreteSeekBar by AnderWeb (github.com/AnderWeb/discreteSeekBar)
+        \nApache 2.0 license (apache.org/licenses/LICENSE-2.0)</string>
+    <string name="credits12">TapTargetView by KeepSafe (github.com/KeepSafe/TapTargetView)
+        \nApache 2.0 license (apache.org/licenses/LICENSE-2.0)</string>
+
+    <string name="hostname_ipaddress_view">Hostname / IP address</string>
+    <string name="hostname_ipaddress">(e.g. 192.168.178.10)</string>
+    <string name="port_view">Port</string>
+    <string name="port">(default is 9001)</string>
+    <string name="checks">Remember\ninput</string>
+    <string name="connect_button_1">Check</string>
+    <string name="connect_button_2">Connect</string>
+    <string name="connect_check">automatically connect\nnext time</string>
+
+    <string name="text_size_alert">Change Text Size</string>
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_use">Terms of Use</string>
+
+    <string name="privacy_policy1"><u>Privacy Policy</u></string>
+    <string name="privacy_policy2">
+        I built the LogViewer for openHAB app as a Free app. This SERVICE is provided by me at no cost and is intended for use as is.
+        \n\nThis page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use this Service.
+        \n\nIf you choose to use this Service, then you agree to the collection and use of information in relation to this policy.
+        \nThe Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
+        \n\nThe terms used in this Privacy Policy have the same meanings as in our Terms of Use, which is accessible at LogViewer for openHAB.
+    </string>
+    <string name="privacy_policy3">Information Collection and Use</string>
+    <string name="privacy_policy4">
+        For a better experience, while using my Service, I may require you to provide me with certain personally identifiable information, including but not limited to Device Information, Usage
+        Time, Country, Gender and Interests.
+        \n\nThe app does use third party services that may collect information used to identify you.
+        \nLink to the third party service providers used by the app:
+        \n - <b>Google Firebase</b> (firebase.google.com)
+    </string>
+    <string name="privacy_policy5">Log Data</string>
+    <string name="privacy_policy6">
+        I want to inform you that whenever you use my Service, I collect data and information (through third party products) on your phone called Log Data. This Log Data
+        may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date
+        of your use of the Service, and other statistics.
+    </string>
+    <string name="privacy_policy7">Cookies</string>
+    <string name="privacy_policy8">
+        Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your
+        device\'s internal memory.
+        \n\nThis Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services.
+    </string>
+    <string name="privacy_policy9">Service Providers</string>
+    <string name="privacy_policy10">
+        I may employ third-party companies and individuals due to the following reasons:
+        \n - To facilitate our Service
+        \n - To provide the Service on our behalf
+        \n - To perform Service-related services
+        \n - To assist us in analyzing how our Service is used
+        \n\nI want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they
+        are obligated not to disclose or use the information for any other purpose.
+    </string>
+    <string name="privacy_policy11">Security</string>
+    <string name="privacy_policy12">
+        I value your trust in providing me your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over
+        the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
+    </string>
+    <string name="privacy_policy13">Links to Websites</string>
+    <string name="privacy_policy14">
+        This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that not every of these external sites are operated by me.
+        Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any
+        third-party sites or services.
+    </string>
+    <string name="privacy_policy15">Children\’s Privacy</string>
+    <string name="privacy_policy16">
+        This Service does not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13.
+    </string>
+    <string name="privacy_policy17">Changes to this Privacy Policy</string>
+    <string name="privacy_policy18">
+        I may update this Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy
+        on this page. These changes are effective immediately after they are posted on this page.
+        \nThis policy is effective as of <b>2020-04-24</b>.
+    </string>
+    <string name="privacy_policy19">Contact Me</string>
+    <string name="privacy_policy20">
+        If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at nikodiamond3@gmail.com.
+    </string>
+    <string name="privacy_policy21">
+        This privacy policy page was created at privacypolicytemplate.net and modified/generated by <b>App Privacy Policy Generator</b> (app-privacy-policy-generator.firebaseapp.com) and me.
+    </string>
+
+    // Terms of Use
+    <string name="terms_of_use1"><u>Terms of Use</u></string>
+    <string name="terms_of_use2">
+        By downloading or using the app, these terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You\'re not allowed to copy,
+        or modify the app, any part of the app. You\'re not allowed to attempt to extract the source code of the app or make derivative versions.
+        \nThe app itself, and all the database rights and other intellectual property rights related to it, still belong to me.
+        \n\nI am committed to ensuring that the app is as useful and efficient as possible. For that reason, I reserve the right to make changes to the app or to charge for its services,
+        at any time and for any reason. I will never charge you for the app or its services without making it very clear to you exactly what you\'re paying for.
+        \n\nThe LogViewer for openHAB app stores and processes personal data that you have provided to us, in order to provide my Service. It\'s your responsibility to keep your phone and access
+        to the app secure. We therefore recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations imposed by the official
+        operating system of your device. It could make your phone vulnerable to malware/viruses/malicious programs, compromise your phone\'s security features and it could mean that the
+        LogViewer for openHAB app won\'t work properly or at all.
+        \nThe app does use third party services that declare their own Terms and Conditions.
+        \nLink to Terms and Conditions of third party service providers used by the app:
+        \n - <b>Google Analytics for Firebase</b> (firebase.google.com/terms/analytics)
+        \n\nYou should be aware that there are certain things that I will not take responsibility for. Certain functions of the app will require the app to have an active internet connection. The
+        connection can be Wi-Fi, or provided by your mobile network provider, but I cannot take responsibility for the app not working at full functionality if you don\'t have any of your data
+        allowance left.
+        \nIf you\'re using the app outside of an area with Wi-Fi, you should remember that your terms of the agreement with your mobile network provider will still apply. As a result, you may be
+        charged by your mobile provider for the cost of data for the duration of the connection while accessing the app, or third party charges.
+        \nIn using the app, you\'re accepting responsibility for any such charges, including roaming data charges if you use the app outside of your home territory (i.e. region or country) without
+        turning off data roaming. If you are not the bill payer for the device on which you\'re using the app, please be aware that we assume that you have received permission from the bill payer for
+        using the app.
+        \n\nAlong the same lines, I cannot always take responsibility for the way you use the app i.e. You need to make sure that your device stays charged – if it runs out of battery and you can\'t
+        turn it on to avail the Service, I cannot accept responsibility.
+        \n\nWhen you\'re using the app, it\'s important to bear in mind that although I endeavour to ensure that it is updated and correct at all times, I do rely on third parties to provide
+        information to me so that I can make it available to you. I accept no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.
+        \n\nAt some point, I may wish to update the app. The app is currently available on Android – the requirements for system (and for any additional systems I decide to extend the availability
+        of the app to) may change, and you\'ll need to download the updates if you want to keep using the app. I do not promise that I will always update the app so that it is relevant to you and/or
+        works with the Android version that you have installed on your device. However, you promise to always accept updates to the application when offered to you, I may also wish to stop
+        providing the app, and may terminate use of it at any time without giving notice of termination to you.
+    </string>
+    <string name="terms_of_use3">Changes to this Terms of Use</string>
+    <string name="terms_of_use4">I may update these Terms of Use from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by
+        posting the new Terms of Use on this page.
+        \nThese Terms of Use are effective as of <b>2020-04-24</b>.
+    </string>
+    <string name="terms_of_use5">Contact Me</string>
+    <string name="terms_of_use6">If you have any questions or suggestions about my Terms of Use, do not hesitate to contact me at nikodiamond3@gmail.com.
+    </string>
+    <string name="terms_of_use7">This Terms of Use page was generated by <b>App Privacy Policy Generator</b> (app-privacy-policy-generator.firebaseapp.com) and modified by me.</string>
+</resources>
