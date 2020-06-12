@@ -7,6 +7,12 @@
     <string name="auto_scroll2">Auto Scroll deactivated</string>
     <string name="text_size_changed">Text size changed to </string>
 
+    <string name="update_dialog_title">New Update available</string>
+    <string name="update_dialog_message">The update \'%1$s\' is available for download!\n\nCurrently installed version: \'%2$s\'</string>
+    <string name="update_dialog_button1">Download</string>
+    <string name="update_dialog_button2">Cancel</string>
+    <string name="update_dialog_error">Missing permission, give it on next app start</string>
+
     <string name="credits">Credits</string>
     <string name="credits1">App made by _nikothegreek_ (nikothegreek.jimdofree.com)</string>
     <string name="credits2">with Android Studio</string>
