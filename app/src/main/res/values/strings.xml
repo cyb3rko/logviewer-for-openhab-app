@@ -7,7 +7,17 @@
     <string name="auto_scroll2">Auto Scroll deactivated</string>
     <string name="text_size_changed">Text size changed to </string>
 
-    <string name="update_dialog_title">New Update available</string>
+    <string name="end_user_consent_title">End User Consent</string>
+    <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>
+    <string name="end_user_consent_button1">Got it</string>
+    <string name="end_user_consent_button2">Cancel</string>
+
+    <string name="end_user_consent2_title">Your End User Consent</string>
+    <string name="end_user_consent2_message">By using this app you have agreed to the Privacy Policy and the Terms of Use.\n\n<u>Date:</u> </string>
+    <string name="end_user_consent2_message2">\n<u>Time:</u> </string>
+    <string name="end_user_consent2_button1">OK</string>
+
+    <string name="update_dialog_title">New Update Available</string>
     <string name="update_dialog_message">The update \'%1$s\' is available for download!\n\nCurrently installed version: \'%2$s\'</string>
     <string name="update_dialog_button1">Download</string>
     <string name="update_dialog_button2">Cancel</string>
@@ -49,8 +59,7 @@
     <string name="text_size_dialog_button1">Set</string>
     <string name="text_size_dialog_button2">Cancel</string>
 
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_of_use">Terms of Use</string>
+    <string name="end_user_consent">Privacy Policy\n\nTerms of Use</string>
 
     <string name="send_mail">Send me a mail…</string>
 

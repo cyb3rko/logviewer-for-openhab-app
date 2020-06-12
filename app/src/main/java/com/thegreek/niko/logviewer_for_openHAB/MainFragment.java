@@ -50,8 +50,7 @@ public class MainFragment extends Fragment {
         linkView = v.findViewById(R.id.linkView);
         connectButton = v.findViewById(R.id.connectButton);
         connectCheck = v.findViewById(R.id.connectCheck);
-        TextView privacy_policy_text = v.findViewById(R.id.privacyPolicy);
-        TextView terms_of_use_text = v.findViewById(R.id.termsOfUse);
+        TextView endUserConsent = v.findViewById(R.id.endUserConsent);
         TextView credits_text = v.findViewById(R.id.credits);
 
         mySPR = v.getContext().getSharedPreferences("Speicherstand", 0);
@@ -141,27 +140,20 @@ public class MainFragment extends Fragment {
             }
         });
 
-        privacy_policy_text.setOnClickListener(new View.OnClickListener() {
+        endUserConsent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent privacy_policy_intent = new Intent(getContext(), PrivacyPolicy.class);
-                view.getContext().startActivity(privacy_policy_intent);
-            }
-        });
-
-        terms_of_use_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent terms_of_use_intent = new Intent(getContext(), TermsOfUse.class);
-                view.getContext().startActivity(terms_of_use_intent);
+                EndUserConsent2 endUserConsent2 = new EndUserConsent2();
+                endUserConsent2.setCancelable(true);
+                endUserConsent2.show(getChildFragmentManager(), "EndUserConsent2");
             }
         });
 
         credits_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent terms_of_use_intent = new Intent(getContext(), Credits.class);
-                view.getContext().startActivity(terms_of_use_intent);
+                Intent termsOfUseIntent = new Intent(getContext(), Credits.class);
+                view.getContext().startActivity(termsOfUseIntent);
             }
         });
 

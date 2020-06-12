@@ -35,6 +35,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".EndUserConsent" />
+        <activity android:name=".EndUserConsent2" />
 
         <meta-data
             android:name="firebase_analytics_collection_enabled"

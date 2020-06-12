@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
 
-        if (mySPR.getBoolean("firstStart", true)) {
+        if (mySPR.getBoolean("firstStart", true) || mySPR.getString("datum", "").equals("")) {
             EndUserConsent endUserConsent = new EndUserConsent();
             endUserConsent.setCancelable(false);
             endUserConsent.show(getSupportFragmentManager(), "Endnutzer-Einwilligung");

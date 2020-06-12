@@ -18,18 +18,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+public class EndUserConsent2 extends AppCompatDialogFragment {
 
-public class EndUserConsent extends AppCompatDialogFragment {
-
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         SharedPreferences mySPR = getActivity().getSharedPreferences("Speicherstand", 0);
         final SharedPreferences.Editor editor = mySPR.edit();
+        editor.apply();
 
-        SpannableString ss = new SpannableString(getString(R.string.end_user_consent_message));
+        String message = getString(R.string.end_user_consent2_message);
+
+        message += mySPR.getString("datum", "") + getString(R.string.end_user_consent2_message2) + mySPR.getString("uhrzeit", "");
+
+        SpannableString spannableString = new SpannableString(message);
 
         ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
@@ -45,13 +47,13 @@ public class EndUserConsent extends AppCompatDialogFragment {
             }
         };
 
-        ss.setSpan(clickableSpan1, 35, 49, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(clickableSpan2, 58, 70, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(clickableSpan1, message.indexOf("Privacy"), message.indexOf("Privacy") + "Pricacy Policy".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(clickableSpan2, message.indexOf("Terms"), message.indexOf("Terms") + "Terms of Use".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         TextView titleView = new TextView(getContext());
-        titleView.setText(getString(R.string.end_user_consent_title));
+        titleView.setText(getString(R.string.end_user_consent2_title));
         titleView.setTextSize(22);
         titleView.setTypeface(Typeface.DEFAULT_BOLD);
         titleView.setPadding(32, 32, 32, 32);
@@ -61,26 +63,13 @@ public class EndUserConsent extends AppCompatDialogFragment {
         messageView.setMovementMethod(LinkMovementMethod.getInstance());
         messageView.setPadding(32, 32, 32, 32);
         messageView.setGravity(Gravity.CENTER_HORIZONTAL);
-        messageView.setText(ss);
+        messageView.setText(spannableString);
         messageView.setTextSize(16);
         builder.setView(messageView)
                 .setCustomTitle(titleView)
-                .setPositiveButton(getString(R.string.end_user_consent_button1), new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.end_user_consent2_button1), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        MainActivity.firebaseAnalytics.setAnalyticsCollectionEnabled(true);
-                        Date date = Calendar.getInstance().getTime();
-                        SimpleDateFormat sDF = new SimpleDateFormat("dd.MM.yyyy");
-                        SimpleDateFormat sDF2 = new SimpleDateFormat("HH:mm:ss");
-                        editor.putString("datum", sDF.format(date));
-                        editor.putString("uhrzeit", sDF2.format(date));
-                        editor.putBoolean("firstStart", false).apply();
-                    }
-                })
-                .setNegativeButton(getString(R.string.end_user_consent_button2), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        System.exit(0);
                     }
                 });
 
