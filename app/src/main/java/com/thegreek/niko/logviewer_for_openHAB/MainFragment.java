@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,25 +15,27 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import es.dmoral.toasty.Toasty;
 
-
 public class MainFragment extends Fragment {
-    private EditText hostnameIPAddress;
-    private ImageButton hostnameIPAddressEdit;
-    private CheckBox hostnameIPAddressCheck;
-    private EditText port;
-    private ImageButton portEdit;
-    private CheckBox portCheck;
-    private TextView linkView;
+
     private Button connectButton;
     private CheckBox connectCheck;
-    private String hostnameIPAddressString;
-    private int portInt;
-    private String link;
-
+    private CheckBox hostnameIPAddressCheck;
+    private CheckBox portCheck;
+    private EditText hostnameIPAddress;
+    private EditText port;
+    private ImageButton hostnameIPAddressEdit;
+    private ImageButton portEdit;
     private SharedPreferences mySPR;
     private SharedPreferences.Editor editor;
+    private String hostnameIPAddressString;
+    private String link;
+    private TextView linkView;
+
+    private int portInt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -106,10 +105,10 @@ public class MainFragment extends Fragment {
                             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                         }
 
-                        Toasty.info(v.getContext(), "Connecting...", Toasty.LENGTH_SHORT).show();
+                        Toasty.info(v.getContext(), getString(R.string.connecting), Toasty.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toasty.error(v.getContext(), "Fill out both", Toasty.LENGTH_LONG).show();
+                    Toasty.error(v.getContext(), getString(R.string.error_fill_out), Toasty.LENGTH_LONG).show();
                 }
             }
         });
@@ -186,7 +185,7 @@ public class MainFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
 
-            Toasty.info(getActivity().getApplicationContext(), "Connecting...", Toasty.LENGTH_SHORT).show();
+            Toasty.info(getActivity().getApplicationContext(), getString(R.string.connecting), Toasty.LENGTH_SHORT).show();
 
             return;
         }

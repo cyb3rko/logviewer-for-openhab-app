@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">LogViewer for openHAB</string>
 
+    <string name="error_fill_out">Fill out both</string>
+    <string name="connecting">Connecting…</string>
+    <string name="auto_scroll1">Auto Scroll activated</string>
+    <string name="auto_scroll2">Auto Scroll deactivated</string>
+    <string name="text_size_changed">Text size changed to </string>
+
     <string name="credits">Credits</string>
     <string name="credits1">App made by _nikothegreek_ (nikothegreek.jimdofree.com)</string>
     <string name="credits2">with Android Studio</string>
@@ -26,10 +32,21 @@
     <string name="connect_button_2">Connect</string>
     <string name="connect_check">automatically connect\nnext time</string>
 
-    <string name="text_size_alert">Change Text Size</string>
+    <string name="tap_target_title1">Auto Scroll</string>
+    <string name="tap_target_title2">Text size</string>
+    <string name="tap_target_title3">Go back</string>
+    <string name="tap_target_message1">Click here to switch the Auto Scroll mode</string>
+    <string name="tap_target_message2">Click here to change the text size</string>
+    <string name="tap_target_message3">Click here to go back to the menu</string>
+
+    <string name="text_size_dialog_title">Change Text Size</string>
+    <string name="text_size_dialog_button1">Set</string>
+    <string name="text_size_dialog_button2">Cancel</string>
 
     <string name="privacy_policy">Privacy Policy</string>
     <string name="terms_of_use">Terms of Use</string>
+
+    <string name="send_mail">Send me a mail…</string>
 
     <string name="privacy_policy1"><u>Privacy Policy</u></string>
     <string name="privacy_policy2">

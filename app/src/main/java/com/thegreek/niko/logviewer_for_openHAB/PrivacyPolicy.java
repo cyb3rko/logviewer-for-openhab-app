@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PrivacyPolicy extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,7 @@ public class PrivacyPolicy extends AppCompatActivity {
                 Intent mailIntent = new Intent(Intent.ACTION_VIEW);
                 Uri data = Uri.parse("mailto:?subject=" + getString(R.string.app_name) + " - Privacy Policy"+ "&body=" + "" + "&to=" + "nikodiamond3@gmail.com");
                 mailIntent.setData(data);
-                startActivity(Intent.createChooser(mailIntent, "Sende eine Mail an mich..."));
+                startActivity(Intent.createChooser(mailIntent, getString(R.string.send_mail)));
             }
         });
     }

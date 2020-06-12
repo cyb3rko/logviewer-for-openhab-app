@@ -18,8 +18,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-
 public class EndUserConsent extends AppCompatDialogFragment {
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         SharedPreferences mySPR = getActivity().getSharedPreferences("Speicherstand", 0);

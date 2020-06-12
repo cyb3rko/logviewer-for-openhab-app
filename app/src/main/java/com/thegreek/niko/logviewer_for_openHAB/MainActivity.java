@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-
 public class MainActivity extends AppCompatActivity {
+
     static FirebaseAnalytics firebaseAnalytics;
 
     @Override

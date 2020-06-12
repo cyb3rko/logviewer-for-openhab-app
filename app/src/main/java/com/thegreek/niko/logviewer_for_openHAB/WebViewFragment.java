@@ -24,21 +24,21 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 import es.dmoral.toasty.Toasty;
 
-
 public class WebViewFragment extends Fragment {
-    private boolean viewLocked = true;
 
     private SharedPreferences.Editor editor;
+
+    private boolean viewLocked = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_web_view, container, false);
 
-        final WebView webView = v.findViewById(R.id.webView);
         final FloatingActionButton viewButton = v.findViewById(R.id.viewButton);
         final FloatingActionButton textButton = v.findViewById(R.id.textButton);
         final FloatingActionButton backButton = v.findViewById(R.id.backButton);
+        final WebView webView = v.findViewById(R.id.webView);
 
         final SharedPreferences mySPR = this.getActivity().getSharedPreferences("Speicherstand", 0);
         editor = mySPR.edit();
@@ -71,12 +71,12 @@ public class WebViewFragment extends Fragment {
                     viewButton.setImageResource(R.drawable.icon_view);
                     viewLocked = false;
 
-                    Toasty.info(view.getContext(), "Auto-Scroll deactivated", Toasty.LENGTH_SHORT).show();
+                    Toasty.info(view.getContext(), getString(R.string.auto_scroll2), Toasty.LENGTH_SHORT).show();
                 } else {
                     viewButton.setImageResource(R.drawable.icon_lock);
                     viewLocked = true;
 
-                    Toasty.info(view.getContext(), "Auto-Scroll activated", Toasty.LENGTH_SHORT).show();
+                    Toasty.info(view.getContext(), getString(R.string.auto_scroll1), Toasty.LENGTH_SHORT).show();
                 }
             }
         });
@@ -88,7 +88,7 @@ public class WebViewFragment extends Fragment {
                 final DiscreteSeekBar discreteSeekBar = new DiscreteSeekBar(v.getContext());
 
                 TextView titleView = new TextView(getContext());
-                titleView.setText(R.string.text_size_alert);
+                titleView.setText(R.string.text_size_dialog_title);
                 titleView.setTextSize(22);
                 titleView.setTypeface(Typeface.DEFAULT_BOLD);
                 titleView.setPadding(32, 32, 32, 32);
@@ -101,17 +101,17 @@ public class WebViewFragment extends Fragment {
 
                 builder.setView(discreteSeekBar)
                         .setCustomTitle(titleView)
-                        .setPositiveButton("Set", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getString(R.string.text_size_dialog_button1), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             int textSize = discreteSeekBar.getProgress();
 
                             webSettings.setTextZoom(textSize);
                             editor.putInt("textSize", textSize).apply();
-                            Toasty.success(view.getContext(), "Text size changed to " + textSize, Toasty.LENGTH_SHORT).show();
+                            Toasty.success(view.getContext(), getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.text_size_dialog_button2), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
@@ -141,7 +141,7 @@ public class WebViewFragment extends Fragment {
         if (mySPR.getBoolean("firstStartWeb", true)) {
             new TapTargetSequence(getActivity())
                     .targets(
-                            TapTarget.forView(v.findViewById(R.id.viewButton), "Auto-Scroll", "Click here to switch the Auto-Scroll mode")
+                            TapTarget.forView(v.findViewById(R.id.viewButton), getString(R.string.tap_target_title1), getString(R.string.tap_target_message1))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -149,7 +149,7 @@ public class WebViewFragment extends Fragment {
                                     .descriptionTextSize(16)
                                     .drawShadow(true)
                                     .cancelable(false),
-                            TapTarget.forView(v.findViewById(R.id.textButton), "Text size", "Click here to change the text size")
+                            TapTarget.forView(v.findViewById(R.id.textButton), getString(R.string.tap_target_title2), getString(R.string.tap_target_message2))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -157,7 +157,7 @@ public class WebViewFragment extends Fragment {
                                     .descriptionTextSize(16)
                                     .drawShadow(true)
                                     .cancelable(false),
-                            TapTarget.forView(v.findViewById(R.id.backButton), "Go back", "Click here to go back to the menu")
+                            TapTarget.forView(v.findViewById(R.id.backButton), getString(R.string.tap_target_title3), getString(R.string.tap_target_message3))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
