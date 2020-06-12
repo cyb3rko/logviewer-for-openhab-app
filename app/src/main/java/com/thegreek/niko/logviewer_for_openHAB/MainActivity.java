@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
             EndUserConsent endUserConsent = new EndUserConsent();
             endUserConsent.setCancelable(false);
             endUserConsent.show(getSupportFragmentManager(), "Endnutzer-Einwilligung");
+        } else {
+            firebaseAnalytics.setAnalyticsCollectionEnabled(true);
         }
     }
 
