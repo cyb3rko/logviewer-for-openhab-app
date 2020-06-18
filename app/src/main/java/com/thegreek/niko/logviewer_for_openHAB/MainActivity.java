@@ -13,6 +13,8 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import es.dmoral.toasty.Toasty;
+
 public class MainActivity extends AppCompatActivity {
 
     static FirebaseAnalytics firebaseAnalytics;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mySPR = this.getSharedPreferences("Speicherstand", 0);
         editor = mySPR.edit();
         editor.apply();
+        Toasty.Config.getInstance().allowQueue(false).apply();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
 

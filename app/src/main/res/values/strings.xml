@@ -5,7 +5,7 @@
     <string name="connecting">Connecting…</string>
     <string name="auto_scroll1">Auto Scroll activated</string>
     <string name="auto_scroll2">Auto Scroll deactivated</string>
-    <string name="text_size_changed">Text size changed to </string>
+    <string name="text_size_changed">Text size changed to&#160;</string>
 
     <string name="end_user_consent_title">End User Consent</string>
     <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>
@@ -13,7 +13,7 @@
     <string name="end_user_consent_button2">Cancel</string>
 
     <string name="end_user_consent2_title">Your End User Consent</string>
-    <string name="end_user_consent2_message">By using this app you have agreed to the Privacy Policy and the Terms of Use.\n\n<u>Date:</u> </string>
+    <string name="end_user_consent2_message">By using this app you have agreed to the Privacy Policy and the Terms of Use.\n\n Date:&#160;</string>
     <string name="end_user_consent2_message2">\n<u>Time:</u> </string>
     <string name="end_user_consent2_button1">OK</string>
 
@@ -24,20 +24,22 @@
     <string name="update_dialog_error">Missing permission, give it on next app start</string>
 
     <string name="credits">Credits</string>
-    <string name="credits1">App made by _nikothegreek_ (nikothegreek.jimdofree.com)</string>
+    <string name="credits1">App made by _nikothegreek_ (my Website)</string>
     <string name="credits2">with Android Studio</string>
-    <string name="credits3">App Icon made by _nikothegreek_ (nikothegreek.jimdofree.com)</string>
-    <string name="credits4">with Gimp (gimp.org) and appmaker.merq.org/tools</string>
-    <string name="credits5">"Eye Open icon" made by Dave Gandy from www.flaticon.com</string>
-    <string name="credits6">"Files icon" made by Smartline from www.flaticon.com</string>
-    <string name="credits7">"Lock icon" made by Freepik from www.flaticon.com</string>
-    <string name="credits8">"Font icon" made by Those Icons from www.flaticon.com</string>
-    <string name="credits9">"Left Arrow icon" made by Lyolya from www.flaticon.com</string>
+    <string name="credits3">App Icon made by _nikothegreek_ (my Website)</string>
+    <string name="credits4">with Gimp</string>
+    <string name="credits5">\"Eye Open icon\" made by Dave Gandy from flaticon.com</string>
+    <string name="credits6">\"Files icon\" made by Smartline from flaticon.com</string>
+    <string name="credits7">\"Lock icon\" made by Freepik from flaticon.com</string>
+    <string name="credits8">\"Font icon\" made by Those Icons from flaticon.com</string>
+    <string name="credits9">\"Left Arrow icon\" made by Lyolya from flaticon.com</string>
     <string name="credits10">Libraries Used</string>
-    <string name="credits11">DiscreteSeekBar by AnderWeb (github.com/AnderWeb/discreteSeekBar)
-        \nApache 2.0 license (apache.org/licenses/LICENSE-2.0)</string>
-    <string name="credits12">TapTargetView by KeepSafe (github.com/KeepSafe/TapTargetView)
-        \nApache 2.0 license (apache.org/licenses/LICENSE-2.0)</string>
+    <string name="credits11">\"DiscreteSeekBar\" by AnderWeb (on GitHub)</string>
+    <string name="credits12">Apache 2.0 License (view License)</string>
+    <string name="credits13">\"TapTargetView\" by KeepSafe (on GitHub)</string>
+    <string name="credits14">Apache 2.0 License (view License)</string>
+    <string name="credits15">\"Toasty\" by GrenderG (on GitHub)</string>
+    <string name="credits16">LGPL 3.0 License (view License)</string>
 
     <string name="hostname_ipaddress_view">Hostname / IP address</string>
     <string name="hostname_ipaddress">(e.g. 192.168.178.10)</string>
