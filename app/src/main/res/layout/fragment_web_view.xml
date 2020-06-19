@@ -7,40 +7,47 @@
     tools:context=".WebViewFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/viewButton"
+        android:id="@+id/view_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
         android:src="@drawable/icon_lock"
-        app:layout_constraintBottom_toBottomOf="@id/webView"
-        app:layout_constraintEnd_toEndOf="@+id/webView"
-        app:layout_constraintTop_toTopOf="@id/webView" />
+        app:backgroundTint="#A6FF7E29"
+        app:elevation="0.01dp"
+        app:layout_constraintBottom_toBottomOf="@id/webview"
+        app:layout_constraintEnd_toEndOf="@+id/webview"
+        app:layout_constraintTop_toTopOf="@id/webview" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/textButton"
+        android:id="@+id/text_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
         android:src="@drawable/icon_font"
-        app:layout_constraintEnd_toEndOf="@+id/webView"
-        app:layout_constraintTop_toBottomOf="@+id/viewButton" />
+        app:backgroundTint="#A6FF7E29"
+        app:elevation="0.01dp"
+        app:layout_constraintEnd_toEndOf="@+id/webview"
+        app:layout_constraintTop_toBottomOf="@+id/view_button" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/backButton"
+        android:id="@+id/back_utton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="@color/colorAccent"
         android:src="@drawable/icon_arrow_left"
-        app:layout_constraintBottom_toBottomOf="@+id/webView"
-        app:layout_constraintStart_toStartOf="@id/webView"
-        app:layout_constraintTop_toTopOf="@id/webView" />
+        app:backgroundTint="#80FF7E29"
+        app:elevation="0.01dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/webview"
+        app:layout_constraintStart_toStartOf="@id/webview"
+        app:layout_constraintTop_toTopOf="@id/webview" />
 
     <WebView
-        android:id="@+id/webView"
+        android:id="@+id/webview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:focusable="true"

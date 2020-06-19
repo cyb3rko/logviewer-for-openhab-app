@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">LogViewer for openHAB</string>
 
+    <string name="version_view">%1$s</string>
+
     <string name="error_fill_out">Fill out both</string>
     <string name="connecting">Connecting…</string>
     <string name="auto_scroll1">Auto Scroll activated</string>

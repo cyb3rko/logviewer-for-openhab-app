@@ -35,10 +35,10 @@ public class WebViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_web_view, container, false);
 
-        final FloatingActionButton viewButton = v.findViewById(R.id.viewButton);
-        final FloatingActionButton textButton = v.findViewById(R.id.textButton);
-        final FloatingActionButton backButton = v.findViewById(R.id.backButton);
-        final WebView webView = v.findViewById(R.id.webView);
+        final FloatingActionButton viewButton = v.findViewById(R.id.view_button);
+        final FloatingActionButton textButton = v.findViewById(R.id.text_button);
+        final FloatingActionButton backButton = v.findViewById(R.id.back_utton);
+        final WebView webView = v.findViewById(R.id.webview);
 
         final SharedPreferences mySPR = this.getActivity().getSharedPreferences("Speicherstand", 0);
         editor = mySPR.edit();
@@ -141,7 +141,7 @@ public class WebViewFragment extends Fragment {
         if (mySPR.getBoolean("firstStartWeb", true)) {
             new TapTargetSequence(getActivity())
                     .targets(
-                            TapTarget.forView(v.findViewById(R.id.viewButton), getString(R.string.tap_target_title1), getString(R.string.tap_target_message1))
+                            TapTarget.forView(v.findViewById(R.id.view_button), getString(R.string.tap_target_title1), getString(R.string.tap_target_message1))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -149,7 +149,7 @@ public class WebViewFragment extends Fragment {
                                     .descriptionTextSize(16)
                                     .drawShadow(true)
                                     .cancelable(false),
-                            TapTarget.forView(v.findViewById(R.id.textButton), getString(R.string.tap_target_title2), getString(R.string.tap_target_message2))
+                            TapTarget.forView(v.findViewById(R.id.text_button), getString(R.string.tap_target_title2), getString(R.string.tap_target_message2))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -157,7 +157,7 @@ public class WebViewFragment extends Fragment {
                                     .descriptionTextSize(16)
                                     .drawShadow(true)
                                     .cancelable(false),
-                            TapTarget.forView(v.findViewById(R.id.backButton), getString(R.string.tap_target_title3), getString(R.string.tap_target_message3))
+                            TapTarget.forView(v.findViewById(R.id.back_utton), getString(R.string.tap_target_title3), getString(R.string.tap_target_message3))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)

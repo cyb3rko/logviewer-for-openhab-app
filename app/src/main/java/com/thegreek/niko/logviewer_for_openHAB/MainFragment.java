@@ -41,22 +41,24 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_main, container, false);
 
-        hostnameIPAddress = v.findViewById(R.id.hostnameIPAddress);
-        hostnameIPAddressEdit = v.findViewById(R.id.hostnameIPAddressEdit);
-        hostnameIPAddressCheck = v.findViewById(R.id.hostnameIPAddressCheck);
+        hostnameIPAddress = v.findViewById(R.id.hostname_ip_address);
+        hostnameIPAddressEdit = v.findViewById(R.id.hostname_ip_address_edit);
+        hostnameIPAddressCheck = v.findViewById(R.id.hostname_ip_address_check);
         port = v.findViewById(R.id.port);
-        portEdit = v.findViewById(R.id.portEdit);
-        portCheck = v.findViewById(R.id.portCheck);
-        linkView = v.findViewById(R.id.linkView);
-        connectButton = v.findViewById(R.id.connectButton);
-        connectCheck = v.findViewById(R.id.connectCheck);
-        TextView endUserConsent = v.findViewById(R.id.endUserConsent);
+        portEdit = v.findViewById(R.id.port_edit);
+        portCheck = v.findViewById(R.id.port_check);
+        linkView = v.findViewById(R.id.link_view);
+        connectButton = v.findViewById(R.id.connect_button);
+        connectCheck = v.findViewById(R.id.connect_check);
+        TextView endUserConsent = v.findViewById(R.id.end_user_consent);
         TextView credits_text = v.findViewById(R.id.credits);
+        TextView versionView = v.findViewById(R.id.version_view);
 
         mySPR = v.getContext().getSharedPreferences("Speicherstand", 0);
         editor = mySPR.edit();
 
         statusWiederherstellung();
+        versionView.setText(String.format(getString(R.string.version_view), BuildConfig.VERSION_NAME));
 
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
