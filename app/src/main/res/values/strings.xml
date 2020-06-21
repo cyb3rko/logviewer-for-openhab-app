@@ -20,9 +20,10 @@
     <string name="end_user_consent2_button">OK</string>
 
     <string name="update_dialog_title">New Update Available</string>
-    <string name="update_dialog_message">The update \'%1$s\' is available for download!\n\nCurrently installed version: \'%2$s\'</string>
+    <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about the new features.</string>
     <string name="update_dialog_button_1">Download</string>
     <string name="update_dialog_button_2">Cancel</string>
+    <string name="update_dialog_button_3">Changelog</string>
     <string name="update_dialog_error">Missing permission, give it on next app start</string>
 
     <string name="credits">Credits</string>
