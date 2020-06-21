@@ -27,9 +27,9 @@ public class EndUserConsent2 extends AppCompatDialogFragment {
         final SharedPreferences.Editor editor = mySPR.edit();
         editor.apply();
 
-        String message = getString(R.string.end_user_consent2_message);
+        String message = getString(R.string.end_user_consent2_message_1);
 
-        message += mySPR.getString("datum", "") + getString(R.string.end_user_consent2_message2) + mySPR.getString("uhrzeit", "");
+        message += mySPR.getString("datum", "") + getString(R.string.end_user_consent2_message_2) + mySPR.getString("uhrzeit", "");
 
         SpannableString spannableString = new SpannableString(message);
 
@@ -67,7 +67,7 @@ public class EndUserConsent2 extends AppCompatDialogFragment {
         messageView.setTextSize(16);
         builder.setView(messageView)
                 .setCustomTitle(titleView)
-                .setPositiveButton(getString(R.string.end_user_consent2_button1), new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.end_user_consent2_button), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }

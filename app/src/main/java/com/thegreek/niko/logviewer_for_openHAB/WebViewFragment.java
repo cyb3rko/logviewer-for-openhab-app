@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -27,6 +28,7 @@ import es.dmoral.toasty.Toasty;
 public class WebViewFragment extends Fragment {
 
     private SharedPreferences.Editor editor;
+    private WebView webView;
 
     private boolean viewLocked = true;
 
@@ -38,7 +40,7 @@ public class WebViewFragment extends Fragment {
         final FloatingActionButton viewButton = v.findViewById(R.id.view_button);
         final FloatingActionButton textButton = v.findViewById(R.id.text_button);
         final FloatingActionButton backButton = v.findViewById(R.id.back_utton);
-        final WebView webView = v.findViewById(R.id.webview);
+        webView = v.findViewById(R.id.webview);
 
         final SharedPreferences mySPR = this.getActivity().getSharedPreferences("Speicherstand", 0);
         editor = mySPR.edit();
@@ -47,6 +49,7 @@ public class WebViewFragment extends Fragment {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setTextZoom(60);
         v.setVerticalScrollBarEnabled(false);
+        setTouchable(false);
 
         webView.loadUrl(mySPR.getString("link", ""));
 
@@ -58,7 +61,7 @@ public class WebViewFragment extends Fragment {
                     webView.scrollBy(0, 10000);
                 }
 
-                handler.postDelayed(this, 60);
+                handler.postDelayed(this, 100);
             }
         };
 
@@ -68,15 +71,17 @@ public class WebViewFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (viewLocked) {
-                    viewButton.setImageResource(R.drawable.icon_view);
+                    viewButton.setImageResource(R.drawable.icon_lock_2);
                     viewLocked = false;
+                    setTouchable(true);
 
-                    Toasty.info(view.getContext(), getString(R.string.auto_scroll2), Toasty.LENGTH_SHORT).show();
+                    Toasty.info(view.getContext(), getString(R.string.lock_button_1), Toasty.LENGTH_SHORT).show();
                 } else {
                     viewButton.setImageResource(R.drawable.icon_lock);
                     viewLocked = true;
+                    setTouchable(false);
 
-                    Toasty.info(view.getContext(), getString(R.string.auto_scroll1), Toasty.LENGTH_SHORT).show();
+                    Toasty.info(view.getContext(), getString(R.string.lock_button_2), Toasty.LENGTH_SHORT).show();
                 }
             }
         });
@@ -101,7 +106,7 @@ public class WebViewFragment extends Fragment {
 
                 builder.setView(discreteSeekBar)
                         .setCustomTitle(titleView)
-                        .setPositiveButton(getString(R.string.text_size_dialog_button1), new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getString(R.string.text_size_dialog_button_1), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             int textSize = discreteSeekBar.getProgress();
@@ -111,7 +116,7 @@ public class WebViewFragment extends Fragment {
                             Toasty.success(view.getContext(), getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show();
                     }
                 })
-                .setNegativeButton(getString(R.string.text_size_dialog_button2), new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.text_size_dialog_button_2), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
@@ -141,7 +146,7 @@ public class WebViewFragment extends Fragment {
         if (mySPR.getBoolean("firstStartWeb", true)) {
             new TapTargetSequence(getActivity())
                     .targets(
-                            TapTarget.forView(v.findViewById(R.id.view_button), getString(R.string.tap_target_title1), getString(R.string.tap_target_message1))
+                            TapTarget.forView(v.findViewById(R.id.view_button), getString(R.string.tap_target_title_1), getString(R.string.tap_target_message_1))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -149,7 +154,7 @@ public class WebViewFragment extends Fragment {
                                     .descriptionTextSize(16)
                                     .drawShadow(true)
                                     .cancelable(false),
-                            TapTarget.forView(v.findViewById(R.id.text_button), getString(R.string.tap_target_title2), getString(R.string.tap_target_message2))
+                            TapTarget.forView(v.findViewById(R.id.text_button), getString(R.string.tap_target_title_2), getString(R.string.tap_target_message_2))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -157,7 +162,7 @@ public class WebViewFragment extends Fragment {
                                     .descriptionTextSize(16)
                                     .drawShadow(true)
                                     .cancelable(false),
-                            TapTarget.forView(v.findViewById(R.id.back_utton), getString(R.string.tap_target_title3), getString(R.string.tap_target_message3))
+                            TapTarget.forView(v.findViewById(R.id.back_utton), getString(R.string.tap_target_title_3), getString(R.string.tap_target_message_3))
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -182,5 +187,23 @@ public class WebViewFragment extends Fragment {
         }
 
         return v;
+    }
+
+    private void setTouchable(boolean b) {
+        if (b) {
+            webView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    return false;
+                }
+            });
+        } else {
+            webView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    return true;
+                }
+            });
+        }
     }
 }

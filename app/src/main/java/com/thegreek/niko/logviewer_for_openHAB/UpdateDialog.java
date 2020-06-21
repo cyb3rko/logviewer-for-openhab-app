@@ -50,7 +50,7 @@ public class UpdateDialog extends AppCompatDialogFragment {
         builder.setView(messageView)
                 .setCancelable(false)
                 .setCustomTitle(titleView)
-                .setPositiveButton(getString(R.string.update_dialog_button1), new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.update_dialog_button_1), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -67,7 +67,7 @@ public class UpdateDialog extends AppCompatDialogFragment {
                         }
                     }
                 })
-                .setNegativeButton(getString(R.string.update_dialog_button2), new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.update_dialog_button_2), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }

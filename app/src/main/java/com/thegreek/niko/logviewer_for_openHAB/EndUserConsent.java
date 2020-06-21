@@ -65,7 +65,7 @@ public class EndUserConsent extends AppCompatDialogFragment {
         messageView.setTextSize(16);
         builder.setView(messageView)
                 .setCustomTitle(titleView)
-                .setPositiveButton(getString(R.string.end_user_consent_button1), new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.end_user_consent_button_1), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         MainActivity.firebaseAnalytics.setAnalyticsCollectionEnabled(true);
@@ -77,7 +77,7 @@ public class EndUserConsent extends AppCompatDialogFragment {
                         editor.putBoolean("firstStart", false).apply();
                     }
                 })
-                .setNegativeButton(getString(R.string.end_user_consent_button2), new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.end_user_consent_button_2), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         System.exit(0);

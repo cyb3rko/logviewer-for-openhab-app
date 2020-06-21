@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/credits3" />
 
     <TextView
-        android:id="@+id/credits5"
+        android:id="@+id/credits_icons_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -77,14 +77,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits5"
+        android:text="@string/credits_icons_1"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/credits4" />
 
     <TextView
-        android:id="@+id/credits6"
+        android:id="@+id/credits_icons_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -92,14 +92,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits6"
+        android:text="@string/credits_icons_2"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits5" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_icons_1" />
 
     <TextView
-        android:id="@+id/credits7"
+        android:id="@+id/credits_icons_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -107,14 +107,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits7"
+        android:text="@string/credits_icons_3"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits6" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_icons_2" />
 
     <TextView
-        android:id="@+id/credits8"
+        android:id="@+id/credits_icons_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -122,14 +122,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits8"
+        android:text="@string/credits_icons_4"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits7" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_icons_3" />
 
     <TextView
-        android:id="@+id/credits9"
+        android:id="@+id/credits_icons_5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -137,14 +137,29 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits9"
+        android:text="@string/credits_icons_5"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits8" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_icons_4" />
 
     <TextView
-        android:id="@+id/credits10"
+        android:id="@+id/credits_icons_6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:text="@string/credits_icons_6"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_icons_5" />
+
+    <TextView
+        android:id="@+id/credits5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -152,15 +167,15 @@
         android:layout_marginEnd="16dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits10"
+        android:text="@string/credits5"
         android:textColorLink="@color/colorAccent"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits9" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_icons_6" />
 
     <TextView
-        android:id="@+id/credits11"
+        android:id="@+id/credits_libraries_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -168,14 +183,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits11"
+        android:text="@string/credits_libraries_1"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits10" />
+        app:layout_constraintTop_toBottomOf="@+id/credits5" />
 
     <TextView
-        android:id="@+id/credits12"
+        android:id="@+id/credits_libraries_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -183,14 +198,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits12"
+        android:text="@string/credits_libraries_2"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits11" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_libraries_1" />
 
     <TextView
-        android:id="@+id/credits13"
+        android:id="@+id/credits_libraries_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -198,14 +213,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits13"
+        android:text="@string/credits_libraries_3"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits12" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_libraries_2" />
 
     <TextView
-        android:id="@+id/credits14"
+        android:id="@+id/credits_libraries_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -213,14 +228,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits14"
+        android:text="@string/credits_libraries_4"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits13" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_libraries_3" />
 
     <TextView
-        android:id="@+id/credits15"
+        android:id="@+id/credits_libraries_5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -228,14 +243,14 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits15"
+        android:text="@string/credits_libraries_5"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits14" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_libraries_4" />
 
     <TextView
-        android:id="@+id/credits16"
+        android:id="@+id/credits_libraries_6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -243,10 +258,40 @@
         android:layout_marginEnd="24dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/credits16"
+        android:text="@string/credits_libraries_6"
         android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/credits15" />
+        app:layout_constraintTop_toBottomOf="@+id/credits_libraries_5" />
+
+    <TextView
+        android:id="@+id/credits_libraries_7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:text="@string/credits_libraries_7"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_libraries_6" />
+
+    <TextView
+        android:id="@+id/credits_libraries_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="24dp"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:text="@string/credits_libraries_8"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/credits_libraries_7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
