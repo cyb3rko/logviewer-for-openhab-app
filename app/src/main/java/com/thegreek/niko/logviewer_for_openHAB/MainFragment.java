@@ -3,6 +3,7 @@ package com.thegreek.niko.logviewer_for_openHAB;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -53,12 +57,26 @@ public class MainFragment extends Fragment {
         TextView endUserConsent = v.findViewById(R.id.end_user_consent);
         TextView credits_text = v.findViewById(R.id.credits);
         TextView versionView = v.findViewById(R.id.version_view);
+        ImageView settings = v.findViewById(R.id.imageView);
 
         mySPR = v.getContext().getSharedPreferences("Speicherstand", 0);
         editor = mySPR.edit();
 
         statusWiederherstellung();
-        versionView.setText(String.format(getString(R.string.version_view), BuildConfig.VERSION_NAME));
+        versionView.setText(BuildConfig.VERSION_NAME);
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int newOrientation = mySPR.getInt("orientation", 0) == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT :
+                        ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                MainActivity.changeOrientation(Objects.requireNonNull(getActivity()), newOrientation);
+                editor.putInt("orientation", newOrientation).apply();
+
+                String orientation = mySPR.getInt("orientation", 0) == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? "landscape" : "portrait";
+                Toasty.info(Objects.requireNonNull(getContext()), "Orientation changed to " + orientation, Toasty.LENGTH_SHORT).show();
+            }
+        });
 
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +189,8 @@ public class MainFragment extends Fragment {
     }
 
     private void statusWiederherstellung() {
+        MainActivity.changeOrientation(Objects.requireNonNull(getActivity()), mySPR.getInt("orientation", 0));
+
         connectCheck.setChecked(mySPR.getBoolean("connectCheck", false));
 
         if (mySPR.getBoolean("autoStart", false) && connectCheck.isChecked()) {

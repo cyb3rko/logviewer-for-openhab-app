@@ -85,4 +85,8 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         System.exit(0);
     }
+
+    static void changeOrientation(Activity activity, int orientation) {
+        activity.setRequestedOrientation(orientation);
+    }
 }

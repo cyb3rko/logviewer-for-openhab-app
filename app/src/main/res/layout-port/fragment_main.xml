@@ -20,11 +20,11 @@
         android:id="@+id/version_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/hostname_ip_address_view"
@@ -46,13 +46,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/hostname_ipaddress"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/port_view"
+        app:layout_constraintBottom_toTopOf="@id/hostname_ip_address_check"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,23 +60,22 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="32dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/port_view"
+        app:layout_constraintBottom_toBottomOf="@+id/hostname_ip_address"
         app:layout_constraintStart_toEndOf="@+id/hostname_ip_address"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <CheckBox
         android:id="@+id/hostname_ip_address_check"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:checked="true"
         android:text="@string/checks"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/port_view"
-        app:layout_constraintStart_toEndOf="@+id/hostname_ip_address" />
+        app:layout_constraintEnd_toEndOf="@+id/hostname_ip_address"
+        app:layout_constraintStart_toStartOf="@+id/hostname_ip_address" />
 
     <TextView
         android:id="@+id/port_view"
@@ -113,22 +111,20 @@
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/port_check"
         app:layout_constraintStart_toEndOf="@+id/port"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <CheckBox
         android:id="@+id/port_check"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
         android:checked="true"
         android:text="@string/checks"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/port"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@id/port"
+        app:layout_constraintStart_toStartOf="@+id/port"
+        app:layout_constraintTop_toBottomOf="@id/port" />
 
     <TextView
         android:id="@+id/link_view"
@@ -141,7 +137,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/port" />
+        app:layout_constraintTop_toBottomOf="@+id/port_check" />
 
     <Button
         android:id="@+id/connect_button"
@@ -160,18 +156,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/connect_check"
-        android:textAlignment="center"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/connect_button"
-        app:layout_constraintTop_toTopOf="@+id/connect_button" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connect_button" />
 
     <TextView
         android:id="@+id/credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
         android:text="@string/credits"
         android:textColor="#FF6600"
         android:textSize="16sp"

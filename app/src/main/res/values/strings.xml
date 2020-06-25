@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">LogViewer for openHAB</string>
 
-    <string name="version_view">%1$s</string>
-
     <string name="error_fill_out">Fill out both</string>
     <string name="connecting">Connecting…</string>
     <string name="lock_button_1">View Lock deactivated</string>
@@ -67,7 +65,7 @@
     <string name="text_size_dialog_button_1">Set</string>
     <string name="text_size_dialog_button_2">Cancel</string>
 
-    <string name="end_user_consent">Privacy Policy\n\nTerms of Use</string>
+    <string name="end_user_consent">Privacy Policy\nTerms of Use</string>
 
     <string name="send_mail">Send me a mail…</string>
 
