@@ -24,26 +24,19 @@
     <string name="update_dialog_button_3">Changelog</string>
     <string name="update_dialog_error">Missing permission, give it on next app start</string>
 
-    <string name="credits">Credits</string>
-    <string name="credits1">App made by _nikothegreek_ (my Website)</string>
-    <string name="credits2">with Android Studio</string>
-    <string name="credits3">App Icon made by _nikothegreek_ (my Website)</string>
-    <string name="credits4">with Gimp</string>
+    <string name="about_description">This is a simple and easy to use android app to simplify the mobile access to the log of an openHAB instance (running frontail) on your tablet or your
+        smartphone.
+    </string>
+    <string name="about">About</string>
     <string name="credits_icons_1">\"Eye Open icon\" made by Dave Gandy from flaticon.com</string>
     <string name="credits_icons_2">\"Files icon\" made by Smartline from flaticon.com</string>
     <string name="credits_icons_3">\"Lock icon\" made by Those Icons from flaticon.com</string>
     <string name="credits_icons_4">\"Font icon\" made by Those Icons from flaticon.com</string>
     <string name="credits_icons_5">\"Left Arrow icon\" made by Lyolya from flaticon.com</string>
     <string name="credits_icons_6">\"Lock icon\" (2) made by Those Icons from flaticon.com</string>
-    <string name="credits5">Libraries Used</string>
-    <string name="credits_libraries_1">\"DiscreteSeekBar\" by AnderWeb (on GitHub)</string>
-    <string name="credits_libraries_2">Apache 2.0 License (view License)</string>
-    <string name="credits_libraries_3">\"TapTargetView\" by KeepSafe (on GitHub)</string>
-    <string name="credits_libraries_4">Apache 2.0 License (view License)</string>
-    <string name="credits_libraries_5">\"Toasty\" by GrenderG (on GitHub)</string>
-    <string name="credits_libraries_6">LGPL 3.0 License (view License)</string>
-    <string name="credits_libraries_7">\"Fast Android Networking\" by Amit Shekhar (on GitHub)</string>
-    <string name="credits_libraries_8">Apache 2.0 License (view License)</string>
+    <string name="credits_icons_7">\"Orientation icon\" made by Freepik from flaticon.com</string>
+    <string name="credits_icons_8">\"Book icon\" made by Freepik from flaticon.com</string>
+    <string name="credits_icons_9">\"Question icon\" made by Freepik from flaticon.com</string>
 
     <string name="hostname_ipaddress_view">Hostname / IP address</string>
     <string name="hostname_ipaddress">(e.g. 192.168.178.10)</string>

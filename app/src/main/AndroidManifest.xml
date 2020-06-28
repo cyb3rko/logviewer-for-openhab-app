@@ -26,6 +26,7 @@
             android:name=".Credits"
             android:screenOrientation="portrait" >
         </activity>
+        <activity android:name=".IconCredits" />
         <activity
             android:name=".PrivacyPolicy"
             android:screenOrientation="portrait" >
