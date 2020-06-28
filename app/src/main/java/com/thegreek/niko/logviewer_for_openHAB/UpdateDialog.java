@@ -25,6 +25,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.content.ContextCompat;
 
+import java.util.Objects;
+
 import es.dmoral.toasty.Toasty;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
@@ -34,7 +36,7 @@ public class UpdateDialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final SharedPreferences mySPR = getActivity().getSharedPreferences("Speicherstand", 0);
+        final SharedPreferences mySPR = Objects.requireNonNull(getActivity()).getSharedPreferences("Safe", 0);
         final SharedPreferences.Editor editor = mySPR.edit();
         editor.apply();
 
@@ -57,8 +59,8 @@ public class UpdateDialog extends AppCompatDialogFragment {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nikothegreek/logviewer-for-openhab-app/releases/latest")));
             }
         };
-        String message = String.format(getString(R.string.update_dialog_message), mySPR.getString("neuesteVersion", ""), BuildConfig.VERSION_NAME);
-        String index = "changelog";
+        String message = String.format(getString(R.string.update_dialog_message), mySPR.getString("newestVersion", ""), BuildConfig.VERSION_NAME);
+        String index = getString(R.string.update_dialog_changelog);
         SpannableString spannableString = new SpannableString(message);
         spannableString.setSpan(clickableSpan, message.indexOf(index), message.indexOf(index) + index.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         messageView.setText(spannableString);
@@ -70,14 +72,15 @@ public class UpdateDialog extends AppCompatDialogFragment {
                 .setPositiveButton(getString(R.string.update_dialog_button_1), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                            String link = "https://github.com/nikothegreek/logviewer-for-openhab-app/releases/download/v" + mySPR.getString("neuesteVersion", "") + "/LogViewerforopenHAB_" +
-                                    mySPR.getString("neuesteVersion", "") + ".apk";
+                        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                            String link = "https://github.com/nikothegreek/logviewer-for-openhab-app/releases/download/v" + mySPR.getString("newestVersion", "") + "/LogViewerforopenHAB_" +
+                                    mySPR.getString("newestVersion", "") + ".apk";
                             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(link))
                                     .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(link, null, null))
                                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
-                            DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(DOWNLOAD_SERVICE);
+                            DownloadManager downloadManager = (DownloadManager) Objects.requireNonNull(getActivity()).getSystemService(DOWNLOAD_SERVICE);
+                            assert downloadManager != null;
                             downloadManager.enqueue(request);
                         } else {
                             Toasty.error(getContext(), getString(R.string.update_dialog_error), Toasty.LENGTH_LONG).show();

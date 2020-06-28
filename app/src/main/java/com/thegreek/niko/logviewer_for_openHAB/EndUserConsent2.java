@@ -18,18 +18,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.util.Objects;
+
 public class EndUserConsent2 extends AppCompatDialogFragment {
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        SharedPreferences mySPR = getActivity().getSharedPreferences("Speicherstand", 0);
+        SharedPreferences mySPR = Objects.requireNonNull(getActivity()).getSharedPreferences("Safe", 0);
         final SharedPreferences.Editor editor = mySPR.edit();
         editor.apply();
 
         String message = getString(R.string.end_user_consent2_message_1);
 
-        message += mySPR.getString("datum", "") + getString(R.string.end_user_consent2_message_2) + mySPR.getString("uhrzeit", "");
+        message += mySPR.getString("date", "") + getString(R.string.end_user_consent2_message_2) + mySPR.getString("time", "");
 
         SpannableString spannableString = new SpannableString(message);
 

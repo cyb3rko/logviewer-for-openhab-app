@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -15,7 +16,7 @@ import mehdi.sakout.aboutpage.Element;
 public class Credits extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@NonNull Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         View aboutPage = new AboutPage(this)

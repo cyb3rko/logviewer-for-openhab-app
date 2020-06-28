@@ -1,5 +1,6 @@
 package com.thegreek.niko.logviewer_for_openHAB;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -18,15 +19,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class EndUserConsent extends AppCompatDialogFragment {
 
+    @NotNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        SharedPreferences mySPR = getActivity().getSharedPreferences("Speicherstand", 0);
+        SharedPreferences mySPR = Objects.requireNonNull(getActivity()).getSharedPreferences("Safe", 0);
         final SharedPreferences.Editor editor = mySPR.edit();
 
         SpannableString ss = new SpannableString(getString(R.string.end_user_consent_message));
@@ -70,17 +75,17 @@ public class EndUserConsent extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         MainActivity.firebaseAnalytics.setAnalyticsCollectionEnabled(true);
                         Date date = Calendar.getInstance().getTime();
-                        SimpleDateFormat sDF = new SimpleDateFormat("dd.MM.yyyy");
-                        SimpleDateFormat sDF2 = new SimpleDateFormat("HH:mm:ss");
-                        editor.putString("datum", sDF.format(date));
-                        editor.putString("uhrzeit", sDF2.format(date));
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat sDF = new SimpleDateFormat("dd.MM.yyyy");
+                        @SuppressLint("SimpleDateFormat") SimpleDateFormat sDF2 = new SimpleDateFormat("HH:mm:ss");
+                        editor.putString("date", sDF.format(date));
+                        editor.putString("time", sDF2.format(date));
                         editor.putBoolean("firstStart", false).apply();
                     }
                 })
                 .setNegativeButton(getString(R.string.end_user_consent_button_2), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        System.exit(0);
+                        Objects.requireNonNull(getActivity()).finish();
                     }
                 });
 

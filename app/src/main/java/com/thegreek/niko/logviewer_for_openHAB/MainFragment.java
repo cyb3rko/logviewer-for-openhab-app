@@ -59,8 +59,9 @@ public class MainFragment extends Fragment {
         TextView versionView = v.findViewById(R.id.version_view);
         ImageView settings = v.findViewById(R.id.imageView);
 
-        mySPR = v.getContext().getSharedPreferences("Speicherstand", 0);
+        mySPR = v.getContext().getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
+        editor.apply();
 
         statusWiederherstellung();
         versionView.setText(BuildConfig.VERSION_NAME);
@@ -114,6 +115,7 @@ public class MainFragment extends Fragment {
 
                         connectButton.setText(getString(R.string.connect_button_2));
                     } else {
+                        assert getFragmentManager() != null;
                         getFragmentManager().beginTransaction()
                                 .replace(R.id.start, new WebViewFragment())
                                 .addToBackStack(null)
@@ -121,6 +123,7 @@ public class MainFragment extends Fragment {
 
                         if (view != null) {
                             InputMethodManager imm = (InputMethodManager) view.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            assert imm != null;
                             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                         }
 
@@ -194,6 +197,7 @@ public class MainFragment extends Fragment {
         connectCheck.setChecked(mySPR.getBoolean("connectCheck", false));
 
         if (mySPR.getBoolean("autoStart", false) && connectCheck.isChecked()) {
+            assert getFragmentManager() != null;
             getFragmentManager().beginTransaction()
                     .replace(R.id.start, new WebViewFragment())
                     .addToBackStack(null)

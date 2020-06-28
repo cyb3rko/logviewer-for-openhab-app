@@ -1,5 +1,6 @@
 package com.thegreek.niko.logviewer_for_openHAB;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -23,6 +24,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
+import java.util.Objects;
+
 import es.dmoral.toasty.Toasty;
 
 public class WebViewFragment extends Fragment {
@@ -32,6 +35,7 @@ public class WebViewFragment extends Fragment {
 
     private boolean viewLocked = true;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class WebViewFragment extends Fragment {
         final FloatingActionButton backButton = v.findViewById(R.id.back_utton);
         webView = v.findViewById(R.id.webview);
 
-        final SharedPreferences mySPR = this.getActivity().getSharedPreferences("Speicherstand", 0);
+        final SharedPreferences mySPR = Objects.requireNonNull(this.getActivity()).getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
 
         final WebSettings webSettings = webView.getSettings();
@@ -129,6 +133,7 @@ public class WebViewFragment extends Fragment {
             public void onClick(View view) {
                 final boolean autoStartTemp = mySPR.getBoolean("autoStart", false);
                 editor.putBoolean("autoStart", false).apply();
+                assert getFragmentManager() != null;
                 getFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
 
                 final Handler handler2 = new Handler();
@@ -189,6 +194,7 @@ public class WebViewFragment extends Fragment {
         return v;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setTouchable(boolean b) {
         if (b) {
             webView.setOnTouchListener(new View.OnTouchListener() {
