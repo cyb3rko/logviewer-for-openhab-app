@@ -1,6 +1,7 @@
 package com.thegreek.niko.logviewer_for_openHAB;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -13,11 +14,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 public class IconCredits extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences mySPR = this.getSharedPreferences("Safe", 0);
+        MainActivity.changeOrientation(Objects.requireNonNull(this), mySPR.getInt("orientation", 0));
         setContentView(R.layout.activity_icon_credits);
 
         TextView[] textViews = new TextView[9];

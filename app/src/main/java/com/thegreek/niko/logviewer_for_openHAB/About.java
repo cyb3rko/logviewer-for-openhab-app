@@ -1,26 +1,30 @@
 package com.thegreek.niko.logviewer_for_openHAB;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
+import java.util.Objects;
+
 import mehdi.sakout.aboutpage.AboutPage;
 import mehdi.sakout.aboutpage.Element;
 
-public class Credits extends AppCompatActivity {
+public class About extends AppCompatActivity {
 
     @Override
-    protected void onCreate(@NonNull Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences mySPR = this.getSharedPreferences("Safe", 0);
+        MainActivity.changeOrientation(Objects.requireNonNull(this), mySPR.getInt("orientation", 0));
+
         View aboutPage = new AboutPage(this)
-                .isRTL(false)
                 .setImage(R.mipmap.ic_launcher_foreground)
                 .setDescription(getString(R.string.about_description))
                 .addItem(new Element().setTitle("Version " + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")").setOnClickListener(new View.OnClickListener() {

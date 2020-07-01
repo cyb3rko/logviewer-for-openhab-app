@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class MainFragment extends Fragment {
     private EditText port;
     private ImageButton hostnameIPAddressEdit;
     private ImageButton portEdit;
+    private ImageView settings;
     private SharedPreferences mySPR;
     private SharedPreferences.Editor editor;
     private String hostnameIPAddressString;
@@ -42,7 +44,7 @@ public class MainFragment extends Fragment {
     private int portInt;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         hostnameIPAddress = v.findViewById(R.id.hostname_ip_address);
@@ -57,7 +59,7 @@ public class MainFragment extends Fragment {
         TextView endUserConsent = v.findViewById(R.id.end_user_consent);
         TextView credits_text = v.findViewById(R.id.credits);
         TextView versionView = v.findViewById(R.id.version_view);
-        ImageView settings = v.findViewById(R.id.imageView);
+        settings = v.findViewById(R.id.imageView);
 
         mySPR = v.getContext().getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
@@ -69,13 +71,31 @@ public class MainFragment extends Fragment {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int newOrientation = mySPR.getInt("orientation", 0) == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT :
-                        ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-                MainActivity.changeOrientation(Objects.requireNonNull(getActivity()), newOrientation);
-                editor.putInt("orientation", newOrientation).apply();
+                int newOrientation = 0;
+                String newOrientationName = "";
 
-                String orientation = mySPR.getInt("orientation", 0) == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE ? "landscape" : "portrait";
-                Toasty.info(Objects.requireNonNull(getContext()), "Orientation changed to " + orientation, Toasty.LENGTH_SHORT).show();
+                switch (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)) {
+                    case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
+                        newOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                        newOrientationName = "portrait";
+                        break;
+                    case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
+                        newOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+                        newOrientationName = "auto";
+                        settings.setImageResource(R.drawable.icon_auto_orientation);
+                        break;
+                    case ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED:
+                        newOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                        newOrientationName = "landscape";
+                    default:
+                        break;
+                }
+
+                editor.putInt("orientation", newOrientation);
+                editor.putBoolean("tempDisableStart", true).apply();
+                MainActivity.changeOrientation(Objects.requireNonNull(getActivity()), newOrientation);
+
+                Toasty.info(Objects.requireNonNull(getContext()), "Orientation changed to " + newOrientationName, Toasty.LENGTH_SHORT).show();
             }
         });
 
@@ -175,7 +195,7 @@ public class MainFragment extends Fragment {
         credits_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent termsOfUseIntent = new Intent(getContext(), Credits.class);
+                Intent termsOfUseIntent = new Intent(getContext(), About.class);
                 view.getContext().startActivity(termsOfUseIntent);
             }
         });
@@ -192,20 +212,39 @@ public class MainFragment extends Fragment {
     }
 
     private void statusWiederherstellung() {
-        MainActivity.changeOrientation(Objects.requireNonNull(getActivity()), mySPR.getInt("orientation", 0));
-
         connectCheck.setChecked(mySPR.getBoolean("connectCheck", false));
 
-        if (mySPR.getBoolean("autoStart", false) && connectCheck.isChecked()) {
-            assert getFragmentManager() != null;
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.start, new WebViewFragment())
-                    .addToBackStack(null)
-                    .commit();
+        if (!mySPR.getBoolean("tempDisableStart", false)) {
+            if (mySPR.getBoolean("autoStart", false) && connectCheck.isChecked()) {
+                assert getFragmentManager() != null;
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.start, new WebViewFragment())
+                        .addToBackStack(null)
+                        .commit();
 
-            Toasty.info(getActivity().getApplicationContext(), getString(R.string.connecting), Toasty.LENGTH_SHORT).show();
+                Toasty.info(Objects.requireNonNull(getContext()), getString(R.string.connecting), Toasty.LENGTH_SHORT).show();
+            }
+        } else {
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    editor.putBoolean("tempDisableStart", false).apply();
+                }
+            };
 
-            return;
+            new Handler().postDelayed(runnable, 10);
+        }
+
+        switch (mySPR.getInt("orientation", 0)) {
+            case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
+                settings.setImageResource(R.drawable.icon_landscape_orientation);
+                break;
+            case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
+                settings.setImageResource(R.drawable.icon_portrait_orientation);
+                break;
+            case ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED:
+                settings.setImageResource(R.drawable.icon_auto_orientation);
+                break;
         }
 
         if (mySPR.getString("hostnameIPAddressString", "").equals("") || mySPR.getString("hostnameIPAddressString", "").equals("0")) {

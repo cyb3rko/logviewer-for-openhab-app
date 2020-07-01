@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
 import com.androidnetworking.AndroidNetworking;
@@ -14,25 +13,24 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import es.dmoral.toasty.Toasty;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     static FirebaseAnalytics firebaseAnalytics;
-    private SharedPreferences mySPR;
     private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
 
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        mySPR = this.getSharedPreferences("Safe", 0);
+        SharedPreferences mySPR = this.getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
         editor.apply();
-        Toasty.Config.getInstance().allowQueue(false).apply();
+//        Toasty.Config.getInstance().allowQueue(false).apply();
+        MainActivity.changeOrientation(Objects.requireNonNull(this), mySPR.getInt("orientation", 0));
 
         getSupportFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
 

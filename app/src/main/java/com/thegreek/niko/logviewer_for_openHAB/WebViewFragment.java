@@ -152,6 +152,7 @@ public class WebViewFragment extends Fragment {
             new TapTargetSequence(getActivity())
                     .targets(
                             TapTarget.forView(v.findViewById(R.id.view_button), getString(R.string.tap_target_title_1), getString(R.string.tap_target_message_1))
+                                    .transparentTarget(true)
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -160,6 +161,7 @@ public class WebViewFragment extends Fragment {
                                     .drawShadow(true)
                                     .cancelable(false),
                             TapTarget.forView(v.findViewById(R.id.text_button), getString(R.string.tap_target_title_2), getString(R.string.tap_target_message_2))
+                                    .transparentTarget(true)
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)
@@ -168,6 +170,7 @@ public class WebViewFragment extends Fragment {
                                     .drawShadow(true)
                                     .cancelable(false),
                             TapTarget.forView(v.findViewById(R.id.back_utton), getString(R.string.tap_target_title_3), getString(R.string.tap_target_message_3))
+                                    .transparentTarget(true)
                                     .tintTarget(false)
                                     .outerCircleColor(R.color.colorAccent)
                                     .tintTarget(false)

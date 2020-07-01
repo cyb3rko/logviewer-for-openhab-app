@@ -14,28 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|screenSize">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Credits"
-            android:screenOrientation="portrait" >
-        </activity>
+        <activity android:name=".About" />
         <activity android:name=".IconCredits" />
-        <activity
-            android:name=".PrivacyPolicy"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name=".TermsOfUse"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name=".EndUserConsent" />
-        <activity android:name=".EndUserConsent2" />
+        <activity android:name=".PrivacyPolicy" />
+        <activity android:name=".TermsOfUse" />
 
         <meta-data
             android:name="firebase_analytics_collection_enabled"
