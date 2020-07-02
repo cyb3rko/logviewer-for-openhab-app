@@ -41,17 +41,25 @@ public class WebViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_web_view, container, false);
 
+        webView = v.findViewById(R.id.webview);
         final FloatingActionButton viewButton = v.findViewById(R.id.view_button);
         final FloatingActionButton textButton = v.findViewById(R.id.text_button);
         final FloatingActionButton backButton = v.findViewById(R.id.back_utton);
-        webView = v.findViewById(R.id.webview);
+        final String textSizeType;
 
         final SharedPreferences mySPR = Objects.requireNonNull(this.getActivity()).getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
 
         final WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setTextZoom(60);
+
+        if (getResources().getConfiguration().orientation == 1) {
+            textSizeType = "textSizePortrait";
+        } else {
+            textSizeType = "textSizeOther";
+        }
+
+        webSettings.setTextZoom(mySPR.getInt(textSizeType, 60));
         v.setVerticalScrollBarEnabled(false);
         setTouchable(false);
 
@@ -65,7 +73,7 @@ public class WebViewFragment extends Fragment {
                     webView.scrollBy(0, 10000);
                 }
 
-                handler.postDelayed(this, 100);
+                handler.postDelayed(this, 1000);
             }
         };
 
@@ -84,6 +92,7 @@ public class WebViewFragment extends Fragment {
                     viewButton.setImageResource(R.drawable.icon_lock);
                     viewLocked = true;
                     setTouchable(false);
+                    webView.scrollBy(0, 10000);
 
                     Toasty.info(view.getContext(), getString(R.string.lock_button_2), Toasty.LENGTH_SHORT).show();
                 }
@@ -111,20 +120,20 @@ public class WebViewFragment extends Fragment {
                 builder.setView(discreteSeekBar)
                         .setCustomTitle(titleView)
                         .setPositiveButton(getString(R.string.text_size_dialog_button_1), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            int textSize = discreteSeekBar.getProgress();
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                int textSize = discreteSeekBar.getProgress();
 
-                            webSettings.setTextZoom(textSize);
-                            editor.putInt("textSize", textSize).apply();
-                            Toasty.success(view.getContext(), getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton(getString(R.string.text_size_dialog_button_2), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                }).create().show();
+                                webSettings.setTextZoom(textSize);
+                                editor.putInt(textSizeType, textSize).apply();
+                                Toasty.success(view.getContext(), getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(getString(R.string.text_size_dialog_button_2), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).create().show();
             }
         });
 
