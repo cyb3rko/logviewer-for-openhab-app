@@ -9,13 +9,13 @@
 [![license](https://img.shields.io/github/license/nikothegreek/logviewer-for-openhab-app)](https://www.apache.org/licenses/LICENSE-2.0)
 <!-- [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=nikothegreek/logviewer-for-openhab-app)](https://dependabot.com) -->
 
-- [About this project](#about-this-project)
-- [Features](#features)
-- [Screenshots](#screenshots)
-  - [Smartphone](#smartphone)
-  - [Tablet](#tablet)
-- [Contribute](#contribute)
-- [License](#license)
+- [About this project](#about-this-project)  
+- [Features](#features)  
+- [Screenshots](#screenshots)  
+  - [Smartphone](#smartphone)  
+  - [Tablet](#tablet)  
+- [Contribute](#contribute)  
+- [License](#license)  
 
 ---
 
@@ -31,10 +31,10 @@ If you want to, you can also have a look at my other projects:
 [<img src="https://i.imgur.com/hkTYsch.png">](https://github.com/nikothegreek/logviewer-for-openhab-app/releases/latest)
 
 ## Features
- - accessing the log of an [openHAB](https://www.openhab.org/) instance by entering the hostname / IP address and the port
- - adjusting the text size of the log
- - saving the entered connection details and reconnecting to the last entered connection on next app start
- - switchable View Lock function to automatically scroll to the newest log entry and lock touch input
+- accessing the log of an [openHAB](https://www.openhab.org/) instance by entering the hostname / IP address and the port 
+- adjusting the text size of the log 
+- saving the entered connection details and reconnecting to the last entered connection on next app start 
+- switchable View Lock function to automatically scroll to the newest log entry and lock touch input 
 
 ## Screenshots
 ### Smartphone

@@ -182,6 +182,8 @@ public class MainFragment extends Fragment {
             case ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED:
                 orientation.setImageResource(R.drawable.icon_auto_orientation);
                 break;
+            default:
+                break;
         }
     }
 
@@ -285,6 +287,7 @@ public class MainFragment extends Fragment {
                     case ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED:
                         newOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
                         newOrientationName = "landscape";
+                        break;
                     default:
                         break;
                 }

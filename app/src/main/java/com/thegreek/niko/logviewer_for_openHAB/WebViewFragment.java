@@ -171,6 +171,7 @@ public class WebViewFragment extends Fragment {
                         .setNegativeButton(getString(R.string.text_size_dialog_button_2), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                // nothing to clean up (for POM)
                             }
                         })
                         // show dialog
@@ -251,11 +252,13 @@ public class WebViewFragment extends Fragment {
                         // on every single new target
                         @Override
                         public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                            // nothing to clean up (for POM)
                         }
 
                         // if sequence has been canceled
                         @Override
                         public void onSequenceCanceled(TapTarget lastTarget) {
+                            // nothing to clean up (for POM)
                         }
                     })
                     // start sequence

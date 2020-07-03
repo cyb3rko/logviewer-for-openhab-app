@@ -27,6 +27,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class EndUserConsent extends AppCompatDialogFragment {
+    private ClickableSpan clickableSpan1;
+    private ClickableSpan clickableSpan2;
     private DialogInterface.OnClickListener dialogClickListener;
     private SharedPreferences mySPR;
     private SharedPreferences.Editor editor;
@@ -43,6 +45,20 @@ public class EndUserConsent extends AppCompatDialogFragment {
         mySPR = Objects.requireNonNull(getActivity()).getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
         editor.apply();
+
+        // implement actions if click on link is registered
+        clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                view.getContext().startActivity(new Intent(getContext(), PrivacyPolicy.class));
+            }
+        };
+        clickableSpan2 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                view.getContext().startActivity(new Intent(getContext(), TermsOfUse.class));
+            }
+        };
 
         // check which type of end user consent to show (either to accept or to show the already accepted end user consent)
         if (dialogType) {
@@ -98,20 +114,6 @@ public class EndUserConsent extends AppCompatDialogFragment {
         String message = getString(R.string.end_user_consent_message);
         spannableString = new SpannableString(message);
 
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View view) {
-                view.getContext().startActivity(new Intent(getContext(), PrivacyPolicy.class));
-            }
-        };
-
-        ClickableSpan clickableSpan2 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View view) {
-                view.getContext().startActivity(new Intent(getContext(), TermsOfUse.class));
-            }
-        };
-
         // add clickable links to policy and terms
         spannableString.setSpan(clickableSpan1, message.indexOf("Privacy"), message.indexOf("Privacy") + "Privacy Policy".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(clickableSpan2, message.indexOf("Terms"), message.indexOf("Terms") + "Terms of Use".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -142,20 +144,6 @@ public class EndUserConsent extends AppCompatDialogFragment {
         message += mySPR.getString("date", "") + getString(R.string.end_user_consent_2_message_2) + mySPR.getString("time", "");
         spannableString = new SpannableString(message);
 
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View view) {
-                view.getContext().startActivity(new Intent(getContext(), PrivacyPolicy.class));
-            }
-        };
-
-        ClickableSpan clickableSpan2 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View view) {
-                view.getContext().startActivity(new Intent(getContext(), TermsOfUse.class));
-            }
-        };
-
         // add clickable links to policy and terms
         spannableString.setSpan(clickableSpan1, message.indexOf("Privacy"), message.indexOf("Privacy") + "Privacy Policy".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(clickableSpan2, message.indexOf("Terms"), message.indexOf("Terms") + "Terms of Use".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -168,6 +156,7 @@ public class EndUserConsent extends AppCompatDialogFragment {
         dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                // nothing to clean up (for POM)
             }
         };
     }
