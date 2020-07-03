@@ -14,35 +14,42 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
-
 public class IconCredits extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // load save file
         SharedPreferences mySPR = this.getSharedPreferences("Safe", 0);
-        MainActivity.changeOrientation(Objects.requireNonNull(this), mySPR.getInt("orientation", 0));
+
+        // restore set orientation
+        setRequestedOrientation(mySPR.getInt("orientation", 0));
+
+        // set view
         setContentView(R.layout.activity_icon_credits);
 
+        // set text of textviews and add links to authors
         TextView[] textViews = new TextView[9];
+        String[] credits = getResources().getStringArray(R.array.credits_icons);
+        String[] creditsLinks = getResources().getStringArray(R.array.credits_icons_links);
 
         for (int i = 1; i <= 9; i++) {
+            // find textviews and set text
             textViews[i-1] = findViewById(getResources().getIdentifier("credits_icons_" + i, "id", getPackageName()));
-        }
+            textViews[i-1].setText(getResources().getStringArray(R.array.credits_icons)[i-1]);
 
-        setSpans(textViews[0], getString(R.string.credits_icons_1), getString(R.string.credits_icons_links_5), 24, 34);
-        setSpans(textViews[1], getString(R.string.credits_icons_2), getString(R.string.credits_icons_links_4), 21, 30);
-        setSpans(textViews[2], getString(R.string.credits_icons_3), getString(R.string.credits_icons_links_2), 20, 31);
-        setSpans(textViews[3], getString(R.string.credits_icons_4), getString(R.string.credits_icons_links_2), 20, 31);
-        setSpans(textViews[4], getString(R.string.credits_icons_5), getString(R.string.credits_icons_links_3), 26, 32);
-        setSpans(textViews[5], getString(R.string.credits_icons_6), getString(R.string.credits_icons_links_2), 24, 35);
-        setSpans(textViews[6], getString(R.string.credits_icons_7), getString(R.string.credits_icons_links_1), 27, 34);
-        setSpans(textViews[7], getString(R.string.credits_icons_8), getString(R.string.credits_icons_links_1), 20, 27);
-        setSpans(textViews[8], getString(R.string.credits_icons_9), getString(R.string.credits_icons_links_1), 24, 31);
+            // split string array items into link, authorAlias and authorName
+            String link = creditsLinks[i-1].split(",")[0];
+            String authorAlias = creditsLinks[i-1].split(",")[1].split(";")[0];
+            String authorName = creditsLinks[i-1].split(",")[1].split(";")[1];
+
+            // add clickable links
+            setSpans(textViews[i-1], credits[i-1], link, credits[i-1].indexOf(authorAlias), credits[i-1].indexOf(authorAlias) + authorName.length());
+        }
     }
 
-    void setSpans(TextView textView, String string, final String link, int startChar, int endChar) {
+    // method to add clickable links
+    private void setSpans(TextView textView, String string, final String link, int startChar, int endChar) {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View view) {

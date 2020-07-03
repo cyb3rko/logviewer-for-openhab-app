@@ -164,7 +164,7 @@
         app:layout_constraintTop_toBottomOf="@+id/connect_button" />
 
     <TextView
-        android:id="@+id/credits"
+        android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

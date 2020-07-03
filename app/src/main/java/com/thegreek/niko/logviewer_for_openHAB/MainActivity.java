@@ -13,11 +13,10 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import java.util.Objects;
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity {
-
-    static FirebaseAnalytics firebaseAnalytics;
+    public static FirebaseAnalytics firebaseAnalytics;
     private SharedPreferences.Editor editor;
 
     @Override
@@ -25,62 +24,72 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // connect Firebase
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        // load save file and its editor
         SharedPreferences mySPR = this.getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
         editor.apply();
-//        Toasty.Config.getInstance().allowQueue(false).apply();
-        MainActivity.changeOrientation(Objects.requireNonNull(this), mySPR.getInt("orientation", 0));
 
+        // forbid queueing of toasts
+        Toasty.Config.getInstance().allowQueue(false).apply();
+
+        // open menu
         getSupportFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
 
+        // open end user content dialog if it is not yet accepted
         if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "").equals("")) {
+            EndUserConsent.dialogType = true;
             EndUserConsent endUserConsent = new EndUserConsent();
             endUserConsent.setCancelable(false);
-            endUserConsent.show(getSupportFragmentManager(), "Endnutzer-Einwilligung");
+            endUserConsent.show(getSupportFragmentManager(), getClass().getName());
         } else {
+            // enable Firebase Analytics
             firebaseAnalytics.setAnalyticsCollectionEnabled(true);
+            // check for update
+            updateCheck(this);
         }
-
-        updateCheck(this);
     }
 
+    // method to check for updates and open update dialog if new update is available
     private void updateCheck(final Activity activity) {
-        AndroidNetworking.get("https://raw.githubusercontent.com/nikothegreek/logviewer-for-openhab-app/master/app/build.gradle")
+        AndroidNetworking.get(getString(R.string.update_check_link))
                 .doNotCacheResponse()
                 .build()
                 .getAsString(new StringRequestListener() {
+                    // if request is succesful
                     @Override
                     public void onResponse(String response) {
-                        String[] parts = response.split("versionCode ");
-                        String[] parts2 = parts[1].split("\n");
-                        int neuesterVersionCode = Integer.parseInt(parts2[0]);
-                        parts = parts2[1].split("\"");
-                        parts2 = parts[1].split("\"");
-                        editor.putString("newestVersion", parts2[0]);
+                        // extract and store newest version code and name
+                        String versionCodeAndFollowing = response.split("versionCode ")[1];
+                        String versionCode = versionCodeAndFollowing.split("\n")[0];
+                        int newestVersionCode = Integer.parseInt(versionCode);
+                        String versionNameAndFollowing = versionCodeAndFollowing.split("\"")[1];
+                        String versionName = versionNameAndFollowing.split("\"")[0];
+                        editor.putString("newestVersion", versionName);
                         editor.apply();
 
-                        if (BuildConfig.VERSION_CODE != neuesterVersionCode) {
+                        // if newer update available, open update dialog
+                        if (BuildConfig.VERSION_CODE != newestVersionCode) {
                             UpdateDialog updateDialog = new UpdateDialog();
-                            updateDialog.setCancelable(false);
-                            updateDialog.show(getSupportFragmentManager(), "Update-Dialog");
+                            updateDialog.show(getSupportFragmentManager(), getClass().getName());
 
+                            // request permissions
                             ActivityCompat.requestPermissions(activity , new String[]{Manifest.permission.INTERNET, Manifest.permission.READ_EXTERNAL_STORAGE,
                                     Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.REQUEST_INSTALL_PACKAGES}, 1);
                         }
                     }
+                    // if request is not succesful
                     @Override
                     public void onError(ANError anError) {
                     }
                 });
     }
 
+    // if back button pressed
     @Override
     public void onBackPressed() {
         finish();
-    }
-
-    static void changeOrientation(Activity activity, int orientation) {
-        activity.setRequestedOrientation(orientation);
     }
 }

@@ -6,42 +6,70 @@
     <string name="lock_button_1">View Lock deactivated</string>
     <string name="lock_button_2">View Lock activated</string>
     <string name="text_size_changed">Text size changed to&#160;</string>
+    <string name="orientation_changed">Orientation changed to %1$s</string>
 
     <string name="end_user_consent_title">End User Consent</string>
     <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>
     <string name="end_user_consent_button_1">Got it</string>
     <string name="end_user_consent_button_2">Cancel</string>
 
-    <string name="end_user_consent2_title">Your End User Consent</string>
-    <string name="end_user_consent2_message_1">By using this app you have agreed to the Privacy Policy and the Terms of Use.\n\n Date:&#160;</string>
-    <string name="end_user_consent2_message_2">\n<u>Time:</u> </string>
-    <string name="end_user_consent2_button">OK</string>
+    <string name="end_user_consent_2_title">Your End User Consent</string>
+    <string name="end_user_consent_2_message_1">By using this app you have agreed to the Privacy Policy and the Terms of Use.\n\n Date:&#160;</string>
+    <string name="end_user_consent_2_message_2">\n<u>Time:</u> </string>
+    <string name="end_user_consent_2_button">OK</string>
 
     <string name="update_dialog_title">New Update Available</string>
     <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about the new features.</string>
     <string name="update_dialog_button_1">Download</string>
     <string name="update_dialog_button_2">Cancel</string>
-    <string name="update_dialog_changelog">Changelog</string>
+    <string name="update_dialog_changelog">changelog</string>
     <string name="update_dialog_error">Missing permission, give it on next app start</string>
+    <string name="update_check_link" translatable="false">https://raw.githubusercontent.com/nikothegreek/logviewer-for-openhab-app/master/app/build.gradle</string>
+    <string name="update_download_link" translatable="false">https://github.com/nikothegreek/logviewer-for-openhab-app/releases/download/v%1$s/LogViewerforopenHAB_%1$s.apk</string>
+    <string name="update_changelog_link" translatable="false">https://github.com/nikothegreek/logviewer-for-openhab-app/releases/latest</string>
 
     <string name="about_description">This is a simple and easy to use android app to simplify the mobile access to the log of an openHAB instance (running frontail) on your tablet or your
         smartphone.
     </string>
     <string name="about">About</string>
-    <string name="credits_icons_1" translatable="false">\"Eye Open icon\" made by Dave Gandy from flaticon.com</string>
-    <string name="credits_icons_2" translatable="false">\"Files icon\" made by Smartline from flaticon.com</string>
-    <string name="credits_icons_3" translatable="false">\"Lock icon\" made by Those Icons from flaticon.com</string>
-    <string name="credits_icons_4" translatable="false">\"Font icon\" made by Those Icons from flaticon.com</string>
-    <string name="credits_icons_5" translatable="false">\"Left Arrow icon\" made by Lyolya from flaticon.com</string>
-    <string name="credits_icons_6" translatable="false">\"Lock icon\" (2) made by Those Icons from flaticon.com</string>
-    <string name="credits_icons_7" translatable="false">\"Orientation icon\" made by Freepik from flaticon.com</string>
-    <string name="credits_icons_8" translatable="false">\"Book icon\" made by Freepik from flaticon.com</string>
-    <string name="credits_icons_9" translatable="false">\"Question icon\" made by Freepik from flaticon.com</string>
-    <string name="credits_icons_links_1" translatable="false">https://www.flaticon.com/authors/freepik</string>
-    <string name="credits_icons_links_2" translatable="false">https://www.flaticon.com/authors/those-icons</string>
-    <string name="credits_icons_links_3" translatable="false">https://www.flaticon.com/authors/lyolya</string>
-    <string name="credits_icons_links_4" translatable="false">https://www.flaticon.com/authors/smartline</string>
-    <string name="credits_icons_links_5" translatable="false">https://www.flaticon.com/authors/dave-gandy</string>
+    <string name="about_changelog_link" translatable="false">https://github.com/nikothegreek/logviewer-for-openhab-app/releases</string>
+    <string name="about_group_1">Legal</string>
+    <string name="about_group_2">Connect with me</string>
+    <string name="about_element_1">Version %1$s (%2$d)</string>
+    <string name="about_element_2">Used Libraries</string>
+    <string name="about_element_3">Used Icons</string>
+    <string name="about_element_email_value">nikodiamond3@gmail.com</string>
+    <string name="about_element_email_text">Contact me</string>
+    <string name="about_element_website_value">https://nikothegreek.jimdofree.com</string>
+    <string name="about_element_website_text">Visit my website (currently only in German!)</string>
+    <string name="about_element_youtube_value">UCue_SZXdF8yZByavetBU1ZQ</string>
+    <string name="about_element_youtube_text">Watch my tutorial videos</string>
+    <string name="about_element_github_value">nikothegreek</string>
+    <string name="about_element_github_text">Take a look at my other projects</string>
+    <string name="about_element_instagram_value">cyb3rko</string>
+    <string name="about_element_instagram_text">Follow m</string>
+    <string-array name="credits_icons" translatable="false">
+        <item>\"Eye Open icon\" made by Dave Gandy from flaticon.com</item>
+        <item>\"Files icon\" made by Smartline from flaticon.com</item>
+        <item>\"Lock icon\" made by Those Icons from flaticon.com</item>
+        <item>\"Font icon\" made by Those Icons from flaticon.com</item>
+        <item>\"Left Arrow icon\" made by Lyolya from flaticon.com</item>
+        <item>\"Lock icon\" (2) made by Those Icons from flaticon.com</item>
+        <item>\"Orientation icon\" made by Freepik from flaticon.com</item>
+        <item>\"Book icon\" made by Freepik from flaticon.com</item>
+        <item>\"Question icon\" made by Freepik from flaticon.com</item>
+    </string-array>
+    <string-array name="credits_icons_links" translatable="false">
+        <item>https://www.flaticon.com/authors/dave-gandy,Dave;Dave Gandy</item>
+        <item>https://www.flaticon.com/authors/smartline,Smartline;Smartline</item>
+        <item>https://www.flaticon.com/authors/those-icons,Those;Those Icons</item>
+        <item>https://www.flaticon.com/authors/those-icons,Those;Those Icons</item>
+        <item>https://www.flaticon.com/authors/lyolya,Lyolya;Lyolya</item>
+        <item>https://www.flaticon.com/authors/those-icons,Those;Those Icons</item>
+        <item>https://www.flaticon.com/authors/freepik,Freepik;Freepik</item>
+        <item>https://www.flaticon.com/authors/freepik,Freepik;Freepik</item>
+        <item>https://www.flaticon.com/authors/freepik,Freepik;Freepik</item>
+    </string-array>
 
     <string name="hostname_ipaddress_view">Hostname / IP address</string>
     <string name="hostname_ipaddress">(e.g. 192.168.178.10)</string>
@@ -66,6 +94,7 @@
     <string name="end_user_consent">Privacy Policy\nTerms of Use</string>
 
     <string name="send_mail">Send me a mail…</string>
+    <string name="mail_info">mailto:?subject=%1$s - %2$s &amp;body="" &amp;to= nikodiamond3@gmail.com</string>
 
     <string-array name="privacy_policy" translatable="false">
         <item>Privacy Policy</item>

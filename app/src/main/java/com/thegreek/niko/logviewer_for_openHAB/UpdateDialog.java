@@ -32,16 +32,18 @@ import es.dmoral.toasty.Toasty;
 import static android.content.Context.DOWNLOAD_SERVICE;
 
 public class UpdateDialog extends AppCompatDialogFragment {
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // load save file and its editor
         final SharedPreferences mySPR = Objects.requireNonNull(getActivity()).getSharedPreferences("Safe", 0);
         final SharedPreferences.Editor editor = mySPR.edit();
         editor.apply();
 
+        // create new dialog builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        // create title
         TextView titleView = new TextView(getContext());
         titleView.setPadding(32, 32, 32, 32);
         titleView.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -49,6 +51,7 @@ public class UpdateDialog extends AppCompatDialogFragment {
         titleView.setTextSize(22);
         titleView.setText(getString(R.string.update_dialog_title));
 
+        // create text
         TextView messageView = new TextView(getContext());
         messageView.setPadding(32, 32, 32, 32);
         messageView.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -56,7 +59,7 @@ public class UpdateDialog extends AppCompatDialogFragment {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nikothegreek/logviewer-for-openhab-app/releases/latest")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.update_changelog_link))));
             }
         };
         String message = String.format(getString(R.string.update_dialog_message), mySPR.getString("newestVersion", ""), BuildConfig.VERSION_NAME);
@@ -66,33 +69,39 @@ public class UpdateDialog extends AppCompatDialogFragment {
         messageView.setText(spannableString);
         messageView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        builder.setView(messageView)
+        // create dialog
+        builder.setCustomTitle(titleView)
+                .setView(messageView)
                 .setCancelable(false)
-                .setCustomTitle(titleView)
+                // add right button
                 .setPositiveButton(getString(R.string.update_dialog_button_1), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        // if permission are given
                         if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                            String link = "https://github.com/nikothegreek/logviewer-for-openhab-app/releases/download/v" + mySPR.getString("newestVersion", "") + "/LogViewerforopenHAB_" +
-                                    mySPR.getString("newestVersion", "") + ".apk";
+                            // create link
+                            String link = String.format(getString(R.string.update_download_link), mySPR.getString("newestVersion", ""));
+                            // download apk file
                             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(link))
                                     .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(link, null, null))
                                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-
                             DownloadManager downloadManager = (DownloadManager) Objects.requireNonNull(getActivity()).getSystemService(DOWNLOAD_SERVICE);
                             assert downloadManager != null;
                             downloadManager.enqueue(request);
                         } else {
+                            // give error that permissions are not given
                             Toasty.error(getContext(), getString(R.string.update_dialog_error), Toasty.LENGTH_LONG).show();
                         }
                     }
                 })
+                // add left button
                 .setNegativeButton(getString(R.string.update_dialog_button_2), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
                 });
 
+        // show dialog
         return builder.create();
     }
 }
