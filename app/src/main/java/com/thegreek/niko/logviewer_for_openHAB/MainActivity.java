@@ -17,6 +17,7 @@ import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity {
     public static FirebaseAnalytics firebaseAnalytics;
+    private SharedPreferences mySPR;
     private SharedPreferences.Editor editor;
 
     @Override
@@ -28,15 +29,12 @@ public class MainActivity extends AppCompatActivity {
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // load save file and its editor
-        SharedPreferences mySPR = this.getSharedPreferences("Safe", 0);
+        mySPR = this.getSharedPreferences("Safe", 0);
         editor = mySPR.edit();
         editor.apply();
 
         // forbid queueing of toasts
         Toasty.Config.getInstance().allowQueue(false).apply();
-
-        // open menu
-        getSupportFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
 
         // open end user content dialog if it is not yet accepted
         if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "").equals("")) {
@@ -47,8 +45,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // enable Firebase Analytics
             firebaseAnalytics.setAnalyticsCollectionEnabled(true);
-            // check for update
-            updateCheck(this);
+            // open menu
+            getSupportFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
+            // check if orientation was recently changed
+            if (!mySPR.getBoolean("tempDisableStart", false) && !mySPR.getBoolean("connected", false)) {
+                // check for update
+                updateCheck(this);
+            }
         }
     }
 
@@ -86,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
                         // nothing to clean up (for POM)
                     }
                 });
+    }
+
+    // on app stop
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // if log was shown
+        if (!mySPR.getBoolean("connected", false)) {
+            // set tempDisableStart to true to open log view again after orientation was changed
+            editor.putBoolean("tempDisableStart", true).apply();
+        }
     }
 
     // if back button pressed

@@ -126,13 +126,18 @@ public class EndUserConsent extends AppCompatDialogFragment {
         dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                // turn on Firebase Analytics
                 MainActivity.firebaseAnalytics.setAnalyticsCollectionEnabled(true);
+                // get date and time
                 Date date = Calendar.getInstance().getTime();
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat sDF = new SimpleDateFormat("dd.MM.yyyy");
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat sDF2 = new SimpleDateFormat("HH:mm:ss");
+                // store dat and time
                 editor.putString("date", sDF.format(date));
                 editor.putString("time", sDF2.format(date));
                 editor.putBoolean("firstStart", false).apply();
+                // open menu
+                Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().replace((R.id.start), new MainFragment()).commit();
             }
         };
     }

@@ -2,6 +2,7 @@ package com.thegreek.niko.logviewer_for_openHAB;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,7 @@ public class About extends AppCompatActivity {
         SharedPreferences mySPR = this.getSharedPreferences("Safe", 0);
 
         // restore set orientation
-        setRequestedOrientation(mySPR.getInt("orientation", 0));
+        setRequestedOrientation(mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED));
 
         // create and show about page
         View aboutPage = new AboutPage(this)

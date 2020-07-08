@@ -70,7 +70,7 @@ public class MainFragment extends Fragment {
         editor.apply();
 
         // restore set orientation
-        Objects.requireNonNull(getActivity()).setRequestedOrientation(mySPR.getInt("orientation", 0));
+        Objects.requireNonNull(getActivity()).setRequestedOrientation(mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED));
 
         // restore last status
         statusRestoring();
@@ -113,6 +113,7 @@ public class MainFragment extends Fragment {
                         .replace(R.id.start, new WebViewFragment())
                         .addToBackStack(null)
                         .commit();
+                editor.putBoolean("connected", true).apply();
 
                 // show toast
                 Toasty.info(Objects.requireNonNull(getContext()), getString(R.string.connecting), Toasty.LENGTH_SHORT).show();
@@ -125,7 +126,6 @@ public class MainFragment extends Fragment {
                     editor.putBoolean("tempDisableStart", false).apply();
                 }
             };
-
             new Handler().postDelayed(runnable, 10);
         }
 
@@ -248,6 +248,7 @@ public class MainFragment extends Fragment {
                                 .addToBackStack(null)
                                 .commit();
 
+                        editor.putBoolean("connected", true).apply();
                         // close keyboard
                         if (view != null) {
                             InputMethodManager imm = (InputMethodManager) view.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
