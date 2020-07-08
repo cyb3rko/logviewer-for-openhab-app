@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     // if request is not succesful
                     @Override
                     public void onError(ANError anError) {
-                        // nothing to clean up (for POM)
+                        // nothing to clean up (for PMD)
                     }
                 });
     }

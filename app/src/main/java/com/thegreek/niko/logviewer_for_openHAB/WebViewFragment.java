@@ -286,13 +286,13 @@ public class WebViewFragment extends Fragment {
                         // on every single new target
                         @Override
                         public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
-                            // nothing to clean up (for POM)
+                            // nothing to clean up (for PMD)
                         }
 
                         // if sequence has been canceled
                         @Override
                         public void onSequenceCanceled(TapTarget lastTarget) {
-                            // nothing to clean up (for POM)
+                            // nothing to clean up (for PMD)
                         }
                     })
                     // start sequence

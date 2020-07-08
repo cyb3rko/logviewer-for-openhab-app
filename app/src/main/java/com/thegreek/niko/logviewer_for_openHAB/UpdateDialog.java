@@ -98,7 +98,7 @@ public class UpdateDialog extends AppCompatDialogFragment {
                 .setNegativeButton(getString(R.string.update_dialog_button_2), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // nothing to clean up (for POM)
+                        // nothing to clean up (for PMD)
                     }
                 });
 
