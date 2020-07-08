@@ -88,6 +88,7 @@
     <string name="tap_target_message_3">Click here to go back to the menu</string>
 
     <string name="text_size_dialog_title">Change Text Size</string>
+    <string name="text_size_dialog_text">Current text size: %1$d\nNew text size: %2$d</string>
     <string name="text_size_dialog_button_1">Set</string>
     <string name="text_size_dialog_button_2">Cancel</string>
 

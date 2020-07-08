@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -133,26 +134,58 @@ public class WebViewFragment extends Fragment {
                 // create dialog builder
                 final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 
+                // current text size
+                final int currentTextSize = mySPR.getInt(textSizeType, 60);
+                // add textview for showing text size
+                final TextView sizeView = new TextView(v.getContext());
                 // add seekbar for choosing text size
                 final DiscreteSeekBar discreteSeekBar = new DiscreteSeekBar(v.getContext());
 
                 // create title
-                TextView titleView = new TextView(getContext());
+                TextView titleView = new TextView(v.getContext());
                 titleView.setText(R.string.text_size_dialog_title);
                 titleView.setTextSize(22);
                 titleView.setTypeface(Typeface.DEFAULT_BOLD);
                 titleView.setPadding(32, 32, 32, 32);
                 titleView.setGravity(Gravity.CENTER_HORIZONTAL);
 
+                LinearLayout content = new LinearLayout(v.getContext());
+                content.setOrientation(LinearLayout.VERTICAL);
+
+                // set size view
+                sizeView.setText(String.format(getString(R.string.text_size_dialog_text), currentTextSize, currentTextSize));
+                sizeView.setTextSize(18);
+                sizeView.setPadding(24, 24, 24, 50);
+                sizeView.setGravity(Gravity.CENTER_HORIZONTAL);
+                content.addView(sizeView);
+
                 // set seekbar
                 discreteSeekBar.setMax(100);
                 discreteSeekBar.setMin(1);
                 discreteSeekBar.setProgress(webSettings.getTextZoom());
-                discreteSeekBar.setPadding(50,80,50,50);
+                discreteSeekBar.setPadding(50,0,50,50);
+                discreteSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+                    @Override
+                    public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+                        // nothing to clean up (for PMD)
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
+                        // nothing to clean up (for PMD)
+                    }
+
+                    // if user stops touching seekbar
+                    @Override
+                    public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
+                        sizeView.setText(String.format(getString(R.string.text_size_dialog_text), currentTextSize, discreteSeekBar.getProgress()));
+                    }
+                });
+                content.addView(discreteSeekBar);
 
                 // create dialog
                 builder.setCustomTitle(titleView)
-                        .setView(discreteSeekBar)
+                        .setView(content)
                         // add right button
                         .setPositiveButton(getString(R.string.text_size_dialog_button_1), new DialogInterface.OnClickListener() {
                             @Override
@@ -171,7 +204,7 @@ public class WebViewFragment extends Fragment {
                         .setNegativeButton(getString(R.string.text_size_dialog_button_2), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // nothing to clean up (for POM)
+                                // nothing to clean up (for PMD)
                             }
                         })
                         // show dialog
