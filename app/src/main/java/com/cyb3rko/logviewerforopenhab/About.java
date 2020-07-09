@@ -50,11 +50,21 @@ public class About extends AppCompatActivity {
                 // GitHub item
                 .addGitHub(getString(R.string.about_element_github_value), getString(R.string.about_element_github_text))
                 // Instagram item
-                .addInstagram(getString(R.string.about_element_instagram_value), getString(R.string.about_element_instagram_text))
+                .addItem(new Element().setTitle(getString(R.string.about_element_instagram_text)).setIconDrawable(R.drawable.about_icon_instagram).setIconTint(R.color.about_instagram_color).setOnClickListener(openInstaPage()))
                 .create();
 
         // set view (the about page)
         setContentView(aboutPage);
+    }
+
+    // show instagram page
+    private View.OnClickListener openInstaPage() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/_u/" + getString(R.string.about_element_instagram_value))));
+            }
+        };
     }
 
     private View.OnClickListener showChangelog() {
