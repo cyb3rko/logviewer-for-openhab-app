@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">LogViewer for openHAB</string>
 
-    <string name="error_fill_out">Fill out both</string>
+    <string name="error_fill_out">Fill out the hostname</string>
     <string name="connecting">Connecting…</string>
     <string name="lock_button_1">View Lock deactivated</string>
     <string name="lock_button_2">View Lock activated</string>
@@ -76,7 +76,7 @@
     <string name="hostname_ipaddress_view">Hostname / IP address</string>
     <string name="hostname_ipaddress">e.g. 192.168.178.10</string>
     <string name="port_view">Port</string>
-    <string name="port">default is 9001</string>
+    <string name="port">leave empty for 9001</string>
     <string name="checks">Remember\ninput</string>
     <string name="connect_button_1">Check</string>
     <string name="connect_button_2">Connect</string>

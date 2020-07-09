@@ -190,7 +190,13 @@ public class MainFragment extends Fragment {
     // generate and show new link according to user inputs
     private void linkGeneration() {
         hostnameIPAddressString = hostnameIPAddress.getText().toString();
-        portInt = Integer.parseInt(port.getText().toString());
+
+        if (!port.getText().toString().isEmpty()) {
+            editor.putInt("portInt", Integer.parseInt(port.getText().toString()));
+        } else {
+            editor.putInt("portInt", 9001);
+        }
+
         link = "http://" + hostnameIPAddress.getText().toString() + ":" + portInt;
         linkView.setText(link);
     }
@@ -201,7 +207,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // if both input fields are not empty
-                if (!hostnameIPAddress.getText().toString().isEmpty() && !port.getText().toString().isEmpty()) {
+                if (!hostnameIPAddress.getText().toString().isEmpty()) {
                     // if connect button was not clicked before
                     if (linkView.getText().toString().isEmpty()) {
                         // generate new link
@@ -227,7 +233,13 @@ public class MainFragment extends Fragment {
 
                         // store values if user wants to
                         if (portCheck.isChecked()) {
-                            editor.putInt("portInt", portInt);
+                            // check if user entered hostname
+                            if (!port.getText().toString().isEmpty()) {
+                                editor.putInt("portInt", portInt);
+                            } else {
+                                port.setText(String.valueOf(9001));
+                                editor.putInt("portInt", 9001);
+                            }
                             editor.putBoolean("portCheck", true).apply();
                         } else {
                             editor.putInt("portInt", 0);
