@@ -39,7 +39,6 @@ public class WebViewFragment extends Fragment {
     private WebSettings webSettings;
     private WebView webView;
 
-    public static boolean connected;
     private boolean viewLocked = true;
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -300,7 +299,7 @@ public class WebViewFragment extends Fragment {
         }
     }
 
-    // switch touchability
+    // switch touchability of log
     @SuppressLint("ClickableViewAccessibility")
     private void setTouchable(boolean b) {
         if (b) {

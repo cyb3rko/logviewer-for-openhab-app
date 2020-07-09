@@ -38,16 +38,18 @@
     <string name="about_element_1">Version %1$s (%2$d)</string>
     <string name="about_element_2">Used Libraries</string>
     <string name="about_element_3">Used Icons</string>
+    <string name="about_element_feedback_value">https://github.com/cyb3rko/logviewer-for-openhab-app/</string>
+    <string name="about_element_feedback_text">Visit and give feedback on GitHub</string>
     <string name="about_element_email_value">niko@cyb3rko.de</string>
     <string name="about_element_email_text">Contact me</string>
     <string name="about_element_website_value">https://nikothegreek.jimdofree.com</string>
     <string name="about_element_website_text">Visit my website (currently only in German!)</string>
     <string name="about_element_youtube_value">UCue_SZXdF8yZByavetBU1ZQ</string>
-    <string name="about_element_youtube_text">Watch my tutorial videos</string>
+    <string name="about_element_youtube_text">Watch my tutorial videos (in German!)</string>
     <string name="about_element_github_value">cyb3rko</string>
     <string name="about_element_github_text">Take a look at my other projects</string>
     <string name="about_element_instagram_value">cyb3rko</string>
-    <string name="about_element_instagram_text">Follow m</string>
+    <string name="about_element_instagram_text">Follow me</string>
     <string-array name="credits_icons" translatable="false">
         <item>\"Eye Open icon\" made by Dave Gandy from flaticon.com</item>
         <item>\"Files icon\" made by Smartline from flaticon.com</item>
@@ -72,9 +74,9 @@
     </string-array>
 
     <string name="hostname_ipaddress_view">Hostname / IP address</string>
-    <string name="hostname_ipaddress">(e.g. 192.168.178.10)</string>
+    <string name="hostname_ipaddress">e.g. 192.168.178.10</string>
     <string name="port_view">Port</string>
-    <string name="port">(default is 9001)</string>
+    <string name="port">default is 9001</string>
     <string name="checks">Remember\ninput</string>
     <string name="connect_button_1">Check</string>
     <string name="connect_button_2">Connect</string>

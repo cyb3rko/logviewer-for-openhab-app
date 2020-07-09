@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             // open menu
             getSupportFragmentManager().beginTransaction().replace(R.id.start, new MainFragment()).commit();
             // check if orientation was recently changed
-            if (!mySPR.getBoolean("tempDisableStart", false) && !mySPR.getBoolean("connected", false)) {
+            if (!mySPR.getBoolean("tempDisableStart", false)) {
                 // check for update
                 updateCheck(this);
             }
@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         int newestVersionCode = Integer.parseInt(versionCode);
                         String versionNameAndFollowing = versionCodeAndFollowing.split("\"")[1];
                         String versionName = versionNameAndFollowing.split("\"")[0];
-                        editor.putString("newestVersion", versionName);
-                        editor.apply();
+                        editor.putString("newestVersion", versionName).apply();
 
                         // if newer update available, open update dialog
                         if (BuildConfig.VERSION_CODE != newestVersionCode) {

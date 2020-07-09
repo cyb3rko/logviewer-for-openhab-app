@@ -172,7 +172,7 @@ public class MainFragment extends Fragment {
 
     // set correct orientation icon
     private void setOrientationIcon() {
-        switch (mySPR.getInt("orientation", 0)) {
+        switch (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)) {
             case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
                 orientation.setImageResource(R.drawable.icon_landscape_orientation);
                 break;
@@ -231,8 +231,7 @@ public class MainFragment extends Fragment {
                             editor.putBoolean("portCheck", true).apply();
                         } else {
                             editor.putInt("portInt", 0);
-                            editor.putBoolean("portCheck", false);
-                            editor.apply();
+                            editor.putBoolean("portCheck", false).apply();
                         }
 
                         // store link
@@ -342,8 +341,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // start about class
-                Intent termsOfUseIntent = new Intent(getContext(), About.class);
-                view.getContext().startActivity(termsOfUseIntent);
+                view.getContext().startActivity(new Intent(getContext(), About.class));
             }
         });
     }

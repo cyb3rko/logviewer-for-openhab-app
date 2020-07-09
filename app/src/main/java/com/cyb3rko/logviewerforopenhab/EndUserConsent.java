@@ -137,6 +137,7 @@ public class EndUserConsent extends AppCompatDialogFragment {
                 editor.putString("time", sDF2.format(date));
                 editor.putBoolean("firstStart", false).apply();
                 // open menu
+                editor.putInt("orientation", -1).apply();
                 Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().replace((R.id.start), new MainFragment()).commit();
             }
         };
