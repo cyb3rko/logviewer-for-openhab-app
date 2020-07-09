@@ -6,7 +6,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.thegreek.niko.logviewer_for_openHAB"
+        applicationId "com.cyb3rko.logviewerforopenhab"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 6

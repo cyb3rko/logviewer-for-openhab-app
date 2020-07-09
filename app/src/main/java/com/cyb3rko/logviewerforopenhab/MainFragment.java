@@ -1,4 +1,4 @@
-package com.thegreek.niko.logviewer_for_openHAB;
+package com.cyb3rko.logviewerforopenhab;
 
 import android.content.Context;
 import android.content.Intent;

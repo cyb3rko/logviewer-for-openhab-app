@@ -1,4 +1,4 @@
-package com.thegreek.niko.logviewer_for_openHAB;
+package com.cyb3rko.logviewerforopenhab;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

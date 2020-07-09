@@ -1,4 +1,4 @@
-package com.thegreek.niko.logviewer_for_openHAB;
+package com.cyb3rko.logviewerforopenhab;
 
 import android.Manifest;
 import android.app.AlertDialog;
