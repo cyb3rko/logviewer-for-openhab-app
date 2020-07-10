@@ -44,11 +44,11 @@
     <string name="about_element_email_text">Contact me</string>
     <string name="about_element_website_value">https://nikothegreek.jimdofree.com</string>
     <string name="about_element_website_text">Visit my website (currently only in German!)</string>
-    <string name="about_element_youtube_value">UCue_SZXdF8yZByavetBU1ZQ</string>
+    <string name="about_element_youtube_value">https://youtube.com/channel/UCue_SZXdF8yZByavetBU1ZQ</string>
     <string name="about_element_youtube_text">Watch my tutorial videos (in German!)</string>
     <string name="about_element_github_value">cyb3rko</string>
     <string name="about_element_github_text">Take a look at my other projects</string>
-    <string name="about_element_instagram_value">cyb3rko</string>
+    <string name="about_element_instagram_value">https://instagram.com/_u/cyb3rko</string>
     <string name="about_element_instagram_text">Follow me</string>
     <string-array name="credits_icons" translatable="false">
         <item>\"Eye Open icon\" made by Dave Gandy from flaticon.com</item>

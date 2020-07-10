@@ -46,7 +46,7 @@ public class About extends AppCompatActivity {
                 // website item
                 .addWebsite(getString(R.string.about_element_website_value), getString(R.string.about_element_website_text))
                 // YouTube item
-                .addYoutube(getString(R.string.about_element_youtube_value), getString(R.string.about_element_youtube_text))
+                .addItem(new Element().setTitle(getString(R.string.about_element_youtube_text)).setIconDrawable(R.drawable.about_icon_youtube).setIconTint(R.color.about_youtube_color).setOnClickListener(openYouTubeProfile()))
                 // GitHub item
                 .addGitHub(getString(R.string.about_element_github_value), getString(R.string.about_element_github_text))
                 // Instagram item
@@ -57,16 +57,17 @@ public class About extends AppCompatActivity {
         setContentView(aboutPage);
     }
 
-    // show instagram page
-    private View.OnClickListener openInstaPage() {
+    // show youtube profile
+    private View.OnClickListener openYouTubeProfile() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/_u/" + getString(R.string.about_element_instagram_value))));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_element_youtube_value))));
             }
         };
     }
 
+    // show changelog
     private View.OnClickListener showChangelog() {
         return new View.OnClickListener() {
             @Override
@@ -115,6 +116,16 @@ public class About extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_element_feedback_value))));
+            }
+        };
+    }
+
+    // show instagram page
+    private View.OnClickListener openInstaPage() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_element_instagram_value))));
             }
         };
     }
