@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="icon_arrow_left">
+        <item>Lyolya</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/left-arrow_109618</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_auto_orientation">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/orientation_1302037</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_eye">
+        <item>Dave Gandy</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/eye-open_25186</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_font">
+        <item>Those Icons</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/font_2087728</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_landscape_orientation">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/orientation_1302037</item>
+        <item>true</item>
+    </string-array>
+
+    <string-array name="icon_libraries">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/books-stack-of-three_29302</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_lock">
+        <item>Those Icons</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/lock_483408</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_lock_2">
+        <item>Those Icons</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/lock_483412</item>
+        <item>false</item>
+    </string-array>
+
+    <string-array name="icon_log">
+        <item>Smartline</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/files_569837</item>
+        <item>true</item>
+    </string-array>
+
+    <string-array name="icon_portrait_orientation">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/orientation_1302037</item>
+        <item>true</item>
+    </string-array>
+
+    <string-array name="icon_question">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/information_906794</item>
+        <item>false</item>
+    </string-array>
+</resources>

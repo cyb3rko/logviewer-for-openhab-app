@@ -104,14 +104,14 @@ public class WebViewFragment extends Fragment {
             public void onClick(View view) {
                 // if scrolling locked
                 if (viewLocked) {
-                    viewButton.setImageResource(R.drawable.icon_lock_2);
+                    viewButton.setImageResource(R.drawable._icon_lock_2);
                     viewLocked = false;
                     setTouchable(true);
 
                     // show toast
                     Toasty.info(view.getContext(), getString(R.string.lock_button_1), Toasty.LENGTH_SHORT).show();
                 } else {
-                    viewButton.setImageResource(R.drawable.icon_lock);
+                    viewButton.setImageResource(R.drawable._icon_lock);
                     viewLocked = true;
                     setTouchable(false);
 

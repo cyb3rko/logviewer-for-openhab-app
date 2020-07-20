@@ -174,13 +174,13 @@ public class MainFragment extends Fragment {
     private void setOrientationIcon() {
         switch (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)) {
             case ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE:
-                orientation.setImageResource(R.drawable.icon_landscape_orientation);
+                orientation.setImageResource(R.drawable._icon_landscape_orientation);
                 break;
             case ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:
-                orientation.setImageResource(R.drawable.icon_portrait_orientation);
+                orientation.setImageResource(R.drawable._icon_portrait_orientation);
                 break;
             case ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED:
-                orientation.setImageResource(R.drawable.icon_auto_orientation);
+                orientation.setImageResource(R.drawable._icon_auto_orientation);
                 break;
             default:
                 break;

@@ -34,9 +34,9 @@ public class About extends AppCompatActivity {
                 // first group
                 .addGroup(getString(R.string.about_group_1))
                 // second item
-                .addItem(new Element().setTitle(getString(R.string.about_element_2)).setIconDrawable(R.drawable.icon_libraries).setOnClickListener(showLibraries()))
+                .addItem(new Element().setTitle(getString(R.string.about_element_2)).setIconDrawable(R.drawable._icon_libraries).setOnClickListener(showLibraries()))
                 // third item
-                .addItem(new Element().setTitle(getString(R.string.about_element_3)).setIconDrawable(R.drawable.icon_question).setOnClickListener(showIcons()))
+                .addItem(new Element().setTitle(getString(R.string.about_element_3)).setIconDrawable(R.drawable._icon_question).setOnClickListener(showIcons()))
                 // second group
                 .addGroup(getString(R.string.about_group_2))
                 // feddback item
