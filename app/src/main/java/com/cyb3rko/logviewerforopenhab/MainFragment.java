@@ -79,8 +79,8 @@ public class MainFragment extends Fragment {
         versionView.setText(BuildConfig.VERSION_NAME);
 
         // set onclick listeners
-        setOrientationIconClickListener();
         setConnectButtonClickListener(v);
+        setOrientationIconClickListener();
         setEditButtonClickListener(hostnameIPAddressEdit, hostnameIPAddress, portEdit, hostnameIPAddressCheck);
         setEditButtonClickListener(portEdit, port, hostnameIPAddressEdit, portCheck);
         setEndUserConsentClickListener();
@@ -152,7 +152,7 @@ public class MainFragment extends Fragment {
         } else {
             port.setText(String.valueOf(mySPR.getInt("portInt", 0)));
             port.setEnabled(false);
-            portInt = mySPR.getInt("portInt", 0);
+            portInt = mySPR.getInt("portInt", 9001);
         }
 
         // restore checkbox status
@@ -192,12 +192,12 @@ public class MainFragment extends Fragment {
         hostnameIPAddressString = hostnameIPAddress.getText().toString();
 
         if (!port.getText().toString().isEmpty()) {
-            editor.putInt("portInt", Integer.parseInt(port.getText().toString()));
+            portInt = Integer.parseInt(String.valueOf(port.getText()));
         } else {
-            editor.putInt("portInt", 9001);
+            portInt = 9001;
         }
 
-        link = "http://" + hostnameIPAddress.getText().toString() + ":" + portInt;
+        link = "http://" + hostnameIPAddressString + ":" + portInt;
         linkView.setText(link);
     }
 
@@ -206,7 +206,7 @@ public class MainFragment extends Fragment {
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // if both input fields are not empty
+                // check if user entered hostname
                 if (!hostnameIPAddress.getText().toString().isEmpty()) {
                     // if connect button was not clicked before
                     if (linkView.getText().toString().isEmpty()) {
@@ -225,25 +225,26 @@ public class MainFragment extends Fragment {
                         // store values if user wants to
                         if (hostnameIPAddressCheck.isChecked()) {
                             editor.putString("hostnameIPAddressString", hostnameIPAddressString);
-                            editor.putBoolean("hostnameIPAddressCheck", true).apply();
+                            editor.putBoolean("hostnameIPAddressCheck", true);
                         } else {
                             editor.putString("hostnameIPAddressString", "");
-                            editor.putBoolean("hostnameIPAddressCheck", false).apply();
+                            editor.putBoolean("hostnameIPAddressCheck", false);
                         }
 
                         // store values if user wants to
                         if (portCheck.isChecked()) {
-                            // check if user entered hostname
+                            editor.putBoolean("portCheck", true);
+
+                            // check if user entered port
                             if (!port.getText().toString().isEmpty()) {
                                 editor.putInt("portInt", portInt);
                             } else {
                                 port.setText(String.valueOf(9001));
                                 editor.putInt("portInt", 9001);
                             }
-                            editor.putBoolean("portCheck", true).apply();
                         } else {
                             editor.putInt("portInt", 0);
-                            editor.putBoolean("portCheck", false).apply();
+                            editor.putBoolean("portCheck", false);
                         }
 
                         // store link
