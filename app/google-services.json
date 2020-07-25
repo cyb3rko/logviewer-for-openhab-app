@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "504782401236",
+    "firebase_url": "https://logviewerforopenhab.firebaseio.com",
+    "project_id": "logviewerforopenhab",
+    "storage_bucket": "logviewerforopenhab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504782401236:android:6839efc16ba0c674849541",
+        "android_client_info": {
+          "package_name": "com.cyb3rko.logviewerforopenhab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504782401236-sd70cpeg4tc4vftnscb9o445cgddk97q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYrTIQyyrgmxbmaZK4tYFgN6kuHm8d2f8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504782401236-sd70cpeg4tc4vftnscb9o445cgddk97q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504782401236:android:f73bea864f19ac32849541",
+        "android_client_info": {
+          "package_name": "com.thegreek.niko.logviewer_for_openHAB"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504782401236-ao0hhc8s81k7slnhip67kfvbqdqmgtii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thegreek.niko.logviewer_for_openHAB",
+            "certificate_hash": "d2d04e800d8b6dd0f1c0c2da6f1b3ec003ea7c97"
+          }
+        },
+        {
+          "client_id": "504782401236-sd70cpeg4tc4vftnscb9o445cgddk97q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYrTIQyyrgmxbmaZK4tYFgN6kuHm8d2f8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504782401236-sd70cpeg4tc4vftnscb9o445cgddk97q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
