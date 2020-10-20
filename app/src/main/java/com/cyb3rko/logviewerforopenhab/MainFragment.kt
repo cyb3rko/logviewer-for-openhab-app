@@ -1,0 +1,318 @@
+package com.cyb3rko.logviewerforopenhab
+
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
+import android.os.Bundle
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
+import androidx.fragment.app.Fragment
+import es.dmoral.toasty.Toasty
+
+class MainFragment : Fragment() {
+    private var connectButton: Button? = null
+    private var connectCheck: CheckBox? = null
+    private var hostnameIPAddressCheck: CheckBox? = null
+    private var portCheck: CheckBox? = null
+    private var hostnameIPAddress: EditText? = null
+    private var port: EditText? = null
+    private var hostnameIPAddressEdit: ImageButton? = null
+    private var portEdit: ImageButton? = null
+    private var orientation: ImageView? = null
+    private lateinit var mySPR: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+    private var hostnameIPAddressString: String? = null
+    private var link: String? = null
+    private var about: TextView? = null
+    private var linkView: TextView? = null
+    private var endUserConsent: TextView? = null
+    private var portInt = 0
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val v = inflater.inflate(R.layout.fragment_main, container, false)
+        connectButton = v.findViewById(R.id.connect_button)
+        connectCheck = v.findViewById(R.id.connect_check)
+        hostnameIPAddressCheck = v.findViewById(R.id.hostname_ip_address_check)
+        portCheck = v.findViewById(R.id.port_check)
+        hostnameIPAddress = v.findViewById(R.id.hostname_ip_address)
+        port = v.findViewById(R.id.port)
+        hostnameIPAddressEdit = v.findViewById(R.id.hostname_ip_address_edit)
+        portEdit = v.findViewById(R.id.port_edit)
+        orientation = v.findViewById(R.id.imageView)
+        linkView = v.findViewById(R.id.link_view)
+        about = v.findViewById(R.id.about)
+        endUserConsent = v.findViewById(R.id.end_user_consent)
+        val versionView = v.findViewById<TextView>(R.id.version_view)
+
+        // load save file and its editor
+        mySPR = v.context.getSharedPreferences("Safe", 0)
+        editor = mySPR.edit()
+        editor.apply()
+
+        // restore set orientation
+        activity?.requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+
+        // restore last status
+        statusRestoring()
+
+        // show version
+        versionView.text = BuildConfig.VERSION_NAME
+
+        // set onclick listeners
+        setConnectButtonClickListener(v)
+        setOrientationIconClickListener()
+        setEditButtonClickListener(hostnameIPAddressEdit, hostnameIPAddress, portEdit, hostnameIPAddressCheck)
+        setEditButtonClickListener(portEdit, port, hostnameIPAddressEdit, portCheck)
+        setEndUserConsentClickListener()
+        setAboutClickListener()
+        setConnectCheckClickListener()
+
+        // show view
+        return v
+    }
+
+    // if view is ready restore set orientation
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        activity?.requestedOrientation = mySPR.getInt("orientation", 0)
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    // restore last status
+    private fun statusRestoring() {
+        // restore chechbox status
+        connectCheck!!.isChecked = mySPR.getBoolean("connectCheck", false)
+
+        // check if orientation was recently changed
+        if (!mySPR.getBoolean("tempDisableStart", false)) {
+            // check if autoStart is enabled
+            if (mySPR.getBoolean("autoStart", false) && connectCheck!!.isChecked) {
+                // open logview
+                fragmentManager!!.beginTransaction()
+                    .replace(R.id.start, WebViewFragment())
+                    .addToBackStack(null)
+                    .commit()
+                editor.putBoolean("connected", true).apply()
+
+                // show toast
+                context?.let { Toasty.info(it, getString(R.string.connecting), Toasty.LENGTH_SHORT).show() }
+            }
+        } else {
+            // disable temporary lock after orientation was changed
+            val runnable = Runnable { editor.putBoolean("tempDisableStart", false).apply() }
+            Handler().postDelayed(runnable, 10)
+        }
+
+        // set correct orientation icon
+        setOrientationIcon()
+
+        // restore textbox status
+        if (mySPR.getString("hostnameIPAddressString", "") == "" || mySPR.getString("hostnameIPAddressString", "") == "0") {
+            hostnameIPAddress!!.setText("")
+            hostnameIPAddress!!.isEnabled = true
+        } else {
+            hostnameIPAddress!!.setText(mySPR.getString("hostnameIPAddressString", "0"))
+            hostnameIPAddressString = mySPR.getString("hostnameIPAddressString", "0")
+            hostnameIPAddress!!.isEnabled = false
+        }
+
+        // restore checkbox status
+        hostnameIPAddressCheck!!.isChecked = mySPR.getBoolean("hostnameIPAddressCheck", true)
+
+        // restore textbox status
+        if (mySPR.getInt("portInt", 0) == 0) {
+            port!!.setText("")
+            hostnameIPAddress!!.isEnabled = true
+        } else {
+            port!!.setText(mySPR.getInt("portInt", 0).toString())
+            port!!.isEnabled = false
+            portInt = mySPR.getInt("portInt", 9001)
+        }
+
+        // restore checkbox status
+        portCheck!!.isChecked = mySPR.getBoolean("portCheck", true)
+
+        // check if connect was clicked and restore last status
+        if (hostnameIPAddress!!.text.toString().isNotEmpty() && port!!.text.toString().isNotEmpty()) {
+            linkGeneration()
+            hostnameIPAddressEdit!!.visibility = View.VISIBLE
+            portEdit!!.visibility = View.VISIBLE
+            hostnameIPAddressCheck!!.visibility = View.INVISIBLE
+            portCheck!!.visibility = View.INVISIBLE
+            connectCheck!!.visibility = View.VISIBLE
+            connectButton!!.text = getString(R.string.connect_button_2)
+        }
+    }
+
+    // set correct orientation icon
+    private fun setOrientationIcon() {
+        when (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)) {
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> orientation!!.setImageResource(R.drawable._icon_landscape_orientation)
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> orientation!!.setImageResource(R.drawable._icon_portrait_orientation)
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> orientation!!.setImageResource(R.drawable._icon_auto_orientation)
+            else -> {
+            }
+        }
+    }
+
+    // generate and show new link according to user inputs
+    private fun linkGeneration() {
+        hostnameIPAddressString = hostnameIPAddress!!.text.toString()
+        portInt = if (port!!.text.toString().isNotEmpty()) {
+            port!!.text.toString().toInt()
+        } else {
+            9001
+        }
+        link = "http://$hostnameIPAddressString:$portInt"
+        linkView!!.text = link
+    }
+
+    // onClickListener for connect button
+    private fun setConnectButtonClickListener(v: View) {
+        connectButton!!.setOnClickListener { view ->
+            // check if user entered hostname
+            if (hostnameIPAddress!!.text.toString().isNotEmpty()) {
+                // if connect button was not clicked before
+                if (linkView!!.text.toString().isEmpty()) {
+                    // generate new link
+                    linkGeneration()
+
+                    // switch all elements
+                    hostnameIPAddress!!.isEnabled = false
+                    hostnameIPAddressEdit!!.visibility = View.VISIBLE
+                    port!!.isEnabled = false
+                    portEdit!!.visibility = View.VISIBLE
+                    hostnameIPAddressCheck!!.visibility = View.INVISIBLE
+                    portCheck!!.visibility = View.INVISIBLE
+                    connectCheck!!.visibility = View.VISIBLE
+
+                    // store values if user wants to
+                    if (hostnameIPAddressCheck!!.isChecked) {
+                        editor.putString("hostnameIPAddressString", hostnameIPAddressString)
+                        editor.putBoolean("hostnameIPAddressCheck", true)
+                    } else {
+                        editor.putString("hostnameIPAddressString", "")
+                        editor.putBoolean("hostnameIPAddressCheck", false)
+                    }
+
+                    // store values if user wants to
+                    if (portCheck!!.isChecked) {
+                        editor.putBoolean("portCheck", true)
+
+                        // check if user entered port
+                        if (port!!.text.toString().isNotEmpty()) {
+                            editor.putInt("portInt", portInt)
+                        } else {
+                            port!!.setText(9001.toString())
+                            editor.putInt("portInt", 9001)
+                        }
+                    } else {
+                        editor.putInt("portInt", 0)
+                        editor.putBoolean("portCheck", false)
+                    }
+
+                    // store link
+                    editor.putString("link", link).apply()
+
+                    // change button text
+                    connectButton!!.text = getString(R.string.connect_button_2)
+                } else {
+                    // open logview
+                    fragmentManager!!.beginTransaction()
+                        .replace(R.id.start, WebViewFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    editor.putBoolean("connected", true).apply()
+                    // close keyboard
+                    if (view != null) {
+                        val imm =
+                            (view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                        imm.hideSoftInputFromWindow(view.windowToken, 0)
+                    }
+
+                    // show toast
+                    Toasty.info(v.context, getString(R.string.connecting), Toasty.LENGTH_SHORT).show()
+                }
+            } else {
+                // show error if one field or both fields are empty
+                Toasty.error(v.context, getString(R.string.error_fill_out), Toasty.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    // onClickListener for orientation icon
+    private fun setOrientationIconClickListener() {
+        orientation!!.setOnClickListener {
+            var newOrientation = 0
+            var newOrientationName = ""
+            when (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)) {
+                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> {
+                    newOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                    newOrientationName = "portrait"
+                }
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> {
+                    newOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                    newOrientationName = "auto"
+                }
+                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> {
+                    newOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                    newOrientationName = "landscape"
+                }
+                else -> {
+                }
+            }
+
+            // store orientation, change icon and change orientation
+            editor.putInt("orientation", newOrientation)
+            editor.putBoolean("tempDisableStart", true).apply()
+            setOrientationIcon()
+            activity?.requestedOrientation = newOrientation
+
+            // show toast
+            context?.let { it1 -> Toasty.info(it1, String.format(getString(R.string.orientation_changed), newOrientationName), Toasty.LENGTH_SHORT).show() }
+        }
+    }
+
+    // onClickListener for both edit buttons
+    private fun setEditButtonClickListener(imageButton: ImageButton?, textView: TextView?, imageButton2: ImageButton?, checkBox: CheckBox?) {
+        imageButton!!.setOnClickListener { // switch all elements
+            textView!!.isEnabled = true
+            imageButton.visibility = View.INVISIBLE
+            imageButton2!!.visibility = View.INVISIBLE
+            checkBox!!.visibility = View.VISIBLE
+            connectCheck!!.visibility = View.INVISIBLE
+            linkView!!.text = ""
+            connectButton!!.text = getString(R.string.connect_button_1)
+        }
+    }
+
+    // onClickListener for end user consent textview
+    private fun setEndUserConsentClickListener() {
+        endUserConsent!!.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                // start end user consent class (and show second dialog type ("false"))
+                val endUserConsent = EndUserConsent(false)
+                endUserConsent.isCancelable = true
+                endUserConsent.show(childFragmentManager, javaClass.name)
+            }
+        })
+    }
+
+    // onClickListener for about textview
+    private fun setAboutClickListener() {
+        about!!.setOnClickListener { view -> // start about class
+            view.context.startActivity(Intent(context, About::class.java))
+        }
+    }
+
+    // onClickListener for connect checkbox
+    private fun setConnectCheckClickListener() {
+        connectCheck!!.setOnCheckedChangeListener { _, _ -> // store values
+            editor.putBoolean("connectCheck", connectCheck!!.isChecked)
+            editor.putBoolean("autoStart", connectCheck!!.isChecked).apply()
+        }
+    }
+}
