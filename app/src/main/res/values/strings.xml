@@ -19,10 +19,9 @@
     <string name="end_user_consent_2_button">OK</string>
 
     <string name="update_dialog_title">New Update Available</string>
-    <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about the new features.</string>
+    <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about new features.</string>
     <string name="update_dialog_button_1">Download</string>
-    <string name="update_dialog_button_2">Cancel</string>
-    <string name="update_dialog_changelog">changelog</string>
+    <string name="update_dialog_button_2">Changelog</string>
     <string name="update_dialog_error">Missing permission, give it on next app start</string>
     <string name="update_check_link" translatable="false">https://raw.githubusercontent.com/cyb3rko/logviewer-for-openhab-app/master/app/build.gradle</string>
     <string name="update_download_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/download/v%1$s/LogViewerforopenHAB_%1$s.apk</string>

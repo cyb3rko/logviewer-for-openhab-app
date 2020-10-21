@@ -2,10 +2,16 @@ package com.cyb3rko.logviewerforopenhab
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.afollestad.materialdialogs.MaterialDialog
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.StringRequestListener
@@ -50,28 +56,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // method to check for updates and open update dialog if new update is available
     private fun updateCheck(activity: Activity) {
         AndroidNetworking.get(getString(R.string.update_check_link))
             .doNotCacheResponse()
             .build()
             .getAsString(object : StringRequestListener {
-                // if request is succesful
                 override fun onResponse(response: String) {
-                    // extract and store newest version code and name
-                    val versionCodeAndFollowing = response.split("versionCode ".toRegex()).toTypedArray()[1]
-                    val versionCode = versionCodeAndFollowing.split("\n".toRegex()).toTypedArray()[0]
+                    val versionCodeAndFollowing = response.split("versionCode ")[1]
+                    val versionCode = versionCodeAndFollowing.split("\n")[0]
                     val newestVersionCode = versionCode.toInt()
-                    val versionNameAndFollowing = versionCodeAndFollowing.split("\"".toRegex()).toTypedArray()[1]
-                    val versionName = versionNameAndFollowing.split("\"".toRegex()).toTypedArray()[0]
+                    val versionNameAndFollowing = versionCodeAndFollowing.split("\"")[1]
+                    val versionName = versionNameAndFollowing.split("\"")[0]
                     editor.putString("newestVersion", versionName).apply()
 
-                    // if newer update available, open update dialog
                     if (BuildConfig.VERSION_CODE != newestVersionCode) {
-                        val updateDialog = UpdateDialog()
-                        updateDialog.show(supportFragmentManager, javaClass.name)
+                        val dialogMessage = String.format(getString(R.string.update_dialog_message), mySPR.getString("newestVersion", ""),
+                            BuildConfig.VERSION_NAME)
 
-                        // request permissions
+                        MaterialDialog(this@MainActivity).show {
+                            title(R.string.update_dialog_title)
+                            message(0, dialogMessage)
+                            positiveButton(R.string.update_dialog_button_1) {
+                                if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                        == PackageManager.PERMISSION_GRANTED) {
+                                    downloadNewestApk(applicationContext, mySPR.getString("newestVersion", "")!!)
+                                } else {
+                                    Toasty.error(context, getString(R.string.update_dialog_error), Toasty.LENGTH_LONG).show()
+                                }
+                            }
+                            negativeButton(R.string.update_dialog_button_2) {
+                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.update_changelog_link))))
+                            }
+                        }
+
                         ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.INTERNET, Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.REQUEST_INSTALL_PACKAGES
                             ), 1
@@ -79,7 +96,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                // if request is not succesful
                 override fun onError(anError: ANError) {
                     // nothing to clean up (for PMD)
                 }
