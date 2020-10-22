@@ -17,10 +17,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".MainActivity2"
             android:configChanges="orientation|screenLayout"
             android:screenOrientation="unspecified">
@@ -30,10 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".About" />
-        <activity android:name=".IconCredits" />
-        <activity android:name=".PrivacyPolicy" />
-        <activity android:name=".TermsOfUse" />
 
         <meta-data
             android:name="firebase_analytics_collection_enabled"

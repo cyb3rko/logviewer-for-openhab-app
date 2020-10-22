@@ -1,29 +1,22 @@
 package com.cyb3rko.logviewerforopenhab
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.mikepenz.aboutlibraries.LibsBuilder
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 
-class About : AppCompatActivity() {
+class AboutFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        // load save file
-        val mySPR = getSharedPreferences("Safe", 0)
-
-        // restore set orientation
-        requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-
-        // create and show about page
-        val aboutPage = AboutPage(this)
+        val aboutPage = AboutPage(context)
             .setImage(R.mipmap.ic_launcher_foreground)
             .setDescription(getString(R.string.about_description)) // first item
             .addItem(
@@ -56,8 +49,7 @@ class About : AppCompatActivity() {
             )
             .create()
 
-        // set view (the about page)
-        setContentView(aboutPage)
+        return aboutPage
     }
 
     // show youtube profile
@@ -73,25 +65,27 @@ class About : AppCompatActivity() {
     // get and show library credits on click
     private fun showLibraries(): View.OnClickListener? {
         return View.OnClickListener { // open library credits
-            LibsBuilder()
-                .withShowLoadingProgress(true)
-                .withAboutVersionShownCode(false)
-                .withAboutVersionShownName(false)
-                .withAutoDetect(true)
-                .withAboutIconShown(false)
-                .withAboutVersionShown(false)
-                .withVersionShown(true)
-                .withLicenseDialog(true)
-                .withLicenseShown(true)
-                .withCheckCachedDetection(true)
-                .withSortEnabled(true)
-                .start(application)
+            context?.let { trueContext ->
+                LibsBuilder()
+                    .withShowLoadingProgress(true)
+                    .withAboutVersionShownCode(false)
+                    .withAboutVersionShownName(false)
+                    .withAutoDetect(true)
+                    .withAboutIconShown(false)
+                    .withAboutVersionShown(false)
+                    .withVersionShown(true)
+                    .withLicenseDialog(true)
+                    .withLicenseShown(true)
+                    .withCheckCachedDetection(true)
+                    .withSortEnabled(true)
+                    .start(trueContext)
+            }
         }
     }
 
     // show icon credits on click
     private fun showIcons(): View.OnClickListener? {
-        return View.OnClickListener { startActivity(Intent(applicationContext, IconCredits::class.java)) }
+        return View.OnClickListener { findNavController().navigate(R.id.nav_about_icons) }
     }
 
     // open project on GitHub on click

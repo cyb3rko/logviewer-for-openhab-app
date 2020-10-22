@@ -9,6 +9,41 @@
         android:id="@+id/nav_menu"
         android:name="com.cyb3rko.logviewerforopenhab.MainFragment"
         android:label="@string/menu_menu"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_webview"
+        android:name="com.cyb3rko.logviewerforopenhab.WebViewFragment"
+        android:label="@string/menu_menu"
+        tools:layout="@layout/fragment_web_view" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.cyb3rko.logviewerforopenhab.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_terms_of_use">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_about_icons"
+        android:name="com.cyb3rko.logviewerforopenhab.IconCreditsFragment"
+        android:label="About Icons">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_privacy_policy"
+        android:name="com.cyb3rko.logviewerforopenhab.PrivacyPolicyFragment"
+        android:label="Privacy Policy"
+        tools:layout="@layout/fragment_privacy_policy">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_terms_of_use"
+        android:name="com.cyb3rko.logviewerforopenhab.TermsOfUseFragment"
+        android:label="Terms of Use"
+        tools:layout="@layout/fragment_terms_of_use">
+    </fragment>
 
 </navigation>

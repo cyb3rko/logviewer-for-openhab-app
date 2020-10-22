@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import es.dmoral.toasty.Toasty
@@ -92,10 +93,7 @@ class MainFragment : Fragment() {
             // check if autoStart is enabled
             if (mySPR.getBoolean("autoStart", false) && connectCheck.isChecked) {
                 // open logview
-                requireFragmentManager().beginTransaction()
-                    .replace(R.id.start, WebViewFragment())
-                    .addToBackStack(null)
-                    .commit()
+                findNavController().navigate(R.id.nav_webview)
                 editor.putBoolean("connected", true).apply()
 
                 // show toast
@@ -222,10 +220,7 @@ class MainFragment : Fragment() {
                     connectButton.text = getString(R.string.connect_button_2)
                 } else {
                     // open logview
-                    requireFragmentManager().beginTransaction()
-                        .replace(R.id.start, WebViewFragment())
-                        .addToBackStack(null)
-                        .commit()
+                    findNavController().navigate(R.id.nav_webview)
                     editor.putBoolean("connected", true).apply()
                     // close keyboard
                     if (view != null) {

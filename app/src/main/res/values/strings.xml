@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">LogViewer for openHAB</string>
+    <string name="close" >Close</string>
 
     <string name="error_fill_out">Fill out the hostname</string>
     <string name="connecting">Connecting…</string>

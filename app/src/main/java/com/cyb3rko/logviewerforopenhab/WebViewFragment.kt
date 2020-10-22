@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -62,7 +63,7 @@ class WebViewFragment : Fragment() {
         webSettings.textZoom = mySPR.getInt(textSizeType, 60)
 
         // open link
-        webView.loadUrl(mySPR.getString("link", ""))
+        webView.loadUrl(mySPR.getString("link", "")!!)
 
         // permanent scroll
         val handler = Handler()
@@ -183,7 +184,7 @@ class WebViewFragment : Fragment() {
         backButton.setOnClickListener { // reset autoStart temporarily to be able to switch to menu without directly reconnecting
             val autoStartTemp = mySPR.getBoolean("autoStart", false)
             editor.putBoolean("autoStart", false).apply()
-            fragmentManager!!.beginTransaction().replace(R.id.start, MainFragment()).commit()
+            findNavController().navigate(R.id.nav_menu)
             val handler2 = Handler()
             val runnable2 = Runnable { editor.putBoolean("autoStart", autoStartTemp).apply() }
             handler2.postDelayed(runnable2, 1)
@@ -195,7 +196,7 @@ class WebViewFragment : Fragment() {
     private fun showTapTargetSequence(v: View) {
         // if first log visit
         if (mySPR.getBoolean("firstStartWeb", true)) {
-            TapTargetSequence(Objects.requireNonNull(activity))
+            TapTargetSequence(activity)
                 .targets( // first target (view button)
                     TapTarget.forView(
                         v.findViewById(R.id.view_button),

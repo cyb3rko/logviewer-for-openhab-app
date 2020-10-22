@@ -1,34 +1,28 @@
 package com.cyb3rko.logviewerforopenhab
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class TermsOfUse : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class TermsOfUseFragment : Fragment() {
 
-        // load save file
-        val mySPR = getSharedPreferences("Safe", 0)
-        // restore set orientation
-        requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-        // set view
-        setContentView(R.layout.activity_terms_of_use)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_terms_of_use, container, false)
 
-        // set text of textviews
         val textViews = arrayOfNulls<TextView>(7)
         for (i in 1..7) {
-            textViews[i - 1] = findViewById(resources.getIdentifier("textView$i", "id", packageName))
+            textViews[i - 1] = view.findViewById(resources.getIdentifier("textView$i", "id", context?.packageName))
             textViews[i - 1]?.text = (resources.getStringArray(R.array.terms_of_use)[i - 1])
         }
 
-        // floating action button clicklistener
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener { // start intent for writing an e mail
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener {
             val mailIntent = Intent(Intent.ACTION_VIEW)
             val data = Uri.parse(
                 String.format(
@@ -39,5 +33,7 @@ class TermsOfUse : AppCompatActivity() {
             mailIntent.data = data
             startActivity(Intent.createChooser(mailIntent, getString(R.string.send_mail)))
         }
+
+        return view
     }
 }
