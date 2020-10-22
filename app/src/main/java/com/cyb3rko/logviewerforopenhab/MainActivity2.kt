@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -72,6 +73,7 @@ class MainActivity2 : AppCompatActivity() {
         }
 
         navView.setNavigationItemSelectedListener {
+            toolbar.visibility = View.VISIBLE
             when (it.itemId) {
                 R.id.nav_menu -> navController.navigate(R.id.nav_menu)
 //                R.id.nav_settings -> navController.navigate(R.id.open_about)

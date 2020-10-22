@@ -80,6 +80,7 @@ class WebViewFragment : Fragment() {
         setTextButtonClickListener(v)
         setBackButtonClickListener()
         showTapTargetSequence(v)
+        setToolbarVisibility(activity, View.GONE)
         return v
     }
 
@@ -179,12 +180,12 @@ class WebViewFragment : Fragment() {
         }
     }
 
-    // onClickListener for back button
     private fun setBackButtonClickListener() {
-        backButton.setOnClickListener { // reset autoStart temporarily to be able to switch to menu without directly reconnecting
+        backButton.setOnClickListener {
             val autoStartTemp = mySPR.getBoolean("autoStart", false)
             editor.putBoolean("autoStart", false).apply()
             findNavController().navigate(R.id.nav_menu)
+            setToolbarVisibility(activity, View.VISIBLE)
             val handler2 = Handler()
             val runnable2 = Runnable { editor.putBoolean("autoStart", autoStartTemp).apply() }
             handler2.postDelayed(runnable2, 1)

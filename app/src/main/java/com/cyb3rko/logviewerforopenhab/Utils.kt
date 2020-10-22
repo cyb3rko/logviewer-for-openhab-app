@@ -1,5 +1,6 @@
 package com.cyb3rko.logviewerforopenhab
 
+import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
@@ -14,4 +15,8 @@ internal fun downloadNewestApk(context: Context, version: String) {
         .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
     val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
     downloadManager.enqueue(request)
+}
+
+internal fun setToolbarVisibility(activity: Activity?, visibility: Int) {
+    activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)?.visibility = visibility
 }
