@@ -125,29 +125,4 @@ package com.cyb3rko.logviewerforopenhab
 //            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.start, MainFragment())?.commit()
 //        }
 //    }
-//
-//    // set data of second dialog
-//    private fun dialog2() {
-//        // set text
-//        var message = getString(R.string.end_user_consent_2_message_1)
-//        message += mySPR.getString("date", "") + getString(R.string.end_user_consent_2_message_2) + mySPR.getString("time", "")
-//        spannableString = SpannableString(message)
-//
-//        // add clickable links to policy and terms
-//        spannableString.setSpan(clickableSpan1, message.indexOf("Privacy"), message.indexOf("Privacy") + "Privacy Policy".length,
-//            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-//        )
-//        spannableString.setSpan(clickableSpan2, message.indexOf("Terms"), message.indexOf("Terms") + "Terms of Use".length,
-//            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-//        )
-//
-//        // set title
-//        title = getString(R.string.end_user_consent_2_title)
-//        // set text of right button
-//        button1Text = getString(R.string.end_user_consent_2_button)
-//        // set what happens when right button is clicked
-//        dialogClickListener = DialogInterface.OnClickListener { _, _ ->
-//            // nothing to clean up (for PMD)
-//        }
-//    }
 //}

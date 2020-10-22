@@ -30,10 +30,14 @@
     </item>
 
     <group android:checkableBehavior="single">
-
+        <item
+            android:id="@+id/drawer_about"
+            android:icon="@drawable/_icon_info"
+            android:title="About" />
         <item
             android:id="@+id/drawer_end_user_consent"
             android:icon="@drawable/_icon_end_user_consent"
+            android:checkable="false"
             android:title="End User Consent" />
         <item
             android:id="@+id/drawer_privacy_policy"
@@ -43,10 +47,6 @@
             android:id="@+id/drawer_terms_of_use"
             android:icon="@drawable/_icon_terms_of_use"
             android:title="Terms of Use" />
-        <item
-            android:id="@+id/drawer_about"
-            android:icon="@drawable/_icon_info"
-            android:title="About" />
     </group>
 
 </menu>

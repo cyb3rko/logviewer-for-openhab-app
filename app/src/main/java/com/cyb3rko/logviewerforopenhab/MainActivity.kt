@@ -87,6 +87,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_menu -> navController.navigate(R.id.nav_menu)
 //                R.id.nav_settings -> navController.navigate(R.id.open_about)
                 R.id.drawer_about -> navController.navigate(R.id.nav_about)
+                R.id.drawer_end_user_consent -> {
+                    MaterialDialog(this).show {
+                        title(R.string.end_user_consent_2_title)
+                        var dialogMessage = getString(R.string.end_user_consent_2_message_1)
+                        dialogMessage += mySPR.getString("date", "") + getString(R.string.end_user_consent_2_message_2) + mySPR.getString("time", "")
+                        message(0, dialogMessage)
+                        positiveButton(R.string.end_user_consent_2_button)
+                    }
+                }
                 R.id.drawer_privacy_policy -> navController.navigate(R.id.nav_privacy_policy)
                 R.id.drawer_terms_of_use -> navController.navigate(R.id.nav_terms_of_use)
             }
