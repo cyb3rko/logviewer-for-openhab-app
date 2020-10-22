@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -27,22 +28,30 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import es.dmoral.toasty.Toasty
 
-class MainActivity2 : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var mySPR: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+
+        mySPR = getSharedPreferences("Safe", 0)
+        editor = mySPR.edit()
+        editor.apply()
+        requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
+        setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        drawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
+        navController.setGraph(if (mySPR.getBoolean("autoStart", false)) R.navigation.mobile_navigation2 else R.navigation.mobile_navigation)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_menu), drawerLayout)
@@ -104,7 +113,7 @@ class MainActivity2 : AppCompatActivity() {
                         val dialogMessage = String.format(getString(R.string.update_dialog_message), mySPR.getString("newestVersion", ""),
                             BuildConfig.VERSION_NAME)
 
-                        MaterialDialog(this@MainActivity2).show {
+                        MaterialDialog(this@MainActivity).show {
                             title(R.string.update_dialog_title)
                             message(0, dialogMessage)
                             positiveButton(R.string.update_dialog_button_1) {
@@ -134,15 +143,12 @@ class MainActivity2 : AppCompatActivity() {
             })
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (!mySPR.getBoolean("connected", false)) {
-            editor.putBoolean("tempDisableStart", true).apply()
-        }
-    }
-
     override fun onBackPressed() {
-        finish()
+        if (drawerLayout.isOpen) {
+            drawerLayout.close()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

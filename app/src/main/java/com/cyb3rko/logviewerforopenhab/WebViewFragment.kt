@@ -2,13 +2,11 @@ package com.cyb3rko.logviewerforopenhab
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.LinearLayout
@@ -22,7 +20,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import es.dmoral.toasty.Toasty
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar.OnProgressChangeListener
-import java.util.*
 
 class WebViewFragment : Fragment() {
     private lateinit var backButton: FloatingActionButton
@@ -55,10 +52,11 @@ class WebViewFragment : Fragment() {
         setTouchable(false)
 
         // restore text size (according to orientation)
-        textSizeType = if (resources.configuration.orientation == 1) {
-            "textSizePortrait"
-        } else {
-            "textSizeOther"
+        textSizeType = when (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)) {
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> "textSizeAuto"
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> "textSizeLandscape"
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> "textSizePortrait"
+            else -> { "" }
         }
         webSettings.textZoom = mySPR.getInt(textSizeType, 60)
 
@@ -182,14 +180,8 @@ class WebViewFragment : Fragment() {
 
     private fun setBackButtonClickListener() {
         backButton.setOnClickListener {
-            val autoStartTemp = mySPR.getBoolean("autoStart", false)
-            editor.putBoolean("autoStart", false).apply()
             findNavController().navigate(R.id.nav_menu)
             setToolbarVisibility(activity, View.VISIBLE)
-            val handler2 = Handler()
-            val runnable2 = Runnable { editor.putBoolean("autoStart", autoStartTemp).apply() }
-            handler2.postDelayed(runnable2, 1)
-            editor.putBoolean("connected", false).apply()
         }
     }
 

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,8 +56,6 @@ class MainFragment : Fragment() {
         editor = mySPR.edit()
         editor.apply()
 
-        // restore set orientation
-        activity?.requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
 
         // restore last status
         statusRestoring()
@@ -87,23 +84,6 @@ class MainFragment : Fragment() {
     private fun statusRestoring() {
         // restore chechbox status
         connectCheck.isChecked = mySPR.getBoolean("connectCheck", false)
-
-        // check if orientation was recently changed
-        if (!mySPR.getBoolean("tempDisableStart", false)) {
-            // check if autoStart is enabled
-            if (mySPR.getBoolean("autoStart", false) && connectCheck.isChecked) {
-                // open logview
-                findNavController().navigate(R.id.nav_webview)
-                editor.putBoolean("connected", true).apply()
-
-                // show toast
-                context?.let { Toasty.info(it, getString(R.string.connecting), Toasty.LENGTH_SHORT).show() }
-            }
-        } else {
-            // disable temporary lock after orientation was changed
-            val runnable = Runnable { editor.putBoolean("tempDisableStart", false).apply() }
-            Handler().postDelayed(runnable, 10)
-        }
 
         // set correct orientation icon
         setOrientationIcon()
@@ -219,15 +199,13 @@ class MainFragment : Fragment() {
                     // change button text
                     connectButton.text = getString(R.string.connect_button_2)
                 } else {
-                    // open logview
-                    findNavController().navigate(R.id.nav_webview)
-                    editor.putBoolean("connected", true).apply()
-                    // close keyboard
                     if (view != null) {
                         val imm =
                             (view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                         imm.hideSoftInputFromWindow(view.windowToken, 0)
                     }
+                    findNavController().navigate(R.id.nav_webview)
+                    editor.putBoolean("connected", true).apply()
 
                     // show toast
                     Toasty.info(v.context, getString(R.string.connecting), Toasty.LENGTH_SHORT).show()
@@ -287,9 +265,9 @@ class MainFragment : Fragment() {
 
     // onClickListener for connect checkbox
     private fun setConnectCheckClickListener() {
-        connectCheck.setOnCheckedChangeListener { _, _ -> // store values
-            editor.putBoolean("connectCheck", connectCheck.isChecked)
-            editor.putBoolean("autoStart", connectCheck.isChecked).apply()
+        connectCheck.setOnCheckedChangeListener { _, b -> // store values
+            editor.putBoolean("connectCheck", b)
+            editor.putBoolean("autoStart", b).apply()
         }
     }
 }
