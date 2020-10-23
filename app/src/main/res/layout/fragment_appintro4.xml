@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/appintro_statusbar_height"
+    android:paddingBottom="@dimen/appintro2_bottombar_height"
+    tools:background="@color/appintro_background_color"
+    tools:context=".appintro.AppIntro4thFragment">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/AppIntroDefaultHeading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintVertical_weight="2"
+        app:layout_constraintBottom_toTopOf="@+id/scrollview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:text="Data Collection" />
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content"
+            style="@style/AppIntroDefaultText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="5"
+            android:contentDescription="@string/app_intro_image_content_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scrollview" >
+
+            <TextView
+                android:id="@+id/collectionInfoText"
+                style="@style/AppIntroDefaultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You can help me to (quickly) fix bugs and improve the app performance by allowing data collection (you can change them later in the settings):\n\nFirebase Analytics:\nProviding me with simple usage data mentioned in the Privacy Policy."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                style="@style/AppIntroDefaultText"
+                android:id="@+id/analytics_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="I agree to data collection via Analytics."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/collectionInfoText"/>
+
+            <TextView
+                android:id="@+id/collectionInfoText2"
+                style="@style/AppIntroDefaultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Firebase Crashlytics:\nProviding me with logs after this app crashes to fix the relating bugs."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/analytics_check" />
+
+            <CheckBox
+                style="@style/AppIntroDefaultText"
+                android:id="@+id/crashlytics_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="I agree to data collection via Crashlytics."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/collectionInfoText2"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

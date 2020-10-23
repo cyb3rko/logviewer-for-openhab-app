@@ -17,6 +17,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".appintro.MyAppIntro"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="unspecified">
@@ -29,6 +33,10 @@
 
         <meta-data
             android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
     </application>
 

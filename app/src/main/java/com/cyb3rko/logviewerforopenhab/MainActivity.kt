@@ -35,13 +35,16 @@ import com.afollestad.materialdialogs.callbacks.onCancel
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.StringRequestListener
+import com.cyb3rko.logviewerforopenhab.appintro.MyAppIntro
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import es.dmoral.toasty.Toasty
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var crashlytics: FirebaseCrashlytics
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var editor: SharedPreferences.Editor
@@ -50,10 +53,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mySPR = getSharedPreferences("Safe", 0)
+        mySPR = getSharedPreferences("Safe2", 0)
         editor = mySPR.edit()
-        editor.apply()
         requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        crashlytics = FirebaseCrashlytics.getInstance()
+        firebaseAnalytics.setAnalyticsCollectionEnabled(mySPR.getBoolean("analyticsCollection", false))
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean("crashlyticsCollection", false))
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -72,23 +79,14 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         Toasty.Config.getInstance().allowQueue(false).apply()
 
-        mySPR = getSharedPreferences("Safe", 0)
-        editor = mySPR.edit()
-        editor.apply()
-
-//        if (mySPR.getBoolean("firstStart", true)) {
-//        if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "") == "") {
-//            val endUserConsent = EndUserConsent(true)
-//            endUserConsent.isCancelable = false
-//            endUserConsent.show(supportFragmentManager, javaClass.name)
-
-//        } else {
-            firebaseAnalytics.setAnalyticsCollectionEnabled(true)
+        if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "") == "") {
+            finish()
+            startActivity(Intent(applicationContext, MyAppIntro::class.java))
+        } else {
             updateCheck(this)
-//        }
+        }
 
         navView.setNavigationItemSelectedListener {
             toolbar.visibility = View.VISIBLE

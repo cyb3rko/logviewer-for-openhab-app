@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/appintro_statusbar_height"
+    android:paddingBottom="@dimen/appintro2_bottombar_height"
+    tools:background="@color/appintro_background_color"
+    tools:context=".appintro.AppIntro5thFragment">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/AppIntroDefaultHeading"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintVertical_weight="2"
+        app:layout_constraintBottom_toTopOf="@+id/image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:text="Auto Update" />
+
+    <ImageView
+        android:id="@+id/image"
+        style="@style/AppIntroDefaultImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/_ic_update"
+        app:layout_constraintVertical_weight="5"
+        android:contentDescription="@string/app_intro_image_content_description"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        android:text="Do you want the app to check for updates and optionally download the newest version?"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/AppIntroDefaultText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            app:layout_constraintVertical_weight="3"
+            android:text="Do you want the app to check for updates and optionally download the newest version?" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/updateSwitch"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
