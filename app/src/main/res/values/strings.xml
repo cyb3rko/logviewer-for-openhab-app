@@ -17,7 +17,7 @@
     <string name="end_user_consent_2_title">Your End User Consent</string>
     <string name="end_user_consent_2_message_1">By using this app you have agreed to the Privacy Policy and the Terms of Use.\n\nDate:&#160;</string>
     <string name="end_user_consent_2_message_2">\n<u>Time:</u> </string>
-    <string name="end_user_consent_2_button">OK</string>
+    <string name="end_user_consent_2_button2">Revoke</string>
 
     <string name="update_dialog_title">New Update Available</string>
     <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about new features.</string>

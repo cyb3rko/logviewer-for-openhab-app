@@ -8,6 +8,11 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +26,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.callbacks.onCancel
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.StringRequestListener
@@ -88,12 +94,56 @@ class MainActivity : AppCompatActivity() {
 //                R.id.nav_settings -> navController.navigate(R.id.open_about)
                 R.id.drawer_about -> navController.navigate(R.id.nav_about)
                 R.id.drawer_end_user_consent -> {
+                    var dialogMessage = getString(R.string.end_user_consent_2_message_1)
+                    dialogMessage += mySPR.getString("date", "Date not found") + getString(R.string.end_user_consent_2_message_2) +
+                            mySPR.getString("time", "Time not found")
+                    val spannableString = SpannableString(dialogMessage)
+                    val drawerMenu = navView.menu
+                    lateinit var md: MaterialDialog
+                    val clickableSpan1 = object : ClickableSpan() {
+                        override fun onClick(view: View) {
+                            navController.navigate(R.id.nav_privacy_policy)
+                            md.cancel()
+                            drawerMenu.findItem(R.id.drawer_privacy_policy).isChecked = true
+                        }
+                    }
+                    val clickableSpan2 = object : ClickableSpan() {
+                        override fun onClick(view: View) {
+                            navController.navigate(R.id.nav_terms_of_use)
+                            md.cancel()
+                            drawerMenu.findItem(R.id.drawer_terms_of_use).isChecked = true
+                        }
+                    }
+                    spannableString.setSpan(
+                        clickableSpan1, dialogMessage.indexOf("Privacy"), dialogMessage.indexOf("Privacy") +
+                                "Privacy Policy".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    spannableString.setSpan(
+                        clickableSpan2, dialogMessage.indexOf("Terms"), dialogMessage.indexOf("Terms") + "Terms of Use".length,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    var index = dialogMessage.indexOf("Date")
+                    spannableString.setSpan(UnderlineSpan(), index, index + "Date".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    index = dialogMessage.indexOf("Time")
+                    spannableString.setSpan(UnderlineSpan(), index, index + "Time".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
                     MaterialDialog(this).show {
+                        md = this
                         title(R.string.end_user_consent_2_title)
-                        var dialogMessage = getString(R.string.end_user_consent_2_message_1)
-                        dialogMessage += mySPR.getString("date", "") + getString(R.string.end_user_consent_2_message_2) + mySPR.getString("time", "")
-                        message(0, dialogMessage)
-                        positiveButton(R.string.end_user_consent_2_button)
+                        message(0, spannableString) {
+                            messageTextView.movementMethod = LinkMovementMethod.getInstance()
+                        }
+                        positiveButton(android.R.string.ok) {
+                            drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
+                        }
+                        negativeButton(R.string.end_user_consent_2_button2) {
+                            editor.putBoolean("firstStart", true).apply()
+                            finish()
+                            startActivity(Intent(applicationContext, this@MainActivity::class.java))
+                        }
+                        onCancel {
+                            drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
+                        }
                     }
                 }
                 R.id.drawer_privacy_policy -> navController.navigate(R.id.nav_privacy_policy)
