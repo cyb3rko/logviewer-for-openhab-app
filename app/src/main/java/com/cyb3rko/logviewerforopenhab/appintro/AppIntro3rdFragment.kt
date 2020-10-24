@@ -1,17 +1,16 @@
 package com.cyb3rko.logviewerforopenhab.appintro
 
 import android.os.Bundle
-import android.text.Html
-import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.cyb3rko.logviewerforopenhab.PRIVACY_POLICY
 import com.cyb3rko.logviewerforopenhab.R
+import com.cyb3rko.logviewerforopenhab.TERMS_OF_USE
+import com.cyb3rko.logviewerforopenhab.showLicenseDialog
 import com.github.appintro.SlidePolicy
 import es.dmoral.toasty.Toasty
 
@@ -32,16 +31,8 @@ class AppIntro3rdFragment : Fragment(), SlidePolicy {
         checkBox1 = view.findViewById(R.id.terms_of_use_check)
         checkBox2 = view.findViewById(R.id.privacy_policy_check)
 
-        button1.setOnClickListener { showDialog("terms_of_use") }
-        button2.setOnClickListener { showDialog("privacy_policy") }
-    }
-
-    private fun showDialog(type: String) {
-        MaterialDialog(requireContext(), BottomSheet()).show {
-            message(0, Html.fromHtml(context.assets.open("$type.html").bufferedReader().use { it.readText() })) {
-                messageTextView.movementMethod = LinkMovementMethod.getInstance()
-            }
-        }
+        button1.setOnClickListener { showLicenseDialog(context, TERMS_OF_USE) }
+        button2.setOnClickListener { showLicenseDialog(context, PRIVACY_POLICY) }
     }
 
     override val isPolicyRespected: Boolean

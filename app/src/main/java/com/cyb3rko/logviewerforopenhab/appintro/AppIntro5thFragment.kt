@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cyb3rko.logviewerforopenhab.R
+import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 class AppIntro5thFragment : Fragment() {
@@ -16,7 +17,7 @@ class AppIntro5thFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mySPR = requireContext().getSharedPreferences("Safe2", 0)
+        val mySPR = requireContext().getSharedPreferences(SHARED_PREFERENCE, 0)
         val editor = mySPR.edit()
 
         view.findViewById<SwitchMaterial>(R.id.updateSwitch).setOnCheckedChangeListener { _, b ->

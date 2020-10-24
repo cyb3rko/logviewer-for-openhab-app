@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import com.cyb3rko.logviewerforopenhab.R
+import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
 
 class AppIntro4thFragment : Fragment() {
 
@@ -21,7 +22,7 @@ class AppIntro4thFragment : Fragment() {
         checkBox1 = view.findViewById(R.id.analytics_check)
         checkBox2 = view.findViewById(R.id.crashlytics_check)
 
-        val mySPR = requireContext().getSharedPreferences("Safe2", 0)
+        val mySPR = requireContext().getSharedPreferences(SHARED_PREFERENCE, 0)
         val editor = mySPR.edit()
 
         checkBox1.setOnCheckedChangeListener { _, b ->

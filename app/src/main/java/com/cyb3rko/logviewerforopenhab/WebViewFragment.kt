@@ -43,7 +43,7 @@ class WebViewFragment : Fragment() {
         backButton = v.findViewById(R.id.back_button)
 
         // load save file and its editor
-        mySPR = v.context.getSharedPreferences("Safe", 0)
+        mySPR = v.context.getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         editor.apply()
 

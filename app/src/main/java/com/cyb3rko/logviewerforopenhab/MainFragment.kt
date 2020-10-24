@@ -52,10 +52,9 @@ class MainFragment : Fragment() {
         val versionView = v.findViewById<TextView>(R.id.version_view)
 
         // load save file and its editor
-        mySPR = v.context.getSharedPreferences("Safe", 0)
+        mySPR = v.context.getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         editor.apply()
-
 
         // restore last status
         statusRestoring()

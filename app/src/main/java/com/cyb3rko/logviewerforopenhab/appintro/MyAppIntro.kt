@@ -7,6 +7,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.cyb3rko.logviewerforopenhab.MainActivity
 import com.cyb3rko.logviewerforopenhab.R
+import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
@@ -49,7 +50,7 @@ class MyAppIntro : AppIntro() {
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
-        val mySPR = applicationContext.getSharedPreferences("Safe2", 0)
+        val mySPR = applicationContext.getSharedPreferences(SHARED_PREFERENCE, 0)
         val editor = mySPR.edit()
 
         FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(mySPR.getBoolean("analyticsCollection", false))

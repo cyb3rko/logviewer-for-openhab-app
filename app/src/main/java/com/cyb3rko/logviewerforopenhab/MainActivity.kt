@@ -1,6 +1,7 @@
 package com.cyb3rko.logviewerforopenhab
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DownloadManager
 import android.content.Context
@@ -50,10 +51,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var mySPR: SharedPreferences
 
+    @SuppressLint("ApplySharedPref")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mySPR = getSharedPreferences("Safe2", 0)
+        mySPR = getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
@@ -84,9 +86,9 @@ class MainActivity : AppCompatActivity() {
         if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "") == "") {
             finish()
             startActivity(Intent(applicationContext, MyAppIntro::class.java))
-        } else if (mySPR.getBoolean("autoUpdate", true)) {
-            println(mySPR.getBoolean("autoUpdate", true))
-            updateCheck(this)
+        } else {
+            if (mySPR.getBoolean("autoStart", false)) navController.navigate(R.id.nav_webview)
+            if (mySPR.getBoolean("autoUpdate", false)) updateCheck(this)
         }
 
         navView.setNavigationItemSelectedListener {
@@ -101,17 +103,14 @@ class MainActivity : AppCompatActivity() {
                             mySPR.getString("time", "Time not found")
                     val spannableString = SpannableString(dialogMessage)
                     val drawerMenu = navView.menu
-                    lateinit var md: MaterialDialog
                     val clickableSpan1 = object : ClickableSpan() {
                         override fun onClick(view: View) {
-                            navController.navigate(R.id.nav_privacy_policy)
-                            md.cancel()
+                            showLicenseDialog(this@MainActivity, PRIVACY_POLICY)
                         }
                     }
                     val clickableSpan2 = object : ClickableSpan() {
                         override fun onClick(view: View) {
-                            navController.navigate(R.id.nav_terms_of_use)
-                            md.cancel()
+                            showLicenseDialog(this@MainActivity, TERMS_OF_USE)
                         }
                     }
                     spannableString.setSpan(
@@ -128,7 +127,6 @@ class MainActivity : AppCompatActivity() {
                     spannableString.setSpan(UnderlineSpan(), index, index + "Time".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
                     MaterialDialog(this).show {
-                        md = this
                         title(R.string.end_user_consent_2_title)
                         message(0, spannableString) {
                             messageTextView.movementMethod = LinkMovementMethod.getInstance()
@@ -137,8 +135,11 @@ class MainActivity : AppCompatActivity() {
                             drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
                         }
                         negativeButton(R.string.end_user_consent_2_button2) {
+                            firebaseAnalytics.resetAnalyticsData()
                             firebaseAnalytics.setAnalyticsCollectionEnabled(false)
-                            editor.putBoolean("firstStart", true).apply()
+                            crashlytics.deleteUnsentReports()
+                            crashlytics.setCrashlyticsCollectionEnabled(false)
+                            editor.clear().commit()
                             finish()
                             startActivity(Intent(applicationContext, this@MainActivity::class.java))
                         }
