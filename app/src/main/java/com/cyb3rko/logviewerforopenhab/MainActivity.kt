@@ -84,7 +84,8 @@ class MainActivity : AppCompatActivity() {
         if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "") == "") {
             finish()
             startActivity(Intent(applicationContext, MyAppIntro::class.java))
-        } else {
+        } else if (mySPR.getBoolean("autoUpdate", true)) {
+            println(mySPR.getBoolean("autoUpdate", true))
             updateCheck(this)
         }
 
@@ -105,14 +106,12 @@ class MainActivity : AppCompatActivity() {
                         override fun onClick(view: View) {
                             navController.navigate(R.id.nav_privacy_policy)
                             md.cancel()
-                            drawerMenu.findItem(R.id.drawer_privacy_policy).isChecked = true
                         }
                     }
                     val clickableSpan2 = object : ClickableSpan() {
                         override fun onClick(view: View) {
                             navController.navigate(R.id.nav_terms_of_use)
                             md.cancel()
-                            drawerMenu.findItem(R.id.drawer_terms_of_use).isChecked = true
                         }
                     }
                     spannableString.setSpan(
@@ -148,8 +147,6 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-                R.id.drawer_privacy_policy -> navController.navigate(R.id.nav_privacy_policy)
-                R.id.drawer_terms_of_use -> navController.navigate(R.id.nav_terms_of_use)
             }
             it.isChecked = true
             drawerLayout.closeDrawers()
@@ -206,7 +203,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onError(anError: ANError) {
                     // nothing to clean up (for PMD)
-                    println("Checking for update failed: $anError")
+                    Log.e(this@MainActivity::class.java.simpleName,"Checking for update failed: $anError")
                 }
             })
     }
@@ -223,11 +220,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isOpen) {
-            drawerLayout.close()
-        } else {
-            super.onBackPressed()
-        }
+        if (drawerLayout.isOpen) drawerLayout.close() else super.onBackPressed()
     }
 
     override fun onSupportNavigateUp(): Boolean {

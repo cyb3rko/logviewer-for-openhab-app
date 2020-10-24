@@ -3,6 +3,7 @@ package com.cyb3rko.logviewerforopenhab.appintro
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.cyb3rko.logviewerforopenhab.MainActivity
 import com.cyb3rko.logviewerforopenhab.R
@@ -21,13 +22,15 @@ class MyAppIntro : AppIntro() {
         addSlide(AppIntroFragment.newInstance(
             title = "Welcome...",
             description = "This is the unofficial LogViewer for openHAB app made by Cyb3rko",
-            imageDrawable = R.drawable._icon_hello
+            imageDrawable = R.drawable._icon_hello,
+            backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         ))
         addSlide(AppIntroFragment.newInstance(
             title = "Feel free to contribute",
             imageDrawable = R.drawable._ic_github,
             description = "If you experience any problems or if you have a idea for a new feature, feel free to visit the GitHub repository and " +
-                    "open an issue or a pull request.\nThanks!"
+                    "open an issue or a pull request.\nThanks!",
+            backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         ))
         addSlide(AppIntro3rdFragment.newInstance())
         addSlide(AppIntro4thFragment.newInstance())
@@ -35,7 +38,8 @@ class MyAppIntro : AppIntro() {
         addSlide(AppIntroFragment.newInstance(
             title = "Ready...",
             imageDrawable = R.drawable._ic_start,
-            description = "Ok, everything is set up.\nEnjoy!"
+            description = "Ok, everything is set up.\nEnjoy!",
+            backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         ))
 
         setTransformer(AppIntroPageTransformerType.Parallax())

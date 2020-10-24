@@ -1,6 +1,7 @@
 package com.cyb3rko.logviewerforopenhab
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.graphics.Typeface
@@ -22,6 +23,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar.OnProgressChangeListener
 
 class WebViewFragment : Fragment() {
+
     private lateinit var backButton: FloatingActionButton
     private lateinit var textButton: FloatingActionButton
     private lateinit var viewButton: FloatingActionButton
@@ -80,6 +82,10 @@ class WebViewFragment : Fragment() {
         showTapTargetSequence(v)
         setToolbarVisibility(activity, View.GONE)
         return v
+    }
+
+    private fun setToolbarVisibility(activity: Activity?, visibility: Int) {
+        activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)?.visibility = visibility
     }
 
     // onClickListener for viwe button
