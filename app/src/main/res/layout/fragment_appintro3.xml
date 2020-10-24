@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/appintro_statusbar_height"
     android:paddingBottom="@dimen/appintro2_bottombar_height"
-    tools:background="@color/appintro_background_color"
+    android:background="@color/colorPrimary"
     tools:context=".appintro.AppIntro3rdFragment">
 
     <TextView
@@ -17,79 +17,69 @@
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintVertical_weight="2"
-        app:layout_constraintBottom_toTopOf="@+id/content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/content"
         app:layout_constraintVertical_chainStyle="spread"
         android:text="End User Consent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:id="@+id/content"
-        style="@style/AppIntroDefaultText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintVertical_weight="5"
-        android:contentDescription="@string/app_intro_image_content_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_weight="8"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/agreementText"
-            style="@style/AppIntroDefaultText"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="For using this app you may agree to the Privacy Policy and the Terms of Use."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/privacy_policy_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/appintro_title_color"
-            android:text="Privacy Policy"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/agreementText" />
+            <TextView
+                android:id="@+id/agreementText"
+                style="@style/AppIntroDefaultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For using this app you may agree to the Terms of Use and the Privacy Policy." />
 
-        <CheckBox
-            style="@style/AppIntroDefaultText"
-            android:id="@+id/privacy_policy_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="I agree to the Privacy Policy."
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/privacy_policy_button"/>
+            <Button
+                android:id="@+id/terms_of_use_button"
+                style="@style/Button.AppIntro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms of Use"
+                android:layout_marginTop="48dp" />
 
-        <Button
-            android:id="@+id/terms_of_use_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/appintro_title_color"
-            android:layout_marginTop="8dp"
-            android:text="Terms of Use"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/privacy_policy_check" />
+            <CheckBox
+                android:id="@+id/terms_of_use_check"
+                style="@style/Checkbox.AppIntro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to the Terms of Use." />
 
-        <CheckBox
-            style="@style/AppIntroDefaultText"
-            android:id="@+id/terms_of_use_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="I agree to the Terms of Use."
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/terms_of_use_button"/>
+            <Button
+                android:id="@+id/privacy_policy_button"
+                style="@style/Button.AppIntro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy"
+                android:layout_marginTop="24dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <CheckBox
+                android:id="@+id/privacy_policy_check"
+                style="@style/Checkbox.AppIntro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to the Privacy Policy." />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

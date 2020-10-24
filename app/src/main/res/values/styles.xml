@@ -10,4 +10,15 @@
         <item name="md_corner_radius">10dp</item>
     </style>
 
+    <style name="Button.AppIntro" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorAccent</item>
+    </style>
+
+    <style name="Checkbox.AppIntro" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/appintro_desc_color</item>
+        <item name="android:textSize">@dimen/appintro_desctext_size</item>
+        <item name="android:padding">@dimen/appintro_desc_padding</item>
+        <item name="buttonTint">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

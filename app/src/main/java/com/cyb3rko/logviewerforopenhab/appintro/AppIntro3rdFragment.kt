@@ -27,13 +27,13 @@ class AppIntro3rdFragment : Fragment(), SlidePolicy {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        button1 = view.findViewById(R.id.privacy_policy_button)
-        button2 = view.findViewById(R.id.terms_of_use_button)
-        checkBox1 = view.findViewById(R.id.privacy_policy_check)
-        checkBox2 = view.findViewById(R.id.terms_of_use_check)
+        button1 = view.findViewById(R.id.terms_of_use_button)
+        button2 = view.findViewById(R.id.privacy_policy_button)
+        checkBox1 = view.findViewById(R.id.terms_of_use_check)
+        checkBox2 = view.findViewById(R.id.privacy_policy_check)
 
-        button1.setOnClickListener { showDialog("privacy_policy") }
-        button2.setOnClickListener { showDialog("terms_of_use") }
+        button1.setOnClickListener { showDialog("terms_of_use") }
+        button2.setOnClickListener { showDialog("privacy_policy") }
     }
 
     private fun showDialog(type: String) {

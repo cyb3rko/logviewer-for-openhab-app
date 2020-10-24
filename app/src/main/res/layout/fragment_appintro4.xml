@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/appintro_statusbar_height"
     android:paddingBottom="@dimen/appintro2_bottombar_height"
-    tools:background="@color/appintro_background_color"
+    android:background="@color/colorPrimary"
     tools:context=".appintro.AppIntro4thFragment">
 
     <TextView
@@ -17,77 +17,57 @@
         android:layout_height="0dp"
         android:gravity="center"
         app:layout_constraintVertical_weight="2"
-        app:layout_constraintBottom_toTopOf="@+id/scrollview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/content"
         app:layout_constraintVertical_chainStyle="spread"
         android:text="Data Collection" />
 
     <ScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="8"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/content"
-            style="@style/AppIntroDefaultText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintVertical_weight="5"
-            android:contentDescription="@string/app_intro_image_content_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/scrollview" >
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/collectionInfoText"
                 style="@style/AppIntroDefaultText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You can help me to (quickly) fix bugs and improve the app performance by allowing data collection (you can change them later in the settings):\n\nFirebase Analytics:\nProviding me with simple usage data mentioned in the Privacy Policy."
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="You can help me to (quickly) fix bugs and improve the app performance by allowing data collection (you can change them later in the settings):\n\nFirebase Analytics:\nProviding me with simple usage data mentioned in the Privacy Policy." />
 
             <CheckBox
-                style="@style/AppIntroDefaultText"
                 android:id="@+id/analytics_check"
+                style="@style/Checkbox.AppIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="I agree to data collection via Analytics."
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/collectionInfoText"/>
+                android:text="I agree to data collection via Analytics." />
 
             <TextView
-                android:id="@+id/collectionInfoText2"
                 style="@style/AppIntroDefaultText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Firebase Crashlytics:\nProviding me with logs after this app crashes to fix the relating bugs."
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/analytics_check" />
+                android:text="Firebase Crashlytics:\nProviding me with logs after this app crashes to fix the relating bugs." />
 
             <CheckBox
-                style="@style/AppIntroDefaultText"
                 android:id="@+id/crashlytics_check"
+                style="@style/Checkbox.AppIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="I agree to data collection via Crashlytics."
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/collectionInfoText2"/>
+                android:text="I agree to data collection via Crashlytics." />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </ScrollView>
 
