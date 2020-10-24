@@ -39,14 +39,6 @@
             android:icon="@drawable/_icon_end_user_consent"
             android:checkable="false"
             android:title="End User Consent" />
-        <item
-            android:id="@+id/drawer_privacy_policy"
-            android:icon="@drawable/_icon_privacy_policy"
-            android:title="Privacy Policy" />
-        <item
-            android:id="@+id/drawer_terms_of_use"
-            android:icon="@drawable/_icon_terms_of_use"
-            android:title="Terms of Use" />
     </group>
 
 </menu>
