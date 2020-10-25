@@ -26,6 +26,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -45,11 +46,20 @@ import es.dmoral.toasty.Toasty
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var crashlytics: FirebaseCrashlytics
+    private var crashlytics: FirebaseCrashlytics
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var editor: SharedPreferences.Editor
+    private var firebaseAnalytics: FirebaseAnalytics
     private lateinit var mySPR: SharedPreferences
+    private lateinit var navController: NavController
+    private lateinit var navView: NavigationView
+    private lateinit var toolbar: Toolbar
+
+    init {
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        crashlytics = FirebaseCrashlytics.getInstance()
+        Toasty.Config.getInstance().allowQueue(false).apply()
+    }
 
     @SuppressLint("ApplySharedPref")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,20 +67,19 @@ class MainActivity : AppCompatActivity() {
 
         mySPR = getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
+        editor.apply()
         requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        crashlytics = FirebaseCrashlytics.getInstance()
         firebaseAnalytics.setAnalyticsCollectionEnabled(mySPR.getBoolean("analyticsCollection", false))
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean("crashlyticsCollection", false))
+        crashlytics.setCrashlyticsCollectionEnabled(mySPR.getBoolean("crashlyticsCollection", false))
 
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         drawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        navView = findViewById(R.id.nav_view)
+        navController = findNavController(R.id.nav_host_fragment)
         navController.setGraph(if (mySPR.getBoolean("autoStart", false)) R.navigation.mobile_navigation2 else R.navigation.mobile_navigation)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -81,8 +90,6 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        Toasty.Config.getInstance().allowQueue(false).apply()
-
         if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "") == "") {
             finish()
             startActivity(Intent(applicationContext, MyAppIntro::class.java))
@@ -90,6 +97,10 @@ class MainActivity : AppCompatActivity() {
             if (mySPR.getBoolean("autoStart", false)) navController.navigate(R.id.nav_webview)
             if (mySPR.getBoolean("autoUpdate", false)) updateCheck(this)
         }
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
 
         navView.setNavigationItemSelectedListener {
             toolbar.visibility = View.VISIBLE
@@ -153,6 +164,12 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
             true
         }
+
+        restoreConnections()
+    }
+
+    private fun restoreConnections() {
+        showConnections(mySPR, getListOfConnections(mySPR), this)
     }
 
     private fun updateCheck(activity: Activity) {
@@ -213,9 +230,8 @@ class MainActivity : AppCompatActivity() {
         val link = String.format(context.getString(R.string.update_download_link), version)
 
         val request = DownloadManager.Request(Uri.parse(link)).setDestinationInExternalPublicDir(
-            Environment.DIRECTORY_DOWNLOADS,
-            URLUtil.guessFileName(link, null, null))
-            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(link, null, null)
+        ).setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         downloadManager.enqueue(request)
     }

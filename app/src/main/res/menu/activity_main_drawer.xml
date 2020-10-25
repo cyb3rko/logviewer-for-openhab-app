@@ -17,15 +17,12 @@
             android:title="Settings" />
     </group>
 
-    <item android:title="Connections">
+    <item
+        android:title="Connections"
+        android:id="@+id/nav_connections">
         <menu
-            android:id="@+id/connections"
+            android:id="@+id/nav_connections_menu"
             android:checkableBehavior="single">
-
-            <item
-                android:title="Connection"
-                android:id="@+id/test_connection"
-                android:icon="@drawable/_icon_connection" />
         </menu>
     </item>
 

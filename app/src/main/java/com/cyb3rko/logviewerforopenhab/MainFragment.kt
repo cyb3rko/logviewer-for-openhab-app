@@ -199,20 +199,38 @@ class MainFragment : Fragment() {
                     connectButton.text = getString(R.string.connect_button_2)
                 } else {
                     if (view != null) {
-                        val imm =
-                            (view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                        val imm = view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                         imm.hideSoftInputFromWindow(view.windowToken, 0)
                     }
-                    findNavController().navigate(R.id.nav_webview)
-                    editor.putBoolean("connected", true).apply()
-
-                    // show toast
                     Toasty.info(v.context, getString(R.string.connecting), Toasty.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.nav_webview)
+
+                    val hostnameString = hostnameIPAddressText.text.toString().trim()
+                    val portInt = portText.text.toString().trim().toInt()
+                    storeAndShowConnection(hostnameString, portInt)
                 }
             } else {
                 // show error if one field or both fields are empty
                 Toasty.error(v.context, getString(R.string.error_fill_out), Toasty.LENGTH_LONG).show()
             }
+        }
+    }
+
+    private fun storeAndShowConnection(hostname: String, port: Int) {
+        val newConnection = Connection(hostname, port)
+        val connections = getListOfConnections(mySPR)
+        if (!connections.contains(newConnection)) {
+            if (connections.size >= 3) {
+                connections.removeAt(0)
+            }
+            var newConnections = ""
+            connections.forEach {
+                newConnections += "${it.hostName}:${it.port};"
+            }
+            newConnections += "${hostname}:${portInt}"
+            editor.putString("connections", newConnections).commit()
+            connections.add(newConnection)
+            showConnections(mySPR, connections, activity)
         }
     }
 
