@@ -46,32 +46,22 @@ import es.dmoral.toasty.Toasty
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private var crashlytics: FirebaseCrashlytics
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var editor: SharedPreferences.Editor
-    private var firebaseAnalytics: FirebaseAnalytics
     private lateinit var mySPR: SharedPreferences
     private lateinit var navController: NavController
     private lateinit var navView: NavigationView
     private lateinit var toolbar: Toolbar
 
-    init {
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        crashlytics = FirebaseCrashlytics.getInstance()
-        Toasty.Config.getInstance().allowQueue(false).apply()
-    }
-
     @SuppressLint("ApplySharedPref")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Toasty.Config.getInstance().allowQueue(false).apply()
         mySPR = getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         editor.apply()
         requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-
-        firebaseAnalytics.setAnalyticsCollectionEnabled(mySPR.getBoolean("analyticsCollection", false))
-        crashlytics.setCrashlyticsCollectionEnabled(mySPR.getBoolean("crashlyticsCollection", false))
 
         setContentView(R.layout.activity_main)
         toolbar = findViewById(R.id.toolbar)
@@ -106,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             toolbar.visibility = View.VISIBLE
             when (it.itemId) {
                 R.id.nav_menu -> navController.navigate(R.id.nav_menu)
-//                R.id.nav_settings -> navController.navigate(R.id.open_about)
+                R.id.nav_settings -> navController.navigate(R.id.nav_settings)
                 R.id.drawer_about -> navController.navigate(R.id.nav_about)
                 R.id.drawer_end_user_consent -> {
                     var dialogMessage = getString(R.string.end_user_consent_2_message_1)
@@ -146,8 +136,10 @@ class MainActivity : AppCompatActivity() {
                             drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
                         }
                         negativeButton(R.string.end_user_consent_2_button2) {
-                            firebaseAnalytics.resetAnalyticsData()
-                            firebaseAnalytics.setAnalyticsCollectionEnabled(false)
+                            val analytics = FirebaseAnalytics.getInstance(applicationContext)
+                            analytics.resetAnalyticsData()
+                            analytics.setAnalyticsCollectionEnabled(false)
+                            val crashlytics = FirebaseCrashlytics.getInstance()
                             crashlytics.deleteUnsentReports()
                             crashlytics.setCrashlyticsCollectionEnabled(false)
                             editor.clear().commit()
@@ -165,7 +157,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        restoreConnections()
+        if (mySPR.getBoolean("connectionOverviewEnabled", true)) { restoreConnections() }
     }
 
     private fun restoreConnections() {

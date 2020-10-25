@@ -60,6 +60,12 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
     }
 }
 
+internal fun hideConnections(activity: Activity) {
+    val navView = activity.findViewById<NavigationView>(R.id.nav_view)
+    val connectionsMenu = navView.menu.findItem(R.id.nav_connections).subMenu
+    connectionsMenu.clear()
+}
+
 internal fun showLicenseDialog(context: Context?, type: String) {
     MaterialDialog(context!!, BottomSheet()).show {
          @Suppress("DEPRECATION")

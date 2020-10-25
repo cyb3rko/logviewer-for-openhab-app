@@ -205,9 +205,11 @@ class MainFragment : Fragment() {
                     Toasty.info(v.context, getString(R.string.connecting), Toasty.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.nav_webview)
 
-                    val hostnameString = hostnameIPAddressText.text.toString().trim()
-                    val portInt = portText.text.toString().trim().toInt()
-                    storeAndShowConnection(hostnameString, portInt)
+                    if (mySPR.getBoolean("connectionOverviewEnabled", true)) {
+                        val hostnameString = hostnameIPAddressText.text.toString().trim()
+                        val portInt = portText.text.toString().trim().toInt()
+                        storeAndShowConnection(hostnameString, portInt)
+                    }
                 }
             } else {
                 // show error if one field or both fields are empty

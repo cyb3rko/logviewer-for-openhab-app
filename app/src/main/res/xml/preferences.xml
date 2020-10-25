@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="User Experience"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:title="Connection Overview"
+            android:summary="En-/Disable the overview of recent connections in the Navigation Drawer"
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="connectionOverviewEnabled" />
+
+        <SwitchPreferenceCompat
+            android:title="Auto Update"
+            android:summary="En-/Disable checking for updates and optionally downloading the newewst version"
+            android:key="autoUpdate"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Data Collection"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:title="Analytics Data Collection"
+            android:summary="En-/Disable data collection via Firebase Analytics"
+            android:key="analyticsCollection"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:title="Crashlytics Data Collection"
+            android:summary="En-/Disable data collection via Firebase Crashlytics"
+            android:key="crashlyticsCollection"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:title="Reset Data Collection"
+            android:summary="Reset your collected data for Analytics and Crashlytics"
+            android:key="dataDeletion"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
