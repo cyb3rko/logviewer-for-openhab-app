@@ -18,33 +18,31 @@ class MainFragment : Fragment() {
 
     private lateinit var connectButton: Button
     private lateinit var connectCheck: CheckBox
-    private lateinit var hostnameIPAddressCheck: CheckBox
-    private lateinit var portCheck: CheckBox
-    private lateinit var hostnameIPAddress: TextInputLayout
-    private lateinit var hostnameIPAddressText: TextInputEditText
-    private lateinit var port: TextInputLayout
-    private lateinit var portText: TextInputEditText
-    private lateinit var hostnameIPAddressEdit: ImageButton
-    private lateinit var portEdit: ImageButton
-    private lateinit var mySPR: SharedPreferences
+    private lateinit var editButton: Button
     private lateinit var editor: SharedPreferences.Editor
+    private lateinit var hostnameIPAddress: TextInputLayout
+    private lateinit var hostnameIPAddressCheck: CheckBox
     private lateinit var hostnameIPAddressString: String
+    private lateinit var hostnameIPAddressText: TextInputEditText
     private lateinit var link: String
     private lateinit var linkView: TextView
+    private lateinit var mySPR: SharedPreferences
+    private lateinit var port: TextInputLayout
+    private lateinit var portCheck: CheckBox
     private var portInt = 0
+    private lateinit var portText: TextInputEditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_main, container, false)
         connectButton = v.findViewById(R.id.connect_button)
         connectCheck = v.findViewById(R.id.connect_check)
+        editButton = v.findViewById(R.id.edit_button)
         hostnameIPAddressCheck = v.findViewById(R.id.hostname_ip_address_check)
         portCheck = v.findViewById(R.id.port_check)
         hostnameIPAddress = v.findViewById(R.id.hostname_ip_address)
         port = v.findViewById(R.id.port)
         hostnameIPAddressText = v.findViewById(R.id.hostname_ip_address_text)
         portText = v.findViewById(R.id.port_text)
-        hostnameIPAddressEdit = v.findViewById(R.id.hostname_ip_address_edit)
-        portEdit = v.findViewById(R.id.port_edit)
         linkView = v.findViewById(R.id.link_view)
 
         // load save file and its editor
@@ -56,9 +54,8 @@ class MainFragment : Fragment() {
         statusRestoring()
 
         // set onclick listeners
+        setEditButtonClickListener()
         setConnectButtonClickListener(v)
-        setEditButtonClickListener(hostnameIPAddressEdit, hostnameIPAddress, portEdit, hostnameIPAddressCheck)
-        setEditButtonClickListener(portEdit, port, hostnameIPAddressEdit, portCheck)
         setConnectCheckClickListener()
 
         // show view
@@ -67,7 +64,6 @@ class MainFragment : Fragment() {
 
     // restore last status
     private fun statusRestoring() {
-        // restore chechbox status
         connectCheck.isChecked = mySPR.getBoolean("connectCheck", false)
 
         // restore textbox status
@@ -96,23 +92,23 @@ class MainFragment : Fragment() {
         // restore checkbox status
         portCheck.isChecked = mySPR.getBoolean("portCheck", true)
 
-        // check if connect was clicked and restore last status
-        if (hostnameIPAddressText.text.toString().isNotEmpty() && portText.text.toString().isNotEmpty()) {
-            linkGeneration()
-            hostnameIPAddressEdit.visibility = View.VISIBLE
-            portEdit.visibility = View.VISIBLE
-            hostnameIPAddressCheck.visibility = View.INVISIBLE
-            portCheck.visibility = View.INVISIBLE
-            connectCheck.visibility = View.VISIBLE
+        val hostname = hostnameIPAddressText.text.toString()
+        val port = portText.text.toString()
+        if (hostname.isNotEmpty() && port.isNotEmpty()) {
+            linkGeneration(hostname, port)
+            hostnameIPAddressCheck.isEnabled = false
+            portCheck.isEnabled = false
+            connectCheck.isEnabled = true
             connectButton.text = getString(R.string.connect_button_2)
+            editButton.isEnabled = true
         }
     }
 
     // generate and show new link according to user inputs
-    private fun linkGeneration() {
-        hostnameIPAddressString = hostnameIPAddressText.text.toString()
-        portInt = if (portText.text.toString().isNotEmpty()) {
-            portText.text.toString().toInt()
+    private fun linkGeneration(hostname: String, port: String) {
+        hostnameIPAddressString = hostname
+        portInt = if (port.isNotEmpty()) {
+            port.toInt()
         } else {
             9001
         }
@@ -124,20 +120,22 @@ class MainFragment : Fragment() {
     private fun setConnectButtonClickListener(v: View) {
         connectButton.setOnClickListener { view ->
             // check if user entered hostname
-            if (hostnameIPAddressText.text.toString().isNotEmpty()) {
+            val tempHostname = hostnameIPAddressText.text.toString().trim()
+            val tempPort = portText.text.toString().trim()
+            if (tempHostname.isNotEmpty()) {
                 // if connect button was not clicked before
+                hostnameIPAddress.error = ""
                 if (linkView.text.toString().isEmpty()) {
                     // generate new link
-                    linkGeneration()
+                    linkGeneration(tempHostname, tempPort)
 
                     // switch all elements
                     hostnameIPAddress.isEnabled = false
-                    hostnameIPAddressEdit.visibility = View.VISIBLE
                     port.isEnabled = false
-                    portEdit.visibility = View.VISIBLE
-                    hostnameIPAddressCheck.visibility = View.INVISIBLE
-                    portCheck.visibility = View.INVISIBLE
-                    connectCheck.visibility = View.VISIBLE
+                    hostnameIPAddressCheck.isEnabled = false
+                    portCheck.isEnabled = false
+                    connectCheck.isEnabled = true
+                    editButton.isEnabled = true
 
                     // store values if user wants to
                     if (hostnameIPAddressCheck.isChecked) {
@@ -153,13 +151,14 @@ class MainFragment : Fragment() {
                         editor.putBoolean("portCheck", true)
 
                         // check if user entered port
-                        if (portText.text.toString().isNotEmpty()) {
+                        if (portText.text.toString().trim().isNotEmpty()) {
                             editor.putInt("portInt", portInt)
                         } else {
                             portText.setText(9001.toString())
                             editor.putInt("portInt", 9001)
                         }
                     } else {
+                        portText.setText(9001.toString())
                         editor.putInt("portInt", 0)
                         editor.putBoolean("portCheck", false)
                     }
@@ -178,14 +177,12 @@ class MainFragment : Fragment() {
                     findNavController().navigate(R.id.nav_webview)
 
                     if (mySPR.getBoolean("connectionOverviewEnabled", true)) {
-                        val hostnameString = hostnameIPAddressText.text.toString().trim()
-                        val portInt = portText.text.toString().trim().toInt()
-                        storeAndShowConnection(hostnameString, portInt)
+                        storeAndShowConnection(tempHostname, tempPort.toInt())
                     }
                 }
             } else {
                 // show error if one field or both fields are empty
-                Toasty.error(v.context, getString(R.string.error_fill_out), Toasty.LENGTH_LONG).show()
+                hostnameIPAddress.error = getString(R.string.error_fill_out)
             }
         }
     }
@@ -209,15 +206,16 @@ class MainFragment : Fragment() {
     }
 
     // onClickListener for both edit buttons
-    private fun setEditButtonClickListener(imageButton: ImageButton?, textView: TextInputLayout, imageButton2: ImageButton?, checkBox: CheckBox?) {
-        imageButton?.setOnClickListener {
-            textView.isEnabled = true
-            imageButton.visibility = View.INVISIBLE
-            imageButton2?.visibility = View.INVISIBLE
-            checkBox?.visibility = View.VISIBLE
-            connectCheck.visibility = View.INVISIBLE
-            linkView.text = ""
+    private fun setEditButtonClickListener() {
+        editButton.setOnClickListener {
+            hostnameIPAddress.isEnabled = true
+            hostnameIPAddressCheck.isEnabled = true
+            port.isEnabled = true
+            portCheck.isEnabled = true
+            connectCheck.isEnabled = false
             connectButton.text = getString(R.string.connect_button_1)
+            editButton.isEnabled = false
+            linkView.text = ""
         }
     }
 

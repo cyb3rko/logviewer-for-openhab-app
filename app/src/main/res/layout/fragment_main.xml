@@ -1,143 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainFragment">
 
-    <ImageButton
-        android:id="@+id/hostname_ip_address_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/hostname_ip_address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/hostname_ip_address"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:visibility="visible" />
-
-    <CheckBox
-        android:id="@+id/hostname_ip_address_check"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="@string/checks"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/hostname_ip_address"
-        app:layout_constraintTop_toBottomOf="@+id/hostname_ip_address" />
+        android:paddingBottom="16dp">
 
-    <ImageButton
-        android:id="@+id/port_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/port"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/port"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:visibility="visible" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hostname_ip_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:hint="Hostname / IP address"
+            app:helperText="eg. 192.168.178.10"
+            app:helperTextEnabled="true"
+            app:errorTextColor="@color/colorAccent"
+            app:boxStrokeErrorColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@id/hostname_ip_address_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <CheckBox
-        android:id="@+id/port_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/checks"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/port"
-        app:layout_constraintTop_toBottomOf="@id/port" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hostname_ip_address_text"
+                android:inputType="textWebEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/link_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/port_check" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/connect_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/connect_button_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/link_view" />
+        <CheckBox
+            android:id="@+id/hostname_ip_address_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/checks"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/hostname_ip_address"
+            app:layout_constraintTop_toBottomOf="@+id/hostname_ip_address" />
 
-    <CheckBox
-        android:id="@+id/connect_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/connect_check"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect_button"
-        tools:visibility="visible" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/port"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:hint="Port"
+            app:helperTextEnabled="true"
+            app:helperText="@string/port"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hostname_ip_address_check">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/hostname_ip_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:hint="Hostname / IP address"
-        android:inputType="textPersonName"
-        app:helperText="eg. 192.168.178.10"
-        app:helperTextEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/hostname_ip_address_check"
-        app:layout_constraintEnd_toStartOf="@id/hostname_ip_address_edit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/port_text"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/hostname_ip_address_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/port"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:hint="Port"
-        app:helperTextEnabled="true"
-        app:helperText="@string/port"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/port_edit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hostname_ip_address_check">
+        <CheckBox
+            android:id="@+id/port_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/checks"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/port"
+            app:layout_constraintTop_toBottomOf="@id/port" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/port_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/connect_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/connect_button_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/port_check" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:enabled="false"
+            tools:enabled="true"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="Edit"
+            app:layout_constraintStart_toEndOf="@id/connect_button"
+            app:layout_constraintTop_toTopOf="@+id/connect_button" />
+
+        <TextView
+            android:id="@+id/link_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connect_button" />
+
+        <CheckBox
+            android:id="@+id/connect_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/connect_check"
+            android:enabled="false"
+            tools:enabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/link_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
