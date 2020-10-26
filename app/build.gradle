@@ -22,7 +22,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.cyb3rko.logviewerforopenhab"
-        minSdkVersion 24
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 8
         versionName "1.2.5"
