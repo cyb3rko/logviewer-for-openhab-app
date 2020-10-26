@@ -54,7 +54,7 @@ class WebViewFragment : Fragment() {
         setTouchable(false)
 
         // restore text size (according to orientation)
-        textSizeType = when (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)) {
+        textSizeType = when (mySPR.getString("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT.toString())?.toInt()) {
             ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> "textSizeAuto"
             ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> "textSizeLandscape"
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> "textSizePortrait"

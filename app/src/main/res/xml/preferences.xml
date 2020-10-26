@@ -6,6 +6,15 @@
         android:title="User Experience"
         app:iconSpaceReserved="false">
 
+        <ListPreference
+            android:title="Orientation"
+            android:summary="Toggle the orientation of the app"
+            app:iconSpaceReserved="false"
+            android:defaultValue=""
+            android:entries="@array/orientations"
+            android:entryValues="@array/orientations_values"
+            android:key="orientation"/>
+
         <SwitchPreferenceCompat
             android:title="Connection Overview"
             android:summary="En-/Disable the overview of recent connections in the Navigation Drawer"

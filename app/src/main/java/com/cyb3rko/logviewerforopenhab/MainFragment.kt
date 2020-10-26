@@ -2,7 +2,6 @@ package com.cyb3rko.logviewerforopenhab
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +46,6 @@ class MainFragment : Fragment() {
         portText = v.findViewById(R.id.port_text)
         hostnameIPAddressEdit = v.findViewById(R.id.hostname_ip_address_edit)
         portEdit = v.findViewById(R.id.port_edit)
-        orientation = v.findViewById(R.id.imageView)
         linkView = v.findViewById(R.id.link_view)
         val versionView = v.findViewById<TextView>(R.id.version_view)
 
@@ -64,7 +62,6 @@ class MainFragment : Fragment() {
 
         // set onclick listeners
         setConnectButtonClickListener(v)
-        setOrientationIconClickListener()
         setEditButtonClickListener(hostnameIPAddressEdit, hostnameIPAddress, portEdit, hostnameIPAddressCheck)
         setEditButtonClickListener(portEdit, port, hostnameIPAddressEdit, portCheck)
         setConnectCheckClickListener()
@@ -77,9 +74,6 @@ class MainFragment : Fragment() {
     private fun statusRestoring() {
         // restore chechbox status
         connectCheck.isChecked = mySPR.getBoolean("connectCheck", false)
-
-        // set correct orientation icon
-        setOrientationIcon()
 
         // restore textbox status
         if (mySPR.getString("hostnameIPAddressString", "") == "" || mySPR.getString("hostnameIPAddressString", "") == "0") {
@@ -116,17 +110,6 @@ class MainFragment : Fragment() {
             portCheck.visibility = View.INVISIBLE
             connectCheck.visibility = View.VISIBLE
             connectButton.text = getString(R.string.connect_button_2)
-        }
-    }
-
-    // set correct orientation icon
-    private fun setOrientationIcon() {
-        when (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)) {
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> orientation.setImageResource(R.drawable._icon_landscape_orientation)
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> orientation.setImageResource(R.drawable._icon_portrait_orientation)
-            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> orientation.setImageResource(R.drawable._icon_auto_orientation)
-            else -> {
-            }
         }
     }
 
@@ -227,39 +210,6 @@ class MainFragment : Fragment() {
             editor.putString("connections", newConnections).commit()
             connections.add(newConnection)
             showConnections(mySPR, connections, activity)
-        }
-    }
-
-    // onClickListener for orientation icon
-    private fun setOrientationIconClickListener() {
-        orientation.setOnClickListener {
-            var newOrientation = 0
-            var newOrientationName = ""
-            when (mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)) {
-                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> {
-                    newOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                    newOrientationName = "portrait"
-                }
-                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> {
-                    newOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-                    newOrientationName = "auto"
-                }
-                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> {
-                    newOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                    newOrientationName = "landscape"
-                }
-                else -> {
-                }
-            }
-
-            // store orientation, change icon and change orientation
-            editor.putInt("orientation", newOrientation)
-            editor.putBoolean("tempDisableStart", true).apply()
-            setOrientationIcon()
-            activity?.requestedOrientation = newOrientation
-
-            // show toast
-            context?.let { it1 -> Toasty.info(it1, String.format(getString(R.string.orientation_changed), newOrientationName), Toasty.LENGTH_SHORT).show() }
         }
     }
 
