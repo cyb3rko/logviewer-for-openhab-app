@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         mySPR = getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         editor.apply()
-        requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = mySPR.getInt("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
 
         setContentView(R.layout.activity_main)
         toolbar = findViewById(R.id.toolbar)

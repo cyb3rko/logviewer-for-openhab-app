@@ -73,12 +73,6 @@ class MainFragment : Fragment() {
         return v
     }
 
-    // if view is ready restore set orientation
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        activity?.requestedOrientation = mySPR.getInt("orientation", 0)
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     // restore last status
     private fun statusRestoring() {
         // restore chechbox status
