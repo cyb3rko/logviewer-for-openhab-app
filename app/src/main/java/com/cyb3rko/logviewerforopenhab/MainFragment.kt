@@ -26,7 +26,6 @@ class MainFragment : Fragment() {
     private lateinit var portText: TextInputEditText
     private lateinit var hostnameIPAddressEdit: ImageButton
     private lateinit var portEdit: ImageButton
-    private lateinit var orientation: ImageView
     private lateinit var mySPR: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var hostnameIPAddressString: String
@@ -47,7 +46,6 @@ class MainFragment : Fragment() {
         hostnameIPAddressEdit = v.findViewById(R.id.hostname_ip_address_edit)
         portEdit = v.findViewById(R.id.port_edit)
         linkView = v.findViewById(R.id.link_view)
-        val versionView = v.findViewById<TextView>(R.id.version_view)
 
         // load save file and its editor
         mySPR = v.context.getSharedPreferences(SHARED_PREFERENCE, 0)
@@ -56,9 +54,6 @@ class MainFragment : Fragment() {
 
         // restore last status
         statusRestoring()
-
-        // show version
-        versionView.text = BuildConfig.VERSION_NAME
 
         // set onclick listeners
         setConnectButtonClickListener(v)

@@ -6,27 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/version_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/hostname_ip_address_edit"
         android:layout_width="wrap_content"
@@ -130,7 +109,7 @@
         app:layout_constraintBottom_toTopOf="@id/hostname_ip_address_check"
         app:layout_constraintEnd_toStartOf="@id/hostname_ip_address_edit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/hostname_ip_address_text"
