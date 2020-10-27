@@ -37,7 +37,7 @@ class AboutFragment : Fragment() {
                     .setOnClickListener(openOnGithub())
             ) // email item
             .addEmail(getString(R.string.about_element_email_value), getString(R.string.about_element_email_text)) // website item
-            .addWebsite(getString(R.string.about_element_website_value), getString(R.string.about_element_website_text)) // YouTube item
+//            .addWebsite(getString(R.string.about_element_website_value), getString(R.string.about_element_website_text))
             .addItem(
                 Element().setTitle(getString(R.string.about_element_youtube_text)).setIconDrawable(R.drawable.about_icon_youtube)
                     .setIconTint(R.color.about_youtube_color).setOnClickListener(openYouTubeProfile())
