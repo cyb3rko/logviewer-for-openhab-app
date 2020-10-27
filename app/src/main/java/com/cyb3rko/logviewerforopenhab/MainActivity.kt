@@ -177,7 +177,7 @@ class MainActivity : AppCompatActivity() {
                     val versionName = versionNameAndFollowing.split("\"")[0]
                     editor.putString("newestVersion", versionName).apply()
 
-                    if (BuildConfig.VERSION_CODE != newestVersionCode) {
+                    if (BuildConfig.VERSION_CODE < newestVersionCode) {
                         Log.d(this@MainActivity::class.java.simpleName, "Update available: $versionName")
                         val dialogMessage = String.format(getString(R.string.update_dialog_message), "$versionName ($versionCode)",
                             "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
