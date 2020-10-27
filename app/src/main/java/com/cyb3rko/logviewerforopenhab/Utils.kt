@@ -45,7 +45,7 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
         var parts: List<String>
         connections.forEach { connection ->
             item = connectionsMenu.add("${connection.hostName}:${connection.port}")
-            item.setIcon(R.drawable._icon_connection)
+            item.setIcon(R.drawable._ic_connection)
             item.setOnMenuItemClickListener { menuItem ->
                 link = "http://${menuItem.title}"
                 parts = menuItem.title.split(":")
