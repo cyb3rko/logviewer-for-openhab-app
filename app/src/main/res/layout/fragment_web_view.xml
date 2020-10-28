@@ -15,9 +15,10 @@
         app:backgroundTint="#A6FF7E29"
         app:borderWidth="0dp"
         app:elevation="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/webview"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="@id/webview"
         app:layout_constraintEnd_toEndOf="@+id/webview"
-        app:layout_constraintTop_toTopOf="@id/webview" />
+        app:layout_constraintBottom_toTopOf="@id/text_button" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/text_button"
@@ -29,8 +30,10 @@
         app:backgroundTint="#A6FF7E29"
         app:borderWidth="0dp"
         app:elevation="0dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@+id/view_button"
         app:layout_constraintEnd_toEndOf="@+id/webview"
-        app:layout_constraintTop_toBottomOf="@+id/view_button" />
+        app:layout_constraintBottom_toBottomOf="@id/webview"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/back_button"
