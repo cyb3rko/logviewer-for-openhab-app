@@ -9,11 +9,11 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_menu"
-            android:icon="@drawable/_icon_menu"
+            android:icon="@drawable/_ic_menu"
             android:title="@string/menu_menu" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/_icon_settings"
+            android:icon="@drawable/_ic_settings"
             android:title="Settings" />
     </group>
 
@@ -29,11 +29,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_about"
-            android:icon="@drawable/_icon_info"
+            android:icon="@drawable/_ic_info"
             android:title="About" />
         <item
             android:id="@+id/drawer_end_user_consent"
-            android:icon="@drawable/_icon_end_user_consent"
+            android:icon="@drawable/_ic_end_user_consent"
             android:checkable="false"
             android:title="End User Consent" />
     </group>

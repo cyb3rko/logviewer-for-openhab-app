@@ -23,7 +23,7 @@ class MyAppIntro : AppIntro() {
         addSlide(AppIntroFragment.newInstance(
             title = "Welcome...",
             description = "This is the unofficial LogViewer for openHAB app made by Cyb3rko",
-            imageDrawable = R.drawable._icon_hello,
+            imageDrawable = R.drawable._ic_hello,
             backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         ))
         addSlide(AppIntroFragment.newInstance(

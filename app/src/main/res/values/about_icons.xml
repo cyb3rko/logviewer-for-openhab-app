@@ -1,72 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="icon_arrow_left">
+    <string-array name="ic_arrow_left">
         <item>Lyolya</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/left-arrow_109618</item>
     </string-array>
 
-    <string-array name="icon_auto_orientation">
-        <item>Freepik</item>
+    <string-array name="ic_connection">
+        <item>Elias Bikbulatov</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/orientation_1302037</item>
+        <item>https://www.flaticon.com/free-icon/server_157359</item>
     </string-array>
 
-    <string-array name="icon_eye">
-        <item>Dave Gandy</item>
+    <string-array name="ic_end_user_consent">
+        <item>Smashicons</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/eye-open_25186</item>
-        <item>false</item>
-        <item>cc_by_3.0</item>
+        <item>https://www.flaticon.com/free-icon/secure-data_1035086</item>
     </string-array>
 
-    <string-array name="icon_font">
+    <string-array name="ic_font">
         <item>Those Icons</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/font_2087728</item>
     </string-array>
 
-    <string-array name="icon_landscape_orientation">
-        <item>Freepik</item>
+    <string-array name="ic_github">
+        <item>Pixel perfect</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/orientation_1302037</item>
-        <item>true</item>
+        <item>https://www.flaticon.com/free-icon/github_2111292</item>
     </string-array>
 
-    <string-array name="icon_libraries">
+    <string-array name="ic_hello">
+        <item>Vitaly Gorbachev</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/hello_2165797</item>
+    </string-array>
+
+    <string-array name="ic_info">
+        <item>Those Icons</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/information_813776</item>
+    </string-array>
+
+    <string-array name="ic_libraries">
         <item>Freepik</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/books-stack-of-three_29302</item>
     </string-array>
 
-    <string-array name="icon_lock">
+    <string-array name="ic_lock">
         <item>Those Icons</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/lock_483408</item>
     </string-array>
 
-    <string-array name="icon_lock_2">
+    <string-array name="ic_lock_2">
         <item>Those Icons</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/lock_483412</item>
     </string-array>
 
-    <string-array name="icon_log">
+    <string-array name="ic_log">
         <item>Smartline</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/files_569837</item>
-    </string-array>
-
-    <string-array name="icon_portrait_orientation">
-        <item>Freepik</item>
-        <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/orientation_1302037</item>
         <item>true</item>
     </string-array>
 
-    <string-array name="icon_question">
+    <string-array name="ic_menu">
+        <item>Pixel perfect</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/menu_1828859</item>
+    </string-array>
+
+    <string-array name="ic_question">
         <item>Freepik</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/information_906794</item>
+    </string-array>
+
+    <string-array name="ic_settings">
+        <item>srip</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/settings_900797</item>
+    </string-array>
+
+    <string-array name="ic_start">
+        <item>Vectors Market</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/startup_610290</item>
+    </string-array>
+
+    <string-array name="ic_update">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/updated_1688988</item>
     </string-array>
 </resources>

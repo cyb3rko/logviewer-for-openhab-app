@@ -25,11 +25,11 @@ class AboutFragment : Fragment() {
             ) // first group
             .addGroup(getString(R.string.about_group_1)) // second item
             .addItem(
-                Element().setTitle(getString(R.string.about_element_2)).setIconDrawable(R.drawable._icon_libraries)
+                Element().setTitle(getString(R.string.about_element_2)).setIconDrawable(R.drawable._ic_libraries)
                     .setOnClickListener(showLibraries())
             ) // third item
             .addItem(
-                Element().setTitle(getString(R.string.about_element_3)).setIconDrawable(R.drawable._icon_question).setOnClickListener(showIcons())
+                Element().setTitle(getString(R.string.about_element_3)).setIconDrawable(R.drawable._ic_question).setOnClickListener(showIcons())
             ) // second group
             .addGroup(getString(R.string.about_group_2)) // feddback item
             .addItem(
