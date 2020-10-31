@@ -59,6 +59,12 @@ class WebViewFragment : Fragment() {
         }
         webSettings.textZoom = mySPR.getInt(textSizeType, 60)
 
+        setToolbarVisibility(activity, View.GONE)
+        return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         webView.loadUrl(mySPR.getString(LINK, "")!!)
 
         val handler = Handler(Looper.getMainLooper())
@@ -72,11 +78,9 @@ class WebViewFragment : Fragment() {
         }
         handler.postDelayed(runnable, 500)
         setViewButtonClickListener()
-        setTextButtonClickListener(v)
+        setTextButtonClickListener(view)
         setBackButtonClickListener()
-        showTapTargetSequence(v)
-        setToolbarVisibility(activity, View.GONE)
-        return v
+        showTapTargetSequence(view)
     }
 
     private fun setToolbarVisibility(activity: Activity?, visibility: Int) {
