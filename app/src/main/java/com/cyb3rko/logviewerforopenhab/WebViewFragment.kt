@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,15 +12,15 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.mardous.discreteseekbar.DiscreteSeekBar
 import es.dmoral.toasty.Toasty
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar.OnProgressChangeListener
 
 class WebViewFragment : Fragment() {
 
@@ -105,33 +104,23 @@ class WebViewFragment : Fragment() {
     }
 
     private fun setTextButtonClickListener(v: View) {
-        textButton.setOnClickListener { view ->
-            val builder = AlertDialog.Builder(v.context)
-
-            val currentTextSize = mySPR.getInt(textSizeType, 60)
-            val sizeView = TextView(v.context)
-            val discreteSeekBar = DiscreteSeekBar(v.context)
-
-            val titleView = TextView(v.context)
-            titleView.setText(R.string.text_size_dialog_title)
-            titleView.textSize = 22f
-            titleView.typeface = Typeface.DEFAULT_BOLD
-            titleView.setPadding(32, 32, 32, 32)
-            titleView.gravity = Gravity.CENTER_HORIZONTAL
+        textButton.setOnClickListener {
             val content = LinearLayout(v.context)
             content.orientation = LinearLayout.VERTICAL
+            val sizeView = TextView(v.context)
+            val discreteSeekBar = DiscreteSeekBar(v.context)
+            val currentTextSize = mySPR.getInt(textSizeType, 60)
 
             sizeView.text = String.format(getString(R.string.text_size_dialog_text), currentTextSize, currentTextSize)
             sizeView.textSize = 18f
             sizeView.setPadding(24, 24, 24, 50)
             sizeView.gravity = Gravity.CENTER_HORIZONTAL
             content.addView(sizeView)
-
             discreteSeekBar.max = 100
             discreteSeekBar.min = 1
             discreteSeekBar.progress = webSettings.textZoom
             discreteSeekBar.setPadding(50, 0, 50, 50)
-            discreteSeekBar.setOnProgressChangeListener(object : OnProgressChangeListener {
+            discreteSeekBar.setOnProgressChangeListener(object : DiscreteSeekBar.OnProgressChangeListener {
                 override fun onProgressChanged(seekBar: DiscreteSeekBar, value: Int, fromUser: Boolean) {
                     // nothing to clean up (for PMD)
                 }
@@ -146,19 +135,17 @@ class WebViewFragment : Fragment() {
             })
             content.addView(discreteSeekBar)
 
-            builder.setCustomTitle(titleView)
-                .setView(content)
-                .setPositiveButton(getString(R.string.text_size_dialog_button_1)) { _, _ ->
+            MaterialDialog(requireContext()).show {
+                title(R.string.text_size_dialog_title)
+                customView(0, content)
+                positiveButton(R.string.text_size_dialog_button_1) {
                     val textSize = discreteSeekBar.progress
                     webSettings.textZoom = textSize
-
                     editor.putInt(textSizeType, textSize).apply()
-                    Toasty.success(view.context, getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show()
+                    Toasty.info(v.context, getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show()
                 }
-                .setNegativeButton(getString(R.string.text_size_dialog_button_2)) { _, _ ->
-                    // nothing to clean up (for PMD)
-                }
-                .create().show()
+                negativeButton(R.string.text_size_dialog_button_2)
+            }
         }
     }
 
