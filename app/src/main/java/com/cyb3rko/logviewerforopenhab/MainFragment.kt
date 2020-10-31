@@ -45,28 +45,22 @@ class MainFragment : Fragment() {
         portText = v.findViewById(R.id.port_text)
         linkView = v.findViewById(R.id.link_view)
 
-        // load save file and its editor
         mySPR = v.context.getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         editor.apply()
 
-        // restore last status
         statusRestoring()
 
-        // set onclick listeners
         setEditButtonClickListener()
         setConnectButtonClickListener(v)
         setConnectCheckClickListener()
 
-        // show view
         return v
     }
 
-    // restore last status
     private fun statusRestoring() {
         connectCheck.isChecked = mySPR.getBoolean(CONNECT_CHECK, false)
 
-        // restore textbox status
         if (mySPR.getString(HOSTNAME_STRING, "") == "" || mySPR.getString(HOSTNAME_STRING, "") == "0") {
             hostnameIPAddressText.setText("")
             hostnameIPAddress.isEnabled = true
@@ -76,10 +70,8 @@ class MainFragment : Fragment() {
             hostnameIPAddress.isEnabled = false
         }
 
-        // restore checkbox status
         hostnameIPAddressCheck.isChecked = mySPR.getBoolean(HOSTNAME_CHECK, true)
 
-        // restore textbox status
         if (mySPR.getInt(PORT_INT, 0) == 0) {
             portText.setText("")
             hostnameIPAddress.isEnabled = true
@@ -89,7 +81,6 @@ class MainFragment : Fragment() {
             portInt = mySPR.getInt(PORT_INT, 9001)
         }
 
-        // restore checkbox status
         portCheck.isChecked = mySPR.getBoolean(PORT_CHECK, true)
 
         val hostname = hostnameIPAddressText.text.toString()
@@ -104,7 +95,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    // generate and show new link according to user inputs
     private fun linkGeneration(hostname: String, port: String) {
         hostnameIPAddressString = hostname
         portInt = if (port.isNotEmpty()) {
@@ -116,20 +106,15 @@ class MainFragment : Fragment() {
         linkView.text = link
     }
 
-    // onClickListener for connect button
     private fun setConnectButtonClickListener(v: View) {
         connectButton.setOnClickListener { view ->
-            // check if user entered hostname
             val tempHostname = hostnameIPAddressText.text.toString().trim()
             val tempPort = portText.text.toString().trim()
             if (tempHostname.isNotEmpty()) {
-                // if connect button was not clicked before
                 hostnameIPAddress.error = ""
                 if (linkView.text.toString().isEmpty()) {
-                    // generate new link
                     linkGeneration(tempHostname, tempPort)
 
-                    // switch all elements
                     hostnameIPAddress.isEnabled = false
                     port.isEnabled = false
                     hostnameIPAddressCheck.isEnabled = false
@@ -137,7 +122,6 @@ class MainFragment : Fragment() {
                     connectCheck.isEnabled = true
                     editButton.isEnabled = true
 
-                    // store values if user wants to
                     if (hostnameIPAddressCheck.isChecked) {
                         editor.putString(HOSTNAME_STRING, hostnameIPAddressString)
                         editor.putBoolean(HOSTNAME_CHECK, true)
@@ -146,11 +130,9 @@ class MainFragment : Fragment() {
                         editor.putBoolean(HOSTNAME_CHECK, false)
                     }
 
-                    // store values if user wants to
                     if (portCheck.isChecked) {
                         editor.putBoolean(PORT_CHECK, true)
 
-                        // check if user entered port
                         if (portText.text.toString().trim().isNotEmpty()) {
                             editor.putInt(PORT_INT, portInt)
                         } else {
@@ -163,10 +145,8 @@ class MainFragment : Fragment() {
                         editor.putBoolean(PORT_CHECK, false)
                     }
 
-                    // store link
                     editor.putString(LINK, link).apply()
 
-                    // change button text
                     connectButton.text = getString(R.string.main_connect_button2)
                 } else {
                     if (view != null) {
@@ -181,7 +161,6 @@ class MainFragment : Fragment() {
                     }
                 }
             } else {
-                // show error if one field or both fields are empty
                 hostnameIPAddress.error = getString(R.string.error_fill_out)
             }
         }
@@ -205,7 +184,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    // onClickListener for both edit buttons
     private fun setEditButtonClickListener() {
         editButton.setOnClickListener {
             hostnameIPAddress.isEnabled = true
@@ -219,7 +197,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    // onClickListener for connect checkbox
     private fun setConnectCheckClickListener() {
         connectCheck.setOnCheckedChangeListener { _, b ->
             editor.putBoolean(CONNECT_CHECK, b)

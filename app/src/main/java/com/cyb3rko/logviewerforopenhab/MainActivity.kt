@@ -218,7 +218,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onError(anError: ANError) {
-                    // nothing to clean up (for PMD)
                     Log.e(this@MainActivity::class.java.simpleName, String.format(getString(R.string.update_dialog_failed, anError)))
                 }
             })
