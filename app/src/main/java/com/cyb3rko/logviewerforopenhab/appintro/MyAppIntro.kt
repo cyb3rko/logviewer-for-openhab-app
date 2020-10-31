@@ -5,8 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import com.cyb3rko.logviewerforopenhab.MainActivity
-import com.cyb3rko.logviewerforopenhab.R
+import com.cyb3rko.logviewerforopenhab.*
+import com.cyb3rko.logviewerforopenhab.CONSENT_TIME
+import com.cyb3rko.logviewerforopenhab.FIRST_START
 import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
@@ -21,25 +22,24 @@ class MyAppIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addSlide(AppIntroFragment.newInstance(
-            title = "Welcome...",
-            description = "This is the unofficial LogViewer for openHAB app made by Cyb3rko",
+            title = getString(R.string.intro_fragment1_title),
+            description = getString(R.string.intro_fragment1_description),
             imageDrawable = R.drawable._ic_hello,
             backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         ))
         addSlide(AppIntroFragment.newInstance(
-            title = "Feel free to contribute",
+            title = getString(R.string.intro_fragment2_title),
             imageDrawable = R.drawable._ic_github,
-            description = "If you experience any problems or if you have a idea for a new feature, feel free to visit the GitHub repository and " +
-                    "open an issue or a pull request.\nThanks!",
+            description = getString(R.string.intro_fragment2_description),
             backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         ))
         addSlide(AppIntro3rdFragment.newInstance())
         addSlide(AppIntro4thFragment.newInstance())
         addSlide(AppIntro5thFragment.newInstance())
         addSlide(AppIntroFragment.newInstance(
-            title = "Ready...",
+            title = getString(R.string.intro_fragment6_title),
             imageDrawable = R.drawable._ic_start,
-            description = "Ok, everything is set up.\nEnjoy!",
+            description = getString(R.string.intro_fragment6_description),
             backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         ))
 
@@ -53,15 +53,15 @@ class MyAppIntro : AppIntro() {
         val mySPR = applicationContext.getSharedPreferences(SHARED_PREFERENCE, 0)
         val editor = mySPR.edit()
 
-        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(mySPR.getBoolean("analyticsCollection", false))
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean("crashlyticsCollection", false))
+        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(mySPR.getBoolean(ANALYTICS_COLLECTION, false))
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean(CRASHYTICS_COLLECTION, false))
 
         val date = Calendar.getInstance().time
         @SuppressLint("SimpleDateFormat") val sDF = SimpleDateFormat("yyyy-MM-dd")
         @SuppressLint("SimpleDateFormat") val sDF2 = SimpleDateFormat("HH:mm:ss")
-        editor.putString("date", sDF.format(date))
-        editor.putString("time", sDF2.format(date))
-        editor.putBoolean("firstStart", false).apply()
+        editor.putString(CONSENT_DATE, sDF.format(date))
+        editor.putString(CONSENT_TIME, sDF2.format(date))
+        editor.putBoolean(FIRST_START, false).apply()
 
         finish()
         startActivity(Intent(applicationContext, MainActivity::class.java))

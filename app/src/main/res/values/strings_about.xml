@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_description">This is a simple and easy to use android app to simplify the mobile access to the log of an openHAB instance
+        (running frontail) on your tablet or your smartphone.</string>
+    <string name="about">About</string>
+    <string name="about_changelog_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases</string>
+    <string name="about_group_1">Legal</string>
+    <string name="about_group_2">Connect with me</string>
+    <string name="about_element_1">Version %1$s (%2$d)</string>
+    <string name="about_element_2">Used Libraries</string>
+    <string name="about_element_3">Used Icons</string>
+    <string name="about_element_feedback_value" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/</string>
+    <string name="about_element_feedback_text">Visit and give feedback on GitHub</string>
+    <string name="about_element_email_value" translatable="false">niko@cyb3rko.de</string>
+    <string name="about_element_email_text">Contact me</string>
+    <string name="about_element_website_value" translatable="false">https://cyb3rko.de</string>
+    <string name="about_element_website_text">Visit my website</string>
+    <string name="about_element_youtube_value" translatable="false">https://youtube.com/channel/UCue_SZXdF8yZByavetBU1ZQ</string>
+    <string name="about_element_youtube_text">Watch my tutorial videos (in German!)</string>
+    <string name="about_element_github_value" translatable="false">cyb3rko</string>
+    <string name="about_element_github_text">Take a look at my other projects</string>
+    <string name="about_element_instagram_value" translatable="false">https://instagram.com/_u/cyb3rko</string>
+    <string name="about_element_instagram_text">Follow me</string>
+</resources>

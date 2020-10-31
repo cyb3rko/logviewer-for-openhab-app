@@ -13,8 +13,31 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.google.android.material.navigation.NavigationView
 
 internal val PRIVACY_POLICY = "privacy_policy"
-internal val SHARED_PREFERENCE = "Safe2"
 internal val TERMS_OF_USE = "terms_of_use"
+
+internal val SHARED_PREFERENCE = "Safe2"
+internal val ANALYTICS_COLLECTION = "analytics_collection"
+internal val AUTO_START = "auto_start"
+internal val AUTO_UPDATE = "auto_update"
+internal val CONSENT_DATE = "consent_date"
+internal val CONSENT_TIME = "consent_time"
+internal val CONNECT_CHECK = "connect_check"
+internal val CONNECTION_OVERVIEW_ENABLED = "connection_overview_enabled"
+internal val CONNECTIONS = "connections"
+internal val CRASHYTICS_COLLECTION = "crashlytics_collection"
+internal val DATA_DELETION = "data_deletion"
+internal val FIRST_START = "first_start"
+internal val FIRST_START_WEB = "first_start_web"
+internal val HOSTNAME_CHECK = "hostname_check"
+internal val HOSTNAME_STRING = "hostname_string"
+internal val NEWEST_VERSION = "newest_version"
+internal val LINK = "link"
+internal val ORIENTATION = "orientation"
+internal val PORT_CHECK = "port_check"
+internal val PORT_INT = "port_int"
+internal val TEXTSIZE_AUTO = "textsize_auto"
+internal val TEXTSIZE_LANDSCAPE = "textsize_landscape"
+internal val TEXTSIZE_PORTRAIT = "textsize_PORTRAIT"
 
 internal fun getListOfConnections(mySPR: SharedPreferences): MutableList<Connection> {
     val resultList = mutableListOf<Connection>()

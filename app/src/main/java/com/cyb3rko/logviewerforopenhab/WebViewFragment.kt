@@ -54,16 +54,16 @@ class WebViewFragment : Fragment() {
         setTouchable(false)
 
         // restore text size (according to orientation)
-        textSizeType = when (mySPR.getString("orientation", ActivityInfo.SCREEN_ORIENTATION_PORTRAIT.toString())?.toInt()) {
-            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> "textSizeAuto"
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> "textSizeLandscape"
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> "textSizePortrait"
+        textSizeType = when (mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT.toString())?.toInt()) {
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> TEXTSIZE_AUTO
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> TEXTSIZE_LANDSCAPE
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> TEXTSIZE_PORTRAIT
             else -> { "" }
         }
         webSettings.textZoom = mySPR.getInt(textSizeType, 60)
 
         // open link
-        webView.loadUrl(mySPR.getString("link", "")!!)
+        webView.loadUrl(mySPR.getString(LINK, "")!!)
 
         // permanent scroll
         val handler = Handler()
@@ -194,7 +194,7 @@ class WebViewFragment : Fragment() {
     // taptargetsequence to explain buttons
     private fun showTapTargetSequence(v: View) {
         // if first log visit
-        if (mySPR.getBoolean("firstStartWeb", true)) {
+        if (mySPR.getBoolean(FIRST_START_WEB, true)) {
             TapTargetSequence(activity)
                 .targets( // first target (view button)
                     TapTarget.forView(
@@ -238,7 +238,7 @@ class WebViewFragment : Fragment() {
                         .cancelable(false)
                 ).listener(object : TapTargetSequence.Listener {
                     override fun onSequenceFinish() {
-                        editor.putBoolean("firstStartWeb", false).apply()
+                        editor.putBoolean(FIRST_START_WEB, false).apply()
                     }
 
                     // on every single new target

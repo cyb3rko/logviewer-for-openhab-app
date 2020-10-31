@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.cyb3rko.logviewerforopenhab.AUTO_UPDATE
 import com.cyb3rko.logviewerforopenhab.R
 import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -21,7 +22,7 @@ class AppIntro5thFragment : Fragment() {
         val editor = mySPR.edit()
 
         view.findViewById<SwitchMaterial>(R.id.updateSwitch).setOnCheckedChangeListener { _, b ->
-            editor.putBoolean("autoUpdate", b).apply()
+            editor.putBoolean(AUTO_UPDATE, b).apply()
         }
     }
 

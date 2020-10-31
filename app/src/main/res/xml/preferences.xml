@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:title="User Experience"
+        android:title="@string/settings_user_experience"
         app:iconSpaceReserved="false">
 
         <ListPreference
-            android:title="Orientation"
-            android:summary="Toggle the orientation of the app"
+            android:title="@string/settings_orientation_title"
+            android:summary="@string/settings_orientation_summary"
             app:iconSpaceReserved="false"
             android:defaultValue=""
             android:entries="@array/orientations"
@@ -16,40 +16,40 @@
             android:key="orientation"/>
 
         <SwitchPreferenceCompat
-            android:title="Connection Overview"
-            android:summary="En-/Disable the overview of recent connections in the Navigation Drawer"
+            android:title="@string/settings_connection_overview_title"
+            android:summary="@string/settings_connection_overview_summary"
             app:iconSpaceReserved="false"
             android:defaultValue="true"
-            android:key="connectionOverviewEnabled" />
+            android:key="connection_overview_enabled" />
 
         <SwitchPreferenceCompat
-            android:title="Auto Update"
-            android:summary="En-/Disable checking for updates and optionally downloading the newewst version"
-            android:key="autoUpdate"
+            android:title="@string/settings_auto_update_title"
+            android:summary="@string/settings_auto_update_summary"
+            android:key="auto_update"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Data Collection"
+        android:title="@string/settings_data_collection"
         app:iconSpaceReserved="false">
 
         <SwitchPreferenceCompat
-            android:title="Analytics Data Collection"
-            android:summary="En-/Disable data collection via Firebase Analytics"
-            android:key="analyticsCollection"
+            android:title="@string/settings_analytics_title"
+            android:summary="@string/settings_analytics_summary"
+            android:key="analytics_collection"
             app:iconSpaceReserved="false" />
 
         <SwitchPreferenceCompat
-            android:title="Crashlytics Data Collection"
-            android:summary="En-/Disable data collection via Firebase Crashlytics"
-            android:key="crashlyticsCollection"
+            android:title="@string/settings_crashlytics_title"
+            android:summary="@string/settings_crashlytics_summary"
+            android:key="crashlytics_collection"
             app:iconSpaceReserved="false" />
 
         <Preference
-            android:title="Reset Data Collection"
-            android:summary="Reset your collected data for Analytics and Crashlytics"
-            android:key="dataDeletion"
+            android:title="@string/settings_data_deletion_title"
+            android:summary="@string/settings_data_deletion_summary"
+            android:key="data_deletion"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>

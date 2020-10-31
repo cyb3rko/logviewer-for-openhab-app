@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/content"
         app:layout_constraintVertical_chainStyle="spread"
-        android:text="Data Collection" />
+        android:text="@string/intro_fragment4_title" />
 
     <ScrollView
         android:id="@+id/content"
@@ -45,27 +45,27 @@
                 style="@style/AppIntroDefaultText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You can help me to (quickly) fix bugs and improve the app performance by allowing data collection (you can change them later in the settings):\n\nFirebase Analytics:\nProviding me with simple usage data mentioned in the Privacy Policy." />
+                android:text="@string/intro_fragment4_description1" />
 
             <CheckBox
                 android:id="@+id/analytics_check"
                 style="@style/Checkbox.AppIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I agree to data collection via Analytics." />
+                android:text="@string/intro_fragment4_check1" />
 
             <TextView
                 style="@style/AppIntroDefaultText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Firebase Crashlytics:\nProviding me with logs after this app crashes to fix the relating bugs." />
+                android:text="@string/intro_fragment4_description2" />
 
             <CheckBox
                 android:id="@+id/crashlytics_check"
                 style="@style/Checkbox.AppIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I agree to data collection via Crashlytics." />
+                android:text="@string/intro_fragment4_check2" />
 
         </LinearLayout>
 

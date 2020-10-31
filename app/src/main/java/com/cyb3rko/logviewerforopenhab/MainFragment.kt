@@ -64,33 +64,33 @@ class MainFragment : Fragment() {
 
     // restore last status
     private fun statusRestoring() {
-        connectCheck.isChecked = mySPR.getBoolean("connectCheck", false)
+        connectCheck.isChecked = mySPR.getBoolean(CONNECT_CHECK, false)
 
         // restore textbox status
-        if (mySPR.getString("hostnameIPAddressString", "") == "" || mySPR.getString("hostnameIPAddressString", "") == "0") {
+        if (mySPR.getString(HOSTNAME_STRING, "") == "" || mySPR.getString(HOSTNAME_STRING, "") == "0") {
             hostnameIPAddressText.setText("")
             hostnameIPAddress.isEnabled = true
         } else {
-            hostnameIPAddressText.setText(mySPR.getString("hostnameIPAddressString", "0"))
-            hostnameIPAddressString = mySPR.getString("hostnameIPAddressString", "0")!!
+            hostnameIPAddressText.setText(mySPR.getString(HOSTNAME_STRING, "0"))
+            hostnameIPAddressString = mySPR.getString(HOSTNAME_STRING, "0")!!
             hostnameIPAddress.isEnabled = false
         }
 
         // restore checkbox status
-        hostnameIPAddressCheck.isChecked = mySPR.getBoolean("hostnameIPAddressCheck", true)
+        hostnameIPAddressCheck.isChecked = mySPR.getBoolean(HOSTNAME_CHECK, true)
 
         // restore textbox status
-        if (mySPR.getInt("portInt", 0) == 0) {
+        if (mySPR.getInt(PORT_INT, 0) == 0) {
             portText.setText("")
             hostnameIPAddress.isEnabled = true
         } else {
-            portText.setText(mySPR.getInt("portInt", 0).toString())
+            portText.setText(mySPR.getInt(PORT_INT, 0).toString())
             port.isEnabled = false
-            portInt = mySPR.getInt("portInt", 9001)
+            portInt = mySPR.getInt(PORT_INT, 9001)
         }
 
         // restore checkbox status
-        portCheck.isChecked = mySPR.getBoolean("portCheck", true)
+        portCheck.isChecked = mySPR.getBoolean(PORT_CHECK, true)
 
         val hostname = hostnameIPAddressText.text.toString()
         val port = portText.text.toString()
@@ -99,7 +99,7 @@ class MainFragment : Fragment() {
             hostnameIPAddressCheck.isEnabled = false
             portCheck.isEnabled = false
             connectCheck.isEnabled = true
-            connectButton.text = getString(R.string.connect_button_2)
+            connectButton.text = getString(R.string.main_connect_button2)
             editButton.isEnabled = true
         }
     }
@@ -139,35 +139,35 @@ class MainFragment : Fragment() {
 
                     // store values if user wants to
                     if (hostnameIPAddressCheck.isChecked) {
-                        editor.putString("hostnameIPAddressString", hostnameIPAddressString)
-                        editor.putBoolean("hostnameIPAddressCheck", true)
+                        editor.putString(HOSTNAME_STRING, hostnameIPAddressString)
+                        editor.putBoolean(HOSTNAME_CHECK, true)
                     } else {
-                        editor.putString("hostnameIPAddressString", "")
-                        editor.putBoolean("hostnameIPAddressCheck", false)
+                        editor.putString(HOSTNAME_STRING, "")
+                        editor.putBoolean(HOSTNAME_CHECK, false)
                     }
 
                     // store values if user wants to
                     if (portCheck.isChecked) {
-                        editor.putBoolean("portCheck", true)
+                        editor.putBoolean(PORT_CHECK, true)
 
                         // check if user entered port
                         if (portText.text.toString().trim().isNotEmpty()) {
-                            editor.putInt("portInt", portInt)
+                            editor.putInt(PORT_INT, portInt)
                         } else {
                             portText.setText(9001.toString())
-                            editor.putInt("portInt", 9001)
+                            editor.putInt(PORT_INT, 9001)
                         }
                     } else {
                         portText.setText(9001.toString())
-                        editor.putInt("portInt", 0)
-                        editor.putBoolean("portCheck", false)
+                        editor.putInt(PORT_INT, 0)
+                        editor.putBoolean(PORT_CHECK, false)
                     }
 
                     // store link
-                    editor.putString("link", link).apply()
+                    editor.putString(LINK, link).apply()
 
                     // change button text
-                    connectButton.text = getString(R.string.connect_button_2)
+                    connectButton.text = getString(R.string.main_connect_button2)
                 } else {
                     if (view != null) {
                         val imm = view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -176,7 +176,7 @@ class MainFragment : Fragment() {
                     Toasty.info(v.context, getString(R.string.connecting), Toasty.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.nav_webview)
 
-                    if (mySPR.getBoolean("connectionOverviewEnabled", true)) {
+                    if (mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)) {
                         storeAndShowConnection(tempHostname, tempPort.toInt())
                     }
                 }
@@ -199,7 +199,7 @@ class MainFragment : Fragment() {
                 newConnections += "${it.hostName}:${it.port};"
             }
             newConnections += "${hostname}:${portInt}"
-            editor.putString("connections", newConnections).commit()
+            editor.putString(CONNECTIONS, newConnections).commit()
             connections.add(newConnection)
             showConnections(mySPR, connections, activity)
         }
@@ -213,7 +213,7 @@ class MainFragment : Fragment() {
             port.isEnabled = true
             portCheck.isEnabled = true
             connectCheck.isEnabled = false
-            connectButton.text = getString(R.string.connect_button_1)
+            connectButton.text = getString(R.string.main_connect_button2)
             editButton.isEnabled = false
             linkView.text = ""
         }
@@ -222,8 +222,8 @@ class MainFragment : Fragment() {
     // onClickListener for connect checkbox
     private fun setConnectCheckClickListener() {
         connectCheck.setOnCheckedChangeListener { _, b -> // store values
-            editor.putBoolean("connectCheck", b)
-            editor.putBoolean("autoStart", b).apply()
+            editor.putBoolean(CONNECT_CHECK, b)
+            editor.putBoolean(AUTO_START, b).apply()
         }
     }
 }

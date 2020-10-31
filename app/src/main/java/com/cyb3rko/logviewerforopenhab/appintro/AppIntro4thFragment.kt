@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
+import com.cyb3rko.logviewerforopenhab.ANALYTICS_COLLECTION
+import com.cyb3rko.logviewerforopenhab.CRASHYTICS_COLLECTION
 import com.cyb3rko.logviewerforopenhab.R
 import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
 
@@ -26,11 +28,11 @@ class AppIntro4thFragment : Fragment() {
         val editor = mySPR.edit()
 
         checkBox1.setOnCheckedChangeListener { _, b ->
-            editor.putBoolean("analyticsCollection", b).apply()
+            editor.putBoolean(ANALYTICS_COLLECTION, b).apply()
         }
 
         checkBox2.setOnCheckedChangeListener { _, b ->
-            editor.putBoolean("crashlyticsCollection", b).apply()
+            editor.putBoolean(CRASHYTICS_COLLECTION, b).apply()
         }
     }
 

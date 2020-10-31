@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         mySPR = getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         editor.apply()
-        requestedOrientation = mySPR.getString("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())?.toInt()!!
+        requestedOrientation = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())?.toInt()!!
 
         setContentView(R.layout.activity_main)
         toolbar = findViewById(R.id.toolbar)
@@ -70,22 +70,22 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
-        navController.setGraph(if (mySPR.getBoolean("autoStart", false)) R.navigation.mobile_navigation2 else R.navigation.mobile_navigation)
+        navController.setGraph(if (mySPR.getBoolean(AUTO_START, false)) R.navigation.mobile_navigation2 else R.navigation.mobile_navigation)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_menu), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        val drawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.close, R.string.close)
+        val drawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        if (mySPR.getBoolean("firstStart", true) || mySPR.getString("date", "") == "") {
+        if (mySPR.getBoolean(FIRST_START, true) || mySPR.getString(CONSENT_DATE, "") == "") {
             finish()
             startActivity(Intent(applicationContext, MyAppIntro::class.java))
         } else {
-            if (mySPR.getBoolean("autoStart", false)) navController.navigate(R.id.nav_webview)
-            if (mySPR.getBoolean("autoUpdate", false)) updateCheck(this)
+            if (mySPR.getBoolean(AUTO_START, false)) navController.navigate(R.id.nav_webview)
+            if (mySPR.getBoolean(AUTO_UPDATE, false)) updateCheck(this)
         }
     }
 
@@ -100,8 +100,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.drawer_about -> navController.navigate(R.id.nav_about)
                 R.id.drawer_end_user_consent -> {
                     var dialogMessage = getString(R.string.end_user_consent_2_message_1)
-                    dialogMessage += mySPR.getString("date", "Date not found") + getString(R.string.end_user_consent_2_message_2) +
-                            mySPR.getString("time", "Time not found")
+                    dialogMessage += mySPR.getString(CONSENT_DATE, getString(R.string.end_user_consent_2_date_not_found)) +
+                            getString(R.string.end_user_consent_2_message_2) +
+                            mySPR.getString(CONSENT_TIME, getString(R.string.end_user_consent_2_time_not_found))
                     val spannableString = SpannableString(dialogMessage)
                     val drawerMenu = navView.menu
                     val clickableSpan1 = object : ClickableSpan() {
@@ -114,18 +115,23 @@ class MainActivity : AppCompatActivity() {
                             showLicenseDialog(this@MainActivity, TERMS_OF_USE)
                         }
                     }
+                    var currentText = getString(R.string.end_user_consent_2_privacy_policy)
+                    var index = dialogMessage.indexOf(currentText)
                     spannableString.setSpan(
-                        clickableSpan1, dialogMessage.indexOf("Privacy"), dialogMessage.indexOf("Privacy") +
-                                "Privacy Policy".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                        clickableSpan1, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
+                    currentText = getString(R.string.end_user_consent_2_terms_of_use)
+                    index = dialogMessage.indexOf(currentText)
                     spannableString.setSpan(
-                        clickableSpan2, dialogMessage.indexOf("Terms"), dialogMessage.indexOf("Terms") + "Terms of Use".length,
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                        clickableSpan2, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                     )
-                    var index = dialogMessage.indexOf("Date")
-                    spannableString.setSpan(UnderlineSpan(), index, index + "Date".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    index = dialogMessage.indexOf("Time")
-                    spannableString.setSpan(UnderlineSpan(), index, index + "Time".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    currentText = getString(R.string.end_user_consent_2_date)
+                    index = dialogMessage.indexOf(currentText)
+                    for (i in 0..1) {
+                        spannableString.setSpan(UnderlineSpan(), index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        currentText = getString(R.string.end_user_consent_2_date)
+                        index = dialogMessage.indexOf(currentText)
+                    }
 
                     MaterialDialog(this).show {
                         title(R.string.end_user_consent_2_title)
@@ -157,7 +163,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        if (mySPR.getBoolean("connectionOverviewEnabled", true)) { restoreConnections() }
+        if (mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)) { restoreConnections() }
     }
 
     private fun restoreConnections() {
@@ -175,19 +181,20 @@ class MainActivity : AppCompatActivity() {
                     val newestVersionCode = versionCode.toInt()
                     val versionNameAndFollowing = versionCodeAndFollowing.split("\"")[1]
                     val versionName = versionNameAndFollowing.split("\"")[0]
-                    editor.putString("newestVersion", versionName).apply()
+                    editor.putString(NEWEST_VERSION, versionName).apply()
 
                     if (BuildConfig.VERSION_CODE < newestVersionCode) {
                         Log.d(this@MainActivity::class.java.simpleName, "Update available: $versionName")
                         val dialogMessage = String.format(getString(R.string.update_dialog_message), "$versionName ($versionCode)",
                             "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
-                        val index = dialogMessage.indexOf("changelog")
+                        val changelog = "changelog"
+                        val index = dialogMessage.indexOf(changelog)
                         val spannableString = SpannableString(dialogMessage)
                         spannableString.setSpan(object : ClickableSpan() {
                             override fun onClick(p0: View) {
                                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.update_changelog_link))))
                             }
-                        }, index, index + "changelog".length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        }, index, index + changelog.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
                         MaterialDialog(this@MainActivity).show {
                             title(R.string.update_dialog_title)
@@ -197,7 +204,7 @@ class MainActivity : AppCompatActivity() {
                             positiveButton(R.string.update_dialog_button_1) {
                                 if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                                     == PackageManager.PERMISSION_GRANTED) {
-                                    downloadNewestApk(applicationContext, mySPR.getString("newestVersion", "")!!)
+                                    downloadNewestApk(applicationContext, mySPR.getString(NEWEST_VERSION, "")!!)
                                 } else {
                                     Toasty.error(context, getString(R.string.update_dialog_error), Toasty.LENGTH_LONG).show()
                                 }
@@ -213,7 +220,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onError(anError: ANError) {
                     // nothing to clean up (for PMD)
-                    Log.e(this@MainActivity::class.java.simpleName,"Checking for update failed: $anError")
+                    Log.e(this@MainActivity::class.java.simpleName, String.format(getString(R.string.update_dialog_failed, anError)))
                 }
             })
     }

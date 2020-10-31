@@ -25,22 +25,22 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         addPreferencesFromResource(R.xml.preferences)
         preferenceManager.sharedPreferencesName = SHARED_PREFERENCE
         mySPR = preferenceManager.sharedPreferences
-        orientationList = findPreference("orientation")!!
-        connectionOverviewSwitch = findPreference("connectionOverviewEnabled")!!
-        autoUpdateSwitch = findPreference("autoUpdate")!!
-        analyticsCollectionSwitch = findPreference("analyticsCollection")!!
-        crashlyticsCollectionSwitch = findPreference("crashlyticsCollection")!!
+        orientationList = findPreference(ORIENTATION)!!
+        connectionOverviewSwitch = findPreference(CONNECTION_OVERVIEW_ENABLED)!!
+        autoUpdateSwitch = findPreference(AUTO_UPDATE)!!
+        analyticsCollectionSwitch = findPreference(ANALYTICS_COLLECTION)!!
+        crashlyticsCollectionSwitch = findPreference(CRASHYTICS_COLLECTION)!!
 
-        orientationList.value = mySPR.getString("orientation", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())
-        connectionOverviewSwitch.isChecked = mySPR.getBoolean("connectionOverviewEnabled", true)
-        autoUpdateSwitch.isChecked = mySPR.getBoolean("autoUpdate", true)
-        analyticsCollectionSwitch.isChecked = mySPR.getBoolean("analyticsCollection", false)
-        crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean("crashlyticsCollection", false)
+        orientationList.value = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())
+        connectionOverviewSwitch.isChecked = mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)
+        autoUpdateSwitch.isChecked = mySPR.getBoolean(AUTO_UPDATE, true)
+        analyticsCollectionSwitch.isChecked = mySPR.getBoolean(ANALYTICS_COLLECTION, false)
+        crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHYTICS_COLLECTION, false)
     }
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
         return when (preference?.key) {
-            "orientation" -> {
+            ORIENTATION -> {
                 val myActivity = activity
                 if (myActivity != null) {
                     orientationList.setOnPreferenceChangeListener { selectedPreference, newValue ->
@@ -52,7 +52,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                 }
                 true
             }
-            "connectionOverviewEnabled" -> {
+            CONNECTION_OVERVIEW_ENABLED -> {
                 if (connectionOverviewSwitch.isChecked) {
                     showConnections(mySPR, getListOfConnections(mySPR), activity)
                 } else {
@@ -60,18 +60,18 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                 }
                 true
             }
-            "analyticsCollection" -> {
+            ANALYTICS_COLLECTION -> {
                 FirebaseAnalytics.getInstance(requireContext()).setAnalyticsCollectionEnabled(analyticsCollectionSwitch.isChecked)
                 true
             }
-            "crashlyticsCollection" -> {
+            CRASHYTICS_COLLECTION -> {
                 FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlyticsCollectionSwitch.isChecked)
                 true
             }
-            "dataDeletion" -> {
+            DATA_DELETION -> {
                 FirebaseAnalytics.getInstance(requireActivity()).resetAnalyticsData()
                 FirebaseCrashlytics.getInstance().deleteUnsentReports()
-                Toasty.success(requireContext(), "Deletion done", Toasty.LENGTH_SHORT).show()
+                Toasty.success(requireContext(), getString(R.string.settings_data_deletion_done), Toasty.LENGTH_SHORT).show()
                 true
             }
             else -> false

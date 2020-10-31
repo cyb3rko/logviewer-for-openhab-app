@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_fragment1_title">Welcome…</string>
+    <string name="intro_fragment1_description">This is the unofficial LogViewer for openHAB app made by Cyb3rKo</string>
+    <string name="intro_fragment2_title">Feel free to contribute</string>
+    <string name="intro_fragment2_description">If you experience any problems or if you have a idea for a new feature, feel free to visit the GitHub
+        repository and open an issue or a pull request.\nThanks!</string>
+    <string name="intro_fragment3_title">End User Consent</string>
+    <string name="intro_fragment3_description">For using this app you may agree to the Terms of Use and the Privacy Policy.</string>
+    <string name="intro_fragment3_button1">Terms of Use</string>
+    <string name="intro_fragment3_check1">I agree to the Terms of Use.</string>
+    <string name="intro_fragment3_button2">Privacy Policy</string>
+    <string name="intro_fragment3_check2">I agree to the Privacy Policy.</string>
+    <string name="intro_fragment3_toast">To continue you have to agree to both</string>
+    <string name="intro_fragment4_title">Data Collection</string>
+    <string name="intro_fragment4_description1">You can help me to (quickly) fix bugs and improve the app performance by allowing data collection
+        (you can change them later in the settings):\n\n<u>Firebase Analytics</u>:\nProviding me with simple usage data mentioned in the Privacy
+        Policy.</string>
+    <string name="intro_fragment4_check1">I agree to data collection via Analytics.</string>
+    <string name="intro_fragment4_description2"><u>Firebase Crashlytics</u>:\nProviding me with logs after this app crashes to fix the relating
+        bugs.</string>
+    <string name="intro_fragment4_check2">I agree to data collection via Crashlytics.</string>
+    <string name="intro_fragment5_title">Auto Update</string>
+    <string name="intro_fragment5_description">Do you want the app to check for updates and optionally download the newest version?</string>
+    <string name="intro_fragment6_title">Ready…</string>
+    <string name="intro_fragment6_description">OK, everything is set up.\nEnjoy!</string>
+</resources>

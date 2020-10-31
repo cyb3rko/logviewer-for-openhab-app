@@ -14,11 +14,11 @@
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/_ic_settings"
-            android:title="Settings" />
+            android:title="@string/menu_settings" />
     </group>
 
     <item
-        android:title="Connections"
+        android:title="@string/menu_connections"
         android:id="@+id/nav_connections">
         <menu
             android:id="@+id/nav_connections_menu"
@@ -30,12 +30,12 @@
         <item
             android:id="@+id/drawer_about"
             android:icon="@drawable/_ic_info"
-            android:title="About" />
+            android:title="@string/menu_about" />
         <item
             android:id="@+id/drawer_end_user_consent"
             android:icon="@drawable/_ic_end_user_consent"
             android:checkable="false"
-            android:title="End User Consent" />
+            android:title="@string/menu_end_user_consent" />
     </group>
 
 </menu>
