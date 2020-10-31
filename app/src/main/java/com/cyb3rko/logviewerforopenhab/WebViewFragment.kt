@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -65,9 +66,8 @@ class WebViewFragment : Fragment() {
         // open link
         webView.loadUrl(mySPR.getString(LINK, "")!!)
 
-        // permanent scroll
-        val handler = Handler()
-        val runnable: Runnable = object : Runnable {
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = object : Runnable {
             override fun run() {
                 if (viewLocked) {
                     webView.scrollBy(0, 10000)

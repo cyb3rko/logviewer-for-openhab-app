@@ -221,7 +221,7 @@ class MainFragment : Fragment() {
 
     // onClickListener for connect checkbox
     private fun setConnectCheckClickListener() {
-        connectCheck.setOnCheckedChangeListener { _, b -> // store values
+        connectCheck.setOnCheckedChangeListener { _, b ->
             editor.putBoolean(CONNECT_CHECK, b)
             editor.putBoolean(AUTO_START, b).apply()
         }

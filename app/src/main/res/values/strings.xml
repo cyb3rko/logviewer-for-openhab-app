@@ -43,6 +43,10 @@
     <string name="update_download_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/download/v%1$s/LogViewerforopenHAB_%1$s.apk</string>
     <string name="update_changelog_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest</string>
 
+    <string name="webview_viewlock_button_desc">lock</string>
+    <string name="webview_textsize_button_desc">font icon</string>
+    <string name="webview_back_button_desc">back arrow</string>
+
     <string name="tap_target_title_1">View Lock</string>
     <string name="tap_target_title_2">Text size</string>
     <string name="tap_target_title_3">Go back</string>

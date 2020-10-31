@@ -16,7 +16,7 @@ class AboutFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val aboutPage = AboutPage(context)
+        return AboutPage(context)
             .setImage(R.mipmap.ic_launcher_foreground)
             .setDescription(getString(R.string.about_description)) // first item
             .addItem(
@@ -48,8 +48,6 @@ class AboutFragment : Fragment() {
                     .setIconTint(R.color.about_instagram_color).setOnClickListener(openInstaPage())
             )
             .create()
-
-        return aboutPage
     }
 
     // show youtube profile

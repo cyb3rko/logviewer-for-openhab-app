@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:src="@drawable/_ic_lock"
         app:backgroundTint="#A6FF7E29"
         app:borderWidth="0dp"
@@ -18,7 +19,8 @@
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toTopOf="@id/webview"
         app:layout_constraintEnd_toEndOf="@+id/webview"
-        app:layout_constraintBottom_toTopOf="@id/text_button" />
+        app:layout_constraintBottom_toTopOf="@id/text_button"
+        android:contentDescription="@string/webview_viewlock_button_desc" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/text_button"
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:src="@drawable/_ic_font"
         app:backgroundTint="#A6FF7E29"
         app:borderWidth="0dp"
@@ -33,13 +36,15 @@
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toBottomOf="@+id/view_button"
         app:layout_constraintEnd_toEndOf="@+id/webview"
-        app:layout_constraintBottom_toBottomOf="@id/webview"/>
+        app:layout_constraintBottom_toBottomOf="@id/webview"
+        android:contentDescription="@string/webview_textsize_button_desc" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:src="@drawable/_ic_arrow_left"
         app:backgroundTint="#80FF7E29"
         app:borderWidth="0dp"
@@ -47,7 +52,8 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/webview"
         app:layout_constraintStart_toStartOf="@id/webview"
-        app:layout_constraintTop_toTopOf="@id/webview" />
+        app:layout_constraintTop_toTopOf="@id/webview"
+        android:contentDescription="@string/webview_back_button_desc" />
 
     <WebView
         android:id="@+id/webview"
@@ -60,5 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
     </WebView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

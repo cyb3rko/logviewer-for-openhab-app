@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var toolbar: Toolbar
 
-    @SuppressLint("ApplySharedPref")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -213,7 +212,7 @@ class MainActivity : AppCompatActivity() {
 
                         ActivityCompat.requestPermissions(activity, arrayOf(
                             Manifest.permission.INTERNET, Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.REQUEST_INSTALL_PACKAGES
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
                         ), 1)
                     }
                 }

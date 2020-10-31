@@ -29,13 +29,13 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         connectionOverviewSwitch = findPreference(CONNECTION_OVERVIEW_ENABLED)!!
         autoUpdateSwitch = findPreference(AUTO_UPDATE)!!
         analyticsCollectionSwitch = findPreference(ANALYTICS_COLLECTION)!!
-        crashlyticsCollectionSwitch = findPreference(CRASHYTICS_COLLECTION)!!
+        crashlyticsCollectionSwitch = findPreference(CRASHLYTICS_COLLECTION)!!
 
         orientationList.value = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())
         connectionOverviewSwitch.isChecked = mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)
         autoUpdateSwitch.isChecked = mySPR.getBoolean(AUTO_UPDATE, true)
         analyticsCollectionSwitch.isChecked = mySPR.getBoolean(ANALYTICS_COLLECTION, false)
-        crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHYTICS_COLLECTION, false)
+        crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHLYTICS_COLLECTION, false)
     }
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
@@ -43,7 +43,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
             ORIENTATION -> {
                 val myActivity = activity
                 if (myActivity != null) {
-                    orientationList.setOnPreferenceChangeListener { selectedPreference, newValue ->
+                    orientationList.setOnPreferenceChangeListener { _, newValue ->
                         myActivity.requestedOrientation = newValue.toString().toInt()
                         myActivity.finish()
                         startActivity(Intent(requireContext(), MainActivity::class.java))
@@ -64,7 +64,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                 FirebaseAnalytics.getInstance(requireContext()).setAnalyticsCollectionEnabled(analyticsCollectionSwitch.isChecked)
                 true
             }
-            CRASHYTICS_COLLECTION -> {
+            CRASHLYTICS_COLLECTION -> {
                 FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlyticsCollectionSwitch.isChecked)
                 true
             }

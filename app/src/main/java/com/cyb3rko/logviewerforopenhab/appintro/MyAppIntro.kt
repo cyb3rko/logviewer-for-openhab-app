@@ -21,17 +21,19 @@ class MyAppIntro : AppIntro() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
         addSlide(AppIntroFragment.newInstance(
             title = getString(R.string.intro_fragment1_title),
             description = getString(R.string.intro_fragment1_description),
             imageDrawable = R.drawable._ic_hello,
-            backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
+            backgroundColor = backgroundColor
         ))
         addSlide(AppIntroFragment.newInstance(
             title = getString(R.string.intro_fragment2_title),
             imageDrawable = R.drawable._ic_github,
             description = getString(R.string.intro_fragment2_description),
-            backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
+            backgroundColor = backgroundColor
         ))
         addSlide(AppIntro3rdFragment.newInstance())
         addSlide(AppIntro4thFragment.newInstance())
@@ -40,7 +42,7 @@ class MyAppIntro : AppIntro() {
             title = getString(R.string.intro_fragment6_title),
             imageDrawable = R.drawable._ic_start,
             description = getString(R.string.intro_fragment6_description),
-            backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
+            backgroundColor = backgroundColor
         ))
 
         setTransformer(AppIntroPageTransformerType.Parallax())
@@ -54,7 +56,7 @@ class MyAppIntro : AppIntro() {
         val editor = mySPR.edit()
 
         FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(mySPR.getBoolean(ANALYTICS_COLLECTION, false))
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean(CRASHYTICS_COLLECTION, false))
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean(CRASHLYTICS_COLLECTION, false))
 
         val date = Calendar.getInstance().time
         @SuppressLint("SimpleDateFormat") val sDF = SimpleDateFormat("yyyy-MM-dd")
