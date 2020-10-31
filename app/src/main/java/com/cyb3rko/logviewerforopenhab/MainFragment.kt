@@ -213,7 +213,7 @@ class MainFragment : Fragment() {
             port.isEnabled = true
             portCheck.isEnabled = true
             connectCheck.isEnabled = false
-            connectButton.text = getString(R.string.main_connect_button2)
+            connectButton.text = getString(R.string.main_connect_button1)
             editButton.isEnabled = false
             linkView.text = ""
         }
