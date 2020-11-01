@@ -55,8 +55,8 @@ class MyAppIntro : AppIntro() {
         val mySPR = applicationContext.getSharedPreferences(SHARED_PREFERENCE, 0)
         val editor = mySPR.edit()
 
-        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(mySPR.getBoolean(ANALYTICS_COLLECTION, false))
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean(CRASHLYTICS_COLLECTION, false))
+        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(mySPR.getBoolean(ANALYTICS_COLLECTION, true))
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(mySPR.getBoolean(CRASHLYTICS_COLLECTION, true))
 
         val date = Calendar.getInstance().time
         @SuppressLint("SimpleDateFormat") val sDF = SimpleDateFormat("yyyy-MM-dd")

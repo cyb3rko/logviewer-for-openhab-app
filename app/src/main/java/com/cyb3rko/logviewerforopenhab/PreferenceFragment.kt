@@ -34,8 +34,8 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         orientationList.value = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())
         connectionOverviewSwitch.isChecked = mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)
         autoUpdateSwitch.isChecked = mySPR.getBoolean(AUTO_UPDATE, true)
-        analyticsCollectionSwitch.isChecked = mySPR.getBoolean(ANALYTICS_COLLECTION, false)
-        crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHLYTICS_COLLECTION, false)
+        analyticsCollectionSwitch.isChecked = mySPR.getBoolean(ANALYTICS_COLLECTION, true)
+        crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHLYTICS_COLLECTION, true)
     }
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
