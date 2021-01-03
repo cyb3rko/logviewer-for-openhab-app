@@ -37,4 +37,10 @@
         android:label="About Icons">
     </fragment>
 
+    <fragment
+        android:id="@+id/nav_about_animations"
+        android:name="com.cyb3rko.logviewerforopenhab.AnimationCreditsFragment"
+        android:label="About Animations">
+    </fragment>
+
 </navigation>

@@ -31,6 +31,9 @@ class AboutFragment : Fragment() {
             .addItem(
                 Element().setTitle(getString(R.string.about_element_3)).setIconDrawable(R.drawable._ic_question).setOnClickListener(showIcons())
             )
+            .addItem(
+                Element().setTitle("Used Animations").setIconDrawable(R.drawable._ic_question).setOnClickListener(showAnimations())
+            )
             .addGroup(getString(R.string.about_group_2))
             .addItem(
                 Element().setTitle(getString(R.string.about_element_feedback_text)).setIconDrawable(R.drawable.about_icon_github)
@@ -80,6 +83,10 @@ class AboutFragment : Fragment() {
 
     private fun showIcons(): View.OnClickListener? {
         return View.OnClickListener { findNavController().navigate(R.id.nav_about_icons) }
+    }
+
+    private fun showAnimations(): View.OnClickListener? {
+        return View.OnClickListener { findNavController().navigate(R.id.nav_about_animations) }
     }
 
     private fun openOnGithub(): View.OnClickListener? {
