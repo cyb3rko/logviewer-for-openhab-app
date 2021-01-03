@@ -5,6 +5,7 @@
 [![license](https://img.shields.io/github/license/cyb3rko/logviewer-for-openhab-app)](https://www.apache.org/licenses/LICENSE-2.0)
 
 - [About this project](#about-this-project)  
+    - [Translation](#translation)
 - [Features](#features)  
 - [Screenshots](#screenshots)  
   - [Smartphone](#smartphone)  
@@ -24,6 +25,13 @@ If you want to, you can also have a look at my other projects:
 [My Website (only in German!)](https://nikothegreek.jimdofree.com)
 
 [<img src=".github/images/download.webp">](https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest)
+
+### Translation
+
+[TRANSLATION PROJECT](https://poeditor.com/join/project?hash=ygnGPjgRfN)
+
+You can now translate this app in many different languages.  
+If you can't find a language you're looking for, just drop me a mail at niko@cyb3rko.de and I will add it.
 
 ## Features
 - accessing the log of an [openHAB](https://www.openhab.org/) instance by entering the hostname / IP address and the port 
