@@ -7,39 +7,39 @@
 
     <fragment
         android:id="@+id/nav_menu"
-        android:name="com.cyb3rko.logviewerforopenhab.MainFragment"
+        android:name="com.cyb3rko.logviewerforopenhab.fragments.MainFragment"
         android:label="@string/menu_menu"
         tools:layout="@layout/fragment_main" >
     </fragment>
 
     <fragment
         android:id="@+id/nav_webview"
-        android:name="com.cyb3rko.logviewerforopenhab.WebViewFragment"
+        android:name="com.cyb3rko.logviewerforopenhab.fragments.WebViewFragment"
         android:label="@string/menu_menu"
         tools:layout="@layout/fragment_web_view" >
     </fragment>
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.cyb3rko.logviewerforopenhab.PreferenceFragment"
+        android:name="com.cyb3rko.logviewerforopenhab.fragments.PreferenceFragment"
         android:label="Preferences">
     </fragment>
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.cyb3rko.logviewerforopenhab.AboutFragment"
+        android:name="com.cyb3rko.logviewerforopenhab.fragments.AboutFragment"
         android:label="About">
     </fragment>
 
     <fragment
         android:id="@+id/nav_about_icons"
-        android:name="com.cyb3rko.logviewerforopenhab.IconCreditsFragment"
+        android:name="com.cyb3rko.logviewerforopenhab.fragments.IconCreditsFragment"
         android:label="About Icons">
     </fragment>
 
     <fragment
         android:id="@+id/nav_about_animations"
-        android:name="com.cyb3rko.logviewerforopenhab.AnimationCreditsFragment"
+        android:name="com.cyb3rko.logviewerforopenhab.fragments.AnimationCreditsFragment"
         android:label="About Animations">
     </fragment>
 

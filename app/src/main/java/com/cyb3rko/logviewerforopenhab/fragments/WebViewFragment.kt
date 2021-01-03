@@ -1,4 +1,4 @@
-package com.cyb3rko.logviewerforopenhab
+package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -17,6 +17,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
+import com.cyb3rko.logviewerforopenhab.*
+import com.cyb3rko.logviewerforopenhab.FIRST_START_WEB
+import com.cyb3rko.logviewerforopenhab.LINK
+import com.cyb3rko.logviewerforopenhab.ORIENTATION
+import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
+import com.cyb3rko.logviewerforopenhab.TEXTSIZE_AUTO
+import com.cyb3rko.logviewerforopenhab.TEXTSIZE_LANDSCAPE
+import com.cyb3rko.logviewerforopenhab.TEXTSIZE_PORTRAIT
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.google.android.material.floatingactionbutton.FloatingActionButton

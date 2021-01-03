@@ -1,4 +1,4 @@
-package com.cyb3rko.logviewerforopenhab
+package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -10,6 +10,20 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.cyb3rko.logviewerforopenhab.*
+import com.cyb3rko.logviewerforopenhab.AUTO_START
+import com.cyb3rko.logviewerforopenhab.CONNECTIONS
+import com.cyb3rko.logviewerforopenhab.CONNECTION_OVERVIEW_ENABLED
+import com.cyb3rko.logviewerforopenhab.CONNECT_CHECK
+import com.cyb3rko.logviewerforopenhab.Connection
+import com.cyb3rko.logviewerforopenhab.HOSTNAME_CHECK
+import com.cyb3rko.logviewerforopenhab.HOSTNAME_STRING
+import com.cyb3rko.logviewerforopenhab.LINK
+import com.cyb3rko.logviewerforopenhab.PORT_CHECK
+import com.cyb3rko.logviewerforopenhab.PORT_INT
+import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
+import com.cyb3rko.logviewerforopenhab.getListOfConnections
+import com.cyb3rko.logviewerforopenhab.showConnections
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import es.dmoral.toasty.Toasty

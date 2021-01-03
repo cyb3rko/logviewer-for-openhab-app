@@ -1,4 +1,4 @@
-package com.cyb3rko.logviewerforopenhab
+package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.cyb3rko.logviewerforopenhab.BuildConfig
+import com.cyb3rko.logviewerforopenhab.R
 import com.mikepenz.aboutlibraries.LibsBuilder
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element

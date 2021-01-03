@@ -1,4 +1,4 @@
-package com.cyb3rko.logviewerforopenhab
+package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.cyb3rko.abouticons.AboutIcons
+import com.cyb3rko.logviewerforopenhab.R
 
 class IconCreditsFragment : Fragment() {
 

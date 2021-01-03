@@ -1,4 +1,4 @@
-package com.cyb3rko.logviewerforopenhab
+package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.content.Intent
 import android.net.Uri

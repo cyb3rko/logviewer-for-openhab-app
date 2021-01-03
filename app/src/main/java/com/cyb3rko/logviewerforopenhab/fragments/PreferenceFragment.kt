@@ -1,4 +1,4 @@
-package com.cyb3rko.logviewerforopenhab
+package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,6 +8,17 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.cyb3rko.logviewerforopenhab.*
+import com.cyb3rko.logviewerforopenhab.ANALYTICS_COLLECTION
+import com.cyb3rko.logviewerforopenhab.AUTO_UPDATE
+import com.cyb3rko.logviewerforopenhab.CONNECTION_OVERVIEW_ENABLED
+import com.cyb3rko.logviewerforopenhab.CRASHLYTICS_COLLECTION
+import com.cyb3rko.logviewerforopenhab.DATA_DELETION
+import com.cyb3rko.logviewerforopenhab.ORIENTATION
+import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
+import com.cyb3rko.logviewerforopenhab.getListOfConnections
+import com.cyb3rko.logviewerforopenhab.hideConnections
+import com.cyb3rko.logviewerforopenhab.showConnections
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import es.dmoral.toasty.Toasty
