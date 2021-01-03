@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
-        navController.setGraph(if (mySPR.getBoolean(AUTO_START, false)) R.navigation.mobile_navigation2 else R.navigation.mobile_navigation)
+        navController.setGraph(R.navigation.mobile_navigation)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_menu), drawerLayout)
