@@ -49,13 +49,16 @@ class MainFragment : Fragment() {
         editor = mySPR.edit()
         editor.apply()
 
-        statusRestoring()
-
         setEditButtonClickListener()
         setConnectButtonClickListener(v)
         setConnectCheckClickListener()
 
         return v
+    }
+
+    override fun onStart() {
+        super.onStart()
+        statusRestoring()
     }
 
     private fun statusRestoring() {
