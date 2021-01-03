@@ -21,8 +21,8 @@ This is a simple and easy to use android app to simplify the mobile access to th
 I have not that much experience with programming so please help this project by opening [issues](https://github.com/cyb3rko/logviewer-for-openhab-app/issues) and creating new [pull requests](https://github.com/cyb3rko/logviewer-for-openhab-app/pulls) for improving code and implementing new features (see chapter [Contribute](#contribute)).  
 Furthermore I'm still a student so the progress might not be as fast as on other projects.
 
-If you want to, you can also have a look at my other projects:  
-[My Website (only in German!)](https://nikothegreek.jimdofree.com)
+You can also have a look at my other projects:  
+[My GitHub page](https://github.com/cyb3rko)
 
 [<img src=".github/images/download.webp">](https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest)
 
