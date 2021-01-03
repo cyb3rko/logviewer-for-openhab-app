@@ -1,7 +1,6 @@
 package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -158,10 +157,6 @@ class WebViewFragment : Fragment() {
             param(FirebaseAnalytics.Param.ITEM_ID, errorCode.toString())
             param(FirebaseAnalytics.Param.VALUE, description)
         }
-    }
-
-    private fun setToolbarVisibility(activity: Activity?, visibility: Int) {
-        activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)?.visibility = visibility
     }
 
     private fun setViewButtonClickListener() {

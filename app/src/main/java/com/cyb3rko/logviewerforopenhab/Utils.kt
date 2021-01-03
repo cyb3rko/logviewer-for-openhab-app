@@ -97,3 +97,7 @@ internal fun showLicenseDialog(context: Context?, type: String) {
         }
     }
 }
+
+fun setToolbarVisibility(activity: Activity?, visibility: Int) {
+    activity?.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)?.visibility = visibility
+}

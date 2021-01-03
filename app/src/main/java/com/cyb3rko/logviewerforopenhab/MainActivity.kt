@@ -233,6 +233,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        setToolbarVisibility(this, View.VISIBLE)
         if (drawerLayout.isOpen) drawerLayout.close() else super.onBackPressed()
     }
 
