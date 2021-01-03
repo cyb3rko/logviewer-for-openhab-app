@@ -12,40 +12,26 @@
     <string name="main_port_hint">Port</string>
     <string name="main_port_helper">leave empty for 9001</string>
     <string name="main_checks_text">Save</string>
-    <string name="main_connect_button1">Check</string>
-    <string name="main_connect_button2">Connect</string>
+    <string name="main_connect_button_1">Check</string>
+    <string name="main_connect_button_2">Connect</string>
     <string name="main_edit_button">Edit</string>
     <string name="main_connect_check">automatically connect\nnext time</string>
 
-    <string name="end_user_consent_title">End User Consent</string>
-    <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>
-    <string name="end_user_consent_button_1">Got it</string>
-    <string name="end_user_consent_button_2">Cancel</string>
-
-    <string name="end_user_consent_2_title">Your End User Consent</string>
-    <string name="end_user_consent_2_message_1">By using this app you have agreed to the Terms of Use and the Privacy Policy.\n\nDate:&#160;</string>
-    <string name="end_user_consent_2_message_2">\n<u>Time:</u> </string>
-    <string name="end_user_consent_2_privacy_policy">Privacy Policy</string>
-    <string name="end_user_consent_2_terms_of_use">Terms of Use</string>
-    <string name="end_user_consent_2_date">Date</string>
-    <string name="end_user_consent_2_time">Time</string>
-    <string name="end_user_consent_2_date_not_found">Date not found</string>
-    <string name="end_user_consent_2_time_not_found">Time not found</string>
-    <string name="end_user_consent_2_button2">Revoke</string>
-
-    <string name="update_dialog_title">New Update Available</string>
-    <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about new features.</string>
-    <string name="update_dialog_button_1">Download</string>
-    <string name="update_dialog_button_2">Changelog</string>
-    <string name="update_dialog_failed">Checking for update failed: %1$s</string>
-    <string name="update_dialog_error">Missing permission, give it on next app start</string>
-    <string name="update_check_link" translatable="false">https://raw.githubusercontent.com/cyb3rko/logviewer-for-openhab-app/master/app/build.gradle</string>
-    <string name="update_download_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/download/v%1$s/LogViewerforopenHAB_%1$s.apk</string>
-    <string name="update_changelog_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest</string>
+    <string name="nav_header_credits">Made with 💜 by Cyb3rko</string>
+    <string name="nav_header_link" translatable="false">github.com/cyb3rko</string>
 
     <string name="webview_viewlock_button_desc">lock</string>
     <string name="webview_textsize_button_desc">font icon</string>
     <string name="webview_back_button_desc">back arrow</string>
+
+    <string name="webview_error_timeout">Connection timed out</string>
+    <string name="webview_error_connection_1">Connection refusedt</string>
+    <string name="webview_error_connection_2">Connection failed</string>
+    <string name="webview_error_authentication">Authentication failed</string>
+    <string name="webview_error_internet">Internet disconnected</string>
+    <string name="webview_error_host">Host \'%1$s\' not found</string>
+    <string name="webview_error_port">Unsafe port: \'%1$s\'</string>
+    <string name="webview_error_unknown">Unknown error occurred</string>
 
     <string name="tap_target_title_1">View Lock</string>
     <string name="tap_target_title_2">Text size</string>
@@ -67,6 +53,94 @@
     <string name="menu_about">About</string>
     <string name="menu_end_user_consent">End User Consent</string>
 
-    <string name="nav_header_credits">Made with 💜 by Cyb3rko</string>
-    <string name="nav_header_link" translatable="false">github.com/cyb3rko</string>
+    <string name="update_dialog_title">New Update Available</string>
+    <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about new features.</string>
+    <string name="update_dialog_button_1">Download</string>
+    <string name="update_dialog_button_2">Changelog</string>
+    <string name="update_dialog_failed">Checking for update failed: %1$s</string>
+    <string name="update_dialog_error">Missing permission, give it on next app start</string>
+    <string name="update_check_link" translatable="false">https://raw.githubusercontent.com/cyb3rko/logviewer-for-openhab-app/master/app/build.gradle</string>
+    <string name="update_download_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/download/v%1$s/LogViewerforopenHAB_%1$s.apk</string>
+    <string name="update_changelog_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest</string>
+
+    <string name="settings_user_experience">User Experience</string>
+    <string name="settings_data_collection">Data Collection</string>
+    <string name="settings_orientation_title">Orientation</string>
+    <string name="settings_orientation_summary">Toggle the orientation of the app</string>
+    <string name="settings_connection_overview_title">Connection Overview</string>
+    <string name="settings_connection_overview_summary">En-/Disable the overview of recent connections in the Navigation Drawer</string>
+    <string name="settings_auto_update_title">Auto Update</string>
+    <string name="settings_auto_update_summary">En-/Disable checking for updates and optionally downloading the newewst version</string>
+    <string name="settings_analytics_title">Analytics Data Collection</string>
+    <string name="settings_analytics_summary">En-/Disable data collection via Firebase Analytics</string>
+    <string name="settings_crashlytics_title">Crashlytics Data Collection</string>
+    <string name="settings_crashlytics_summary">En-/Disable data collection via Firebase Crashlytics</string>
+    <string name="settings_data_deletion_title">Reset Data Collection</string>
+    <string name="settings_data_deletion_summary">Reset your collected data for Analytics and Crashlytics</string>
+    <string name="settings_data_deletion_done">Deletion done</string>
+
+    <string name="about">About</string>
+    <string name="about_element_version">Version %1$s (%2$d)</string>
+    <string name="about_description">This is a simple and easy to use android app to simplify the mobile access to the log of an openHAB instance
+        (running frontail) on your tablet or your smartphone.</string>
+    <string name="about_changelog_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases</string>
+    <string name="about_group_legal">Legal</string>
+    <string name="about_element_libraries">Used Libraries</string>
+    <string name="about_element_icons">Used Icons</string>
+    <string name="about_element_animations">Used Animations</string>
+    <string name="about_group_connect">Connect with me</string>
+    <string name="about_element_feedback_value" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/</string>
+    <string name="about_element_feedback_text">Visit and give feedback on GitHub</string>
+    <string name="about_element_email_value" translatable="false">niko@cyb3rko.de</string>
+    <string name="about_element_email_text">Contact me</string>
+    <!--    <string name="about_element_website_value" translatable="false">https://cyb3rko.de</string>-->
+    <!--    <string name="about_element_website_text">Visit my website</string>-->
+    <string name="about_element_youtube_value" translatable="false">https://youtube.com/channel/UCue_SZXdF8yZByavetBU1ZQ</string>
+    <string name="about_element_youtube_text">Watch my tutorial videos (in German)</string>
+    <string name="about_element_github_value" translatable="false">cyb3rko</string>
+    <string name="about_element_github_text">Take a look at my other projects</string>
+    <string name="about_element_instagram_value" translatable="false">https://instagram.com/_u/cyb3rko</string>
+    <string name="about_element_instagram_text">Follow me</string>
+    <string name="about_animations">\'%1$s\' animation by %2$s</string>
+
+    <string name="intro_fragment1_title">Welcome…</string>
+    <string name="intro_fragment1_description">This is the unofficial LogViewer for openHAB app made by Cyb3rKo</string>
+    <string name="intro_fragment2_title">Feel free to contribute</string>
+    <string name="intro_fragment2_description">If you experience any problems or if you have a idea for a new feature, feel free to visit the GitHub
+        repository and open an issue or a pull request.\nThanks!</string>
+    <string name="intro_fragment3_title">End User Consent</string>
+    <string name="intro_fragment3_description">For using this app you may agree to the Terms of Use and the Privacy Policy.</string>
+    <string name="intro_fragment3_button1">Terms of Use</string>
+    <string name="intro_fragment3_check1">I agree to the Terms of Use.</string>
+    <string name="intro_fragment3_button2">Privacy Policy</string>
+    <string name="intro_fragment3_check2">I agree to the Privacy Policy.</string>
+    <string name="intro_fragment3_toast">To continue you have to agree to both</string>
+    <string name="intro_fragment4_title">Data Collection</string>
+    <string name="intro_fragment4_description1">You can help me to (quickly) fix bugs and improve the app performance by allowing data collection
+        (you can change them later in the settings):\n\n<u>Firebase Analytics</u>:\nProviding me with simple usage data mentioned in the Privacy
+        Policy.</string>
+    <string name="intro_fragment4_check1">I agree to data collection via Analytics.</string>
+    <string name="intro_fragment4_description2"><u>Firebase Crashlytics</u>:\nProviding me with logs after this app crashes to fix the relating
+        bugs.</string>
+    <string name="intro_fragment4_check2">I agree to data collection via Crashlytics.</string>
+    <string name="intro_fragment5_title">Auto Update</string>
+    <string name="intro_fragment5_description">Do you want the app to check for updates and optionally download the newest version?</string>
+    <string name="intro_fragment6_title">Ready…</string>
+    <string name="intro_fragment6_description">OK, everything is set up.\nEnjoy!</string>
+
+    <string name="end_user_consent_title">End User Consent</string>
+    <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>
+    <string name="end_user_consent_button_1">Got it</string>
+    <string name="end_user_consent_button_2">Cancel</string>
+
+    <string name="end_user_consent_2_title">Your End User Consent</string>
+    <string name="end_user_consent_2_message_1">By using this app you have agreed to the Terms of Use and the Privacy Policy.\n\nDate:&#160;</string>
+    <string name="end_user_consent_2_message_2">\n<u>Time:</u> </string>
+    <string name="end_user_consent_2_privacy_policy">Privacy Policy</string>
+    <string name="end_user_consent_2_terms_of_use">Terms of Use</string>
+    <string name="end_user_consent_2_date">Date</string>
+    <string name="end_user_consent_2_time">Time</string>
+    <string name="end_user_consent_2_date_not_found">Date not found</string>
+    <string name="end_user_consent_2_time_not_found">Time not found</string>
+    <string name="end_user_consent_2_button_2">Revoke</string>
 </resources>

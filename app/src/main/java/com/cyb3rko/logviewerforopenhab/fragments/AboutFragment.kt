@@ -22,21 +22,22 @@ class AboutFragment : Fragment() {
             .setImage(R.mipmap.ic_launcher_foreground)
             .setDescription(getString(R.string.about_description))
             .addItem(
-                Element().setTitle(String.format(getString(R.string.about_element_1), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE))
+                Element().setTitle(String.format(getString(R.string.about_element_version), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE))
                     .setIconDrawable(R.drawable.about_icon_github).setOnClickListener(showChangelog())
             )
-            .addGroup(getString(R.string.about_group_1))
+            .addGroup(getString(R.string.about_group_legal))
             .addItem(
-                Element().setTitle(getString(R.string.about_element_2)).setIconDrawable(R.drawable._ic_libraries)
+                Element().setTitle(getString(R.string.about_element_libraries)).setIconDrawable(R.drawable._ic_libraries)
                     .setOnClickListener(showLibraries())
             )
             .addItem(
-                Element().setTitle(getString(R.string.about_element_3)).setIconDrawable(R.drawable._ic_question).setOnClickListener(showIcons())
+                Element().setTitle(getString(R.string.about_element_icons)).setIconDrawable(R.drawable._ic_question).setOnClickListener(showIcons())
             )
             .addItem(
-                Element().setTitle("Used Animations").setIconDrawable(R.drawable._ic_question).setOnClickListener(showAnimations())
+                Element().setTitle(getString(R.string.about_element_animations)).setIconDrawable(R.drawable._ic_question)
+                    .setOnClickListener(showAnimations())
             )
-            .addGroup(getString(R.string.about_group_2))
+            .addGroup(getString(R.string.about_group_connect))
             .addItem(
                 Element().setTitle(getString(R.string.about_element_feedback_text)).setIconDrawable(R.drawable.about_icon_github)
                     .setOnClickListener(openOnGithub())

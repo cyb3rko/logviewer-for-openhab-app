@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.cyb3rko.logviewerforopenhab.R
 
 class AnimationCreditsFragment : Fragment() {
 
@@ -34,7 +35,7 @@ class AnimationCreditsFragment : Fragment() {
             val textView = TextView(requireContext())
             textView.textSize = 18f
             textView.setPaddingRelative(40, 50, 40, 0)
-            val text = "'${it.first}' animation by ${it.second}"
+            val text = getString(R.string.about_animations, it.first, it.second)
             val spannableString = SpannableString(text)
             val clickableSpan = object: ClickableSpan() {
                 override fun onClick(widget: View) {

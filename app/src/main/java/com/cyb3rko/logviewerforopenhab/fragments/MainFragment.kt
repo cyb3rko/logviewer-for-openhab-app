@@ -107,7 +107,7 @@ class MainFragment : Fragment() {
             hostnameIPAddressCheck.isEnabled = false
             portCheck.isEnabled = false
             connectCheck.isEnabled = true
-            connectButton.text = getString(R.string.main_connect_button2)
+            connectButton.text = getString(R.string.main_connect_button_2)
             editButton.isEnabled = true
         }
     }
@@ -164,7 +164,7 @@ class MainFragment : Fragment() {
 
                     editor.putString(LINK, link).apply()
 
-                    connectButton.text = getString(R.string.main_connect_button2)
+                    connectButton.text = getString(R.string.main_connect_button_2)
                 } else {
                     if (view != null) {
                         val imm = view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -208,7 +208,7 @@ class MainFragment : Fragment() {
             port.isEnabled = true
             portCheck.isEnabled = true
             connectCheck.isEnabled = false
-            connectButton.text = getString(R.string.main_connect_button1)
+            connectButton.text = getString(R.string.main_connect_button_1)
             editButton.isEnabled = false
             linkView.text = ""
         }

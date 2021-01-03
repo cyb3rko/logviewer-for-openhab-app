@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
                         positiveButton(android.R.string.ok) {
                             drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
                         }
-                        negativeButton(R.string.end_user_consent_2_button2) {
+                        negativeButton(R.string.end_user_consent_2_button_2) {
                             val analytics = FirebaseAnalytics.getInstance(applicationContext)
                             analytics.resetAnalyticsData()
                             analytics.setAnalyticsCollectionEnabled(false)
