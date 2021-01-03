@@ -10,6 +10,7 @@ import android.os.Looper
 import android.view.*
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -19,8 +20,13 @@ import com.afollestad.materialdialogs.customview.customView
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.mardous.discreteseekbar.DiscreteSeekBar
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.fragment_web_view.*
 
 class WebViewFragment : Fragment() {
 
@@ -47,6 +53,59 @@ class WebViewFragment : Fragment() {
         editor.apply()
 
         webSettings = webView.settings
+        webView.webViewClient = object : WebViewClient() {
+            override fun onReceivedError(view: WebView, errorCode: Int, description: String, failingUrl: String) {
+                println("Error: $errorCode: $description")
+                view_button.visibility = View.GONE
+                text_button.visibility = View.GONE
+                webView.visibility = View.GONE
+                animation_view.visibility = View.VISIBLE
+                when (errorCode) {
+                    -8 -> {
+                        animation_view.setAnimation("timeout.json")
+                        animation_desc.text = "Connection timed out"
+                    }
+                    -6 -> {
+                        animation_view.setAnimation("connection.json")
+                        animation_desc.text = if (description.contains("REFUSED")) "Connection refused" else "Connection failed"
+                    }
+                    -4 -> {
+                        animation_view.setAnimation("auth.json")
+                        animation_desc.text = "Authentication failed"
+                    }
+                    -2 -> {
+                        if (description.contains("INTERNET")) {
+                            animation_view.setAnimation("internet.json")
+                            animation_desc.text = "Internet disconnected"
+                        } else {
+                            val host = mySPR.getString(LINK, "")!!.drop(7).split(":")[0]
+                            animation_view.setAnimation("host.json")
+                            animation_desc.text = "Host '$host' not found"
+                        }
+                    }
+                    -1 -> {
+                        if (description.contains("UNSAFE_PORT")) {
+                            val port = mySPR.getString(LINK, "")!!.drop(7).split(":")[1]
+                            animation_view.setAnimation("secure.json")
+                            animation_desc.text = "Unsafe port: '$port'"
+                        } else {
+                            animation_view.setAnimation("error.json")
+                            animation_desc.text = "Unknown error occured"
+                            logUnknownError(errorCode, description)
+                        }
+                    }
+                    else -> {
+                        animation_view.setAnimation("error.json")
+                        animation_desc.text = "Unknown error occurred"
+                        logUnknownError(errorCode, description)
+                    }
+                }
+                retry_button.visibility = View.VISIBLE
+                retry_button.setOnClickListener {
+                    findNavController().navigate(R.id.nav_webview)
+                }
+            }
+        }
         webSettings.javaScriptEnabled = true
         v.isVerticalScrollBarEnabled = false
         setTouchable(false)
@@ -81,6 +140,13 @@ class WebViewFragment : Fragment() {
         setTextButtonClickListener(view)
         setBackButtonClickListener()
         showTapTargetSequence(view)
+    }
+
+    private fun logUnknownError(errorCode: Int, description: String) {
+        Firebase.analytics.logEvent("webview_error") {
+            param(FirebaseAnalytics.Param.ITEM_ID, errorCode.toString())
+            param(FirebaseAnalytics.Param.VALUE, description)
+        }
     }
 
     private fun setToolbarVisibility(activity: Activity?, visibility: Int) {
