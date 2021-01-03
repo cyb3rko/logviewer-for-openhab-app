@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         val drawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerLayout.addDrawerListener(drawerToggle)
-        drawerToggle.syncState()
 
         if (mySPR.getBoolean(FIRST_START, true) || mySPR.getString(CONSENT_DATE, "") == "") {
             finish()
