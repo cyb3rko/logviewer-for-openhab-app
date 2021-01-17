@@ -22,12 +22,6 @@
             android:defaultValue="true"
             android:key="connection_overview_enabled" />
 
-        <SwitchPreferenceCompat
-            android:title="@string/settings_auto_update_title"
-            android:summary="@string/settings_auto_update_summary"
-            android:key="auto_update"
-            app:iconSpaceReserved="false" />
-
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -53,16 +53,6 @@
     <string name="menu_about">About</string>
     <string name="menu_end_user_consent">End User Consent</string>
 
-    <string name="update_dialog_title">New Update Available</string>
-    <string name="update_dialog_message">The update \'%1$s\' is available for download!\nCurrently installed version: \'%2$s\'\n\nRead the changelog to know about new features.</string>
-    <string name="update_dialog_button_1">Download</string>
-    <string name="update_dialog_button_2">Changelog</string>
-    <string name="update_dialog_failed">Checking for update failed: %1$s</string>
-    <string name="update_dialog_error">Missing permission, give it on next app start</string>
-    <string name="update_check_link" translatable="false">https://raw.githubusercontent.com/cyb3rko/logviewer-for-openhab-app/master/app/build.gradle</string>
-    <string name="update_download_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/download/v%1$s/LogViewerforopenHAB_%1$s.apk</string>
-    <string name="update_changelog_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest</string>
-
     <string name="settings_user_experience">User Experience</string>
     <string name="settings_data_collection">Data Collection</string>
     <string name="settings_orientation_title">Orientation</string>
@@ -123,10 +113,8 @@
     <string name="intro_fragment4_description2"><u>Firebase Crashlytics</u>:\nProviding me with logs after this app crashes to fix the relating
         bugs.</string>
     <string name="intro_fragment4_check2">I agree to data collection via Crashlytics.</string>
-    <string name="intro_fragment5_title">Auto Update</string>
-    <string name="intro_fragment5_description">Do you want the app to check for updates and optionally download the newest version?</string>
-    <string name="intro_fragment6_title">Ready…</string>
-    <string name="intro_fragment6_description">OK, everything is set up.\nEnjoy!</string>
+    <string name="intro_fragment5_title">Ready…</string>
+    <string name="intro_fragment5_description">OK, everything is set up.\nEnjoy!</string>
 
     <string name="end_user_consent_title">End User Consent</string>
     <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>

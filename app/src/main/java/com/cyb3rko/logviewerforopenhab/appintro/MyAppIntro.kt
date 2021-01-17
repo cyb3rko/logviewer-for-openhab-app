@@ -37,11 +37,10 @@ class MyAppIntro : AppIntro() {
         ))
         addSlide(AppIntro3rdFragment.newInstance())
         addSlide(AppIntro4thFragment.newInstance())
-        addSlide(AppIntro5thFragment.newInstance())
         addSlide(AppIntroFragment.newInstance(
-            title = getString(R.string.intro_fragment6_title),
+            title = getString(R.string.intro_fragment5_title),
             imageDrawable = R.drawable._ic_start,
-            description = getString(R.string.intro_fragment6_description),
+            description = getString(R.string.intro_fragment5_description),
             backgroundColor = backgroundColor
         ))
 

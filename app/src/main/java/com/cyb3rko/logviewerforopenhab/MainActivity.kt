@@ -81,9 +81,8 @@ class MainActivity : AppCompatActivity() {
         if (mySPR.getBoolean(FIRST_START, true) || mySPR.getString(CONSENT_DATE, "") == "") {
             finish()
             startActivity(Intent(applicationContext, MyAppIntro::class.java))
-        } else {
-            if (mySPR.getBoolean(AUTO_START, false)) navController.navigate(R.id.nav_webview)
-            if (mySPR.getBoolean(AUTO_UPDATE, false)) updateCheck(this)
+        } else if (mySPR.getBoolean(AUTO_START, false)) {
+            navController.navigate(R.id.nav_webview)
         }
     }
 
@@ -166,70 +165,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun restoreConnections() {
         showConnections(mySPR, getListOfConnections(mySPR), this)
-    }
-
-    private fun updateCheck(activity: Activity) {
-        AndroidNetworking.get(getString(R.string.update_check_link))
-            .doNotCacheResponse()
-            .build()
-            .getAsString(object : StringRequestListener {
-                override fun onResponse(response: String) {
-                    val versionCodeAndFollowing = response.split("versionCode ")[1]
-                    val versionCode = versionCodeAndFollowing.split("\n")[0]
-                    val newestVersionCode = versionCode.toInt()
-                    val versionNameAndFollowing = versionCodeAndFollowing.split("\"")[1]
-                    val versionName = versionNameAndFollowing.split("\"")[0]
-                    editor.putString(NEWEST_VERSION, versionName).apply()
-
-                    if (BuildConfig.VERSION_CODE < newestVersionCode) {
-                        Log.d(this@MainActivity::class.java.simpleName, "Update available: $versionName")
-                        val dialogMessage = String.format(getString(R.string.update_dialog_message), "$versionName ($versionCode)",
-                            "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
-                        val changelog = "changelog"
-                        val index = dialogMessage.indexOf(changelog)
-                        val spannableString = SpannableString(dialogMessage)
-                        spannableString.setSpan(object : ClickableSpan() {
-                            override fun onClick(p0: View) {
-                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.update_changelog_link))))
-                            }
-                        }, index, index + changelog.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                        MaterialDialog(this@MainActivity).show {
-                            title(R.string.update_dialog_title)
-                            message(0, spannableString) {
-                                messageTextView.movementMethod = LinkMovementMethod.getInstance()
-                            }
-                            positiveButton(R.string.update_dialog_button_1) {
-                                if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                    == PackageManager.PERMISSION_GRANTED) {
-                                    downloadNewestApk(applicationContext, mySPR.getString(NEWEST_VERSION, "")!!)
-                                } else {
-                                    Toasty.error(context, getString(R.string.update_dialog_error), Toasty.LENGTH_LONG).show()
-                                }
-                            }
-                        }
-
-                        ActivityCompat.requestPermissions(activity, arrayOf(
-                            Manifest.permission.INTERNET, Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                        ), 1)
-                    }
-                }
-
-                override fun onError(anError: ANError) {
-                    Log.e(this@MainActivity::class.java.simpleName, String.format(getString(R.string.update_dialog_failed, anError)))
-                }
-            })
-    }
-
-    private fun downloadNewestApk(context: Context, version: String) {
-        val link = String.format(context.getString(R.string.update_download_link), version)
-
-        val request = DownloadManager.Request(Uri.parse(link)).setDestinationInExternalPublicDir(
-            Environment.DIRECTORY_DOWNLOADS, URLUtil.guessFileName(link, null, null)
-        ).setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-        val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        downloadManager.enqueue(request)
     }
 
     override fun onBackPressed() {

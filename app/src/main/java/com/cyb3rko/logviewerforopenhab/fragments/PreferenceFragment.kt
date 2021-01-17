@@ -38,13 +38,11 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         mySPR = preferenceManager.sharedPreferences
         orientationList = findPreference(ORIENTATION)!!
         connectionOverviewSwitch = findPreference(CONNECTION_OVERVIEW_ENABLED)!!
-        autoUpdateSwitch = findPreference(AUTO_UPDATE)!!
         analyticsCollectionSwitch = findPreference(ANALYTICS_COLLECTION)!!
         crashlyticsCollectionSwitch = findPreference(CRASHLYTICS_COLLECTION)!!
 
         orientationList.value = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())
         connectionOverviewSwitch.isChecked = mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)
-        autoUpdateSwitch.isChecked = mySPR.getBoolean(AUTO_UPDATE, true)
         analyticsCollectionSwitch.isChecked = mySPR.getBoolean(ANALYTICS_COLLECTION, true)
         crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHLYTICS_COLLECTION, true)
     }

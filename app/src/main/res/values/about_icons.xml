@@ -90,10 +90,4 @@
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/startup_610290</item>
     </string-array>
-
-    <string-array name="ic_update">
-        <item>Freepik</item>
-        <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/updated_1688988</item>
-    </string-array>
 </resources>
