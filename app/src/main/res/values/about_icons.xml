@@ -18,6 +18,14 @@
         <item>https://www.flaticon.com/free-icon/secure-data_1035086</item>
     </string-array>
 
+    <string-array name="ic_eye">
+        <item>Dave Gandy</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/eye-open_25186</item>
+        <item>false</item>
+        <item>cc_by_3.0</item>
+    </string-array>
+
     <string-array name="ic_font">
         <item>Those Icons</item>
         <item>flaticon.com</item>
