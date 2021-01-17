@@ -2,14 +2,14 @@
 
 buildscript {
     ext.about_libraries_version = "8.3.0"
-    ext.kotlin_version = "1.4.10"
+    ext.kotlin_version = "1.4.21"
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
         classpath 'com.google.gms:google-services:4.3.4'
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:$about_libraries_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
