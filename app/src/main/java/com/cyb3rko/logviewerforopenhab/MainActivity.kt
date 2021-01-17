@@ -1,30 +1,20 @@
 package com.cyb3rko.logviewerforopenhab
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.DownloadManager
-import android.content.Context
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.View
-import android.webkit.URLUtil
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -34,9 +24,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.callbacks.onCancel
-import com.androidnetworking.AndroidNetworking
-import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.StringRequestListener
 import com.cyb3rko.logviewerforopenhab.appintro.MyAppIntro
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -83,6 +70,26 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, MyAppIntro::class.java))
         } else if (mySPR.getBoolean(AUTO_START, false)) {
             navController.navigate(R.id.nav_webview)
+        }
+
+        if (mySPR.getBoolean("now_on_playstore", true)) {
+            MaterialDialog(this@MainActivity).show {
+                title(0, "Now on Playstore")
+                message(0, "This app is now on Google Playstore and Auto Update function will no longer work.")
+                positiveButton(0, "Open in Playstore") {
+                    editor.putBoolean("now_on_playstore", false).apply()
+                    val appPackageName = packageName
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+                    } catch (anfe: ActivityNotFoundException) {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+                    }
+                }
+                negativeButton(0, "Got it") {
+                    editor.putBoolean("now_on_playstore", false).apply()
+                }
+                cancelable(false)
+            }
         }
     }
 
