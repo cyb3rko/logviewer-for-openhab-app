@@ -75,7 +75,8 @@ class MainActivity : AppCompatActivity() {
         if (mySPR.getBoolean("now_on_playstore", true)) {
             MaterialDialog(this@MainActivity).show {
                 title(0, "Now on Playstore")
-                message(0, "This app is now on Google Playstore and Auto Update function will no longer work.")
+                message(0, "This app is now on Google Playstore and Auto Update function will no longer work.\n" +
+                        "If the installation fails, uninstall this version of the app and try again.")
                 positiveButton(0, "Open in Playstore") {
                     editor.putBoolean("now_on_playstore", false).apply()
                     val appPackageName = packageName
