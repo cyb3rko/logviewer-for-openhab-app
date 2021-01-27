@@ -1,6 +1,7 @@
 package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,7 +19,15 @@ class AboutFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        val nightMode = when (requireContext().resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> true
+            Configuration.UI_MODE_NIGHT_NO -> false
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> false
+            else -> false
+        }
+
         return AboutPage(context)
+            .enableDarkMode(nightMode)
             .setImage(R.mipmap.ic_launcher_foreground)
             .setDescription(getString(R.string.about_description))
             .addItem(

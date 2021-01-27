@@ -1,6 +1,5 @@
 package com.cyb3rko.logviewerforopenhab
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
@@ -14,6 +13,7 @@ import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         mySPR = getSharedPreferences(SHARED_PREFERENCE, 0)
         editor = mySPR.edit()
         editor.apply()
+        AppCompatDelegate.setDefaultNightMode(mySPR.getString(NIGHTMODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM.toString())!!.toInt())
         requestedOrientation = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())?.toInt()!!
 
         setContentView(R.layout.activity_main)

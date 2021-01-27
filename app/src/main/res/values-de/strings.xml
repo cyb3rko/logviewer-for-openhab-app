@@ -59,8 +59,8 @@
     <string name="settings_orientation_summary">Toggle the orientation of the app</string>
     <string name="settings_connection_overview_title">Connection Overview</string>
     <string name="settings_connection_overview_summary">En-/Disable the overview of recent connections in the Navigation Drawer</string>
-    <string name="settings_auto_update_title">Auto Update</string>
-    <string name="settings_auto_update_summary">En-/Disable checking for updates and optionally downloading the newewst version</string>
+    <string name="settings_nightmode_title">Night Mode</string>
+    <string name="settings_nightmode_summary">Toggle the dark appearance of the app (logview excluded)</string>
     <string name="settings_analytics_title">Analytics Data Collection</string>
     <string name="settings_analytics_summary">En-/Disable data collection via Firebase Analytics</string>
     <string name="settings_crashlytics_title">Crashlytics Data Collection</string>
