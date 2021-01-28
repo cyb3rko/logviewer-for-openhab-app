@@ -31,6 +31,13 @@
             android:entryValues="@array/night_modes_values"
             android:key="nightmode"/>
 
+        <SwitchPreferenceCompat
+            android:title="@string/settings_hide_topbar_title"
+            android:summary="@string/settings_hide_topbar_summary"
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="hide_toolbar" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
