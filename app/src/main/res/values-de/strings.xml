@@ -2,7 +2,6 @@
     <string name="app_name" translatable="false">LogViewer for openHAB</string>
 
     <string name="error_fill_out">Fill out the hostname</string>
-    <string name="connecting">Connecting…</string>
     <string name="lock_button_1">View Lock deactivated</string>
     <string name="lock_button_2">View Lock activated</string>
     <string name="text_size_changed">Text size changed to&#160;</string>

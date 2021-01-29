@@ -170,7 +170,6 @@ class MainFragment : Fragment() {
                         val imm = view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                         imm.hideSoftInputFromWindow(view.windowToken, 0)
                     }
-                    Toasty.info(v.context, getString(R.string.connecting), Toasty.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.nav_webview)
 
                     if (mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)) {
