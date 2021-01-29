@@ -117,7 +117,7 @@ class WebViewFragment : Fragment() {
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
-                if (mySPR.getBoolean("hide_toolbar", false)) {
+                if (mySPR.getBoolean(HIDE_TOPBAR, false)) {
                     view?.loadUrl("javascript:document.getElementsByClassName(\"topbar navbar navbar-inverse navbar-fixed-top\")[0].setAttribute" +
                             "(\"style\",\"display:none;\");")
                 }

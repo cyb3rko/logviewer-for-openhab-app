@@ -36,7 +36,7 @@
             android:summary="@string/settings_hide_topbar_summary"
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="hide_toolbar" />
+            android:key="hide_topbar" />
 
     </PreferenceCategory>
 
