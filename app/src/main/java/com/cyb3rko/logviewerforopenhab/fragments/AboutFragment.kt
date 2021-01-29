@@ -49,15 +49,21 @@ class AboutFragment : Fragment() {
             .addGroup(getString(R.string.about_group_connect))
             .addItem(
                 Element().setTitle(getString(R.string.about_element_feedback_text)).setIconDrawable(R.drawable.about_icon_github)
-                    .setOnClickListener(openOnGithub())
+                    .setOnClickListener(openGithubFeedback())
             )
-            .addEmail(getString(R.string.about_element_email_value), getString(R.string.about_element_email_text))
+            .addItem(
+                Element().setTitle(getString(R.string.about_element_email_text)).setIconDrawable(R.drawable.about_icon_email)
+                    .setOnClickListener(writeEmail())
+            )
 //            .addWebsite(getString(R.string.about_element_website_value), getString(R.string.about_element_website_text))
             .addItem(
                 Element().setTitle(getString(R.string.about_element_youtube_text)).setIconDrawable(R.drawable.about_icon_youtube)
                     .setIconTint(R.color.about_youtube_color).setOnClickListener(openYouTubeProfile())
             )
-            .addGitHub(getString(R.string.about_element_github_value), getString(R.string.about_element_github_text))
+            .addItem(
+                Element().setTitle(getString(R.string.about_element_github_text))
+                    .setIconDrawable(R.drawable.about_icon_github).setOnClickListener(openGithubProfile())
+            )
             .addItem(
                 Element().setTitle(getString(R.string.about_element_instagram_text)).setIconDrawable(R.drawable.about_icon_instagram)
                     .setIconTint(R.color.about_instagram_color).setOnClickListener(openInstaPage())
@@ -65,15 +71,15 @@ class AboutFragment : Fragment() {
             .create()
     }
 
-    private fun openYouTubeProfile(): View.OnClickListener? {
-        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_element_youtube_value)))) }
+    private fun openYouTubeProfile(): View.OnClickListener {
+        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/channel/UCue_SZXdF8yZByavetBU1ZQ"))) }
     }
 
-    private fun showChangelog(): View.OnClickListener? {
+    private fun showChangelog(): View.OnClickListener {
         return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_changelog_link)))) }
     }
 
-    private fun showLibraries(): View.OnClickListener? {
+    private fun showLibraries(): View.OnClickListener {
         return View.OnClickListener {
             context?.let { trueContext ->
                 LibsBuilder()
@@ -93,19 +99,35 @@ class AboutFragment : Fragment() {
         }
     }
 
-    private fun showIcons(): View.OnClickListener? {
+    private fun showIcons(): View.OnClickListener {
         return View.OnClickListener { findNavController().navigate(R.id.nav_about_icons) }
     }
 
-    private fun showAnimations(): View.OnClickListener? {
+    private fun showAnimations(): View.OnClickListener {
         return View.OnClickListener { findNavController().navigate(R.id.nav_about_animations) }
     }
 
-    private fun openOnGithub(): View.OnClickListener? {
-        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_element_feedback_value)))) }
+    private fun openGithubFeedback(): View.OnClickListener {
+        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/cyb3rko/logviewer-for-openhab-app/"))) }
     }
 
-    private fun openInstaPage(): View.OnClickListener? {
-        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_element_instagram_value)))) }
+    private fun openGithubProfile(): View.OnClickListener {
+        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/cyb3rko/"))) }
+    }
+
+    private fun openInstaPage(): View.OnClickListener {
+        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/_u/cyb3rko"))) }
+    }
+
+    private fun writeEmail(): View.OnClickListener {
+        return View.OnClickListener {
+            val intent = Intent().apply {
+                this.action = Intent.ACTION_SENDTO
+                this.type = "text/plain"
+                this.data = Uri.parse("mailto:")
+                this.putExtra(Intent.EXTRA_EMAIL, arrayOf("niko@cyb3rko.de"))
+            }
+            startActivity(intent)
+        }
     }
 }
