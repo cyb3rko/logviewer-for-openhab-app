@@ -26,6 +26,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.callbacks.onCancel
 import com.cyb3rko.logviewerforopenhab.appintro.MyAppIntro
 import com.google.android.material.navigation.NavigationView
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import es.dmoral.toasty.Toasty
@@ -164,10 +165,47 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)) { restoreConnections() }
+        requestReview()
     }
 
     private fun restoreConnections() {
         showConnections(mySPR, getListOfConnections(mySPR), this)
+    }
+
+    private fun requestReview() {
+        val revision = mySPR.getInt("review_revision", 0)
+
+        if (revision <= 1) {
+            val counter = mySPR.getInt("review_counter", 0) + 1
+            editor.putInt("review_counter", counter).apply()
+
+            when (revision) {
+                0 -> {
+                    if (counter >= 5) {
+                        showReviewDialog(0)
+                    }
+                }
+                1 -> {
+                    if (counter >= 10) {
+                        showReviewDialog(1)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showReviewDialog(revision: Int) {
+        val manager = ReviewManagerFactory.create(this)
+        val request = manager.requestReviewFlow()
+        request.addOnCompleteListener {
+            if (it.isSuccessful) {
+                manager.launchReviewFlow(this, it.result).apply {
+                    addOnCompleteListener {
+                        editor.putInt("review_revision", revision + 1).apply()
+                    }
+                }
+            }
+        }
     }
 
     override fun onBackPressed() {
