@@ -73,21 +73,6 @@ class MainActivity : AppCompatActivity() {
         } else if (mySPR.getBoolean(AUTO_START, false)) {
             navController.navigate(R.id.nav_webview)
         }
-
-        if (mySPR.getBoolean("now_on_playstore", true)) {
-            MaterialDialog(this@MainActivity).show {
-                title(0, "Now on Playstore")
-                message(0, "This app is now on Google Playstore and Auto Update function will no longer work.\n" +
-                        "If the installation fails, uninstall this version of the app and try again.")
-                positiveButton(0, "Open in Playstore") {
-                    val appPackageName = packageName
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
-                }
-                negativeButton(0, "Don't show again") {
-                    editor.putBoolean("now_on_playstore", false).apply()
-                }
-            }
-        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
