@@ -24,7 +24,7 @@ Furthermore I'm still a student so the progress might not be as fast as on other
 You can also have a look at my other projects:  
 [My GitHub page](https://github.com/cyb3rko)
 
-[<img src=".github/images/download.webp">](https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest)
+[<img src=".github/images/download.png" width="230">](https://play.google.com/store/apps/details?id=com.cyb3rko.logviewerforopenhab)
 
 ### Translation
 
@@ -38,6 +38,8 @@ If you can't find a language you're looking for, just drop me a mail at niko@cyb
 - adjusting the text size of the log 
 - save recent connections and reconnect automatically
 - switchable View Lock function to automatically scroll to the newest log entry and lock touch input 
+- nightmode  
+- hiding the topbar of the log via settings
 
 ## Screenshots
 ### Tablet
@@ -57,7 +59,7 @@ Using a unified code format makes it much easier for me and for everyone else.
 
 ## License
 
-    Copyright 2020, Cyb3rKo
+    Copyright 2021, Cyb3rKo
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
