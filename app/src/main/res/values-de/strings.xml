@@ -7,7 +7,7 @@
     <string name="text_size_changed">Text size changed to&#160;</string>
     
     <string name="main_hostname_hint">Hostname / IP address</string>
-    <string name="main_hostname_helper">e.g. 192.168.178.10</string>
+    <string name="main_hostname_helper">e.g. openhab or 192.168.178.10</string>
     <string name="main_port_hint">Port</string>
     <string name="main_port_helper">leave empty for 9001</string>
     <string name="main_checks_text">Save</string>
