@@ -124,6 +124,7 @@ class WebViewFragment : Fragment() {
             }
         }
         webSettings.javaScriptEnabled = true
+        webSettings.domStorageEnabled = true
         v.isVerticalScrollBarEnabled = false
         setTouchable(false)
 
