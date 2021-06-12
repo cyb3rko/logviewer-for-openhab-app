@@ -3,6 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
+        android:title="@string/settings_openhab_log"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            android:title="@string/settings_openhab_version_title"
+            android:summary="@string/settings_openhab_version_summary"
+            app:iconSpaceReserved="false"
+            android:defaultValue=""
+            android:entries="@array/openhab_versions"
+            android:entryValues="@array/openhab_versions_values"
+            android:key="openhab_version" />
+
+        <SwitchPreferenceCompat
+            android:title="@string/settings_hide_topbar_title"
+            android:summary="@string/settings_hide_topbar_summary"
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="hide_topbar" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/settings_user_experience"
         app:iconSpaceReserved="false">
 
@@ -30,13 +52,6 @@
             android:entries="@array/night_modes"
             android:entryValues="@array/night_modes_values"
             android:key="nightmode"/>
-
-        <SwitchPreferenceCompat
-            android:title="@string/settings_hide_topbar_title"
-            android:summary="@string/settings_hide_topbar_summary"
-            app:iconSpaceReserved="false"
-            android:defaultValue="false"
-            android:key="hide_topbar" />
 
     </PreferenceCategory>
 

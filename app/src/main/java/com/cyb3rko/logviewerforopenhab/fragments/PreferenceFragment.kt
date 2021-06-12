@@ -33,22 +33,25 @@ class PreferenceFragment : PreferenceFragmentCompat() {
     private lateinit var mySPR: SharedPreferences
     private lateinit var nightModeList: ListPreference
     private lateinit var orientationList: ListPreference
+    private lateinit var openhabVersionList: ListPreference
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.preferences)
         preferenceManager.sharedPreferencesName = SHARED_PREFERENCE
         mySPR = preferenceManager.sharedPreferences
+        openhabVersionList = findPreference(OPENHAB_VERSION)!!
+        hideTopbarSwitch = findPreference(HIDE_TOPBAR)!!
         orientationList = findPreference(ORIENTATION)!!
         connectionOverviewSwitch = findPreference(CONNECTION_OVERVIEW_ENABLED)!!
         nightModeList = findPreference(NIGHTMODE)!!
-        hideTopbarSwitch = findPreference(HIDE_TOPBAR)!!
         analyticsCollectionSwitch = findPreference(ANALYTICS_COLLECTION)!!
         crashlyticsCollectionSwitch = findPreference(CRASHLYTICS_COLLECTION)!!
 
+        openhabVersionList.value = mySPR.getString(OPENHAB_VERSION, "3")
+        hideTopbarSwitch.isChecked = mySPR.getBoolean(HIDE_TOPBAR, false)
         orientationList.value = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())
         connectionOverviewSwitch.isChecked = mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)
         nightModeList.value = mySPR.getString(NIGHTMODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM.toString())
-        hideTopbarSwitch.isChecked = mySPR.getBoolean(HIDE_TOPBAR, false)
         analyticsCollectionSwitch.isChecked = mySPR.getBoolean(ANALYTICS_COLLECTION, true)
         crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHLYTICS_COLLECTION, true)
     }

@@ -10,4 +10,13 @@
         <item>1</item>
         <item>0</item>
     </string-array>
+
+    <string-array name="openhab_versions">
+        <item>openHAB 3</item>
+        <item>openHAB 2</item>
+    </string-array>
+    <string-array name="openhab_versions_values">
+        <item>3</item>
+        <item>2</item>
+    </string-array>
 </resources>
