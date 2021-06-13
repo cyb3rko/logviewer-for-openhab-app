@@ -11,13 +11,46 @@
         android:layout_height="wrap_content"
         android:paddingBottom="16dp">
 
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/http_toggles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:checkedButton="@id/http_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/http_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HTTP"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/https_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HTTPS"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                tools:ignore="HardcodedText" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/hostname_ip_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:hint="@string/main_hostname_hint"
@@ -28,7 +61,7 @@
             app:layout_constraintBottom_toTopOf="@id/hostname_ip_address_check"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/http_toggles">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/hostname_ip_address_text"

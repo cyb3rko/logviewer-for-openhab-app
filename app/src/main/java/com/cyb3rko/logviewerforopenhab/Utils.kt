@@ -30,6 +30,7 @@ internal const val FIRST_START_WEB = "first_start_web"
 internal const val HIDE_TOPBAR = "hide_topbar"
 internal const val HOSTNAME_CHECK = "hostname_check"
 internal const val HOSTNAME_STRING = "hostname_string"
+internal const val HTTPS_ACTIVATED = "https_activated"
 internal const val LINK = "link"
 internal const val NIGHTMODE = "nightmode"
 internal const val ORIENTATION = "orientation"
@@ -47,10 +48,12 @@ internal fun getListOfConnections(mySPR: SharedPreferences): MutableList<Connect
         return mutableListOf()
     }
     val tempList = storedConnections?.split(";")
-    var parts: List<String>
+    var parts1: List<String>
+    var parts2: List<String>
     tempList?.forEach {
-        parts = it.split(":")
-        resultList.add(Connection(parts[0], parts[1].toInt()))
+        parts1 = it.split("://")
+        parts2 = parts1[1].split(":")
+        resultList.add(Connection(parts1[0] == "https", parts2[0], parts2[1].toInt()))
     }
     return resultList
 }
@@ -66,13 +69,23 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
 
         var item: MenuItem
         var link: String
+        var outerParts: List<String>
         var parts: List<String>
+        var http: String
+        var emojiCode: Int
+        var emoji: String
         connections.forEach { connection ->
-            item = connectionsMenu.add("${connection.hostName}:${connection.port}")
+            http = if (connection.httpsActivated) "https" else "http"
+            emojiCode = if (connection.httpsActivated) 0x1F512 else 0x1F513
+            emoji = String(Character.toChars(emojiCode))
+            item = connectionsMenu.add("${connection.hostName}:${connection.port} $emoji")
             item.setIcon(R.drawable._ic_connection)
             item.setOnMenuItemClickListener { menuItem ->
-                link = "http://${menuItem.title}"
-                parts = menuItem.title.split(":")
+                outerParts = menuItem.title.split(" ")
+                http = if (outerParts[1] == String(Character.toChars(0x1F512))) "https" else "http"
+                parts = outerParts[0].split(":")
+                link = "$http://${parts[0]}:${parts[1]}"
+                editor.putBoolean(HTTPS_ACTIVATED, connection.httpsActivated)
                 editor.putString("link", link)
                 editor.putString("hostnameIPAddressString", parts[0])
                 editor.putInt("portInt", parts[1].toInt()).apply()

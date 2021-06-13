@@ -8,25 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.cyb3rko.logviewerforopenhab.*
-import com.cyb3rko.logviewerforopenhab.AUTO_START
-import com.cyb3rko.logviewerforopenhab.CONNECTIONS
-import com.cyb3rko.logviewerforopenhab.CONNECTION_OVERVIEW_ENABLED
-import com.cyb3rko.logviewerforopenhab.CONNECT_CHECK
-import com.cyb3rko.logviewerforopenhab.Connection
-import com.cyb3rko.logviewerforopenhab.HOSTNAME_CHECK
-import com.cyb3rko.logviewerforopenhab.HOSTNAME_STRING
-import com.cyb3rko.logviewerforopenhab.LINK
-import com.cyb3rko.logviewerforopenhab.PORT_CHECK
-import com.cyb3rko.logviewerforopenhab.PORT_INT
-import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
-import com.cyb3rko.logviewerforopenhab.getListOfConnections
-import com.cyb3rko.logviewerforopenhab.showConnections
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import es.dmoral.toasty.Toasty
 
 class MainFragment : Fragment() {
 
@@ -38,6 +27,7 @@ class MainFragment : Fragment() {
     private lateinit var hostnameIPAddressCheck: CheckBox
     private lateinit var hostnameIPAddressString: String
     private lateinit var hostnameIPAddressText: TextInputEditText
+    private lateinit var httpToggles: MaterialButtonToggleGroup
     private lateinit var link: String
     private lateinit var linkView: TextView
     private lateinit var mySPR: SharedPreferences
@@ -54,6 +44,7 @@ class MainFragment : Fragment() {
         hostnameIPAddressCheck = v.findViewById(R.id.hostname_ip_address_check)
         portCheck = v.findViewById(R.id.port_check)
         hostnameIPAddress = v.findViewById(R.id.hostname_ip_address)
+        httpToggles = v.findViewById(R.id.http_toggles)
         port = v.findViewById(R.id.port)
         hostnameIPAddressText = v.findViewById(R.id.hostname_ip_address_text)
         portText = v.findViewById(R.id.port_text)
@@ -76,6 +67,11 @@ class MainFragment : Fragment() {
     }
 
     private fun statusRestoring() {
+        if (!mySPR.getBoolean(HTTPS_ACTIVATED, false)) {
+            httpToggles.check((httpToggles[0] as MaterialButton).id)
+        } else {
+            httpToggles.check((httpToggles[1] as MaterialButton).id)
+        }
         connectCheck.isChecked = mySPR.getBoolean(CONNECT_CHECK, false)
 
         if (mySPR.getString(HOSTNAME_STRING, "") == "" || mySPR.getString(HOSTNAME_STRING, "") == "0") {
@@ -104,6 +100,8 @@ class MainFragment : Fragment() {
         val port = portText.text.toString()
         if (hostname.isNotEmpty() && port.isNotEmpty()) {
             linkGeneration(hostname, port)
+            httpToggles[0].isEnabled = false
+            httpToggles[1].isEnabled = false
             hostnameIPAddressCheck.isEnabled = false
             portCheck.isEnabled = false
             connectCheck.isEnabled = true
@@ -119,7 +117,10 @@ class MainFragment : Fragment() {
         } else {
             9001
         }
-        link = "http://$hostnameIPAddressString:$portInt"
+        val prefix = if (requireView().findViewById<MaterialButton>(R.id.http_button).isChecked) {
+            "http"
+        } else "https"
+        link = "$prefix://$hostnameIPAddressString:$portInt"
         linkView.text = link
     }
 
@@ -132,12 +133,17 @@ class MainFragment : Fragment() {
                 if (linkView.text.toString().isEmpty()) {
                     linkGeneration(tempHostname, tempPort)
 
+                    httpToggles[0].isEnabled = false
+                    httpToggles[1].isEnabled = false
                     hostnameIPAddress.isEnabled = false
                     port.isEnabled = false
                     hostnameIPAddressCheck.isEnabled = false
                     portCheck.isEnabled = false
                     connectCheck.isEnabled = true
                     editButton.isEnabled = true
+
+                    val httpMode = (httpToggles[1] as MaterialButton).isChecked
+                    editor.putBoolean(HTTPS_ACTIVATED, httpMode)
 
                     if (hostnameIPAddressCheck.isChecked) {
                         editor.putString(HOSTNAME_STRING, hostnameIPAddressString)
@@ -173,7 +179,7 @@ class MainFragment : Fragment() {
                     findNavController().navigate(R.id.nav_webview)
 
                     if (mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)) {
-                        storeAndShowConnection(tempHostname, tempPort.toInt())
+                        storeAndShowConnection((httpToggles[1] as MaterialButton).isChecked, tempHostname, tempPort.toInt())
                     }
                 }
             } else {
@@ -182,18 +188,21 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun storeAndShowConnection(hostname: String, port: Int) {
-        val newConnection = Connection(hostname, port)
+    private fun storeAndShowConnection(httpsActivated: Boolean, hostname: String, port: Int) {
+        val newConnection = Connection(httpsActivated, hostname, port)
         val connections = getListOfConnections(mySPR)
         if (!connections.contains(newConnection)) {
             if (connections.size >= 3) {
                 connections.removeAt(0)
             }
             var newConnections = ""
+            var http: String
             connections.forEach {
-                newConnections += "${it.hostName}:${it.port};"
+                http = if (it.httpsActivated) "https" else "http"
+                newConnections += "$http://${it.hostName}:${it.port};"
             }
-            newConnections += "${hostname}:${portInt}"
+            http = if (httpsActivated) "https" else "http"
+            newConnections += "$http://${hostname}:${portInt}"
             editor.putString(CONNECTIONS, newConnections).commit()
             connections.add(newConnection)
             showConnections(mySPR, connections, activity)
@@ -202,6 +211,8 @@ class MainFragment : Fragment() {
 
     private fun setEditButtonClickListener() {
         editButton.setOnClickListener {
+            httpToggles[0].isEnabled = true
+            httpToggles[1].isEnabled = true
             hostnameIPAddress.isEnabled = true
             hostnameIPAddressCheck.isEnabled = true
             port.isEnabled = true
