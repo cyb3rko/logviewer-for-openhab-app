@@ -158,11 +158,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestReview() {
-        val revision = mySPR.getInt("review_revision", 0)
+        val revision = mySPR.getInt(REVIEW_REVISION, 0)
 
         if (revision <= 1) {
-            val counter = mySPR.getInt("review_counter", 0) + 1
-            editor.putInt("review_counter", counter).apply()
+            val counter = mySPR.getInt(REVIEW_COUNTER, 0) + 1
+            editor.putInt(REVIEW_COUNTER, counter).apply()
 
             when (revision) {
                 0 -> {
@@ -186,7 +186,7 @@ class MainActivity : AppCompatActivity() {
             if (it.isSuccessful) {
                 manager.launchReviewFlow(this, it.result).apply {
                     addOnCompleteListener {
-                        editor.putInt("review_revision", revision + 1).apply()
+                        editor.putInt(REVIEW_REVISION, revision + 1).apply()
                     }
                 }
             }

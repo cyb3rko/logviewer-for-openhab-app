@@ -37,13 +37,15 @@ internal const val ORIENTATION = "orientation"
 internal const val OPENHAB_VERSION = "openhab_version"
 internal const val PORT_CHECK = "port_check"
 internal const val PORT_INT = "port_int"
+internal const val REVIEW_COUNTER = "review_counter"
+internal const val REVIEW_REVISION = "review_revision"
 internal const val TEXTSIZE_AUTO = "textsize_auto"
 internal const val TEXTSIZE_LANDSCAPE = "textsize_landscape"
 internal const val TEXTSIZE_PORTRAIT = "textsize_PORTRAIT"
 
 internal fun getListOfConnections(mySPR: SharedPreferences): MutableList<Connection> {
     val resultList = mutableListOf<Connection>()
-    val storedConnections = mySPR.getString("connections", "empty")
+    val storedConnections = mySPR.getString(CONNECTIONS, "empty")
     if (storedConnections == "empty") {
         return mutableListOf()
     }
@@ -86,9 +88,9 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
                 parts = outerParts[0].split(":")
                 link = "$http://${parts[0]}:${parts[1]}"
                 editor.putBoolean(HTTPS_ACTIVATED, connection.httpsActivated)
-                editor.putString("link", link)
-                editor.putString("hostnameIPAddressString", parts[0])
-                editor.putInt("portInt", parts[1].toInt()).apply()
+                editor.putString(LINK, link)
+                editor.putString(HOSTNAME_STRING, parts[0])
+                editor.putInt(PORT_INT, parts[1].toInt()).apply()
                 navController.navigate(R.id.nav_webview)
                 drawer.close()
                 true
