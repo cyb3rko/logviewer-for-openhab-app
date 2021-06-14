@@ -25,7 +25,7 @@
     <string name="webview_retry_button_desc">Retry</string>
 
     <string name="webview_error_timeout">Connection timed out</string>
-    <string name="webview_error_connection_1">Connection refusedt</string>
+    <string name="webview_error_connection_1">Connection refused</string>
     <string name="webview_error_connection_2">Connection failed</string>
     <string name="webview_error_authentication">Authentication failed</string>
     <string name="webview_error_internet">Internet disconnected</string>

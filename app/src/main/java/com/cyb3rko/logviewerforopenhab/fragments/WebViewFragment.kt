@@ -27,7 +27,6 @@ import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
 import com.mardous.discreteseekbar.DiscreteSeekBar
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_web_view.*
 
 class WebViewFragment : Fragment() {
     private var _binding: FragmentWebViewBinding? = null
@@ -91,60 +90,60 @@ class WebViewFragment : Fragment() {
         webSettings = binding.webview.settings
         binding.webview.webViewClient = object : WebViewClient() {
             override fun onReceivedError(view: WebView, errorCode: Int, description: String, failingUrl: String) {
-                view_button.visibility = View.GONE
-                text_button.visibility = View.GONE
+                binding.viewButton.visibility = View.GONE
+                binding.textButton.visibility = View.GONE
                 binding.webview.visibility = View.GONE
-                animation_view.visibility = View.VISIBLE
+                binding.animationView.visibility = View.VISIBLE
                 when (errorCode) {
                     -8 -> {
-                        animation_view.setAnimation("timeout.json")
-                        animation_desc.text = getString(R.string.webview_error_timeout)
+                        binding.animationView.setAnimation("timeout.json")
+                        binding.animationDesc.text = getString(R.string.webview_error_timeout)
                     }
                     -6 -> {
-                        animation_view.setAnimation("connection.json")
-                        animation_desc.text = if (description.contains("REFUSED")) {
+                        binding.animationView.setAnimation("connection.json")
+                        binding.animationDesc.text = if (description.contains("REFUSED")) {
                             getString(R.string.webview_error_connection_1)
                         } else {
                             getString(R.string.webview_error_connection_2)
                         }
                     }
                     -4 -> {
-                        animation_view.setAnimation("auth.json")
-                        animation_desc.text = getString(R.string.webview_error_authentication)
+                        binding.animationView.setAnimation("auth.json")
+                        binding.animationDesc.text = getString(R.string.webview_error_authentication)
                     }
                     -2 -> {
                         if (description.contains("INTERNET")) {
-                            animation_view.setAnimation("internet.json")
-                            animation_desc.text = getString(R.string.webview_error_internet)
+                            binding.animationView.setAnimation("internet.json")
+                            binding.animationDesc.text = getString(R.string.webview_error_internet)
                         } else {
-                            val host = mySPR.getString(LINK, "")!!.drop(7).split(":")[0]
-                            animation_view.setAnimation("host.json")
-                            animation_desc.text = getString(R.string.webview_error_host, host)
+                            val host = mySPR.getString(LINK, "")!!.split("://")[1].split(":")[0]
+                            binding.animationView.setAnimation("host.json")
+                            binding.animationDesc.text = getString(R.string.webview_error_host, host)
                         }
                     }
                     -1 -> {
                         if (description.contains("UNSAFE_PORT")) {
-                            val port = mySPR.getString(LINK, "")!!.drop(7).split(":")[1]
-                            animation_view.setAnimation("secure.json")
-                            animation_desc.text = getString(R.string.webview_error_port, port)
+                            val port = mySPR.getString(LINK, "")!!.split(":")[1]
+                            binding.animationView.setAnimation("secure.json")
+                            binding.animationDesc.text = getString(R.string.webview_error_port, port)
                         } else {
-                            animation_view.setAnimation("error.json")
-                            animation_desc.text = getString(R.string.webview_error_unknown)
+                            binding.animationView.setAnimation("error.json")
+                            binding.animationDesc.text = getString(R.string.webview_error_unknown)
                             logUnknownError(errorCode, description)
                         }
                     }
                     -11 -> {
-                        animation_view.setAnimation("ssl.json")
-                        animation_desc.text = getString(R.string.webview_error_ssl)
+                        binding.animationView.setAnimation("ssl.json")
+                        binding.animationDesc.text = getString(R.string.webview_error_ssl)
                     }
                     else -> {
-                        animation_view.setAnimation("error.json")
-                        animation_desc.text = getString(R.string.webview_error_unknown)
+                        binding.animationView.setAnimation("error.json")
+                        binding.animationDesc.text = getString(R.string.webview_error_unknown)
                         logUnknownError(errorCode, description)
                     }
                 }
-                retry_button.visibility = View.VISIBLE
-                retry_button.setOnClickListener {
+                binding.retryButton.visibility = View.VISIBLE
+                binding.retryButton.setOnClickListener {
                     findNavController().navigate(R.id.nav_webview)
                 }
             }

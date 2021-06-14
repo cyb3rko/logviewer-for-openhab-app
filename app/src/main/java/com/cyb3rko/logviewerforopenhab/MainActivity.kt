@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var mySPR: SharedPreferences
     private lateinit var navController: NavController
-    private lateinit var navView: NavigationView
+    lateinit var navView: NavigationView
     private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {

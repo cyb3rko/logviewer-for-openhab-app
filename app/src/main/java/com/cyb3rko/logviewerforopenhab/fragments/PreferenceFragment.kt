@@ -18,7 +18,6 @@ import com.cyb3rko.logviewerforopenhab.*
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.activity_main.*
 
 class PreferenceFragment : PreferenceFragmentCompat() {
 
@@ -121,7 +120,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
             }
             NIGHTMODE -> {
                 nightModeList.setOnPreferenceChangeListener { _, newValue ->
-                    val navView = requireActivity().nav_view
+                    val navView = (myContext as MainActivity).navView
                     navView.setCheckedItem(navView.checkedItem?.itemId?.minus(1)!!)
                     AppCompatDelegate.setDefaultNightMode(newValue.toString().toInt())
                     true
