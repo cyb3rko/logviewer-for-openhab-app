@@ -1,37 +1,36 @@
 package com.cyb3rko.logviewerforopenhab.appintro
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import com.cyb3rko.logviewerforopenhab.ANALYTICS_COLLECTION
 import com.cyb3rko.logviewerforopenhab.CRASHLYTICS_COLLECTION
-import com.cyb3rko.logviewerforopenhab.R
 import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
+import com.cyb3rko.logviewerforopenhab.databinding.FragmentAppintro4Binding
 
 class AppIntro4thFragment : Fragment() {
+    private var _binding: FragmentAppintro4Binding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
 
-    private lateinit var checkBox1: CheckBox
-    private lateinit var checkBox2: CheckBox
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            : View = inflater.inflate(R.layout.fragment_appintro4, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentAppintro4Binding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkBox1 = view.findViewById(R.id.analytics_check)
-        checkBox2 = view.findViewById(R.id.crashlytics_check)
-
-        val mySPR = requireContext().getSharedPreferences(SHARED_PREFERENCE, 0)
+        val mySPR = requireContext().getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
         val editor = mySPR.edit()
 
-        checkBox1.setOnCheckedChangeListener { _, b ->
+        binding.analyticsCheck.setOnCheckedChangeListener { _, b ->
             editor.putBoolean(ANALYTICS_COLLECTION, b).apply()
         }
 
-        checkBox2.setOnCheckedChangeListener { _, b ->
+        binding.crashlyticsCheck.setOnCheckedChangeListener { _, b ->
             editor.putBoolean(CRASHLYTICS_COLLECTION, b).apply()
         }
     }

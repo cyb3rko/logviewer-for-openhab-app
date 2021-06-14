@@ -22,6 +22,7 @@
     <string name="webview_viewlock_button_desc">lock</string>
     <string name="webview_textsize_button_desc">font icon</string>
     <string name="webview_back_button_desc">back arrow</string>
+    <string name="webview_retry_button_desc">Retry</string>
 
     <string name="webview_error_timeout">Connection timed out</string>
     <string name="webview_error_connection_1">Connection refusedt</string>

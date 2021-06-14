@@ -107,6 +107,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Retry" />
+        android:text="@string/webview_retry_button_desc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

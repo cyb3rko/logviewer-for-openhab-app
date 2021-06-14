@@ -52,6 +52,9 @@ android {
     packagingOptions {
         pickFirst 'META-INF/library_release.kotlin_module'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {

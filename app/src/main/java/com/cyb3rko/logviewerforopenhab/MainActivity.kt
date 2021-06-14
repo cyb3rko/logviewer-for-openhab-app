@@ -3,7 +3,6 @@ package com.cyb3rko.logviewerforopenhab
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         Toasty.Config.getInstance().allowQueue(false).apply()
-        mySPR = getSharedPreferences(SHARED_PREFERENCE, 0)
+        mySPR = getSharedPreferences(SHARED_PREFERENCE, MODE_PRIVATE)
         editor = mySPR.edit()
         editor.apply()
         AppCompatDelegate.setDefaultNightMode(mySPR.getString(NIGHTMODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM.toString())!!.toInt())
@@ -85,63 +84,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_settings -> navController.navigate(R.id.nav_settings)
                 R.id.drawer_about -> navController.navigate(R.id.nav_about)
                 R.id.drawer_end_user_consent -> {
-                    var dialogMessage = getString(R.string.end_user_consent_2_message_1)
-                    dialogMessage += mySPR.getString(CONSENT_DATE, getString(R.string.end_user_consent_2_date_not_found)) +
-                            getString(R.string.end_user_consent_2_message_2) +
-                            mySPR.getString(CONSENT_TIME, getString(R.string.end_user_consent_2_time_not_found))
-                    val spannableString = SpannableString(dialogMessage)
-                    val drawerMenu = navView.menu
-                    val clickableSpan1 = object : ClickableSpan() {
-                        override fun onClick(view: View) {
-                            showLicenseDialog(this@MainActivity, PRIVACY_POLICY)
-                        }
-                    }
-                    val clickableSpan2 = object : ClickableSpan() {
-                        override fun onClick(view: View) {
-                            showLicenseDialog(this@MainActivity, TERMS_OF_USE)
-                        }
-                    }
-                    var currentText = getString(R.string.end_user_consent_2_privacy_policy)
-                    var index = dialogMessage.indexOf(currentText)
-                    spannableString.setSpan(
-                        clickableSpan1, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                    currentText = getString(R.string.end_user_consent_2_terms_of_use)
-                    index = dialogMessage.indexOf(currentText)
-                    spannableString.setSpan(
-                        clickableSpan2, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                    currentText = getString(R.string.end_user_consent_2_date)
-                    index = dialogMessage.indexOf(currentText)
-                    for (i in 0..1) {
-                        spannableString.setSpan(UnderlineSpan(), index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        currentText = getString(R.string.end_user_consent_2_date)
-                        index = dialogMessage.indexOf(currentText)
-                    }
-
-                    MaterialDialog(this).show {
-                        title(R.string.end_user_consent_2_title)
-                        message(0, spannableString) {
-                            messageTextView.movementMethod = LinkMovementMethod.getInstance()
-                        }
-                        positiveButton(android.R.string.ok) {
-                            drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
-                        }
-                        negativeButton(R.string.end_user_consent_2_button_2) {
-                            val analytics = FirebaseAnalytics.getInstance(applicationContext)
-                            analytics.resetAnalyticsData()
-                            analytics.setAnalyticsCollectionEnabled(false)
-                            val crashlytics = FirebaseCrashlytics.getInstance()
-                            crashlytics.deleteUnsentReports()
-                            crashlytics.setCrashlyticsCollectionEnabled(false)
-                            editor.clear().commit()
-                            finish()
-                            startActivity(Intent(applicationContext, this@MainActivity::class.java))
-                        }
-                        onCancel {
-                            drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
-                        }
-                    }
+                    showEndUserConsent()
                 }
             }
             it.isChecked = true
@@ -153,8 +96,66 @@ class MainActivity : AppCompatActivity() {
         requestReview()
     }
 
-    private fun restoreConnections() {
-        showConnections(mySPR, getListOfConnections(mySPR), this)
+    private fun restoreConnections() = showConnections(mySPR, getListOfConnections(mySPR), this)
+
+    private fun showEndUserConsent() {
+        var dialogMessage = getString(R.string.end_user_consent_2_message_1)
+        dialogMessage += mySPR.getString(CONSENT_DATE, getString(R.string.end_user_consent_2_date_not_found)) +
+                getString(R.string.end_user_consent_2_message_2) +
+                mySPR.getString(CONSENT_TIME, getString(R.string.end_user_consent_2_time_not_found))
+        val spannableString = SpannableString(dialogMessage)
+        val drawerMenu = navView.menu
+        val clickableSpan1 = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                showLicenseDialog(this@MainActivity, PRIVACY_POLICY)
+            }
+        }
+        val clickableSpan2 = object : ClickableSpan() {
+            override fun onClick(view: View) {
+                showLicenseDialog(this@MainActivity, TERMS_OF_USE)
+            }
+        }
+        var currentText = getString(R.string.end_user_consent_2_privacy_policy)
+        var index = dialogMessage.indexOf(currentText)
+        spannableString.setSpan(
+            clickableSpan1, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        currentText = getString(R.string.end_user_consent_2_terms_of_use)
+        index = dialogMessage.indexOf(currentText)
+        spannableString.setSpan(
+            clickableSpan2, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        currentText = getString(R.string.end_user_consent_2_date)
+        index = dialogMessage.indexOf(currentText)
+        repeat(2) {
+            spannableString.setSpan(UnderlineSpan(), index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            currentText = getString(R.string.end_user_consent_2_time)
+            index = dialogMessage.indexOf(currentText)
+        }
+
+        MaterialDialog(this).show {
+            title(R.string.end_user_consent_2_title)
+            message(text = spannableString) {
+                messageTextView.movementMethod = LinkMovementMethod.getInstance()
+            }
+            positiveButton(android.R.string.ok) {
+                drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
+            }
+            negativeButton(R.string.end_user_consent_2_button_2) {
+                val analytics = FirebaseAnalytics.getInstance(applicationContext)
+                analytics.resetAnalyticsData()
+                analytics.setAnalyticsCollectionEnabled(false)
+                val crashlytics = FirebaseCrashlytics.getInstance()
+                crashlytics.deleteUnsentReports()
+                crashlytics.setCrashlyticsCollectionEnabled(false)
+                editor.clear().commit()
+                finish()
+                startActivity(Intent(applicationContext, this@MainActivity::class.java))
+            }
+            onCancel {
+                drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
+            }
+        }
     }
 
     private fun requestReview() {

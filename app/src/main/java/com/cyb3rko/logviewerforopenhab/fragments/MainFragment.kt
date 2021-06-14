@@ -7,58 +7,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.cyb3rko.logviewerforopenhab.*
+import com.cyb3rko.logviewerforopenhab.databinding.FragmentMainBinding
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.button.MaterialButtonToggleGroup
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 class MainFragment : Fragment() {
+    private var _binding: FragmentMainBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
+    private lateinit var myContext: Context
 
-    private lateinit var connectButton: Button
-    private lateinit var connectCheck: CheckBox
-    private lateinit var editButton: Button
     private lateinit var editor: SharedPreferences.Editor
-    private lateinit var hostnameIPAddress: TextInputLayout
-    private lateinit var hostnameIPAddressCheck: CheckBox
     private lateinit var hostnameIPAddressString: String
-    private lateinit var hostnameIPAddressText: TextInputEditText
-    private lateinit var httpToggles: MaterialButtonToggleGroup
     private lateinit var link: String
-    private lateinit var linkView: TextView
     private lateinit var mySPR: SharedPreferences
-    private lateinit var port: TextInputLayout
-    private lateinit var portCheck: CheckBox
     private var portInt = 0
-    private lateinit var portText: TextInputEditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_main, container, false)
-        connectButton = v.findViewById(R.id.connect_button)
-        connectCheck = v.findViewById(R.id.connect_check)
-        editButton = v.findViewById(R.id.edit_button)
-        hostnameIPAddressCheck = v.findViewById(R.id.hostname_ip_address_check)
-        portCheck = v.findViewById(R.id.port_check)
-        hostnameIPAddress = v.findViewById(R.id.hostname_ip_address)
-        httpToggles = v.findViewById(R.id.http_toggles)
-        port = v.findViewById(R.id.port)
-        hostnameIPAddressText = v.findViewById(R.id.hostname_ip_address_text)
-        portText = v.findViewById(R.id.port_text)
-        linkView = v.findViewById(R.id.link_view)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        val root = binding.root
+        myContext = requireContext()
 
-        mySPR = v.context.getSharedPreferences(SHARED_PREFERENCE, 0)
+        mySPR = myContext.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
         editor = mySPR.edit()
         editor.apply()
 
         setEditButtonClickListener()
-        setConnectButtonClickListener(v)
+        setConnectButtonClickListener(root)
         setConnectCheckClickListener()
 
-        return v
+        return root
     }
 
     override fun onStart() {
@@ -68,45 +49,45 @@ class MainFragment : Fragment() {
 
     private fun statusRestoring() {
         if (!mySPR.getBoolean(HTTPS_ACTIVATED, false)) {
-            httpToggles.check((httpToggles[0] as MaterialButton).id)
+            binding.httpToggles.check((binding.httpToggles[0] as MaterialButton).id)
         } else {
-            httpToggles.check((httpToggles[1] as MaterialButton).id)
+            binding.httpToggles.check((binding.httpToggles[1] as MaterialButton).id)
         }
-        connectCheck.isChecked = mySPR.getBoolean(CONNECT_CHECK, false)
+        binding.connectCheck.isChecked = mySPR.getBoolean(CONNECT_CHECK, false)
 
         if (mySPR.getString(HOSTNAME_STRING, "") == "" || mySPR.getString(HOSTNAME_STRING, "") == "0") {
-            hostnameIPAddressText.setText("")
-            hostnameIPAddress.isEnabled = true
+            binding.hostnameIpAddressText.setText("")
+            binding.hostnameIpAddress.isEnabled = true
         } else {
-            hostnameIPAddressText.setText(mySPR.getString(HOSTNAME_STRING, "0"))
+            binding.hostnameIpAddressText.setText(mySPR.getString(HOSTNAME_STRING, "0"))
             hostnameIPAddressString = mySPR.getString(HOSTNAME_STRING, "0")!!
-            hostnameIPAddress.isEnabled = false
+            binding.hostnameIpAddress.isEnabled = false
         }
 
-        hostnameIPAddressCheck.isChecked = mySPR.getBoolean(HOSTNAME_CHECK, true)
+        binding.hostnameIpAddressCheck.isChecked = mySPR.getBoolean(HOSTNAME_CHECK, true)
 
         if (mySPR.getInt(PORT_INT, 0) == 0) {
-            portText.setText("")
-            hostnameIPAddress.isEnabled = true
+            binding.portText.setText("")
+            binding.hostnameIpAddress.isEnabled = true
         } else {
-            portText.setText(mySPR.getInt(PORT_INT, 0).toString())
-            port.isEnabled = false
+            binding.portText.setText(mySPR.getInt(PORT_INT, 0).toString())
+            binding.port.isEnabled = false
             portInt = mySPR.getInt(PORT_INT, 9001)
         }
 
-        portCheck.isChecked = mySPR.getBoolean(PORT_CHECK, true)
+        binding.portCheck.isChecked = mySPR.getBoolean(PORT_CHECK, true)
 
-        val hostname = hostnameIPAddressText.text.toString()
-        val port = portText.text.toString()
+        val hostname = binding.hostnameIpAddressText.text.toString()
+        val port = binding.portText.text.toString()
         if (hostname.isNotEmpty() && port.isNotEmpty()) {
             linkGeneration(hostname, port)
-            httpToggles[0].isEnabled = false
-            httpToggles[1].isEnabled = false
-            hostnameIPAddressCheck.isEnabled = false
-            portCheck.isEnabled = false
-            connectCheck.isEnabled = true
-            connectButton.text = getString(R.string.main_connect_button_2)
-            editButton.isEnabled = true
+            binding.httpToggles[0].isEnabled = false
+            binding.httpToggles[1].isEnabled = false
+            binding.hostnameIpAddressCheck.isEnabled = false
+            binding.portCheck.isEnabled = false
+            binding.connectCheck.isEnabled = true
+            binding.connectButton.text = getString(R.string.main_connect_button_2)
+            binding.editButton.isEnabled = true
         }
     }
 
@@ -121,31 +102,31 @@ class MainFragment : Fragment() {
             "http"
         } else "https"
         link = "$prefix://$hostnameIPAddressString:$portInt"
-        linkView.text = link
+        binding.linkView.text = link
     }
 
     private fun setConnectButtonClickListener(v: View) {
-        connectButton.setOnClickListener { view ->
-            val tempHostname = hostnameIPAddressText.text.toString().trim()
-            val tempPort = portText.text.toString().trim()
+        binding.connectButton.setOnClickListener { view ->
+            val tempHostname = binding.hostnameIpAddressText.text.toString().trim()
+            val tempPort = binding.portText.text.toString().trim()
             if (tempHostname.isNotEmpty()) {
-                hostnameIPAddress.error = ""
-                if (linkView.text.toString().isEmpty()) {
+                binding.hostnameIpAddress.error = ""
+                if (binding.linkView.text.toString().isEmpty()) {
                     linkGeneration(tempHostname, tempPort)
 
-                    httpToggles[0].isEnabled = false
-                    httpToggles[1].isEnabled = false
-                    hostnameIPAddress.isEnabled = false
-                    port.isEnabled = false
-                    hostnameIPAddressCheck.isEnabled = false
-                    portCheck.isEnabled = false
-                    connectCheck.isEnabled = true
-                    editButton.isEnabled = true
+                    binding.httpToggles[0].isEnabled = false
+                    binding.httpToggles[1].isEnabled = false
+                    binding.hostnameIpAddress.isEnabled = false
+                    binding.port.isEnabled = false
+                    binding.hostnameIpAddressCheck.isEnabled = false
+                    binding.portCheck.isEnabled = false
+                    binding.connectCheck.isEnabled = true
+                    binding.editButton.isEnabled = true
 
-                    val httpMode = (httpToggles[1] as MaterialButton).isChecked
+                    val httpMode = (binding.httpToggles[1] as MaterialButton).isChecked
                     editor.putBoolean(HTTPS_ACTIVATED, httpMode)
 
-                    if (hostnameIPAddressCheck.isChecked) {
+                    if (binding.hostnameIpAddressCheck.isChecked) {
                         editor.putString(HOSTNAME_STRING, hostnameIPAddressString)
                         editor.putBoolean(HOSTNAME_CHECK, true)
                     } else {
@@ -153,24 +134,24 @@ class MainFragment : Fragment() {
                         editor.putBoolean(HOSTNAME_CHECK, false)
                     }
 
-                    if (portCheck.isChecked) {
+                    if (binding.portCheck.isChecked) {
                         editor.putBoolean(PORT_CHECK, true)
 
-                        if (portText.text.toString().trim().isNotEmpty()) {
+                        if (binding.portText.text.toString().trim().isNotEmpty()) {
                             editor.putInt(PORT_INT, portInt)
                         } else {
-                            portText.setText(9001.toString())
+                            binding.portText.setText(9001.toString())
                             editor.putInt(PORT_INT, 9001)
                         }
                     } else {
-                        portText.setText(9001.toString())
+                        binding.portText.setText(9001.toString())
                         editor.putInt(PORT_INT, 0)
                         editor.putBoolean(PORT_CHECK, false)
                     }
 
                     editor.putString(LINK, link).apply()
 
-                    connectButton.text = getString(R.string.main_connect_button_2)
+                    binding.connectButton.text = getString(R.string.main_connect_button_2)
                 } else {
                     if (view != null) {
                         val imm = view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -179,11 +160,11 @@ class MainFragment : Fragment() {
                     findNavController().navigate(R.id.nav_webview)
 
                     if (mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)) {
-                        storeAndShowConnection((httpToggles[1] as MaterialButton).isChecked, tempHostname, tempPort.toInt())
+                        storeAndShowConnection((binding.httpToggles[1] as MaterialButton).isChecked, tempHostname, tempPort.toInt())
                     }
                 }
             } else {
-                hostnameIPAddress.error = getString(R.string.error_fill_out)
+                binding.hostnameIpAddress.error = getString(R.string.error_fill_out)
             }
         }
     }
@@ -210,22 +191,22 @@ class MainFragment : Fragment() {
     }
 
     private fun setEditButtonClickListener() {
-        editButton.setOnClickListener {
-            httpToggles[0].isEnabled = true
-            httpToggles[1].isEnabled = true
-            hostnameIPAddress.isEnabled = true
-            hostnameIPAddressCheck.isEnabled = true
-            port.isEnabled = true
-            portCheck.isEnabled = true
-            connectCheck.isEnabled = false
-            connectButton.text = getString(R.string.main_connect_button_1)
-            editButton.isEnabled = false
-            linkView.text = ""
+        binding.editButton.setOnClickListener {
+            binding.httpToggles[0].isEnabled = true
+            binding.httpToggles[1].isEnabled = true
+            binding.hostnameIpAddress.isEnabled = true
+            binding.hostnameIpAddressCheck.isEnabled = true
+            binding.port.isEnabled = true
+            binding.portCheck.isEnabled = true
+            binding.connectCheck.isEnabled = false
+            binding.connectButton.text = getString(R.string.main_connect_button_1)
+            binding.editButton.isEnabled = false
+            binding.linkView.text = ""
         }
     }
 
     private fun setConnectCheckClickListener() {
-        connectCheck.setOnCheckedChangeListener { _, b ->
+        binding.connectCheck.setOnCheckedChangeListener { _, b ->
             editor.putBoolean(CONNECT_CHECK, b)
             editor.putBoolean(AUTO_START, b).apply()
         }

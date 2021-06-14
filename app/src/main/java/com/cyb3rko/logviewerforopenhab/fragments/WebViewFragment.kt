@@ -1,6 +1,7 @@
 package com.cyb3rko.logviewerforopenhab.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -17,16 +18,9 @@ import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.cyb3rko.logviewerforopenhab.*
-import com.cyb3rko.logviewerforopenhab.FIRST_START_WEB
-import com.cyb3rko.logviewerforopenhab.LINK
-import com.cyb3rko.logviewerforopenhab.ORIENTATION
-import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
-import com.cyb3rko.logviewerforopenhab.TEXTSIZE_AUTO
-import com.cyb3rko.logviewerforopenhab.TEXTSIZE_LANDSCAPE
-import com.cyb3rko.logviewerforopenhab.TEXTSIZE_PORTRAIT
+import com.cyb3rko.logviewerforopenhab.databinding.FragmentWebViewBinding
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
@@ -36,35 +30,70 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_web_view.*
 
 class WebViewFragment : Fragment() {
+    private var _binding: FragmentWebViewBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
+    private lateinit var myContext: Context
 
-    private lateinit var backButton: FloatingActionButton
-    private lateinit var textButton: FloatingActionButton
-    private lateinit var viewButton: FloatingActionButton
     private lateinit var mySPR: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var textSizeType: String
     private lateinit var webSettings: WebSettings
-    private lateinit var webView: WebView
     private var viewLocked = true
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_web_view, container, false)
-        webView = v.findViewById(R.id.webview)
-        viewButton = v.findViewById(R.id.view_button)
-        textButton = v.findViewById(R.id.text_button)
-        backButton = v.findViewById(R.id.back_button)
+        _binding = FragmentWebViewBinding.inflate(inflater, container, false)
+        val root = binding.root
+        myContext = requireContext()
 
-        mySPR = v.context.getSharedPreferences(SHARED_PREFERENCE, 0)
+        mySPR = myContext.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
         editor = mySPR.edit()
         editor.apply()
 
-        webSettings = webView.settings
-        webView.webViewClient = object : WebViewClient() {
+        setUpWebview()
+        root.isVerticalScrollBarEnabled = false
+        setTouchable(false)
+
+        textSizeType = when (mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT.toString())?.toInt()) {
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> TEXTSIZE_AUTO
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> TEXTSIZE_LANDSCAPE
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> TEXTSIZE_PORTRAIT
+            else -> { "" }
+        }
+        webSettings.textZoom = mySPR.getInt(textSizeType, 60)
+
+        setToolbarVisibility(activity, View.GONE)
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.webview.loadUrl(mySPR.getString(LINK, "")!!)
+
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = object : Runnable {
+            override fun run() {
+                if (viewLocked) {
+                    binding.webview.scrollBy(0, 10000)
+                }
+                handler.postDelayed(this, 1000)
+            }
+        }
+        handler.postDelayed(runnable, 500)
+        setViewButtonClickListener()
+        setTextButtonClickListener(view)
+        setBackButtonClickListener()
+        showTapTargetSequence(view)
+    }
+
+    private fun setUpWebview() {
+        webSettings = binding.webview.settings
+        binding.webview.webViewClient = object : WebViewClient() {
             override fun onReceivedError(view: WebView, errorCode: Int, description: String, failingUrl: String) {
                 view_button.visibility = View.GONE
                 text_button.visibility = View.GONE
-                webView.visibility = View.GONE
+                binding.webview.visibility = View.GONE
                 animation_view.visibility = View.VISIBLE
                 when (errorCode) {
                     -8 -> {
@@ -131,39 +160,6 @@ class WebViewFragment : Fragment() {
         }
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
-        v.isVerticalScrollBarEnabled = false
-        setTouchable(false)
-
-        textSizeType = when (mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT.toString())?.toInt()) {
-            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED -> TEXTSIZE_AUTO
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE -> TEXTSIZE_LANDSCAPE
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT -> TEXTSIZE_PORTRAIT
-            else -> { "" }
-        }
-        webSettings.textZoom = mySPR.getInt(textSizeType, 60)
-
-        setToolbarVisibility(activity, View.GONE)
-        return v
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        webView.loadUrl(mySPR.getString(LINK, "")!!)
-
-        val handler = Handler(Looper.getMainLooper())
-        val runnable = object : Runnable {
-            override fun run() {
-                if (viewLocked) {
-                    webView.scrollBy(0, 10000)
-                }
-                handler.postDelayed(this, 1000)
-            }
-        }
-        handler.postDelayed(runnable, 500)
-        setViewButtonClickListener()
-        setTextButtonClickListener(view)
-        setBackButtonClickListener()
-        showTapTargetSequence(view)
     }
 
     private fun logUnknownError(errorCode: Int, description: String) {
@@ -174,31 +170,31 @@ class WebViewFragment : Fragment() {
     }
 
     private fun setViewButtonClickListener() {
-        viewButton.setOnClickListener { view ->
+        binding.viewButton.setOnClickListener {
             if (viewLocked) {
-                viewButton.setImageResource(R.drawable._ic_lock_2)
+                binding.viewButton.setImageResource(R.drawable._ic_lock_2)
                 viewLocked = false
                 setTouchable(true)
 
-                Toasty.info(view.context, getString(R.string.lock_button_1), Toasty.LENGTH_SHORT).show()
+                Toasty.info(myContext, getString(R.string.lock_button_1), Toasty.LENGTH_SHORT).show()
             } else {
-                viewButton.setImageResource(R.drawable._ic_lock)
+                binding.viewButton.setImageResource(R.drawable._ic_lock)
                 viewLocked = true
                 setTouchable(false)
 
-                webView.scrollBy(0, 10000)
+                binding.webview.scrollBy(0, 10000)
 
-                Toasty.info(view.context, getString(R.string.lock_button_2), Toasty.LENGTH_SHORT).show()
+                Toasty.info(myContext, getString(R.string.lock_button_2), Toasty.LENGTH_SHORT).show()
             }
         }
     }
 
     private fun setTextButtonClickListener(v: View) {
-        textButton.setOnClickListener {
-            val content = LinearLayout(v.context)
+        binding.textButton.setOnClickListener {
+            val content = LinearLayout(myContext)
             content.orientation = LinearLayout.VERTICAL
-            val sizeView = TextView(v.context)
-            val discreteSeekBar = DiscreteSeekBar(v.context)
+            val sizeView = TextView(myContext)
+            val discreteSeekBar = DiscreteSeekBar(myContext)
             val currentTextSize = mySPR.getInt(textSizeType, 60)
 
             sizeView.text = String.format(getString(R.string.text_size_dialog_text), currentTextSize, currentTextSize)
@@ -225,14 +221,14 @@ class WebViewFragment : Fragment() {
             })
             content.addView(discreteSeekBar)
 
-            MaterialDialog(requireContext()).show {
+            MaterialDialog(myContext).show {
                 title(R.string.text_size_dialog_title)
                 customView(0, content)
                 positiveButton(R.string.text_size_dialog_button_1) {
                     val textSize = discreteSeekBar.progress
                     webSettings.textZoom = textSize
                     editor.putInt(textSizeType, textSize).apply()
-                    Toasty.info(v.context, getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show()
+                    Toasty.info(myContext, getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show()
                 }
                 negativeButton(R.string.text_size_dialog_button_2)
             }
@@ -240,7 +236,7 @@ class WebViewFragment : Fragment() {
     }
 
     private fun setBackButtonClickListener() {
-        backButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.nav_menu)
             setToolbarVisibility(activity, View.VISIBLE)
         }
@@ -309,9 +305,9 @@ class WebViewFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     private fun setTouchable(b: Boolean) {
         if (b) {
-            webView.setOnTouchListener { _, _ -> false }
+            binding.webview.setOnTouchListener { _, _ -> false }
         } else {
-            webView.setOnTouchListener { _, _ -> true }
+            binding.webview.setOnTouchListener { _, _ -> true }
         }
     }
 }

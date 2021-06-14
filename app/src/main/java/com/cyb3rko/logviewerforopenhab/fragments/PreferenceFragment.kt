@@ -15,15 +15,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.isItemChecked
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.cyb3rko.logviewerforopenhab.*
-import com.cyb3rko.logviewerforopenhab.ANALYTICS_COLLECTION
-import com.cyb3rko.logviewerforopenhab.CONNECTION_OVERVIEW_ENABLED
-import com.cyb3rko.logviewerforopenhab.CRASHLYTICS_COLLECTION
-import com.cyb3rko.logviewerforopenhab.DATA_DELETION
-import com.cyb3rko.logviewerforopenhab.ORIENTATION
-import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
-import com.cyb3rko.logviewerforopenhab.getListOfConnections
-import com.cyb3rko.logviewerforopenhab.hideConnections
-import com.cyb3rko.logviewerforopenhab.showConnections
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import es.dmoral.toasty.Toasty

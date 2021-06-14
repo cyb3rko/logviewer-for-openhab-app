@@ -6,9 +6,6 @@ import android.os.Bundle
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.cyb3rko.logviewerforopenhab.*
-import com.cyb3rko.logviewerforopenhab.CONSENT_TIME
-import com.cyb3rko.logviewerforopenhab.FIRST_START
-import com.cyb3rko.logviewerforopenhab.SHARED_PREFERENCE
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
