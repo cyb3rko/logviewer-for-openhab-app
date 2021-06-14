@@ -1,5 +1,7 @@
 package com.cyb3rko.logviewerforopenhab.fragments
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
@@ -9,6 +11,9 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.isItemChecked
+import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.cyb3rko.logviewerforopenhab.*
 import com.cyb3rko.logviewerforopenhab.ANALYTICS_COLLECTION
 import com.cyb3rko.logviewerforopenhab.CONNECTION_OVERVIEW_ENABLED
@@ -26,6 +31,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class PreferenceFragment : PreferenceFragmentCompat() {
 
+    private lateinit var myContext: Context
+
     private lateinit var analyticsCollectionSwitch: SwitchPreferenceCompat
     private lateinit var connectionOverviewSwitch: SwitchPreferenceCompat
     private lateinit var crashlyticsCollectionSwitch: SwitchPreferenceCompat
@@ -34,6 +41,11 @@ class PreferenceFragment : PreferenceFragmentCompat() {
     private lateinit var nightModeList: ListPreference
     private lateinit var orientationList: ListPreference
     private lateinit var openhabVersionList: ListPreference
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        myContext = context
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.preferences)
@@ -75,6 +87,44 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                     showConnections(mySPR, getListOfConnections(mySPR), activity)
                 } else {
                     hideConnections(requireActivity())
+                }
+                true
+            }
+            CONNECTIONS_MANAGE -> {
+                val rawConnections = getListOfConnections(mySPR)
+                val connectionList = mutableListOf<String>()
+                var http: String
+                rawConnections.forEach {
+                    http = if (it.httpsActivated) "https" else "http"
+                    connectionList.add("$http://${it.hostName}:${it.port}")
+                }
+                if (connectionList.isEmpty()) {
+                    MaterialDialog(myContext).show {
+                        title(R.string.settings_manage_connections_dialog_title)
+                        message(R.string.settings_manage_connections_dialog1_message)
+                        positiveButton(android.R.string.ok)
+                    }
+                    return true
+                }
+                MaterialDialog(myContext).show {
+                    title(R.string.settings_manage_connections_dialog_title)
+                    listItemsMultiChoice(items = connectionList.toList())
+                    positiveButton(R.string.settings_manage_connections_dialog2_button) {
+                        val selection = mutableListOf<Int>()
+                        repeat(connectionList.size) { i ->
+                            if (it.isItemChecked(i)) selection.add(i)
+                        }
+                        selection.reversed().forEach { i ->
+                            rawConnections.removeAt(i)
+                        }
+                        var newConnections = ""
+                        rawConnections.forEachIndexed { _, c ->
+                            http = if (c.httpsActivated) "https" else "http"
+                            newConnections += "$http://${c.hostName}:${c.port};"
+                        }
+                        mySPR.edit().putString(CONNECTIONS, newConnections.dropLast(1)).apply()
+                        showConnections(mySPR, rawConnections, myContext as Activity)
+                    }
                 }
                 true
             }

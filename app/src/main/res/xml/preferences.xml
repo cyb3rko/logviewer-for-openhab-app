@@ -44,6 +44,13 @@
             android:defaultValue="true"
             android:key="connection_overview_enabled" />
 
+        <Preference
+            android:title="@string/settings_manage_connections_title"
+            android:summary="@string/settings_manage_connections_summary"
+            app:iconSpaceReserved="false"
+            android:dependency="connection_overview_enabled"
+            android:key="connections_manage" />
+
         <ListPreference
             android:title="@string/settings_nightmode_title"
             android:summary="@string/settings_nightmode_summary"

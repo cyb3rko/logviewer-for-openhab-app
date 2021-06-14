@@ -22,6 +22,7 @@ internal const val CONSENT_DATE = "consent_date"
 internal const val CONSENT_TIME = "consent_time"
 internal const val CONNECT_CHECK = "connect_check"
 internal const val CONNECTION_OVERVIEW_ENABLED = "connection_overview_enabled"
+internal const val CONNECTIONS_MANAGE = "connections_manage"
 internal const val CONNECTIONS = "connections"
 internal const val CRASHLYTICS_COLLECTION = "crashlytics_collection"
 internal const val DATA_DELETION = "data_deletion"
@@ -46,7 +47,7 @@ internal const val TEXTSIZE_PORTRAIT = "textsize_PORTRAIT"
 internal fun getListOfConnections(mySPR: SharedPreferences): MutableList<Connection> {
     val resultList = mutableListOf<Connection>()
     val storedConnections = mySPR.getString(CONNECTIONS, "empty")
-    if (storedConnections == "empty") {
+    if (storedConnections == "empty" || storedConnections == "") {
         return mutableListOf()
     }
     val tempList = storedConnections?.split(";")
