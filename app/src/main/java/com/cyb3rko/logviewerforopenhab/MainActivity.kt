@@ -27,6 +27,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import es.dmoral.toasty.Toasty
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Toasty.Config.getInstance().allowQueue(false).apply()
         mySPR = getSharedPreferences(SHARED_PREFERENCE, MODE_PRIVATE)
         editor = mySPR.edit()
         editor.apply()
