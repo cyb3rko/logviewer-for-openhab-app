@@ -12,7 +12,6 @@ import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -28,7 +27,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import es.dmoral.toasty.Toasty
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,11 +41,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Toasty.Config.getInstance().allowQueue(false).apply()
         mySPR = getSharedPreferences(SHARED_PREFERENCE, MODE_PRIVATE)
         editor = mySPR.edit()
         editor.apply()
-        AppCompatDelegate.setDefaultNightMode(mySPR.getString(NIGHTMODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM.toString())!!.toInt())
+
         requestedOrientation = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())?.toInt()!!
 
         setContentView(R.layout.activity_main)
