@@ -31,6 +31,7 @@
     <string name="webview_error_internet">Internet disconnected</string>
     <string name="webview_error_host">Host \'%1$s\' not found</string>
     <string name="webview_error_port">Unsafe port: \'%1$s\'</string>
+    <string name="webview_error_ssl">SSL protocol error occurred</string>
     <string name="webview_error_unknown">Unknown error occurred</string>
 
     <string name="tap_target_title_1">View Lock</string>

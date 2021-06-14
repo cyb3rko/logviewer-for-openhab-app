@@ -133,6 +133,10 @@ class WebViewFragment : Fragment() {
                             logUnknownError(errorCode, description)
                         }
                     }
+                    -11 -> {
+                        animation_view.setAnimation("ssl.json")
+                        animation_desc.text = getString(R.string.webview_error_ssl)
+                    }
                     else -> {
                         animation_view.setAnimation("error.json")
                         animation_desc.text = getString(R.string.webview_error_unknown)
