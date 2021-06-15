@@ -44,11 +44,11 @@ If you can't find a language you're looking for, just drop me a mail at niko@cyb
 
 ## Screenshots
 ### Tablet
-|<img src=".github/images/v2.0.0/tablet/screenshot_1.webp" width="270">|<img src=".github/images/v2.0.0/tablet/screenshot_2.webp" width="270">|<img src=".github/images/v2.0.0/tablet/screenshot_3.webp" width="270">|
+|<img src=".github/images/screenshot_1_tablet.jpg" width="270">|<img src=".github/images/screenshot_2_tablet.jpg" width="270">|<img src=".github/images/screenshot_3_tablet.jpg" width="270">|
 |:---:|:---:|:---:|
 
 ### Smartphone
-|<img src=".github/images/v2.0.0/handy/screenshot_1.webp" width="270">|<img src=".github/images/v2.0.0/handy/screenshot_2.webp" width="270">|<img src=".github/images/v2.0.0/handy/screenshot_3.webp" width="270">|
+|<img src=".github/images/screenshot_1.png" width="270">|<img src=".github/images/screenshot_2.png" width="270">|<img src=".github/images/screenshot_3.png" width="270">|
 |:---:|:---:|:---:|
 
 ## Contribute
