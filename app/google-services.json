@@ -15,40 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "504782401236-sd70cpeg4tc4vftnscb9o445cgddk97q.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDYrTIQyyrgmxbmaZK4tYFgN6kuHm8d2f8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "504782401236-sd70cpeg4tc4vftnscb9o445cgddk97q.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:504782401236:android:f73bea864f19ac32849541",
-        "android_client_info": {
-          "package_name": "com.thegreek.niko.logviewer_for_openHAB"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "504782401236-ao0hhc8s81k7slnhip67kfvbqdqmgtii.apps.googleusercontent.com",
+          "client_id": "504782401236-scnvqsrmtnglnn61q8b6tljas5p50e64.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.thegreek.niko.logviewer_for_openHAB",
-            "certificate_hash": "d2d04e800d8b6dd0f1c0c2da6f1b3ec003ea7c97"
+            "package_name": "com.cyb3rko.logviewerforopenhab",
+            "certificate_hash": "e70ee2e0c8fa63f47083bfbda6e88910e3a479d2"
           }
         },
         {
