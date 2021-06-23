@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
@@ -76,47 +77,45 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                 if (connectionOverviewSwitch.isChecked) {
                     showConnections(mySPR, getListOfConnections(mySPR), activity)
                 } else {
-                    hideConnections(requireActivity())
+                    hideConnections(activity)
                 }
                 true
             }
             CONNECTIONS_MANAGE -> {
-                val rawConnections = getListOfConnections(mySPR)
-                val connectionList = mutableListOf<String>()
-                var http: String
-                rawConnections.forEach {
-                    http = if (it.httpsActivated) "https" else "http"
-                    connectionList.add("$http://${it.hostName}:${it.port}")
-                }
-                if (connectionList.isEmpty()) {
+                if (activity != null) {
+                    val connectionList = getListOfConnections(
+                        requireActivity().getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE))
+                    if (connectionList.isEmpty()) {
+                        MaterialDialog(myContext).show {
+                            title(R.string.settings_manage_connections_dialog_title)
+                            message(R.string.settings_manage_connections_dialog1_message)
+                            positiveButton(android.R.string.ok)
+                        }
+                        return true
+                    }
+                    val rawConnections = mutableListOf<String>()
+                    connectionList.forEach { rawConnections.add(it.toString()) }
                     MaterialDialog(myContext).show {
                         title(R.string.settings_manage_connections_dialog_title)
-                        message(R.string.settings_manage_connections_dialog1_message)
-                        positiveButton(android.R.string.ok)
+                        listItemsMultiChoice(items = rawConnections.toList())
+                        positiveButton(R.string.settings_manage_connections_dialog2_button) {
+                            val selection = mutableListOf<Int>()
+                            repeat(connectionList.size) { i ->
+                                if (it.isItemChecked(i)) selection.add(i)
+                            }
+                            selection.reversed().forEach { i ->
+                                connectionList.removeAt(i)
+                            }
+                            val newConnections = connectionList.joinToString(";")
+                            mySPR.edit().putString(CONNECTIONS, newConnections).apply()
+                            showConnections(mySPR, connectionList, myContext as Activity)
+                        }
                     }
-                    return true
+                    true
+                } else {
+                    Toast.makeText(myContext, R.string.settings_manage_connections_error, Toast.LENGTH_SHORT).show()
+                    false
                 }
-                MaterialDialog(myContext).show {
-                    title(R.string.settings_manage_connections_dialog_title)
-                    listItemsMultiChoice(items = connectionList.toList())
-                    positiveButton(R.string.settings_manage_connections_dialog2_button) {
-                        val selection = mutableListOf<Int>()
-                        repeat(connectionList.size) { i ->
-                            if (it.isItemChecked(i)) selection.add(i)
-                        }
-                        selection.reversed().forEach { i ->
-                            rawConnections.removeAt(i)
-                        }
-                        var newConnections = ""
-                        rawConnections.forEachIndexed { _, c ->
-                            http = if (c.httpsActivated) "https" else "http"
-                            newConnections += "$http://${c.hostName}:${c.port};"
-                        }
-                        mySPR.edit().putString(CONNECTIONS, newConnections.dropLast(1)).apply()
-                        showConnections(mySPR, rawConnections, myContext as Activity)
-                    }
-                }
-                true
             }
             NIGHTMODE -> {
                 nightModeList.setOnPreferenceChangeListener { _, newValue ->

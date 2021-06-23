@@ -95,7 +95,13 @@ class MainActivity : AppCompatActivity() {
         requestReview()
     }
 
-    private fun restoreConnections() = showConnections(mySPR, getListOfConnections(mySPR), this)
+    private fun restoreConnections() {
+        try {
+            showConnections(mySPR, getListOfConnections(mySPR), this)
+        } catch (e: Exception) {
+            editor.putString(CONNECTIONS, "empty").apply()
+        }
+    }
 
     private fun showEndUserConsent() {
         var dialogMessage = getString(R.string.end_user_consent_2_message_1)

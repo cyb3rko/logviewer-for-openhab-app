@@ -70,6 +70,7 @@
     <string name="settings_manage_connections_dialog_title">Delete Connections</string>
     <string name="settings_manage_connections_dialog1_message">No connections found</string>
     <string name="settings_manage_connections_dialog2_button">Save</string>
+    <string name="settings_manage_connections_error">Error occurred: Activity is null</string>
     <string name="settings_nightmode_title">Night Mode</string>
     <string name="settings_nightmode_summary">Toggle the dark appearance of the app (logview excluded)</string>
     <string name="settings_analytics_title">Analytics Data Collection</string>

@@ -29,7 +29,6 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val root = binding.root
-        myContext = requireContext()
 
         mySPR = myContext.getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE)
         editor = mySPR.edit()
@@ -176,16 +175,9 @@ class MainFragment : Fragment() {
             if (connections.size >= 3) {
                 connections.removeAt(0)
             }
-            var newConnections = ""
-            var http: String
-            connections.forEach {
-                http = if (it.httpsActivated) "https" else "http"
-                newConnections += "$http://${it.hostName}:${it.port};"
-            }
-            http = if (httpsActivated) "https" else "http"
-            newConnections += "$http://${hostname}:${portInt}"
-            editor.putString(CONNECTIONS, newConnections).commit()
             connections.add(newConnection)
+            val newConnections = connections.joinToString(";")
+            editor.putString(CONNECTIONS, newConnections).commit()
             showConnections(mySPR, connections, activity)
         }
     }

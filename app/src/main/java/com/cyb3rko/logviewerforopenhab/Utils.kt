@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.text.Html
 import android.text.method.LinkMovementMethod
-import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
@@ -50,13 +49,8 @@ internal fun getListOfConnections(mySPR: SharedPreferences): MutableList<Connect
     if (storedConnections == "empty" || storedConnections == "") {
         return mutableListOf()
     }
-    val tempList = storedConnections?.split(";")
-    var parts1: List<String>
-    var parts2: List<String>
-    tempList?.forEach {
-        parts1 = it.split("://")
-        parts2 = parts1[1].split(":")
-        resultList.add(Connection(parts1[0] == "https", parts2[0], parts2[1].toInt()))
+    storedConnections?.split(";")?.forEach {
+        resultList.add(Connection.fromString(it))
     }
     return resultList
 }
@@ -70,28 +64,16 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
         val connectionsMenu = navView.menu.findItem(R.id.nav_connections).subMenu
         connectionsMenu.clear()
 
-        var item: MenuItem
-        var link: String
-        var outerParts: List<String>
-        var parts: List<String>
-        var http: String
-        var emojiCode: Int
-        var emoji: String
         connections.forEach { connection ->
-            http = if (connection.httpsActivated) "https" else "http"
-            emojiCode = if (connection.httpsActivated) 0x1F512 else 0x1F513
-            emoji = String(Character.toChars(emojiCode))
-            item = connectionsMenu.add("${connection.hostName}:${connection.port} $emoji")
+            val item = connectionsMenu.add(connection.toCaption())
             item.setIcon(R.drawable._ic_connection)
-            item.setOnMenuItemClickListener { menuItem ->
-                outerParts = menuItem.title.split(" ")
-                http = if (outerParts[1] == String(Character.toChars(0x1F512))) "https" else "http"
-                parts = outerParts[0].split(":")
-                link = "$http://${parts[0]}:${parts[1]}"
-                editor.putBoolean(HTTPS_ACTIVATED, connection.httpsActivated)
-                editor.putString(LINK, link)
-                editor.putString(HOSTNAME_STRING, parts[0])
-                editor.putInt(PORT_INT, parts[1].toInt()).apply()
+            item.setOnMenuItemClickListener {
+                connection.apply {
+                    editor.putBoolean(HTTPS_ACTIVATED, httpsActivated)
+                    editor.putString(LINK, toString())
+                    editor.putString(HOSTNAME_STRING, hostName)
+                    editor.putInt(PORT_INT, port).apply()
+                }
                 navController.navigate(R.id.nav_webview)
                 drawer.close()
                 true
@@ -100,10 +82,12 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
     }
 }
 
-internal fun hideConnections(activity: Activity) {
-    val navView = activity.findViewById<NavigationView>(R.id.nav_view)
-    val connectionsMenu = navView.menu.findItem(R.id.nav_connections).subMenu
-    connectionsMenu.clear()
+internal fun hideConnections(activity: Activity?) {
+    if (activity != null) {
+        val navView = activity.findViewById<NavigationView>(R.id.nav_view)
+        val connectionsMenu = navView.menu.findItem(R.id.nav_connections).subMenu
+        connectionsMenu.clear()
+    }
 }
 
 internal fun showLicenseDialog(context: Context?, type: String) {
