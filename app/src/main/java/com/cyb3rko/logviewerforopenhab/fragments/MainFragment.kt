@@ -26,6 +26,11 @@ class MainFragment : Fragment() {
     private lateinit var mySPR: SharedPreferences
     private var portInt = 0
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        myContext = context
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val root = binding.root
@@ -100,7 +105,9 @@ class MainFragment : Fragment() {
         val prefix = if (requireView().findViewById<MaterialButton>(R.id.http_button).isChecked) {
             "http"
         } else "https"
-        link = "$prefix://$hostnameIPAddressString:$portInt"
+
+        val portString = if (portInt != -1) ":$portInt" else ""
+        link = "$prefix://$hostnameIPAddressString$portString"
         binding.linkView.text = link
     }
 

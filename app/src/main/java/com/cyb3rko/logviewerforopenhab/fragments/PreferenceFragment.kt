@@ -93,11 +93,11 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                         }
                         return true
                     }
-                    val rawConnections = mutableListOf<String>()
-                    connectionList.forEach { rawConnections.add(it.toString()) }
+                    val connectionLinks = mutableListOf<String>()
+                    connectionList.forEach { connectionLinks.add(it.toLink()) }
                     MaterialDialog(myContext).show {
                         title(R.string.settings_manage_connections_dialog_title)
-                        listItemsMultiChoice(items = rawConnections.toList())
+                        listItemsMultiChoice(items = connectionLinks.toList())
                         positiveButton(R.string.settings_manage_connections_dialog2_button) {
                             val selection = mutableListOf<Int>()
                             repeat(connectionList.size) { i ->

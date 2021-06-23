@@ -10,10 +10,17 @@ internal data class Connection(
         return "$http://$hostName:$port"
     }
 
+    fun toLink(): String {
+        val http = if (httpsActivated) "https" else "http"
+        val portString = if (port != -1) ":$port" else ""
+        return "$http://$hostName$portString"
+    }
+
     fun toCaption(): String {
         val emojiCode = if (httpsActivated) 0x1F512 else 0x1F513
         val emoji = String(Character.toChars(emojiCode))
-        return "$hostName:$port $emoji"
+        val portString = if (port != -1) ":$port" else ""
+        return "$hostName$portString $emoji"
     }
 
     companion object {

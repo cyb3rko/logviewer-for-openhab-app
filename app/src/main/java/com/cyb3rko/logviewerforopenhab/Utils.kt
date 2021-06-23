@@ -70,7 +70,7 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
             item.setOnMenuItemClickListener {
                 connection.apply {
                     editor.putBoolean(HTTPS_ACTIVATED, httpsActivated)
-                    editor.putString(LINK, toString())
+                    editor.putString(LINK, toLink())
                     editor.putString(HOSTNAME_STRING, hostName)
                     editor.putInt(PORT_INT, port).apply()
                 }
