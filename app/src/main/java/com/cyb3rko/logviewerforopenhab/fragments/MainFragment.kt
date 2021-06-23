@@ -104,7 +104,9 @@ class MainFragment : Fragment() {
         }
         val prefix = if (requireView().findViewById<MaterialButton>(R.id.http_button).isChecked) {
             "http"
-        } else "https"
+        } else {
+            "https"
+        }
 
         val portString = if (portInt != -1) ":$portInt" else ""
         link = "$prefix://$hostnameIPAddressString$portString"
