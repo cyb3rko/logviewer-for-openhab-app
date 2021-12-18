@@ -89,6 +89,16 @@ class WebViewFragment : Fragment() {
         showTapTargetSequence(view)
     }
 
+    override fun onResume() {
+        super.onResume()
+        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+    }
+
     private fun setUpWebview() {
         webSettings = binding.webview.settings
         binding.webview.webViewClient = object : WebViewClient() {
