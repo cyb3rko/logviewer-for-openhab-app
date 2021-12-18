@@ -35,7 +35,14 @@
             android:defaultValue=""
             android:entries="@array/orientations"
             android:entryValues="@array/orientations_values"
-            android:key="orientation"/>
+            android:key="orientation" />
+
+        <SwitchPreferenceCompat
+            android:title="@string/settings_stay_awake_title"
+            android:summary="@string/settings_stay_awake_summary"
+            app:iconSpaceReserved="false"
+            android:defaultValue="true"
+            android:key="stay_awake" />
 
         <SwitchPreferenceCompat
             android:title="@string/settings_connection_overview_title"

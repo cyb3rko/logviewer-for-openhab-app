@@ -32,6 +32,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
     private lateinit var nightModeList: ListPreference
     private lateinit var orientationList: ListPreference
     private lateinit var openhabVersionList: ListPreference
+    private lateinit var stayAwakeSwitch: SwitchPreferenceCompat
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -45,6 +46,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         openhabVersionList = findPreference(OPENHAB_VERSION)!!
         hideTopbarSwitch = findPreference(HIDE_TOPBAR)!!
         orientationList = findPreference(ORIENTATION)!!
+        stayAwakeSwitch = findPreference(STAY_AWAKE)!!
         connectionOverviewSwitch = findPreference(CONNECTION_OVERVIEW_ENABLED)!!
         nightModeList = findPreference(NIGHTMODE)!!
         analyticsCollectionSwitch = findPreference(ANALYTICS_COLLECTION)!!
@@ -54,6 +56,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         hideTopbarSwitch.isChecked = mySPR.getBoolean(HIDE_TOPBAR, false)
         orientationList.value = mySPR.getString(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED.toString())
         connectionOverviewSwitch.isChecked = mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)
+        stayAwakeSwitch.isChecked = mySPR.getBoolean(STAY_AWAKE, true)
         nightModeList.value = mySPR.getString(NIGHTMODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM.toString())
         analyticsCollectionSwitch.isChecked = mySPR.getBoolean(ANALYTICS_COLLECTION, true)
         crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHLYTICS_COLLECTION, true)

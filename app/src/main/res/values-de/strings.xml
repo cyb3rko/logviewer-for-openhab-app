@@ -63,6 +63,8 @@
     <string name="settings_data_collection">Data Collection</string>
     <string name="settings_orientation_title">Orientation</string>
     <string name="settings_orientation_summary">Toggle the orientation of the app</string>
+    <string name="settings_stay_awake_title">Stay Awake</string>
+    <string name="settings_stay_awake_summary">Keep the device awake while on the log</string>
     <string name="settings_connection_overview_title">Connection Overview</string>
     <string name="settings_connection_overview_summary">En-/Disable the overview of recent connections in the Navigation Drawer</string>
     <string name="settings_manage_connections_title">Manage Connections</string>
