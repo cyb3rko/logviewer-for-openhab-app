@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MainFragment">
 
@@ -56,8 +56,8 @@
             android:hint="@string/main_hostname_hint"
             app:helperText="@string/main_hostname_helper"
             app:helperTextEnabled="true"
-            app:errorTextColor="@color/colorAccent"
-            app:boxStrokeErrorColor="@color/colorAccent"
+            app:errorTextColor="@color/colorError"
+            app:boxStrokeErrorColor="@color/colorError"
             app:layout_constraintBottom_toTopOf="@id/hostname_ip_address_check"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

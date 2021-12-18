@@ -16,7 +16,7 @@
     <string name="main_edit_button">Edit</string>
     <string name="main_connect_check">automatically connect\nnext time</string>
 
-    <string name="nav_header_credits">Made with 💜 by Cyb3rko</string>
+    <string name="logviewer">LogViewer</string>
     <string name="nav_header_link" translatable="false">github.com/cyb3rko</string>
 
     <string name="webview_viewlock_button_desc">lock</string>

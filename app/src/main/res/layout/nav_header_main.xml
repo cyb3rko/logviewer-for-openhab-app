@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:background="@drawable/side_nav_bar"
-    android:gravity="bottom"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:fitsSystemWindows="false"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:fitsSystemWindows="true">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="@string/nav_header_credits"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:text="@string/logviewer"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textColor="?attr/colorOnSurface" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        android:text="@string/nav_header_link"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textAppearance="?attr/textAppearanceTitleSmall"
+        android:text="@string/nav_header_link" />
 
 </LinearLayout>

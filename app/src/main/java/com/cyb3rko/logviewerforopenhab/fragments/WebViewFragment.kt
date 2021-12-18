@@ -7,7 +7,10 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -256,7 +259,7 @@ class WebViewFragment : Fragment() {
                     )
                         .transparentTarget(true)
                         .tintTarget(false)
-                        .outerCircleColor(R.color.colorAccent)
+                        .outerCircleColor(R.color.colorSecondary)
                         .tintTarget(false)
                         .titleTextSize(18)
                         .descriptionTextSize(16)
@@ -269,7 +272,7 @@ class WebViewFragment : Fragment() {
                     )
                         .transparentTarget(true)
                         .tintTarget(false)
-                        .outerCircleColor(R.color.colorAccent)
+                        .outerCircleColor(R.color.colorSecondary)
                         .tintTarget(false)
                         .titleTextSize(18)
                         .descriptionTextSize(16)
@@ -282,7 +285,7 @@ class WebViewFragment : Fragment() {
                     )
                         .transparentTarget(true)
                         .tintTarget(false)
-                        .outerCircleColor(R.color.colorAccent)
+                        .outerCircleColor(R.color.colorSecondary)
                         .tintTarget(false)
                         .titleTextSize(18)
                         .descriptionTextSize(16)

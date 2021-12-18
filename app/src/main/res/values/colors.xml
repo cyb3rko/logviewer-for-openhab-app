@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff5722</color>
-    <color name="colorPrimaryDark">#bf360c</color>
-    <color name="colorAccent">#FF6332</color>
-
     <color name="white">#FFFFFF</color>
+    <color name="dark">#212121</color>
+
+    <color name="colorPrimary">#ff5722</color>
+    <color name="colorOnPrimary">@color/white</color>
+    <color name="colorPrimaryContainer">#ffdacf</color>
+    <color name="colorOnPrimaryContainer">#3c0800</color>
+    <color name="colorPrimaryInverse">#ffb49d</color>
+    <color name="colorSecondary">#77574d</color>
+    <color name="colorOnSecondary">@color/white</color>
+    <color name="colorSecondaryContainer">#ffdacf</color>
+    <color name="colorOnSecondaryContainer">#2c150f</color>
+    <color name="colorTertiary">#6f5d1a</color>
+    <color name="colorOnTertiary">@color/white</color>
+    <color name="colorTertiaryContainer">#fae191</color>
+    <color name="colorOnTertiaryContainer">#231b00</color>
+
+    <color name="colorError">#ffb3261e</color>
+    <color name="colorOnError">@color/white</color>
+    <color name="colorErrorContainer">#fff9dedc</color>
+    <color name="colorOnErrorContainer">#ff410e0b</color>
+    <color name="colorOutline">#85726d</color>
+    <color name="colorBackground">#fffbfa</color>
+    <color name="colorOnBackground">#201a19</color>
+    <color name="colorSurface">#fffbfa</color>
+    <color name="colorOnSurface">#201a19</color>
+    <color name="colorDrawer">#FFFBFB</color>
+    <color name="colorSurfaceVariant">#f5ddd7</color>
+    <color name="colorOnSurfaceVariant">#53433f</color>
+    <color name="colorSurfaceInverse">#362f2d</color>
+    <color name="colorOnSurfaceInverse">#fbeeea</color>
+
+    <color name="toolBarColor">@color/colorPrimary</color>
+    <color name="statusBarColor">@color/colorPrimary</color>
+    <color name="toolBarTextColor">@color/colorOnPrimary</color>
+    <color name="textColor">@color/colorSecondary</color>
+    <color name="cardColor">@color/colorSurface</color>
+    <color name="introElementColor">#934933</color>
 </resources>

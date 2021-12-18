@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff5722</color>
+    <color name="colorOnPrimary">@color/white</color>
+    <color name="colorPrimaryContainer">#76321e</color>
+    <color name="colorOnPrimaryContainer">#ffdacf</color>
+    <color name="colorPrimaryInverse">#934933</color>
+    <color name="colorSecondary">#e7bdb2</color>
+    <color name="colorOnSecondary">#442a22</color>
+    <color name="colorSecondaryContainer">#794031</color>
+    <color name="colorOnSecondaryContainer">#ffdacf</color>
+    <color name="colorTertiary">#ddc578</color>
+    <color name="colorOnTertiary">#3c2f00</color>
+    <color name="colorTertiaryContainer">#564502</color>
+    <color name="colorOnTertiaryContainer">#fae191</color>
+
+    <color name="colorError">#fff2b8b5</color>
+    <color name="colorOnError">#ff601410</color>
+    <color name="colorErrorContainer">#ff8c1d18</color>
+    <color name="colorOnErrorContainer">#fff2b8b5</color>
+    <color name="colorOutline">#a08c87</color>
+    <color name="colorBackground">#201a19</color>
+    <color name="colorOnBackground">#eddfdc</color>
+    <color name="colorSurface">#201a19</color>
+    <color name="colorOnSurface">#eddfdc</color>
+    <color name="colorDrawer">#201b19</color>
+    <color name="colorSurfaceVariant">#53433f</color>
+    <color name="colorOnSurfaceVariant">#d8c2bc</color>
+    <color name="colorSurfaceInverse">#eddfdc</color>
+    <color name="colorOnSurfaceInverse">#362f2d</color>
+
+    <color name="toolBarColor">@color/colorPrimary</color>
+    <color name="statusBarColor">@color/colorPrimary</color>
+    <color name="toolBarTextColor">@color/colorOnPrimary</color>
+    <color name="textColor">#aeaeae</color>
+    <color name="cardColor">@color/colorSurface</color>
+    <color name="introElementColor">#212121</color>
+</resources>

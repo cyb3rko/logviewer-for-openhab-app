@@ -1,25 +1,55 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/colorTertiary</item>
+        <item name="colorOnTertiary">@color/colorOnTertiary</item>
+        <item name="colorTertiaryContainer">@color/colorTertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/colorOnTertiaryContainer</item>
+
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorErrorContainer">@color/colorErrorContainer</item>
+        <item name="colorOnErrorContainer">@color/colorOnErrorContainer</item>
+        <item name="colorOutline">@color/colorOutline</item>
+        <item name="colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
+        <item name="colorSurfaceInverse">@color/colorSurfaceInverse</item>
+        <item name="colorOnSurfaceInverse">@color/colorOnSurfaceInverse</item>
+
+        <item name="toolBarColor">@color/toolBarColor</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/statusBarColor</item>
+        <item name="toolBarTextColor">@color/toolBarTextColor</item>
+<!--        <item name="textColor">@color/textColor</item>-->
+<!--        <item name="android:textColorSecondary">@color/textColorSecondary</item>-->
+        <item name="cardColor">@color/cardColor</item>
 
         <item name="md_corner_radius">10dp</item>
     </style>
 
     <style name="Button.AppIntro" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="backgroundTint">@color/introElementColor</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Checkbox.AppIntro" parent="Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="android:textColor">@color/appintro_desc_color</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/appintro_desctext_size</item>
         <item name="android:padding">@dimen/appintro_desc_padding</item>
-        <item name="buttonTint">@color/colorPrimaryDark</item>
+        <item name="buttonTint">@color/introElementColor</item>
     </style>
 
 </resources>
