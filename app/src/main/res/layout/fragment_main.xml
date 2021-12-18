@@ -136,6 +136,7 @@
             android:layout_marginLeft="12dp"
             android:enabled="false"
             tools:enabled="true"
+            android:textAllCaps="false"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="@string/main_edit_button"
             app:layout_constraintHorizontal_chainStyle="packed"
