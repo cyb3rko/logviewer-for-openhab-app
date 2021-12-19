@@ -12,7 +12,6 @@
     <string name="about_element_instagram_text">Follow me</string>
     <string name="about_element_libraries">Used Libraries</string>
     <string name="about_element_version">Version %1$s (%2$d) — Changelog</string>
-    <string name="about_element_youtube_text">Watch my tutorial videos (in German)</string>
     <string name="about_group_connect">Connect with me</string>
     <string name="about_group_legal">Legal</string>
     <string name="app_name" translatable="false">LogViewer for openHAB</string>
