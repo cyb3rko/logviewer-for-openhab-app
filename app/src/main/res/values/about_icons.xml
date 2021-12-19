@@ -38,6 +38,12 @@
         <item>https://www.flaticon.com/free-icon/github_2111292</item>
     </string-array>
 
+    <string-array name="ic_github2">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/github_1051377</item>
+    </string-array>
+
     <string-array name="ic_hello">
         <item>Vitaly Gorbachev</item>
         <item>flaticon.com</item>
@@ -97,5 +103,11 @@
         <item>Vectors Market</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/startup_610290</item>
+    </string-array>
+
+    <string-array name="ic_translation">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/translation_2793765</item>
     </string-array>
 </resources>

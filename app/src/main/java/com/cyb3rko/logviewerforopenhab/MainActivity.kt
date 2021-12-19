@@ -3,6 +3,7 @@ package com.cyb3rko.logviewerforopenhab
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -84,6 +85,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.drawer_about -> navController.navigate(R.id.nav_about)
                 R.id.drawer_end_user_consent -> {
                     showEndUserConsent()
+                }
+                R.id.drawer_github_repo -> {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://" + getString(R.string.github_repo))))
+                }
+                R.id.drawer_translation -> {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://" + getString(R.string.translation_project))))
                 }
             }
             it.isChecked = true

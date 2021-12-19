@@ -35,6 +35,16 @@
             android:icon="@drawable/_ic_end_user_consent"
             android:checkable="false"
             android:title="@string/menu_end_user_consent" />
+        <item
+            android:id="@+id/drawer_github_repo"
+            android:icon="@drawable/_ic_github2"
+            android:checkable="false"
+            android:title="@string/menu_github_repo" />
+        <item
+            android:id="@+id/drawer_translation"
+            android:icon="@drawable/_ic_translation"
+            android:checkable="false"
+            android:title="@string/menu_translation" />
     </group>
 
 </menu>
