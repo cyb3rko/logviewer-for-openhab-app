@@ -1,147 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">LogViewer for openHAB</string>
-    <string name="github_repo" translatable="false">github.com/cyb3rko/logviewer-for-openhab-app</string>
-    <string name="translation_project" translatable="false">poeditor.com/join/project?hash=ygnGPjgRfN</string>
-
-    <string name="error_fill_out">Fill out the hostname</string>
-    <string name="lock_button_1">View Lock deactivated</string>
-    <string name="lock_button_2">View Lock activated</string>
-    <string name="text_size_changed">Text size changed to&#160;</string>
-    
-    <string name="main_hostname_hint">Hostname / IP address</string>
-    <string name="main_hostname_helper">e.g. openhab or 192.168.178.10</string>
+    <string name="about">Über</string>
+    <string name="about_animations">\'%1$s\'-Animation von %2$s</string>
+    <string name="about_description">Dies ist eine simple und einfach zu nutzende Android-App um den mobilen Zugang zum Log einer openHAB-Instanz (mit frontail) auf deinem Tablet oder Handy zu vereinfachen.</string>
+    <string name="about_element_animations">Benutzte Animationen</string>
+    <string name="about_element_email_text">Kontaktiere mich</string>
+    <string name="about_element_feedback_text">Besuche und gebe Feedback auf GitHub</string>
+    <string name="about_element_github_text">Schaue dir meine anderen Projekte an</string>
+    <string name="about_element_icons">Benutzte Icons</string>
+    <string name="about_element_instagram_text">Folge mir</string>
+    <string name="about_element_libraries">Benutzte Libraries</string>
+    <string name="about_element_version">Version  %1$s (%2$d)</string>
+    <string name="about_element_youtube_text">Schaue meine Tutorials (auf Deutsch)</string>
+    <string name="about_group_connect">Setze dich mit mir in Verbindung</string>
+    <string name="about_group_legal">Rechtliches</string>
+    <string name="end_user_consent_2_button_2">Widerrufen</string>
+    <string name="end_user_consent_2_date">Datum</string>
+    <string name="end_user_consent_2_date_not_found">Datum nicht gefunden</string>
+    <string name="end_user_consent_2_message_1">Durch die Nutzung dieser App haben Sie den Nutzungsbedingungen und der Datenschutzerklärung zugestimmt.\n\nDatum: &#160;</string>
+    <string name="end_user_consent_2_message_2">\n<u>Zeit:</u> &#160;</string>
+    <string name="end_user_consent_2_privacy_policy">Datenschutzerklärung</string>
+    <string name="end_user_consent_2_terms_of_use">Nutzungsbedingungen</string>
+    <string name="end_user_consent_2_time">Zeit</string>
+    <string name="end_user_consent_2_time_not_found">Zeit nicht gefunden</string>
+    <string name="end_user_consent_2_title">Deine Einverständniserklärung</string>
+    <string name="end_user_consent_button_1">Verstanden</string>
+    <string name="end_user_consent_button_2">Abbrechen</string>
+    <string name="end_user_consent_message">Durch die Nutzung dieser App stimmen Sie der Datenschutzerklärung und den Nutzungsbedingungen zu.</string>
+    <string name="end_user_consent_title">Einverständniserklärung</string>
+    <string name="error_fill_out">Fülle den Hostname aus</string>
+    <string name="intro_fragment1_description">Dies ist die inoffizielle LogViewer for openHAB-App von Cyb3rKo</string>
+    <string name="intro_fragment1_title">Willkommen…</string>
+    <string name="intro_fragment2_description">Wenn du Probleme oder auch eine Idee für ein neues Feature hast, besuche gerne das GitHub Repository und eröffne ein neues Issue oder ein Pull Request.\nDanke!</string>
+    <string name="intro_fragment2_title">Leiste gerne einen Beitrag</string>
+    <string name="intro_fragment3_button1">Nutzungsbedingungen</string>
+    <string name="intro_fragment3_button2">Datenschutzerklärung</string>
+    <string name="intro_fragment3_check1">Ich stimme den Nutzungsbedingungen zu.</string>
+    <string name="intro_fragment3_check2">Ich stimme der Datenschutzerklärung zu.</string>
+    <string name="intro_fragment3_description">Für die Benutzung der App musst du den Nutzungsbedingungen und der Datenschutzerklärung zustimmen.</string>
+    <string name="intro_fragment3_title">Einverständniserklärung</string>
+    <string name="intro_fragment3_toast">Um fortzufahren stimme beidem zu</string>
+    <string name="intro_fragment4_check1">Ich stimme der Datensammlung über Analytics zu.</string>
+    <string name="intro_fragment4_check2">Ich stimme der Datensammlung über Crashlytics zu.</string>
+    <string name="intro_fragment4_description1">Du kannst mir durch Erlauben der Datensammlung dabei helfen, Bugs (schnell) zu fixen und die App-Performance zu verbessern (du kannst es in den Einstellungen später noch ändern):\n\n&lt;u>Firebase Analytics&lt;/u>:\nBereitstellung einfacher Nutzungsdaten, die in der Datenschutzerklärung erwähnt sind.</string>
+    <string name="intro_fragment4_description2"><u>Firebase Crashlytics</u>:\nBereitstellung von Absturz-Protokollen dieser App, um die entsprechenden Fehler zu beheben.</string>
+    <string name="intro_fragment4_title">Datenerfassung</string>
+    <string name="intro_fragment5_description">OK, alles ist eingerichtet.\nViel Spaß!</string>
+    <string name="intro_fragment5_title">Auto-Update</string>
+    <string name="lock_button_1">Displaysperre deaktiviert</string>
+    <string name="lock_button_2">Displaysperre aktiviert</string>
+    <string name="main_checks_text">Speichern</string>
+    <string name="main_connect_button_1">Prüfen</string>
+    <string name="main_connect_button_2">Verbinden</string>
+    <string name="main_connect_check">beim nächsten mal\nautomatisch verbinden</string>
+    <string name="main_edit_button">Bearbeiten</string>
+    <string name="main_hostname_helper">z.B. 192.168.178.10</string>
+    <string name="main_hostname_hint">Hostname / IP-Adresse</string>
+    <string name="main_port_helper">leer lassen für 9001</string>
     <string name="main_port_hint">Port</string>
-    <string name="main_port_helper">leave empty for 9001, use -1 for ignored port</string>
-    <string name="main_checks_text">Save</string>
-    <string name="main_connect_button_1">Check</string>
-    <string name="main_connect_button_2">Connect</string>
-    <string name="main_edit_button">Edit</string>
-    <string name="main_connect_check">automatically connect\nnext time</string>
-
-    <string name="logviewer">LogViewer</string>
-    <string name="nav_header_link" translatable="false">github.com/cyb3rko</string>
-
-    <string name="webview_viewlock_button_desc">lock</string>
-    <string name="webview_textsize_button_desc">font icon</string>
-    <string name="webview_back_button_desc">back arrow</string>
-    <string name="webview_retry_button_desc">Retry</string>
-
-    <string name="webview_error_timeout">Connection timed out</string>
-    <string name="webview_error_connection_1">Connection refused</string>
-    <string name="webview_error_connection_2">Connection failed</string>
-    <string name="webview_error_authentication">Authentication failed</string>
-    <string name="webview_error_internet">Internet disconnected</string>
-    <string name="webview_error_host">Host \'%1$s\' not found</string>
-    <string name="webview_error_port">Unsafe port: \'%1$s\'</string>
-    <string name="webview_error_ssl">SSL protocol error occurred</string>
-    <string name="webview_error_unknown">Unknown error occurred</string>
-
-    <string name="tap_target_title_1">View Lock</string>
-    <string name="tap_target_title_2">Text size</string>
-    <string name="tap_target_title_3">Go back</string>
-    <string name="tap_target_message_1">Click here to switch the View Lock mode</string>
-    <string name="tap_target_message_2">Click here to change the text size</string>
-    <string name="tap_target_message_3">Click here to go back to the menu</string>
-
-    <string name="text_size_dialog_title">Change Text Size</string>
-    <string name="text_size_dialog_text">Current text size: %1$d\nNew text size: %2$d</string>
-    <string name="text_size_dialog_button_1">Set</string>
-    <string name="text_size_dialog_button_2">Cancel</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="menu_menu">Menu</string>
-    <string name="menu_settings">Settings</string>
-    <string name="menu_connections">Connections</string>
-    <string name="menu_about">About</string>
-    <string name="menu_end_user_consent">End User Consent</string>
+    <string name="menu_about">Über</string>
+    <string name="menu_connections">Verbindungen</string>
+    <string name="menu_end_user_consent">Einverständniserklärung</string>
     <string name="menu_github_repo">GitHub Repo</string>
-    <string name="menu_translation">Translate this app</string>
-
-    <string name="settings_openhab_log">openHAB Log</string>
-    <string name="settings_openhab_version_title">openHAB Version</string>
-    <string name="settings_openhab_version_summary">Select the openHAB version you are using</string>
-    <string name="settings_hide_topbar_title">Hide topbar</string>
-    <string name="settings_hide_topbar_summary">Hide the topbar of the log</string>
-    <string name="settings_user_experience">User Experience</string>
-    <string name="settings_data_collection">Data Collection</string>
-    <string name="settings_orientation_title">Orientation</string>
-    <string name="settings_orientation_summary">Toggle the orientation of the app</string>
-    <string name="settings_stay_awake_title">Stay Awake</string>
-    <string name="settings_stay_awake_summary">Keep the device awake while on the log</string>
-    <string name="settings_connection_overview_title">Connection Overview</string>
-    <string name="settings_connection_overview_summary">En-/Disable the overview of recent connections in the Navigation Drawer</string>
-    <string name="settings_manage_connections_title">Manage Connections</string>
-    <string name="settings_manage_connections_summary">Manage recent connections stored in the overview</string>
-    <string name="settings_manage_connections_dialog_title">Delete Connections</string>
-    <string name="settings_manage_connections_dialog1_message">No connections found</string>
-    <string name="settings_manage_connections_dialog2_button">Save</string>
-    <string name="settings_manage_connections_error">Error occurred: Activity is null</string>
-    <string name="settings_nightmode_title">Night Mode</string>
-    <string name="settings_nightmode_summary">Toggle the dark appearance of the app (logview excluded)</string>
-    <string name="settings_analytics_title">Analytics Data Collection</string>
-    <string name="settings_analytics_summary">En-/Disable data collection via Firebase Analytics</string>
-    <string name="settings_crashlytics_title">Crashlytics Data Collection</string>
-    <string name="settings_crashlytics_summary">En-/Disable data collection via Firebase Crashlytics</string>
-    <string name="settings_data_deletion_title">Reset Data Collection</string>
-    <string name="settings_data_deletion_summary">Reset your collected data for Analytics and Crashlytics</string>
-    <string name="settings_data_deletion_done">Deletion done</string>
-
-    <string name="about">About</string>
-    <string name="about_element_version">Version %1$s (%2$d) — Changelog</string>
-    <string name="about_description">This is a simple and easy to use android app to simplify the mobile access to the log of an openHAB instance
-        (running frontail) on your tablet or your smartphone.</string>
-    <string name="about_changelog_link" translatable="false">https://github.com/cyb3rko/logviewer-for-openhab-app/releases</string>
-    <string name="about_group_legal">Legal</string>
-    <string name="about_element_libraries">Used Libraries</string>
-    <string name="about_element_icons">Used Icons</string>
-    <string name="about_element_animations">Used Animations</string>
-    <string name="about_group_connect">Connect with me</string>
-    <string name="about_element_feedback_text">Visit and give feedback on GitHub</string>
-    <string name="about_element_email_text">Contact me</string>
-    <!--    <string name="about_element_website_value" translatable="false">https://cyb3rko.de</string>-->
-    <!--    <string name="about_element_website_text">Visit my website</string>-->
-    <string name="about_element_youtube_text">Watch my tutorial videos (in German)</string>
-    <string name="about_element_github_text">Take a look at my other projects</string>
-    <string name="about_element_instagram_text">Follow me</string>
-    <string name="about_animations">\'%1$s\' animation by %2$s</string>
-
-    <string name="intro_fragment1_title">Welcome…</string>
-    <string name="intro_fragment1_description">This is the unofficial LogViewer for openHAB app made by Cyb3rKo</string>
-    <string name="intro_fragment2_title">Feel free to contribute</string>
-    <string name="intro_fragment2_description">If you experience any problems or if you have a idea for a new feature, feel free to visit the GitHub
-        repository and open an issue or a pull request.\nThanks!</string>
-    <string name="intro_fragment3_title">End User Consent</string>
-    <string name="intro_fragment3_description">For using this app you may agree to the Terms of Use and the Privacy Policy.</string>
-    <string name="intro_fragment3_button1">Terms of Use</string>
-    <string name="intro_fragment3_check1">I agree to the Terms of Use.</string>
-    <string name="intro_fragment3_button2">Privacy Policy</string>
-    <string name="intro_fragment3_check2">I agree to the Privacy Policy.</string>
-    <string name="intro_fragment3_toast">To continue you have to agree to both</string>
-    <string name="intro_fragment4_title">Data Collection</string>
-    <string name="intro_fragment4_description1">You can help me to (quickly) fix bugs and improve the app performance by allowing data collection
-        (you can change them later in the settings):\n\n<u>Firebase Analytics</u>:\nProviding me with simple usage data mentioned in the Privacy
-        Policy.</string>
-    <string name="intro_fragment4_check1">I agree to data collection via Analytics.</string>
-    <string name="intro_fragment4_description2"><u>Firebase Crashlytics</u>:\nProviding me with logs after this app crashes to fix the relating
-        bugs.</string>
-    <string name="intro_fragment4_check2">I agree to data collection via Crashlytics.</string>
-    <string name="intro_fragment5_title">Ready…</string>
-    <string name="intro_fragment5_description">OK, everything is set up.\nEnjoy!</string>
-
-    <string name="end_user_consent_title">End User Consent</string>
-    <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>
-    <string name="end_user_consent_button_1">Got it</string>
-    <string name="end_user_consent_button_2">Cancel</string>
-
-    <string name="end_user_consent_2_title">Your End User Consent</string>
-    <string name="end_user_consent_2_message_1">By using this app you have agreed to the Terms of Use and the Privacy Policy.\n\nDate:&#160;</string>
-    <string name="end_user_consent_2_message_2">\n<u>Time:</u> </string>
-    <string name="end_user_consent_2_privacy_policy">Privacy Policy</string>
-    <string name="end_user_consent_2_terms_of_use">Terms of Use</string>
-    <string name="end_user_consent_2_date">Date</string>
-    <string name="end_user_consent_2_time">Time</string>
-    <string name="end_user_consent_2_date_not_found">Date not found</string>
-    <string name="end_user_consent_2_time_not_found">Time not found</string>
-    <string name="end_user_consent_2_button_2">Revoke</string>
+    <string name="menu_menu">Menü</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="menu_translation">Übersetze diese App</string>
+    <string name="navigation_drawer_close">Navigation Drawer schließen</string>
+    <string name="navigation_drawer_open">Navigation Drawer öffnen</string>
+    <string name="settings_analytics_summary">(De-) Aktiviere die Datensammlung über Firebase Analytics</string>
+    <string name="settings_analytics_title">Analytics Datenerfassung</string>
+    <string name="settings_connection_overview_summary">(De-) Aktiviere eine Übersicht der letzten Verbindungen im Navigation Drawer</string>
+    <string name="settings_connection_overview_title">Verbindungs-Übersicht</string>
+    <string name="settings_crashlytics_summary">(De-) Aktiviere die Datensammlung über Firebase Crashlytics</string>
+    <string name="settings_crashlytics_title">Crashlytics Datenerfassung</string>
+    <string name="settings_data_collection">Datenerfassung</string>
+    <string name="settings_data_deletion_done">Löschen erfolgreich</string>
+    <string name="settings_data_deletion_summary">Setze deine gesammelten Daten für Analytics und Crashlytics zurück</string>
+    <string name="settings_data_deletion_title">Datensammlung zurücksetzen</string>
+    <string name="settings_hide_topbar_summary">Verstecke die Topbar des Logs</string>
+    <string name="settings_hide_topbar_title">Topbar verstecken</string>
+    <string name="settings_manage_connections_dialog_title">Verbindungen löschen</string>
+    <string name="settings_manage_connections_dialog1_message">Keine Verbindungen gefunden</string>
+    <string name="settings_manage_connections_dialog2_button">Speichern</string>
+    <string name="settings_manage_connections_error">Fehler aufgetreten: Activity ist null</string>
+    <string name="settings_manage_connections_summary">Verwalte kürzliche Verbindungen in der Übersicht</string>
+    <string name="settings_manage_connections_title">Verbindungen verwalten</string>
+    <string name="settings_nightmode_summary">Schalte die dunkle Oberfläche der App um (Logview ausgenommen)</string>
+    <string name="settings_nightmode_title">Nacht-Modus</string>
+    <string name="settings_openhab_log">openHAB-Log</string>
+    <string name="settings_openhab_version_summary">Wähle die genutzte openHAB-Version aus</string>
+    <string name="settings_openhab_version_title">openHAB-Version</string>
+    <string name="settings_orientation_summary">Ändere die App-Ausrichtung</string>
+    <string name="settings_orientation_title">Ausrichtung</string>
+    <string name="settings_stay_awake_summary">Halte das Gerät wach, während der Log angezeigt wird</string>
+    <string name="settings_stay_awake_title">Bleibe wach</string>
+    <string name="settings_user_experience">Benutzererfahrung</string>
+    <string name="tap_target_message_1">Hier tippen, um die Displaysperre umzuschalten</string>
+    <string name="tap_target_message_2">Hier tippen, um die Textgröße zu ändern</string>
+    <string name="tap_target_message_3">Hier tippen, um zum Menü zurückzukehren</string>
+    <string name="tap_target_title_1">Displaysperre</string>
+    <string name="tap_target_title_2">Textgröße</string>
+    <string name="tap_target_title_3">Gehe zurück</string>
+    <string name="text_size_changed">Textgröße geändert zu &#160;</string>
+    <string name="text_size_dialog_button_1">Setzen</string>
+    <string name="text_size_dialog_button_2">Abbrechen</string>
+    <string name="text_size_dialog_text">Aktuelle Textgröße: %1$d\nNeue Textgröße: %2$d</string>
+    <string name="text_size_dialog_title">Textgröße ändern</string>
+    <string name="webview_back_button_desc">Zurück-Pfeil</string>
+    <string name="webview_error_authentication">Authentifizierung fehlgeschlagen</string>
+    <string name="webview_error_connection_1">Verbindung abgeleht</string>
+    <string name="webview_error_connection_2">Verbindung fehlgeschlagen</string>
+    <string name="webview_error_host">Host \'%1$s\' nicht gefunden</string>
+    <string name="webview_error_internet">Internet getrennt</string>
+    <string name="webview_error_port">Unsicherer Port: \'%1$s\'</string>
+    <string name="webview_error_ssl">SSL-Protokollfehler aufgetreten</string>
+    <string name="webview_error_timeout">Zeitüberschreitung der Verbindung</string>
+    <string name="webview_error_unknown">Unbekannter Fehler aufgetreten</string>
+    <string name="webview_retry_button_desc">Wiederholen</string>
+    <string name="webview_textsize_button_desc">Text-Icon</string>
+    <string name="webview_viewlock_button_desc">Schloss</string>
 </resources>
