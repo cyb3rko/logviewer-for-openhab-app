@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreferenceCompat
+import androidx.preference.SwitchPreference
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.isItemChecked
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
@@ -24,15 +24,15 @@ class PreferenceFragment : PreferenceFragmentCompat() {
 
     private lateinit var myContext: Context
 
-    private lateinit var analyticsCollectionSwitch: SwitchPreferenceCompat
-    private lateinit var connectionOverviewSwitch: SwitchPreferenceCompat
-    private lateinit var crashlyticsCollectionSwitch: SwitchPreferenceCompat
-    private lateinit var hideTopbarSwitch: SwitchPreferenceCompat
+    private lateinit var analyticsCollectionSwitch: SwitchPreference
+    private lateinit var connectionOverviewSwitch: SwitchPreference
+    private lateinit var crashlyticsCollectionSwitch: SwitchPreference
+    private lateinit var hideTopbarSwitch: SwitchPreference
     private lateinit var mySPR: SharedPreferences
     private lateinit var nightModeList: ListPreference
     private lateinit var orientationList: ListPreference
     private lateinit var openhabVersionList: ListPreference
-    private lateinit var stayAwakeSwitch: SwitchPreferenceCompat
+    private lateinit var stayAwakeSwitch: SwitchPreference
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

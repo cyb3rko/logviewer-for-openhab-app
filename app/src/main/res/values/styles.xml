@@ -40,12 +40,12 @@
         <item name="md_corner_radius">10dp</item>
     </style>
 
-    <style name="Button.AppIntro" parent="Widget.MaterialComponents.Button">
+    <style name="Button.AppIntro" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/introElementColor</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="Checkbox.AppIntro" parent="Widget.AppCompat.CompoundButton.CheckBox">
+    <style name="Checkbox.AppIntro" parent="Widget.Material3.CompoundButton.CheckBox">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/appintro_desctext_size</item>
         <item name="android:padding">@dimen/appintro_desc_padding</item>

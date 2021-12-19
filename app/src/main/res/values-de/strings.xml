@@ -41,7 +41,7 @@
     <string name="intro_fragment3_toast">Um fortzufahren stimme beidem zu</string>
     <string name="intro_fragment4_check1">Ich stimme der Datensammlung über Analytics zu.</string>
     <string name="intro_fragment4_check2">Ich stimme der Datensammlung über Crashlytics zu.</string>
-    <string name="intro_fragment4_description1">Du kannst mir durch Erlauben der Datensammlung dabei helfen, Bugs (schnell) zu fixen und die App-Performance zu verbessern (du kannst es in den Einstellungen später noch ändern):\n\n&lt;u>Firebase Analytics&lt;/u>:\nBereitstellung einfacher Nutzungsdaten, die in der Datenschutzerklärung erwähnt sind.</string>
+    <string name="intro_fragment4_description1">Du kannst mir durch Erlauben der Datensammlung dabei helfen, Bugs (schnell) zu fixen und die App-Performance zu verbessern (du kannst es in den Einstellungen später noch ändern):\n\n<u>Firebase Analytics</u>:\nBereitstellung einfacher Nutzungsdaten, die in der Datenschutzerklärung erwähnt sind.</string>
     <string name="intro_fragment4_description2"><u>Firebase Crashlytics</u>:\nBereitstellung von Absturz-Protokollen dieser App, um die entsprechenden Fehler zu beheben.</string>
     <string name="intro_fragment4_title">Datenerfassung</string>
     <string name="intro_fragment5_description">OK, alles ist eingerichtet.\nViel Spaß!</string>

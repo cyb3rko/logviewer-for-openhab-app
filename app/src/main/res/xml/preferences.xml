@@ -15,7 +15,7 @@
             android:entryValues="@array/openhab_versions_values"
             android:key="openhab_version" />
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             android:title="@string/settings_hide_topbar_title"
             android:summary="@string/settings_hide_topbar_summary"
             app:iconSpaceReserved="false"
@@ -37,14 +37,14 @@
             android:entryValues="@array/orientations_values"
             android:key="orientation" />
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             android:title="@string/settings_stay_awake_title"
             android:summary="@string/settings_stay_awake_summary"
             app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="stay_awake" />
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             android:title="@string/settings_connection_overview_title"
             android:summary="@string/settings_connection_overview_summary"
             app:iconSpaceReserved="false"
@@ -73,13 +73,13 @@
         android:title="@string/settings_data_collection"
         app:iconSpaceReserved="false">
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             android:title="@string/settings_analytics_title"
             android:summary="@string/settings_analytics_summary"
             android:key="analytics_collection"
             app:iconSpaceReserved="false" />
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             android:title="@string/settings_crashlytics_title"
             android:summary="@string/settings_crashlytics_summary"
             android:key="crashlytics_collection"

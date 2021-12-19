@@ -8,7 +8,7 @@
     <color name="colorPrimaryContainer">#ffdacf</color>
     <color name="colorOnPrimaryContainer">#3c0800</color>
     <color name="colorPrimaryInverse">#ffb49d</color>
-    <color name="colorSecondary">#77574d</color>
+    <color name="colorSecondary">#BA5536</color>
     <color name="colorOnSecondary">@color/white</color>
     <color name="colorSecondaryContainer">#ffdacf</color>
     <color name="colorOnSecondaryContainer">#2c150f</color>
