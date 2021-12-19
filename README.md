@@ -3,7 +3,6 @@
 [![release](https://img.shields.io/github/release/cyb3rko/logviewer-for-openhab-app.svg)](https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest)
 [![last commit](https://img.shields.io/github/last-commit/cyb3rko/logviewer-for-openhab-app?color=F34C9F)](https://github.com/cyb3rko/logviewer-for-openhab-app/commits/master)
 [![license](https://img.shields.io/github/license/cyb3rko/logviewer-for-openhab-app)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fcyb3rko%2Flogviewer-for-openhab-app&count_bg=%23256AF5&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Repo+views&edge_flat=false)](https://hits.seeyoufarm.com)
 
 - [About this project](#about-this-project)  
     - [Translation](#translation)
