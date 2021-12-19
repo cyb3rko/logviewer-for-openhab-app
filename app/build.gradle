@@ -23,8 +23,8 @@ android {
         applicationId "com.cyb3rko.logviewerforopenhab"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 16
-        versionName "2.2.1"
+        versionCode 19
+        versionName "2.3.0"
         multiDexEnabled true
     }
 
