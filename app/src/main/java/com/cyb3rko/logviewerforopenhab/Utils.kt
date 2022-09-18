@@ -63,21 +63,23 @@ internal fun showConnections(mySPR: SharedPreferences, connections: MutableList<
         val navController = activity.findNavController(R.id.nav_host_fragment)
         val drawer = activity.findViewById<DrawerLayout>(R.id.drawer_layout)
         val connectionsMenu = navView.menu.findItem(R.id.nav_connections).subMenu
-        connectionsMenu.clear()
+        connectionsMenu?.clear()
 
         connections.forEach { connection ->
-            val item = connectionsMenu.add(connection.toCaption())
-            item.setIcon(R.drawable._ic_connection)
-            item.setOnMenuItemClickListener {
-                connection.apply {
-                    editor.putBoolean(HTTPS_ACTIVATED, httpsActivated)
-                    editor.putString(LINK, toLink())
-                    editor.putString(HOSTNAME_STRING, hostName)
-                    editor.putInt(PORT_INT, port).apply()
+            connectionsMenu?.let {
+                val item = connectionsMenu.add(connection.toCaption())
+                item.setIcon(R.drawable._ic_connection)
+                item.setOnMenuItemClickListener {
+                    connection.apply {
+                        editor.putBoolean(HTTPS_ACTIVATED, httpsActivated)
+                        editor.putString(LINK, toLink())
+                        editor.putString(HOSTNAME_STRING, hostName)
+                        editor.putInt(PORT_INT, port).apply()
+                    }
+                    navController.navigate(R.id.nav_webview)
+                    drawer.close()
+                    true
                 }
-                navController.navigate(R.id.nav_webview)
-                drawer.close()
-                true
             }
         }
     }
@@ -87,7 +89,7 @@ internal fun hideConnections(activity: Activity?) {
     if (activity != null) {
         val navView = activity.findViewById<NavigationView>(R.id.nav_view)
         val connectionsMenu = navView.menu.findItem(R.id.nav_connections).subMenu
-        connectionsMenu.clear()
+        connectionsMenu?.clear()
     }
 }
 

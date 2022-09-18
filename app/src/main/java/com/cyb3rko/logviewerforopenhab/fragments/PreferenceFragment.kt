@@ -42,7 +42,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.preferences)
         preferenceManager.sharedPreferencesName = SHARED_PREFERENCE
-        mySPR = preferenceManager.sharedPreferences
+        mySPR = preferenceManager.sharedPreferences!!
         openhabVersionList = findPreference(OPENHAB_VERSION)!!
         hideTopbarSwitch = findPreference(HIDE_TOPBAR)!!
         orientationList = findPreference(ORIENTATION)!!
@@ -62,8 +62,8 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         crashlyticsCollectionSwitch.isChecked = mySPR.getBoolean(CRASHLYTICS_COLLECTION, true)
     }
 
-    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-        return when (preference?.key) {
+    override fun onPreferenceTreeClick(preference: Preference): Boolean {
+        return when (preference.key) {
             ORIENTATION -> {
                 val myActivity = activity
                 if (myActivity != null) {
