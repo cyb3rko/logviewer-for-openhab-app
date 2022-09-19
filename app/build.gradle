@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
-//apply plugin: 'com.mikepenz.aboutlibraries.plugin'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'kotlin-android'
 
 android {
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId "com.cyb3rko.logviewerforopenhab"
-        minSdk 19
+        minSdk 21
         targetSdk 33
         versionCode 20
         versionName "2.3.1"
@@ -61,8 +61,8 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-//    implementation "com.mikepenz:aboutlibraries-core:$aboutLibsVersion"
-//    implementation "com.mikepenz:aboutlibraries:$aboutLibsVersion"
+    implementation "com.mikepenz:aboutlibraries-core:$aboutLibsVersion"
+    implementation "com.mikepenz:aboutlibraries:$aboutLibsVersion"
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.9.0'

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.cyb3rko.logviewerforopenhab.BuildConfig
 import com.cyb3rko.logviewerforopenhab.R
-//import com.mikepenz.aboutlibraries.LibsBuilder
+import com.mikepenz.aboutlibraries.LibsBuilder
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 
@@ -67,21 +67,15 @@ class AboutFragment : Fragment() {
 
     private fun showLibraries(): View.OnClickListener {
         return View.OnClickListener {
-//            context?.let { trueContext ->
-//                LibsBuilder()
-//                    .withShowLoadingProgress(true)
-//                    .withAboutVersionShownCode(false)
-//                    .withAboutVersionShownName(false)
-//                    .withAutoDetect(true)
-//                    .withAboutIconShown(false)
-//                    .withAboutVersionShown(false)
-//                    .withVersionShown(true)
-//                    .withLicenseDialog(true)
-//                    .withLicenseShown(true)
-//                    .withCheckCachedDetection(true)
-//                    .withSortEnabled(true)
-//                    .start(trueContext)
-//            }
+            context?.let { validContext ->
+                LibsBuilder()
+                    .withLicenseShown(true)
+                    .withAboutIconShown(false)
+                    .withAboutVersionShown(false)
+                    .withActivityTitle(getString(R.string.about_element_libraries))
+                    .withSearchEnabled(true)
+                    .start(validContext)
+            }
         }
     }
 
