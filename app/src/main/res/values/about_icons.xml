@@ -18,14 +18,6 @@
         <item>https://www.flaticon.com/free-icon/secure-data_1035086</item>
     </string-array>
 
-    <string-array name="ic_eye">
-        <item>Dave Gandy</item>
-        <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/eye-open_25186</item>
-        <item>false</item>
-        <item>cc_by_3.0</item>
-    </string-array>
-
     <string-array name="ic_font">
         <item>Those Icons</item>
         <item>flaticon.com</item>
@@ -74,10 +66,10 @@
         <item>https://www.flaticon.com/free-icon/lock_483412</item>
     </string-array>
 
-    <string-array name="ic_log">
-        <item>Smartline</item>
+    <string-array name="ic_logging">
+        <item>iconixar</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/files_569837</item>
+        <item>https://www.flaticon.com/free-icon/log-format_2306124</item>
         <item>true</item>
     </string-array>
 
@@ -97,6 +89,13 @@
         <item>srip</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/settings_900797</item>
+    </string-array>
+
+    <string-array name="ic_smart_home">
+        <item>Freepik</item>
+        <item>flaticon.com</item>
+        <item>https://www.flaticon.com/free-icon/idea_1172626</item>
+        <item>true</item>
     </string-array>
 
     <string-array name="ic_start">
