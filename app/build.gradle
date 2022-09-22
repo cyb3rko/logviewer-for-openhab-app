@@ -25,7 +25,6 @@ android {
         targetSdk 33
         versionCode 20
         versionName "2.3.1"
-        multiDexEnabled true
     }
 
     buildTypes {
@@ -66,7 +65,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.preference:preference-ktx:1.2.0'
     implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
     implementation 'com.airbnb.android:lottie:4.0.0'
