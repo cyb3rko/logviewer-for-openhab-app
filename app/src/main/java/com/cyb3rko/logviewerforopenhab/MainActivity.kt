@@ -7,8 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.text.style.UnderlineSpan
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -20,10 +18,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.callbacks.onCancel
 import com.cyb3rko.logviewerforopenhab.appintro.MyAppIntro
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -112,48 +110,31 @@ class MainActivity : AppCompatActivity() {
 
     private fun showEndUserConsent() {
         var dialogMessage = getString(R.string.end_user_consent_2_message_1)
-        dialogMessage += mySPR.getString(CONSENT_DATE, getString(R.string.end_user_consent_2_date_not_found)) +
-                getString(R.string.end_user_consent_2_message_2) +
-                mySPR.getString(CONSENT_TIME, getString(R.string.end_user_consent_2_time_not_found))
+        dialogMessage +=
+            mySPR.getString(CONSENT_DATE, getString(R.string.end_user_consent_2_date_not_found)) +
+                    getString(R.string.end_user_consent_2_message_2) +
+                    mySPR.getString(CONSENT_TIME, getString(R.string.end_user_consent_2_time_not_found))
         val spannableString = SpannableString(dialogMessage)
-        val drawerMenu = navView.menu
-        val clickableSpan1 = object : ClickableSpan() {
-            override fun onClick(view: View) {
-                showLicenseDialog(this@MainActivity, PRIVACY_POLICY)
-            }
-        }
-        val clickableSpan2 = object : ClickableSpan() {
-            override fun onClick(view: View) {
-                showLicenseDialog(this@MainActivity, TERMS_OF_USE)
-            }
-        }
-        var currentText = getString(R.string.end_user_consent_2_privacy_policy)
+        var currentText = getString(R.string.end_user_consent_2_date)
         var index = dialogMessage.indexOf(currentText)
-        spannableString.setSpan(
-            clickableSpan1, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        currentText = getString(R.string.end_user_consent_2_terms_of_use)
-        index = dialogMessage.indexOf(currentText)
-        spannableString.setSpan(
-            clickableSpan2, index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        currentText = getString(R.string.end_user_consent_2_date)
-        index = dialogMessage.indexOf(currentText)
         repeat(2) {
-            spannableString.setSpan(UnderlineSpan(), index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableString.setSpan(
+                UnderlineSpan(), index, index + currentText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
             currentText = getString(R.string.end_user_consent_2_time)
             index = dialogMessage.indexOf(currentText)
         }
 
-        MaterialDialog(this).show {
-            title(R.string.end_user_consent_2_title)
-            message(text = spannableString) {
-                messageTextView.movementMethod = LinkMovementMethod.getInstance()
-            }
-            positiveButton(android.R.string.ok) {
+        val drawerMenu = navView.menu
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.end_user_consent_2_title)
+            .setMessage(spannableString)
+            .setView(R.layout.dialog_end_user_consent)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
                 drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
             }
-            negativeButton(R.string.end_user_consent_2_button_2) {
+            .setNegativeButton(R.string.end_user_consent_2_button_2) { _, _ ->
                 val analytics = FirebaseAnalytics.getInstance(applicationContext)
                 analytics.resetAnalyticsData()
                 analytics.setAnalyticsCollectionEnabled(false)
@@ -164,10 +145,20 @@ class MainActivity : AppCompatActivity() {
                 finish()
                 startActivity(Intent(applicationContext, this@MainActivity::class.java))
             }
-            onCancel {
+            .setOnCancelListener {
                 drawerMenu.findItem(R.id.drawer_end_user_consent).isChecked = false
             }
-        }
+            .create().apply {
+                setOnShowListener {
+                    window?.findViewById<MaterialButton>(R.id.privacy_policy_button)?.setOnClickListener {
+                        showLicenseDialog(this@MainActivity, PRIVACY_POLICY)
+                    }
+                    window?.findViewById<MaterialButton>(R.id.terms_of_use_button)?.setOnClickListener {
+                        showLicenseDialog(this@MainActivity, TERMS_OF_USE)
+                    }
+                }
+            }
+            .show()
     }
 
     private fun requestReview() {

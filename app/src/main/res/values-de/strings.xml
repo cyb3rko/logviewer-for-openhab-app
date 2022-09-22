@@ -27,6 +27,8 @@
     <string name="end_user_consent_button_2">Abbrechen</string>
     <string name="end_user_consent_message">Durch die Nutzung dieser App stimmen Sie der Datenschutzerklärung und den Nutzungsbedingungen zu.</string>
     <string name="end_user_consent_title">Einverständniserklärung</string>
+    <string name="end_user_consent_privacy_policy">Datenschutzerklärung</string>
+    <string name="end_user_consent_terms_of_use">Nutzungsbedingungen</string>
     <string name="error_fill_out">Fülle den Hostname aus</string>
     <string name="intro_fragment1_description">Dies ist die inoffizielle LogViewer for openHAB-App von Cyb3rKo</string>
     <string name="intro_fragment1_title">Willkommen…</string>

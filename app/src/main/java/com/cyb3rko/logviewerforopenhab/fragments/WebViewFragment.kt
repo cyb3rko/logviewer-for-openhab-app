@@ -15,17 +15,16 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
 import com.cyb3rko.logviewerforopenhab.*
 import com.cyb3rko.logviewerforopenhab.databinding.FragmentWebViewBinding
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.slider.Slider
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
-import com.mardous.discreteseekbar.DiscreteSeekBar
 import es.dmoral.toasty.Toasty
 
 class WebViewFragment : Fragment() {
@@ -211,7 +210,7 @@ class WebViewFragment : Fragment() {
             val content = LinearLayout(myContext)
             content.orientation = LinearLayout.VERTICAL
             val sizeView = TextView(myContext)
-            val discreteSeekBar = DiscreteSeekBar(myContext)
+            val slider = Slider(myContext)
             val currentTextSize = mySPR.getInt(textSizeType, 60)
 
             sizeView.text = String.format(getString(R.string.text_size_dialog_text), currentTextSize, currentTextSize)
@@ -219,36 +218,33 @@ class WebViewFragment : Fragment() {
             sizeView.setPadding(24, 24, 24, 50)
             sizeView.gravity = Gravity.CENTER_HORIZONTAL
             content.addView(sizeView)
-            discreteSeekBar.max = 100
-            discreteSeekBar.min = 1
-            discreteSeekBar.progress = webSettings.textZoom
-            discreteSeekBar.setPadding(50, 0, 50, 50)
-            discreteSeekBar.setOnProgressChangeListener(object : DiscreteSeekBar.OnProgressChangeListener {
-                override fun onProgressChanged(seekBar: DiscreteSeekBar, value: Int, fromUser: Boolean) {
-                    // nothing to clean up (for PMD)
+            slider.apply {
+                valueFrom = 1F
+                valueTo = 100F
+                stepSize = 1F
+                value = webSettings.textZoom.toFloat()
+                setPadding(50, 0, 50, 50)
+                addOnChangeListener { _, value, _ ->
+                    sizeView.text = String.format(
+                        getString(R.string.text_size_dialog_text),
+                        currentTextSize,
+                        value.toInt()
+                    )
                 }
+            }
+            content.addView(slider)
 
-                override fun onStartTrackingTouch(seekBar: DiscreteSeekBar) {
-                    // nothing to clean up (for PMD)
-                }
-
-                override fun onStopTrackingTouch(seekBar: DiscreteSeekBar) {
-                    sizeView.text = String.format(getString(R.string.text_size_dialog_text), currentTextSize, discreteSeekBar.progress)
-                }
-            })
-            content.addView(discreteSeekBar)
-
-            MaterialDialog(myContext).show {
-                title(R.string.text_size_dialog_title)
-                customView(0, content)
-                positiveButton(R.string.text_size_dialog_button_1) {
-                    val textSize = discreteSeekBar.progress
+            MaterialAlertDialogBuilder(myContext)
+                .setView(content)
+                .setTitle(R.string.text_size_dialog_title)
+                .setPositiveButton(R.string.text_size_dialog_button_1) { _, _ ->
+                    val textSize = slider.value.toInt()
                     webSettings.textZoom = textSize
                     editor.putInt(textSizeType, textSize).apply()
                     Toasty.info(myContext, getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show()
                 }
-                negativeButton(R.string.text_size_dialog_button_2)
-            }
+                .setNegativeButton(R.string.text_size_dialog_button_2, null)
+                .show()
         }
     }
 

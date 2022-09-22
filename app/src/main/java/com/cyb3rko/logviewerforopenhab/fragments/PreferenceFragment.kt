@@ -12,10 +12,8 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.isItemChecked
-import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.cyb3rko.logviewerforopenhab.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import es.dmoral.toasty.Toasty
@@ -89,31 +87,35 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                     val connectionList = getListOfConnections(
                         requireActivity().getSharedPreferences(SHARED_PREFERENCE, Context.MODE_PRIVATE))
                     if (connectionList.isEmpty()) {
-                        MaterialDialog(myContext).show {
-                            title(R.string.settings_manage_connections_dialog_title)
-                            message(R.string.settings_manage_connections_dialog1_message)
-                            positiveButton(android.R.string.ok)
-                        }
+                        MaterialAlertDialogBuilder(myContext)
+                            .setTitle(R.string.settings_manage_connections_dialog_title)
+                            .setMessage(R.string.settings_manage_connections_dialog1_message)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .show()
                         return true
                     }
                     val connectionLinks = mutableListOf<String>()
                     connectionList.forEach { connectionLinks.add(it.toLink()) }
-                    MaterialDialog(myContext).show {
-                        title(R.string.settings_manage_connections_dialog_title)
-                        listItemsMultiChoice(items = connectionLinks.toList())
-                        positiveButton(R.string.settings_manage_connections_dialog2_button) {
-                            val selection = mutableListOf<Int>()
-                            repeat(connectionList.size) { i ->
-                                if (it.isItemChecked(i)) selection.add(i)
-                            }
-                            selection.reversed().forEach { i ->
-                                connectionList.removeAt(i)
-                            }
-                            val newConnections = connectionList.joinToString(";")
-                            mySPR.edit().putString(CONNECTIONS, newConnections).apply()
-                            showConnections(mySPR, connectionList, myContext as Activity)
+
+                    val checkedItems = BooleanArray(connectionLinks.size) { false }
+
+                    MaterialAlertDialogBuilder(myContext)
+                        .setTitle(R.string.settings_manage_connections_dialog_title)
+                        .setMultiChoiceItems(
+                            connectionLinks.toTypedArray(),
+                            checkedItems
+                        ) { _, index, checked ->
+                            checkedItems[index] = checked
                         }
-                    }
+                        .setPositiveButton(R.string.settings_manage_connections_dialog2_button) { _, _ ->
+                            checkedItems.forEachIndexed { index, b ->
+                                if (b) connectionList.removeAt(index)
+                                val newConnections = connectionList.joinToString(";")
+                                mySPR.edit().putString(CONNECTIONS, newConnections).apply()
+                                showConnections(mySPR, connectionList, myContext as Activity)
+                            }
+                        }
+                        .show()
                     true
                 } else {
                     Toast.makeText(myContext, R.string.settings_manage_connections_error, Toast.LENGTH_SHORT).show()

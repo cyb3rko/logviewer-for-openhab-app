@@ -29,6 +29,8 @@
     <string name="end_user_consent_button_2">Cancel</string>
     <string name="end_user_consent_message">By using this app you agree to the Privacy Policy and the Terms of Use.</string>
     <string name="end_user_consent_title">End User Consent</string>
+    <string name="end_user_consent_privacy_policy">Privacy Policy</string>
+    <string name="end_user_consent_terms_of_use">Terms of Use</string>
     <string name="error_fill_out">Fill out the hostname</string>
     <string name="github_repo" translatable="false">github.com/cyb3rko/logviewer-for-openhab-app</string>
     <string name="intro_fragment1_description">This is the unofficial LogViewer for openHAB app made by Cyb3rKo</string>
