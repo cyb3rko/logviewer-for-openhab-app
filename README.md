@@ -1,5 +1,5 @@
 # LogViewer for openHAB-App
-[![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![release](https://img.shields.io/github/release/cyb3rko/logviewer-for-openhab-app.svg)](https://github.com/cyb3rko/logviewer-for-openhab-app/releases/latest)
 [![last commit](https://img.shields.io/github/last-commit/cyb3rko/logviewer-for-openhab-app?color=F34C9F)](https://github.com/cyb3rko/logviewer-for-openhab-app/commits/master)
 [![license](https://img.shields.io/github/license/cyb3rko/logviewer-for-openhab-app)](https://www.apache.org/licenses/LICENSE-2.0)
