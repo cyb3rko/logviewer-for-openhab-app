@@ -4,6 +4,8 @@
 [![last commit](https://img.shields.io/github/last-commit/cyb3rko/logviewer-for-openhab-app?color=F34C9F)](https://github.com/cyb3rko/logviewer-for-openhab-app/commits/master)
 [![license](https://img.shields.io/github/license/cyb3rko/logviewer-for-openhab-app)](https://www.apache.org/licenses/LICENSE-2.0)
 
+![logviewer](https://socialify.git.ci/cyb3rko/logviewer-for-openhab-app/image?description=1&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fcdn.cyb3rko.de%2FApps%2FLogViewer%2520for%2520openHAB%2Fic_launcher_cropped.png&owner=1&pattern=Overlapping%20Hexagons&pulls=1&stargazers=1&theme=Dark)
+
 - [About this project](#about-this-project)  
     - [Translation](#translation)
 - [Features](#features)  
@@ -24,7 +26,7 @@ Furthermore I'm still a student so the progress might not be as fast as on other
 You can also have a look at my other projects:  
 [My GitHub page](https://github.com/cyb3rko)
 
-[<img src=".github/images/download.png" width="230">](https://play.google.com/store/apps/details?id=com.cyb3rko.logviewerforopenhab)
+<a href="https://play.google.com/store/apps/details?id=com.cyb3rko.logviewerforopenhab"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Play Store" height="100"></a>
 
 ### Translation
 
@@ -59,7 +61,7 @@ Using a unified code format makes it much easier for me and for everyone else.
 
 ## License
 
-    Copyright 2021, Cyb3rKo
+    Copyright 2022, Cyb3rKo
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
