@@ -10,7 +10,15 @@ import com.cyb3rko.logviewerforopenhab.R
 
 class IconCreditsFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return context?.let { AboutIcons(it, R.drawable::class.java, parentFragmentManager).get() }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return AboutIcons(
+            requireContext(),
+            R.drawable::class.java,
+            parentFragmentManager
+        ).get()
     }
 }

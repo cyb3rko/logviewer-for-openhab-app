@@ -17,7 +17,11 @@ import com.cyb3rko.logviewerforopenhab.openUrl
 
 class AnimationCreditsFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val information = listOf(
             Triple("error lottie", "koh", "https://lottiefiles.com/17373-error-lottie"),
             Triple("Face scanning", "Aneesh Ravi", "https://lottiefiles.com/4432-face-scanning"),

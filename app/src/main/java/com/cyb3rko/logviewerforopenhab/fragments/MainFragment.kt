@@ -30,7 +30,11 @@ class MainFragment : Fragment() {
         myContext = context
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val root = binding.root
 
@@ -166,7 +170,11 @@ class MainFragment : Fragment() {
                     findNavController().navigate(R.id.nav_webview)
 
                     if (mySPR.getBoolean(CONNECTION_OVERVIEW_ENABLED, true)) {
-                        storeAndShowConnection((binding.httpToggles[1] as MaterialButton).isChecked, tempHostname, tempPort.toInt())
+                        storeAndShowConnection(
+                            (binding.httpToggles[1] as MaterialButton).isChecked,
+                            tempHostname,
+                            tempPort.toInt()
+                        )
                     }
                 }
             } else {
@@ -175,7 +183,11 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun storeAndShowConnection(httpsActivated: Boolean, hostname: String, port: Int) {
+    private fun storeAndShowConnection(
+        httpsActivated: Boolean,
+        hostname: String,
+        port: Int
+    ) {
         val newConnection = Connection(httpsActivated, hostname, port)
         val connections = getListOfConnections(mySPR)
         if (!connections.contains(newConnection)) {

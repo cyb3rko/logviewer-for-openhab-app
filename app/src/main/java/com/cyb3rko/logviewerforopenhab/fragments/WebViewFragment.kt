@@ -39,7 +39,11 @@ class WebViewFragment : Fragment() {
     private var viewLocked = true
 
     @SuppressLint("SetJavaScriptEnabled")
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentWebViewBinding.inflate(inflater, container, false)
         val root = binding.root
         myContext = requireContext()
@@ -101,7 +105,12 @@ class WebViewFragment : Fragment() {
     private fun setUpWebview() {
         webSettings = binding.webview.settings
         binding.webview.webViewClient = object : WebViewClient() {
-            override fun onReceivedError(view: WebView, errorCode: Int, description: String, failingUrl: String) {
+            override fun onReceivedError(
+                view: WebView,
+                errorCode: Int,
+                description: String,
+                failingUrl: String
+            ) {
                 binding.viewButton.visibility = View.GONE
                 binding.textButton.visibility = View.GONE
                 binding.webview.visibility = View.GONE
@@ -212,7 +221,11 @@ class WebViewFragment : Fragment() {
             val slider = Slider(myContext)
             val currentTextSize = mySPR.getInt(textSizeType, 60)
 
-            sizeView.text = String.format(getString(R.string.text_size_dialog_text), currentTextSize, currentTextSize)
+            sizeView.text = String.format(
+                getString(R.string.text_size_dialog_text),
+                currentTextSize,
+                currentTextSize
+            )
             sizeView.textSize = 18f
             sizeView.setPadding(24, 24, 24, 50)
             sizeView.gravity = Gravity.CENTER_HORIZONTAL
