@@ -34,4 +34,5 @@
     <color name="toolBarTextColor">@color/colorOnPrimary</color>
     <color name="textColor">#aeaeae</color>
     <color name="cardColor">@color/colorSurface</color>
+    <color name="aboutPageColor">#1c1b1f</color>
 </resources>

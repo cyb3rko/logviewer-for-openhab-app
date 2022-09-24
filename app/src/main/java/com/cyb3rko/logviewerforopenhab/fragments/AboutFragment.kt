@@ -27,7 +27,7 @@ class AboutFragment : Fragment() {
         val instagramIcon = mehdi.sakout.aboutpage.R.drawable.about_icon_instagram
         val instagramColor = mehdi.sakout.aboutpage.R.color.about_instagram_color
 
-        return AboutPage(context)
+        return AboutPage(context, R.style.Theme_AboutPage)
             .setImage(R.mipmap.ic_launcher_foreground)
             .setDescription(getString(R.string.about_description))
             .addItem(

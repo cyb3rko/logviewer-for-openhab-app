@@ -38,4 +38,5 @@
     <color name="textColor">@color/colorSecondary</color>
     <color name="cardColor">@color/colorSurface</color>
     <color name="introElementColor">#934933</color>
+    <color name="aboutPageColor">#ffffff</color>
 </resources>

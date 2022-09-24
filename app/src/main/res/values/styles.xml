@@ -52,4 +52,8 @@
         <item name="buttonTint">@color/introElementColor</item>
     </style>
 
+    <style name="Theme.AboutPage" parent="about_About">
+        <item name="aboutBackground">@color/aboutPageColor</item>
+    </style>
+
 </resources>
