@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
@@ -16,7 +15,6 @@ import com.cyb3rko.logviewerforopenhab.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import es.dmoral.toasty.Toasty
 
 class PreferenceFragment : PreferenceFragmentCompat() {
 
@@ -118,7 +116,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
                         .show()
                     true
                 } else {
-                    Toast.makeText(myContext, R.string.settings_manage_connections_error, Toast.LENGTH_SHORT).show()
+                    showToast(getString(R.string.settings_manage_connections_error))
                     false
                 }
             }
@@ -142,7 +140,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
             DATA_DELETION -> {
                 FirebaseAnalytics.getInstance(requireActivity()).resetAnalyticsData()
                 FirebaseCrashlytics.getInstance().deleteUnsentReports()
-                Toasty.success(requireContext(), getString(R.string.settings_data_deletion_done), Toasty.LENGTH_SHORT).show()
+                showToast(getString(R.string.settings_data_deletion_done))
                 true
             }
             else -> false

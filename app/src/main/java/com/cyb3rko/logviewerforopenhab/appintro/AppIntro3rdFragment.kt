@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.cyb3rko.logviewerforopenhab.*
 import com.cyb3rko.logviewerforopenhab.PRIVACY_POLICY
-import com.cyb3rko.logviewerforopenhab.R
 import com.cyb3rko.logviewerforopenhab.TERMS_OF_USE
 import com.cyb3rko.logviewerforopenhab.databinding.FragmentAppintro3Binding
 import com.cyb3rko.logviewerforopenhab.showLicenseDialog
 import com.github.appintro.SlidePolicy
-import es.dmoral.toasty.Toasty
 
 class AppIntro3rdFragment : Fragment(), SlidePolicy {
     private var _binding: FragmentAppintro3Binding? = null
@@ -33,7 +32,7 @@ class AppIntro3rdFragment : Fragment(), SlidePolicy {
         get() = (binding.termsOfUseCheck.isChecked && binding.privacyPolicyCheck.isChecked)
 
     override fun onUserIllegallyRequestedNextPage() {
-        Toasty.error(requireContext(), getString(R.string.intro_fragment3_toast), Toasty.LENGTH_SHORT).show()
+        showToast(getString(R.string.intro_fragment3_toast))
     }
 
     companion object {

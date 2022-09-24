@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.cyb3rko.logviewerforopenhab.BuildConfig
 import com.cyb3rko.logviewerforopenhab.R
+import com.cyb3rko.logviewerforopenhab.openUrl
 import com.mikepenz.aboutlibraries.LibsBuilder
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
@@ -62,7 +63,7 @@ class AboutFragment : Fragment() {
     }
 
     private fun showChangelog(): View.OnClickListener {
-        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.about_changelog_link)))) }
+        return View.OnClickListener { openUrl(getString(R.string.about_changelog_link)) }
     }
 
     private fun showLibraries(): View.OnClickListener {
@@ -88,15 +89,15 @@ class AboutFragment : Fragment() {
     }
 
     private fun openGithubFeedback(): View.OnClickListener {
-        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/cyb3rko/logviewer-for-openhab-app/"))) }
+        return View.OnClickListener { openUrl("https://github.com/cyb3rko/logviewer-for-openhab-app/") }
     }
 
     private fun openGithubProfile(): View.OnClickListener {
-        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/cyb3rko/"))) }
+        return View.OnClickListener { openUrl("https://github.com/cyb3rko/") }
     }
 
     private fun openInstaPage(): View.OnClickListener {
-        return View.OnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/_u/cyb3rko"))) }
+        return View.OnClickListener { openUrl("https://instagram.com/_u/cyb3rko") }
     }
 
     private fun writeEmail(): View.OnClickListener {

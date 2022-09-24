@@ -3,7 +3,6 @@ package com.cyb3rko.logviewerforopenhab
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -26,7 +25,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import es.dmoral.toasty.Toasty
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +39,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Toasty.Config.getInstance().allowQueue(false).apply()
         mySPR = getSharedPreferences(SHARED_PREFERENCE, MODE_PRIVATE)
         editor = mySPR.edit()
         editor.apply()
@@ -85,10 +82,10 @@ class MainActivity : AppCompatActivity() {
                     showEndUserConsent()
                 }
                 R.id.drawer_github_repo -> {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://" + getString(R.string.github_repo))))
+                    openUrl("https://" + getString(R.string.github_repo))
                 }
                 R.id.drawer_translation -> {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://" + getString(R.string.translation_project))))
+                    openUrl("https://" + getString(R.string.translation_project))
                 }
             }
             it.isChecked = true

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -162,8 +161,7 @@ class MainFragment : Fragment() {
                     binding.connectButton.text = getString(R.string.main_connect_button_2)
                 } else {
                     if (view != null) {
-                        val imm = view.context.applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        imm.hideSoftInputFromWindow(view.windowToken, 0)
+                        hideKeyboard()
                     }
                     findNavController().navigate(R.id.nav_webview)
 

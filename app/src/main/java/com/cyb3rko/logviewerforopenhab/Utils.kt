@@ -1,11 +1,16 @@
 package com.cyb3rko.logviewerforopenhab
 
 import android.app.Activity
-import android.content.Context
-import android.content.SharedPreferences
+import android.content.*
+import android.net.Uri
 import android.text.Html
 import android.text.method.LinkMovementMethod
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
@@ -43,6 +48,55 @@ internal const val STAY_AWAKE = "stay_awake"
 internal const val TEXTSIZE_AUTO = "textsize_auto"
 internal const val TEXTSIZE_LANDSCAPE = "textsize_landscape"
 internal const val TEXTSIZE_PORTRAIT = "textsize_PORTRAIT"
+
+//// Extension functions
+
+// For Context class
+
+internal fun Context.showToast(message: String, length: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, length).show()
+}
+
+internal fun Context.storeToClipboard(label: String, text: String) {
+    val clip = ClipData.newPlainText(label, text)
+    (this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
+        .setPrimaryClip(clip)
+}
+
+internal fun Context.openUrl(url: String) {
+    try {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        this.startActivity(intent)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        this.storeToClipboard("URL", url)
+        this.showToast("Opening URL failed, copied URL instead", Toast.LENGTH_LONG)
+    }
+}
+
+// For Fragment class
+
+internal fun Fragment.showToast(message: String, length: Int = Toast.LENGTH_SHORT) {
+    this.requireContext().showToast(message, length)
+}
+
+internal fun Fragment.openUrl(url: String) {
+    this.requireContext().openUrl(url)
+}
+
+internal fun Fragment.hideKeyboard() {
+    val activity = this.requireActivity()
+    val imm = activity.getSystemService(
+        AppCompatActivity.INPUT_METHOD_SERVICE
+    ) as InputMethodManager
+    var view = activity.currentFocus
+    if (view == null) {
+        view = View(activity)
+    }
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
+//// Other functions
 
 internal fun getListOfConnections(mySPR: SharedPreferences): MutableList<Connection> {
     val resultList = mutableListOf<Connection>()

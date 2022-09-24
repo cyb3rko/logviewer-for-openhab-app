@@ -25,7 +25,6 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
-import es.dmoral.toasty.Toasty
 
 class WebViewFragment : Fragment() {
     private var _binding: FragmentWebViewBinding? = null
@@ -192,7 +191,7 @@ class WebViewFragment : Fragment() {
                 viewLocked = false
                 setTouchable(true)
 
-                Toasty.info(myContext, getString(R.string.lock_button_1), Toasty.LENGTH_SHORT).show()
+                showToast(getString(R.string.lock_button_1))
             } else {
                 binding.viewButton.setImageResource(R.drawable._ic_lock)
                 viewLocked = true
@@ -200,7 +199,7 @@ class WebViewFragment : Fragment() {
 
                 binding.webview.scrollBy(0, 10000)
 
-                Toasty.info(myContext, getString(R.string.lock_button_2), Toasty.LENGTH_SHORT).show()
+                showToast(getString(R.string.lock_button_2))
             }
         }
     }
@@ -241,7 +240,6 @@ class WebViewFragment : Fragment() {
                     val textSize = slider.value.toInt()
                     webSettings.textZoom = textSize
                     editor.putInt(textSizeType, textSize).apply()
-                    Toasty.info(myContext, getString(R.string.text_size_changed) + textSize, Toasty.LENGTH_SHORT).show()
                 }
                 .setNegativeButton(R.string.text_size_dialog_button_2, null)
                 .show()
