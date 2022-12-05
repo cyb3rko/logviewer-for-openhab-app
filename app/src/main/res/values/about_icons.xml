@@ -13,9 +13,9 @@
     </string-array>
 
     <string-array name="ic_end_user_consent">
-        <item>Smashicons</item>
+        <item>Gajah Mada</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/secure-data_1035086</item>
+        <item>https://www.flaticon.com/free-icon/survey_4500747</item>
     </string-array>
 
     <string-array name="ic_font">
@@ -31,7 +31,7 @@
     </string-array>
 
     <string-array name="ic_github2">
-        <item>Freepik</item>
+        <item>Creatype</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/github_1051377</item>
     </string-array>
@@ -43,9 +43,9 @@
     </string-array>
 
     <string-array name="ic_info">
-        <item>Those Icons</item>
+        <item>Freepik</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/information_813776</item>
+        <item>https://www.flaticon.com/free-icon/information_545674</item>
     </string-array>
 
     <string-array name="ic_libraries">
@@ -74,7 +74,7 @@
     </string-array>
 
     <string-array name="ic_menu">
-        <item>Pixel perfect</item>
+        <item>exomoon design studio</item>
         <item>flaticon.com</item>
         <item>https://www.flaticon.com/free-icon/menu_1828859</item>
     </string-array>
@@ -86,9 +86,9 @@
     </string-array>
 
     <string-array name="ic_settings">
-        <item>srip</item>
+        <item>Pixel perfect</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/settings_900797</item>
+        <item>https://www.flaticon.com/free-icon/settings_3524636</item>
     </string-array>
 
     <string-array name="ic_smart_home">
@@ -105,8 +105,8 @@
     </string-array>
 
     <string-array name="ic_translation">
-        <item>Freepik</item>
+        <item>Roundicons Premium</item>
         <item>flaticon.com</item>
-        <item>https://www.flaticon.com/free-icon/translation_2793765</item>
+        <item>https://www.flaticon.com/free-icon/translation_632904</item>
     </string-array>
 </resources>
