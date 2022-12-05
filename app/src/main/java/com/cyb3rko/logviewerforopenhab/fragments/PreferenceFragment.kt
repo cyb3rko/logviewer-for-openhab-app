@@ -7,11 +7,9 @@ import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.ListPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreference
+import androidx.preference.*
 import com.cyb3rko.logviewerforopenhab.*
+import com.cyb3rko.logviewerforopenhab.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -20,15 +18,15 @@ class PreferenceFragment : PreferenceFragmentCompat() {
 
     private lateinit var myContext: Context
 
-    private lateinit var analyticsCollectionSwitch: SwitchPreference
-    private lateinit var connectionOverviewSwitch: SwitchPreference
-    private lateinit var crashlyticsCollectionSwitch: SwitchPreference
-    private lateinit var hideTopbarSwitch: SwitchPreference
+    private lateinit var analyticsCollectionSwitch: SwitchPreferenceCompat
+    private lateinit var connectionOverviewSwitch: SwitchPreferenceCompat
+    private lateinit var crashlyticsCollectionSwitch: SwitchPreferenceCompat
+    private lateinit var hideTopbarSwitch: SwitchPreferenceCompat
     private lateinit var mySPR: SharedPreferences
     private lateinit var nightModeList: ListPreference
     private lateinit var orientationList: ListPreference
     private lateinit var openhabVersionList: ListPreference
-    private lateinit var stayAwakeSwitch: SwitchPreference
+    private lateinit var stayAwakeSwitch: SwitchPreferenceCompat
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

@@ -38,6 +38,7 @@
         <item name="cardColor">@color/cardColor</item>
 
         <item name="md_corner_radius">10dp</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat</item>
     </style>
 
     <style name="Button.AppIntro" parent="Widget.Material3.Button">
@@ -54,6 +55,10 @@
 
     <style name="Theme.AboutPage" parent="about_About">
         <item name="aboutBackground">@color/aboutPageColor</item>
+    </style>
+
+    <style name="Preference.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material" tools:ignore="ResourceCycle">
+        <item name="widgetLayout">@layout/preference_switch</item>
     </style>
 
 </resources>
