@@ -26,20 +26,18 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/http_button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HTTP"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/https_button"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HTTPS"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 tools:ignore="HardcodedText" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -71,13 +69,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/hostname_ip_address_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/main_checks_text"
             android:textSize="14sp"
+            android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="@+id/hostname_ip_address"
             app:layout_constraintTop_toBottomOf="@+id/hostname_ip_address" />
 
@@ -105,7 +104,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/port_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -137,7 +136,7 @@
             android:enabled="false"
             tools:enabled="true"
             android:textAllCaps="false"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:text="@string/main_edit_button"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintTop_toTopOf="@+id/connect_button"
@@ -157,7 +156,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/connect_button" />
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/connect_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
