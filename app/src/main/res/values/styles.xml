@@ -38,6 +38,8 @@
         <item name="cardColor">@color/cardColor</item>
 
         <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat</item>
+        <item name="materialAlertDialogTheme">@style/Dialog.Preferences</item>
+        <item name="alertDialogTheme">@style/Dialog.Preferences</item>
     </style>
 
     <style name="Button.AppIntro" parent="Widget.Material3.Button">
@@ -58,6 +60,11 @@
 
     <style name="Preference.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material" tools:ignore="ResourceCycle">
         <item name="widgetLayout">@layout/preference_switch</item>
+    </style>
+
+    <style name="Dialog.Preferences" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">28dp</item>
+        <item name="android:background">@drawable/dialog_bg_monet</item>
     </style>
 
 </resources>
