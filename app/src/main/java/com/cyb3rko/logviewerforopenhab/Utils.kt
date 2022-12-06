@@ -3,17 +3,15 @@ package com.cyb3rko.logviewerforopenhab
 import android.app.Activity
 import android.content.*
 import android.net.Uri
-import android.text.Html
-import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.cyb3rko.logviewerforopenhab.modals.PolicyBottomSheet
 import com.google.android.material.navigation.NavigationView
 
 internal const val PRIVACY_POLICY = "privacy_policy"
@@ -148,12 +146,10 @@ internal fun hideConnections(activity: Activity?) {
 }
 
 internal fun showLicenseDialog(context: Context?, type: String) {
-    MaterialDialog(context!!, BottomSheet()).show {
-         @Suppress("DEPRECATION")
-         message(0, Html.fromHtml(context.assets.open("$type.html").bufferedReader().use { it.readText() })) {
-            messageTextView.movementMethod = LinkMovementMethod.getInstance()
-        }
-    }
+    PolicyBottomSheet(type).show(
+        (context as FragmentActivity).supportFragmentManager,
+        PolicyBottomSheet.TAG
+    )
 }
 
 fun setToolbarVisibility(activity: Activity?, visibility: Int) {
