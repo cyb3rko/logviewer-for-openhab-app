@@ -3,12 +3,10 @@ package com.cyb3rko.logviewerforopenhab.appintro
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.cyb3rko.logviewerforopenhab.*
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
-import com.github.appintro.AppIntroPageTransformerType
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import java.text.SimpleDateFormat
@@ -19,29 +17,28 @@ class MyAppIntro : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, theme)
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
             title = getString(R.string.intro_fragment1_title),
             description = getString(R.string.intro_fragment1_description),
             imageDrawable = R.drawable._ic_hello,
-            backgroundColor = backgroundColor
+            backgroundColorRes = R.color.colorPrimary
         ))
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
             title = getString(R.string.intro_fragment2_title),
             imageDrawable = R.drawable._ic_github,
             description = getString(R.string.intro_fragment2_description),
-            backgroundColor = backgroundColor
+            backgroundColorRes = R.color.colorPrimary
         ))
         addSlide(AppIntro3rdFragment.newInstance())
         addSlide(AppIntro4thFragment.newInstance())
-        addSlide(AppIntroFragment.newInstance(
+        addSlide(AppIntroFragment.createInstance(
             title = getString(R.string.intro_fragment5_title),
             imageDrawable = R.drawable._ic_start,
             description = getString(R.string.intro_fragment5_description),
-            backgroundColor = backgroundColor
+            backgroundColorRes = R.color.colorPrimary
         ))
 
-        setTransformer(AppIntroPageTransformerType.Parallax())
+        showStatusBar(true)
         isWizardMode = true
         isSystemBackButtonLocked = true
     }
