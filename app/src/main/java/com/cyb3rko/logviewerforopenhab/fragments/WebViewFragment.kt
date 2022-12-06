@@ -111,62 +111,66 @@ class WebViewFragment : Fragment() {
                 description: String,
                 failingUrl: String
             ) {
-                binding.viewButton.visibility = View.GONE
-                binding.textButton.visibility = View.GONE
-                binding.webview.visibility = View.GONE
-                binding.animationView.visibility = View.VISIBLE
-                when (errorCode) {
-                    -8 -> {
-                        binding.animationView.setAnimation("timeout.json")
-                        binding.animationDesc.text = getString(R.string.webview_error_timeout)
-                    }
-                    -6 -> {
-                        binding.animationView.setAnimation("connection.json")
-                        binding.animationDesc.text = if (description.contains("REFUSED")) {
-                            getString(R.string.webview_error_connection_1)
-                        } else {
-                            getString(R.string.webview_error_connection_2)
+                binding.retryButton.visibility = View.VISIBLE
+                binding.retryButton.setOnClickListener {
+                    findNavController().navigate(R.id.nav_webview)
+                }
+                if (context == null) return
+
+                try {
+                    binding.viewButton.visibility = View.GONE
+                    binding.textButton.visibility = View.GONE
+                    binding.webview.visibility = View.GONE
+                    binding.animationView.visibility = View.VISIBLE
+                    when (errorCode) {
+                        -8 -> {
+                            binding.animationView.setAnimation("timeout.json")
+                            binding.animationDesc.text = getString(R.string.webview_error_timeout)
                         }
-                    }
-                    -4 -> {
-                        binding.animationView.setAnimation("auth.json")
-                        binding.animationDesc.text = getString(R.string.webview_error_authentication)
-                    }
-                    -2 -> {
-                        if (description.contains("INTERNET")) {
-                            binding.animationView.setAnimation("internet.json")
-                            binding.animationDesc.text = getString(R.string.webview_error_internet)
-                        } else {
-                            val host = mySPR.getString(LINK, "")!!.split("://")[1].split(":")[0]
-                            binding.animationView.setAnimation("host.json")
-                            binding.animationDesc.text = getString(R.string.webview_error_host, host)
+                        -6 -> {
+                            binding.animationView.setAnimation("connection.json")
+                            binding.animationDesc.text = if (description.contains("REFUSED")) {
+                                getString(R.string.webview_error_connection_1)
+                            } else {
+                                getString(R.string.webview_error_connection_2)
+                            }
                         }
-                    }
-                    -1 -> {
-                        if (description.contains("UNSAFE_PORT")) {
-                            val port = mySPR.getString(LINK, "")!!.split(":")[1]
-                            binding.animationView.setAnimation("secure.json")
-                            binding.animationDesc.text = getString(R.string.webview_error_port, port)
-                        } else {
+                        -4 -> {
+                            binding.animationView.setAnimation("auth.json")
+                            binding.animationDesc.text = getString(R.string.webview_error_authentication)
+                        }
+                        -2 -> {
+                            if (description.contains("INTERNET")) {
+                                binding.animationView.setAnimation("internet.json")
+                                binding.animationDesc.text = getString(R.string.webview_error_internet)
+                            } else {
+                                val host = mySPR.getString(LINK, "")!!.split("://")[1].split(":")[0]
+                                binding.animationView.setAnimation("host.json")
+                                binding.animationDesc.text = getString(R.string.webview_error_host, host)
+                            }
+                        }
+                        -1 -> {
+                            if (description.contains("UNSAFE_PORT")) {
+                                val port = mySPR.getString(LINK, "")!!.split(":")[1]
+                                binding.animationView.setAnimation("secure.json")
+                                binding.animationDesc.text = getString(R.string.webview_error_port, port)
+                            } else {
+                                binding.animationView.setAnimation("error.json")
+                                binding.animationDesc.text = getString(R.string.webview_error_unknown)
+                                logUnknownError(errorCode, description)
+                            }
+                        }
+                        -11 -> {
+                            binding.animationView.setAnimation("ssl.json")
+                            binding.animationDesc.text = getString(R.string.webview_error_ssl)
+                        }
+                        else -> {
                             binding.animationView.setAnimation("error.json")
                             binding.animationDesc.text = getString(R.string.webview_error_unknown)
                             logUnknownError(errorCode, description)
                         }
                     }
-                    -11 -> {
-                        binding.animationView.setAnimation("ssl.json")
-                        binding.animationDesc.text = getString(R.string.webview_error_ssl)
-                    }
-                    else -> {
-                        binding.animationView.setAnimation("error.json")
-                        binding.animationDesc.text = getString(R.string.webview_error_unknown)
-                        logUnknownError(errorCode, description)
-                    }
-                }
-                binding.retryButton.visibility = View.VISIBLE
-                binding.retryButton.setOnClickListener {
-                    findNavController().navigate(R.id.nav_webview)
-                }
+                } catch (_: Exception) {}
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
