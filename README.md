@@ -4,7 +4,7 @@
 [![last commit](https://img.shields.io/github/last-commit/cyb3rko/logviewer-for-openhab-app?color=F34C9F)](https://github.com/cyb3rko/logviewer-for-openhab-app/commits/master)
 [![license](https://img.shields.io/github/license/cyb3rko/logviewer-for-openhab-app)](https://www.apache.org/licenses/LICENSE-2.0)
 
-![logviewer](https://socialify.git.ci/cyb3rko/logviewer-for-openhab-app/image?description=1&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fcdn.cyb3rko.de%2FApps%2FLogViewer%2520for%2520openHAB%2Fic_launcher_cropped.png&owner=1&pattern=Overlapping%20Hexagons&pulls=1&stargazers=1&theme=Dark)
+![logviewer](https://socialify.git.ci/cyb3rko/logviewer-for-openhab-app/image?description=1&font=Rokkitt&forks=1&issues=1&logo=https%3A%2F%2Fcdn.cyb3rko.de%2FApps%2FLogViewer%2520for%2520openHAB%2Fic_launcher_cropped.png&name=1&owner=1&pattern=Overlapping%20Hexagons&pulls=1&stargazers=1&theme=Dark)
 
 - [About this project](#about-this-project)  
     - [Translation](#translation)
