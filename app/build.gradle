@@ -7,23 +7,23 @@ apply plugin: 'kotlin-android'
 android {
     namespace 'com.cyb3rko.logviewerforopenhab'
 
-    compileSdk 33
+    compileSdk 35
     defaultConfig {
         applicationId 'com.cyb3rko.logviewerforopenhab'
         minSdk 21
-        targetSdk 33
+        targetSdk 35
         versionCode 22
         versionName "2.5.0"
     }
     signingConfigs {
         signingConf {
-            Properties properties = new Properties()
-            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+            //Properties properties = new Properties()
+            //properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-            storeFile file(properties.getProperty("signing.file"))
-            storePassword properties.getProperty("signing.password")
-            keyAlias properties.getProperty("signing.key.alias")
-            keyPassword properties.getProperty("signing.key.password")
+            //storeFile file(properties.getProperty("signing.file"))
+            //storePassword properties.getProperty("signing.password")
+            //keyAlias properties.getProperty("signing.key.alias")
+            //keyPassword properties.getProperty("signing.key.password")
         }
     }
 
@@ -41,39 +41,42 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
     packagingOptions {
-        pickFirst 'META-INF/library_release.kotlin_module'
+        resources {
+            pickFirsts += ['META-INF/library_release.kotlin_module']
+        }
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 }
 
 dependencies {
-    def navigation_version = "2.5.3"
+    def navigation_version = "2.8.3"
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     implementation "com.mikepenz:aboutlibraries-core:$aboutLibsVersion"
     implementation "com.mikepenz:aboutlibraries:$aboutLibsVersion"
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.preference:preference-ktx:1.2.0'
-    implementation 'com.airbnb.android:lottie:5.2.0'
-    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.preference:preference-ktx:1.2.1'
+    implementation 'com.airbnb.android:lottie:6.5.2'
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.15.0'
     implementation 'com.github.AppIntro:AppIntro:6.2.0'
     implementation 'com.github.cyb3rko:about-icons:2.0.0'
-    implementation 'com.google.android.material:material:1.8.0-alpha03'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.google.android.play:core-ktx:1.8.1'
     implementation 'com.google.firebase:firebase-analytics-ktx' // BOM versioning
     implementation 'com.google.firebase:firebase-crashlytics-ktx' // BOM versioning
     implementation 'io.github.medyo:android-about-page:2.0.0'
-    implementation platform('com.google.firebase:firebase-bom:30.4.1')
+    implementation platform('com.google.firebase:firebase-bom:33.4.0')
 }
