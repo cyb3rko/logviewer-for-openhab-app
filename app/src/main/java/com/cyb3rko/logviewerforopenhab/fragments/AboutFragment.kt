@@ -24,8 +24,6 @@ class AboutFragment : Fragment() {
     ): View? {
         val githubIcon = mehdi.sakout.aboutpage.R.drawable.about_icon_github
         val emailIcon = mehdi.sakout.aboutpage.R.drawable.about_icon_email
-        val instagramIcon = mehdi.sakout.aboutpage.R.drawable.about_icon_instagram
-        val instagramColor = mehdi.sakout.aboutpage.R.color.about_instagram_color
 
         return AboutPage(context, R.style.Theme_AboutPage)
             .setImage(R.mipmap.ic_launcher_foreground)
@@ -77,14 +75,6 @@ class AboutFragment : Fragment() {
                     getString(R.string.about_element_github_text),
                     githubIcon
                 ).setOnClickListener { openUrl("https://github.com/cyb3rko/") }
-            )
-            .addItem(
-                Element(
-                    getString(R.string.about_element_instagram_text),
-                    instagramIcon
-                )
-                    .setIconTint(instagramColor)
-                    .setOnClickListener { openUrl("https://instagram.com/_u/cyb3rko") }
             )
             .create()
     }
