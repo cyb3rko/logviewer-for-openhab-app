@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.UnderlineSpan
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -75,6 +76,14 @@ class MainActivity : AppCompatActivity() {
         } else if (mySPR.getBoolean(AUTO_START, false)) {
             navController.navigate(R.id.nav_webview)
         }
+
+        val onBackPressedCallback = object : OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() {
+                setToolbarVisibility(this@MainActivity, View.VISIBLE)
+                if (drawerLayout.isOpen) drawerLayout.close()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -200,11 +209,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onBackPressed() {
-        setToolbarVisibility(this, View.VISIBLE)
-        if (drawerLayout.isOpen) drawerLayout.close() else super.onBackPressed()
     }
 
     override fun onSupportNavigateUp(): Boolean {
